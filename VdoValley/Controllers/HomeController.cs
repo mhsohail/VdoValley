@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using VdoValley.Models;
@@ -11,8 +12,11 @@ namespace VdoValley.Controllers
 {
     public class HomeController : Controller
     {
+        VdoValleyContext db = new VdoValleyContext();
         public ActionResult Index()
         {
+            List<Video> dbVideos = db.Videos.ToList();
+            
             Video v1 = new Video
             {
                 Title = "Zenit St Petersburg vs Sevilla - Highlights - UEFA Europa League - PES 15 - Round of April 23",
@@ -48,18 +52,23 @@ namespace VdoValley.Controllers
                 Url = "http://www.dailymotion.com/video/x2nxjqb_shahid-afridi-telling-funny-story-of-how-he-got-married-watch-video_news"
             };
             
-            v1.thumbnail_large_url = getDailyMotionThumb("x2nq7ae", DailymotionThumbnailSize.thumbnail_large_url.ToString());
-            v2.thumbnail_large_url = getDailyMotionThumb("x2nv88j", DailymotionThumbnailSize.thumbnail_large_url.ToString());
-            v3.thumbnail_large_url = getDailyMotionThumb("x2o0vel", DailymotionThumbnailSize.thumbnail_large_url.ToString());
-            v4.thumbnail_large_url = getDailyMotionThumb("x2nux9t", DailymotionThumbnailSize.thumbnail_large_url.ToString());
-            v5.thumbnail_large_url = getDailyMotionThumb("x2nxjqb", DailymotionThumbnailSize.thumbnail_large_url.ToString());
+            v1.thumbnail_large_url = getDailyMotionThumb("x2nq7ae", DailymotionThumbnailSize.thumbnail_large_url);
+            v2.thumbnail_large_url = getDailyMotionThumb("x2nv88j", DailymotionThumbnailSize.thumbnail_large_url);
+            v3.thumbnail_large_url = getDailyMotionThumb("x2o0vel", DailymotionThumbnailSize.thumbnail_large_url);
+            v4.thumbnail_large_url = getDailyMotionThumb("x2nux9t", DailymotionThumbnailSize.thumbnail_large_url);
+            v5.thumbnail_large_url = getDailyMotionThumb("x2nxjqb", DailymotionThumbnailSize.thumbnail_large_url);
 
             List<Video> videos = new List<Video>()
             {
                 v1,v2,v3,v4,v5
             };
 
-            ViewData["videos"] = videos;
+            foreach(Video video in dbVideos)
+            {
+                video.thumbnail_large_url = getDailyMotionThumb(getDailyMotionViewCode(video.Url), DailymotionThumbnailSize.thumbnail_large_url);
+            }
+            
+            ViewData["videos"] = dbVideos;
             return View();
         }
 
@@ -78,16 +87,34 @@ namespace VdoValley.Controllers
         }
 
         [NonAction]
-        public string getDailyMotionThumb(string video_code, string thumbnail_size)
+        public string getDailyMotionThumb(string video_code, DailymotionThumbnailSize thumbnail_size)
         {
+            string size = thumbnail_size.ToString();
             string json = string.Empty;
             using (var client = new WebClient())
             {
-                json = client.DownloadString("https://api.dailymotion.com/video/" + video_code + "?fields=" + thumbnail_size);
+                json = client.DownloadString("https://api.dailymotion.com/video/" + video_code + "?fields=" + size);
             }
 
             Video vdo = JsonConvert.DeserializeObject<Video>(json);
             return vdo.thumbnail_large_url;
+        }
+
+        public string getDailyMotionViewCode(string short_url)
+        {
+            string code = string.Empty;
+            string pattern = @"(http://dai.ly/)(\S*)";
+            Regex rgx = new Regex(pattern, RegexOptions.IgnoreCase);
+            MatchCollection matches = rgx.Matches(short_url);
+            if (matches.Count > 0)
+            {
+                foreach (Match match in matches)
+                {
+                    code = match.Value;
+                }
+            }
+
+            return matches[0].Groups[2].Value;
         }
     }
 }
