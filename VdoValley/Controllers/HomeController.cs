@@ -13,53 +13,7 @@ namespace VdoValley.Controllers
     {
         public ActionResult Index()
         {
-            Video v1 = new Video
-            {
-                Title = "Zenit St Petersburg vs Sevilla - Highlights - UEFA Europa League - PES 15 - Round of April 23",
-                Description = "Description 1",
-                Url = "http://www.dailymotion.com/video/x2nq7ae_zenit-st-petersburg-vs-sevilla-highlights-uefa-europa-league-pes-15-round-of-april-23_videogames"
-            };
-        
-            Video v2 = new Video
-            {
-                Title = "Burning Rubber in the Streets of Vienna - Red Bull Show Run 2015",
-                Description = "Description 2",
-                Url = "http://www.dailymotion.com/video/x2nv88j_burning-rubber-in-the-streets-of-vienna-red-bull-show-run-2015_auto"
-            };
-
-            Video v3 = new Video
-            {
-                Title = "This Video Clearly Shows What Kind of Relations Model Ayyan Ali Had with Asif Zardari",
-                Description = "Description 3",
-                Url = "http://www.dailymotion.com/video/x2o0vel_this-video-clearly-shows-what-kind-of-relations-model-ayyan-ali-had-with-asif-zardari_news#from=embediframe"
-            };
-            
-            Video v4 = new Video
-            {
-                Title = "Fox News Making Fun Of Unsuccessful Indian Missile Test",
-                Description = "Description 4",
-                Url = "http://www.dailymotion.com/video/x2nux9t_fox-news-making-fun-of-unsuccessful-indian-missile-test_news"
-            };
-
-            Video v5 = new Video
-            {
-                Title = "Shahid Afridi Telling Funny Story Of How He Got Married - Watch Video",
-                Description = "Description 5",
-                Url = "http://www.dailymotion.com/video/x2nxjqb_shahid-afridi-telling-funny-story-of-how-he-got-married-watch-video_news"
-            };
-
-            v1.thumbnail_large_url = getDailyMotionThumb("x2nq7ae", DailymotionThumbnailSize.thumbnail_large_url.ToString());
-            v2.thumbnail_large_url = getDailyMotionThumb("x2nv88j", DailymotionThumbnailSize.thumbnail_large_url.ToString());
-            v3.thumbnail_large_url = getDailyMotionThumb("x2o0vel", DailymotionThumbnailSize.thumbnail_large_url.ToString());
-            v4.thumbnail_large_url = getDailyMotionThumb("x2nux9t", DailymotionThumbnailSize.thumbnail_large_url.ToString());
-            v5.thumbnail_large_url = getDailyMotionThumb("x2nxjqb", DailymotionThumbnailSize.thumbnail_large_url.ToString());
-
-            List<Video> videos = new List<Video>()
-            {
-                v1,v2,v3,v4,v5
-            };
-
-            ViewData["videos"] = videos;
+            ViewBag.Video = getDailyMotionThumb("x2nzrie", DailymotionThumbnailSize.thumbnail_large_url.ToString());
             return View();
         }
 
@@ -86,8 +40,10 @@ namespace VdoValley.Controllers
                 json = client.DownloadString("https://api.dailymotion.com/video/" + video_code + "?fields=" + thumbnail_size);
             }
 
-            Video vdo = JsonConvert.DeserializeObject<Video>(json);
-            return vdo.thumbnail_large_url;
+            string obj;
+            obj = JsonConvert.DeserializeObject(json).ToString();
+            
+            return json;
         }
     }
 }

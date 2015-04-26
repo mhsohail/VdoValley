@@ -4,11 +4,8 @@
 </div>
 
 <iframe frameborder="0" width="480" height="270" src="//www.dailymotion.com/embed/video/x2nzrie" allowfullscreen></iframe><br /><a href="http://www.dailymotion.com/video/x2nzrie_shahid-afridi-s-exclusive-interview_news" target="_blank">Shahid Afridi&#039;s exclusive Interview</a> <i>by <a href="http://www.dailymotion.com/pakistanbroadcasters" target="_blank">pakistanbroadcasters</a></i>
-@{
-    string url = "http://www.yahoo.com/";
-    string str = ViewBag.Video;
-    List<VdoValley.Models.Video> videos = (List<VdoValley.Models.Video>)ViewData["videos"];
-}
+@{string url = "http://www.yahoo.com/";}
+@Html.Raw(Json.Decode(ViewBag.Video))
 
 <!---->
 <div class="gallery">
@@ -31,16 +28,41 @@
     <!-- //requried-jsfiles-for owl -->
     <!-- start content_slider -->
     <div id="owl-demo" class="owl-carousel ">
-        @foreach (var video in videos)
-        {
-            <div class="item g1">
-                <a href="single.html"><img class="lazyOwl " data-src="@video.thumbnail_large_url" alt="@video.Title"></a>
-                <div class="caption">
-                    <h3 class="cinema"><a href="single.html">CINEMA</a></h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
-                </div>
+        <div class="item g1">
+            <a href="single.html"><img class="lazyOwl " data-src="http://www.dailymotion.com/thumbnail/video/x2nynb1" alt="name"></a>
+            <div class="caption">
+                <h3 class="cinema"><a href="single.html">CINEMA</a></h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
             </div>
-        }
+        </div>
+        <div class="item g1">
+            <a href="single.html"><img class="lazyOwl" data-src="http://www.dailymotion.com/thumbnail/video/x2nztcw" alt="name"></a>
+            <div class="caption">
+                <h3 class="cinema travel"><a href="single.html">Travel</a></h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+            </div>
+        </div>
+        <div class="item g1">
+            <a href="single.html"><img class="lazyOwl" data-src="http://www.dailymotion.com/thumbnail/video/x2nzrie" alt="name"></a>
+            <div class="caption">
+                <h3 class="cinema tele"><a href="single.html">television</a></h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+            </div>
+        </div>
+        <div class="item g1">
+            <a href="single.html"><img class="lazyOwl" data-src="http://www.dailymotion.com/thumbnail/video/x2nzsvo" alt="name"></a>
+            <div class="caption">
+                <h3 class="cinema"><a href="single.html">CINEMA</a></h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+            </div>
+        </div>
+        <div class="item g1">
+            <a href="single.html"><img class="lazyOwl" data-src="http://www.dailymotion.com/thumbnail/video/x2nzsvo" alt="name"></a>
+            <div class="caption">
+                <h3 class="cinema travel"><a href="single.html">Travel</a></h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+            </div>
+        </div>
     </div>
     <!--//sreen-gallery-cursual---->
 </div>
@@ -426,8 +448,5 @@
 </script>
 <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 
-@{
-    Disqus.Initialize("vdovalley");
-}
 
-@Disqus.ShowComments("1");
+</div>

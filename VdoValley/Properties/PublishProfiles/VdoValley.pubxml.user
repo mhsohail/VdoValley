@@ -9,9 +9,6 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <_PublishTargetUrl>D:\VdoValley</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
-    <File Include="App_Code/Disqus.cshtml">
-      <publishTime>04/26/2015 17:27:53</publishTime>
-    </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>04/25/2015 17:21:34</publishTime>
     </File>
@@ -61,7 +58,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:21:33</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>04/26/2015 14:08:18</publishTime>
+      <publishTime>04/25/2015 17:21:45</publishTime>
     </File>
     <File Include="bin/Owin.dll">
       <publishTime>04/25/2015 17:22:16</publishTime>
@@ -88,7 +85,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:21:31</publishTime>
     </File>
     <File Include="bin/VdoValley.dll">
-      <publishTime>04/26/2015 17:45:15</publishTime>
+      <publishTime>04/26/2015 13:50:39</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>04/25/2015 17:21:35</publishTime>
@@ -394,7 +391,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 22:25:27</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>04/26/2015 17:27:55</publishTime>
+      <publishTime>04/26/2015 09:37:40</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>04/25/2015 17:21:10</publishTime>
@@ -511,7 +508,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:20:56</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>04/26/2015 17:52:49</publishTime>
+      <publishTime>04/26/2015 13:51:31</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>04/25/2015 17:21:50</publishTime>
@@ -565,7 +562,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:20:56</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/26/2015 17:45:16</publishTime>
+      <publishTime>04/26/2015 09:44:49</publishTime>
     </File>
   </ItemGroup>
 </Project>

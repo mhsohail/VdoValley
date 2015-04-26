@@ -283,7 +283,6 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="images\Thumbs.db" />
     <None Include=".bin\node.cmd" />
-    <Content Include="App_Code\Disqus.cshtml" />
     <None Include="Properties\PublishProfiles\VdoValley.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
