@@ -7,9 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using VdoValley.Models;
-
+ 
 namespace VdoValley.Controllers
-{
+{ 
     public class VideosController : Controller
     {
         private VdoValleyContext db = new VdoValleyContext();
