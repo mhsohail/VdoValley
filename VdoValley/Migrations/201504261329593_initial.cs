@@ -7,12 +7,10 @@ namespace VdoValley.Migrations
     {
         public override void Up()
         {
-            AddColumn("dbo.Videos", "thumbnail", c => c.String());
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Videos", "thumbnail");
         }
     }
 }
