@@ -10,7 +10,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="App_Code/Disqus.cshtml">
-      <publishTime>04/26/2015 17:27:53</publishTime>
+      <publishTime>04/26/2015 17:55:49</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>04/25/2015 17:21:34</publishTime>
@@ -61,7 +61,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:21:33</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>04/26/2015 14:08:18</publishTime>
+      <publishTime>04/26/2015 17:55:49</publishTime>
     </File>
     <File Include="bin/Owin.dll">
       <publishTime>04/25/2015 17:22:16</publishTime>
@@ -88,7 +88,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:21:31</publishTime>
     </File>
     <File Include="bin/VdoValley.dll">
-      <publishTime>04/26/2015 17:45:15</publishTime>
+      <publishTime>04/26/2015 18:31:55</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>04/25/2015 17:21:35</publishTime>
@@ -394,7 +394,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 22:25:27</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>04/26/2015 17:27:55</publishTime>
+      <publishTime>04/26/2015 17:55:49</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>04/25/2015 17:21:10</publishTime>
@@ -511,7 +511,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:20:56</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>04/26/2015 17:52:49</publishTime>
+      <publishTime>04/26/2015 18:06:14</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>04/25/2015 17:21:50</publishTime>
@@ -538,25 +538,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:21:50</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>04/26/2015 01:37:16</publishTime>
+      <publishTime>04/26/2015 18:09:55</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>04/25/2015 17:21:50</publishTime>
     </File>
     <File Include="Views/Videos/Create.cshtml">
-      <publishTime>04/25/2015 18:25:49</publishTime>
+      <publishTime>04/26/2015 18:33:13</publishTime>
     </File>
     <File Include="Views/Videos/Delete.cshtml">
-      <publishTime>04/25/2015 18:25:50</publishTime>
+      <publishTime>04/26/2015 18:31:40</publishTime>
     </File>
     <File Include="Views/Videos/Details.cshtml">
-      <publishTime>04/25/2015 18:25:51</publishTime>
+      <publishTime>04/26/2015 18:31:40</publishTime>
     </File>
     <File Include="Views/Videos/Edit.cshtml">
-      <publishTime>04/25/2015 18:25:52</publishTime>
+      <publishTime>04/26/2015 18:31:41</publishTime>
     </File>
     <File Include="Views/Videos/Index.cshtml">
-      <publishTime>04/25/2015 18:25:53</publishTime>
+      <publishTime>04/26/2015 18:31:41</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>04/25/2015 22:59:42</publishTime>

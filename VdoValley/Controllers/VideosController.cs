@@ -7,9 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using VdoValley.Models;
- 
+
 namespace VdoValley.Controllers
-{ 
+{
     public class VideosController : Controller
     {
         private VdoValleyContext db = new VdoValleyContext();
@@ -46,7 +46,7 @@ namespace VdoValley.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Url,Description")] Video video)
+        public ActionResult Create([Bind(Include = "Id,Title,Url,Description,thumbnail_large_url")] Video video)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace VdoValley.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Url,Description")] Video video)
+        public ActionResult Edit([Bind(Include = "Id,Title,Url,Description,thumbnail_large_url")] Video video)
         {
             if (ModelState.IsValid)
             {
