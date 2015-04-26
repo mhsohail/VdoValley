@@ -36,7 +36,7 @@
             <div class="item g1">
                 <a href="single.html"><img class="lazyOwl " data-src="@video.thumbnail_large_url" alt="@video.thumbnail_large_url"></a>
                 <div class="caption">
-                    <h3 class="cinema"><a href="single.html">CINEMA</a></h3>
+                    <h3 class="cinema"><a href="Videos/Details/@video.Id">CINEMA</a></h3>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
                 </div>
             </div>
@@ -88,10 +88,13 @@
                                 </div>
                             </div>
                             <ul class="resp-tabs-list">
-                                <li class="resp-tab-item resp-tab-active" aria-controls="tab_item-0" role="tab"><span><img src="images/pic.jpg" class="img-responsive" alt=""></span></li>
-                                <li class="resp-tab-item " aria-controls="tab_item-1" role="tab"><span><img src="images/pic1.jpg" class="img-responsive" alt=""></span></li>
-                                <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span><img src="images/pic2.jpg" class="img-responsive" alt=""></span></li>
-                                <li class="resp-tab-item" aria-controls="tab_item-3" role="tab"><span><img src="images/pic3.jpg" class="img-responsive" alt=""></span></li>
+                                @{int c = 0;}
+                                @foreach (var video in videos)
+                                {
+                                    string active = ((c == 0) ? "resp-tab-active" : string.Empty);
+                                    <li class="resp-tab-item @active" aria-controls="tab_item-@c" role="tab"><span><img src="@video.thumbnail_large_url" class="img-responsive" alt="@video.Title"></span></li>
+                                    c++;
+                                }
                                 <div class="clearfix"> </div>
                             </ul>
                         </div>

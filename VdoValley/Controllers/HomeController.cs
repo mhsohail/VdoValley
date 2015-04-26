@@ -66,6 +66,7 @@ namespace VdoValley.Controllers
             foreach(Video video in dbVideos)
             {
                 video.thumbnail_large_url = getDailyMotionThumb(getDailyMotionViewCode(video.Url), DailymotionThumbnailSize.thumbnail_large_url);
+                
             }
             
             ViewData["videos"] = dbVideos;
