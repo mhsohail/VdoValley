@@ -20,6 +20,8 @@ namespace VdoValley.Models
         }
 
         public System.Data.Entity.DbSet<VdoValley.Models.Video> Videos { get; set; }
+
+        public System.Data.Entity.DbSet<VdoValley.Models.Rating> Ratings { get; set; }
     
     }
 }

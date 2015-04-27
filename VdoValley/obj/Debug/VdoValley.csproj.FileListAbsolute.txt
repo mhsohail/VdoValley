@@ -108,7 +108,8 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.Owin.Security.Goo
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.csprojResolveAssemblyReference.cache
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.dll
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.pdb
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.initial.resources
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.csproj.GenerateResource.Cache
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.pdb
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations._as.resources

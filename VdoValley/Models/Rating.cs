@@ -10,6 +10,6 @@ namespace VdoValley.Models
         public int Id { get; set; }
         public int VideoId { get; set; }
         public int Score { get; set; }
-        public DateTime date { get; set; }
+        public DateTime Date { get; set; }
     }
 }

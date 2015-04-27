@@ -2,11 +2,63 @@
 @{
     ViewBag.Title = Model.Title;
 }
-<asp:GridView id="GridView1" AutoGenerateColumns="false" CellPadding="5">
-    <Columns>
-        <asp:BoundField HeaderText="Article ID" >
-    </Columns>
-</asp:gridview>
+<script>
+    $(function () {
+        $(".rating-star-block .star").mouseenter(function () {
+            var hoverVal = $(this).attr('rating');
+            $(this).prevUntil().addClass("filled");
+            $(this).addClass("filled");
+            $("#RAT").html(hoverVal);
+        });
+
+        $(".rating-star-block .star").mouseleave(function () {
+            $("#" + $(this).parent().attr('id') + " .star").each(function () {
+                $(this).addClass("outline");
+                $(this).removeClass("filled");
+            });
+        });
+
+        $(".rating-star-block .star").click(function (e) {
+            e.preventDefault();
+            var v = $(this).attr('rating');
+            var newScore = 0;
+            var updateP = "#" + $(this).parent().attr('id') + ' .CurrentScore';
+            var artID = $("#" + $(this).parent().attr('id') + ' .articleID').val();
+            
+            //$("#" + $(this).parent().attr('id') + " .star").hide();
+            $("#" + $(this).parent().attr('id') + " .yourScore").html("Your Score is : &nbsp;<b style='color:#ff9900; font-size:15px'>" + v + "</b>");
+            
+            var rating = {
+                VideoId: artID,
+                Score: v,
+                Date: "@DateTime.Now"
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Createe", "Ratings")",
+                data: JSON.stringify(rating),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    //setNewScore(updateP, response);
+                    console.log(response);
+                },
+                error: function (response) {
+                    console.log("ajax request response failed");
+                }
+            });
+        });
+    });
+
+    function setNewScore(container, data) {
+        $(container).html(data);
+        $("#myElem").show('1000').delay(2000).queue(function (n) {
+            $(this).hide(); n();
+        });
+    }
+
+</script>
         <!--header-->
         <div class="container">
             <div class="main-top">
@@ -21,36 +73,70 @@
                                 </div>
                                 <h3>@Html.DisplayFor(model => model.Title)</h3>
                                 <p><iframe frameborder="0" width="700" height="400" src="//www.dailymotion.com/embed/video/@Model.getDailyMotionVideoCode(Model.Url)" allowfullscreen></iframe><br /></p>
-                                <!---->
                                 <div class="simply">
-                                    <div class="story">
-                                        <h4 class="stories stories-in"><span>Related Videos</span></h4>
-                                    </div>
-                                    <ul class="in-left">
-                                        <li><a href="#">Lorem Ipsum is simply dummy text </a></li>
-                                        <li><a href="#">printing and typesetting industry</a></li>
-                                        <li><a href="#">Lorem Ipsum has been the industry's  </a> </li>
-                                        <li><a href="#">standard dummy text ever since </a> </li>
-                                        <li><a href="#">Lorem Ipsum has been the industry's  </a> </li>
-                                    </ul>
-                                    <ul class="in-left">
-                                        <li><a href="#">Lorem Ipsum is simply dummy text </a></li>
-                                        <li><a href="#">printing and typesetting industry</a></li>
-                                        <li><a href="#">Lorem Ipsum has been the industry's  </a> </li>
-                                        <li><a href="#">standard dummy text ever since </a> </li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <!---->
-                                <div class="simply">
-                                    @{
-                                        Disqus.Initialize("vdovalley");
-                                    }
-                                    @Disqus.ShowComments(Model.Id.ToString());
-                                </div>
+                                    <style type="text/css">
+                                        .rating-star-block .star.outline {
+                                            background: url("/images/rating/star-empty-lg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+                                        }
 
-                                <!---->
-                            </div>
+                                        .rating-star-block .star.filled {
+                                            background: url("/images/rating/star-fill-lg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+                                        }
+
+                                        .rating-star-block .star {
+                                            color: rgba(0,0,0,0);
+                                            display: inline-block;
+                                            height: 24px;
+                                            overflow: hidden;
+                                            text-indent: -999em;
+                                            width: 24px;
+                                        }
+
+                                        a {
+                                            color: #005782;
+                                            text-decoration: none;
+                                        }
+                                    </style>
+
+                                    <div class="rating-star-block" id='div_0'>
+                                        <input type="hidden" class="articleID" value='@Model.Id' />Current Score :<span class="CurrentScore">3</span><br /><div class="yourScore">Your Score : </div>
+                                        <a class="star outline" href="#" rating="1" title="vote 1"> vote 1</a>
+                                        <a class="star outline" href="#" rating="2" title="vote 2"> vote 2</a>
+                                        <a class="star outline" href="#" rating="3" title="vote 3"> vote 3</a>
+                                        <a class="star outline" href="#" rating="4" title="vote 4"> vote 4</a>
+                                        <a class="star outline" href="#" rating="5" title="vote 5"> vote 5</a>
+                                    </div>
+                                </div>
+                                    <!---->
+                                    <div class="simply">
+                                        <div class="story">
+                                            <h4 class="stories stories-in"><span>Related Videos</span></h4>
+                                        </div>
+                                        <ul class="in-left">
+                                            <li><a href="#">Lorem Ipsum is simply dummy text </a></li>
+                                            <li><a href="#">printing and typesetting industry</a></li>
+                                            <li><a href="#">Lorem Ipsum has been the industry's  </a> </li>
+                                            <li><a href="#">standard dummy text ever since </a> </li>
+                                            <li><a href="#">Lorem Ipsum has been the industry's  </a> </li>
+                                        </ul>
+                                        <ul class="in-left">
+                                            <li><a href="#">Lorem Ipsum is simply dummy text </a></li>
+                                            <li><a href="#">printing and typesetting industry</a></li>
+                                            <li><a href="#">Lorem Ipsum has been the industry's  </a> </li>
+                                            <li><a href="#">standard dummy text ever since </a> </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <!---->
+                                    <div class="simply">
+                                        @{
+                                            Disqus.Initialize("vdovalley");
+                                        }
+                                        @Disqus.ShowComments(Model.Id.ToString());
+                                    </div>
+
+                                    <!---->
+                                </div>
                         </div>
                         <!---->
                         <div class="col-md-4 sin-bottom">

@@ -164,6 +164,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RatingsController.cs" />
     <Compile Include="Controllers\VideosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -172,6 +173,10 @@
     <Compile Include="Migrations\201504270729344_initial.cs" />
     <Compile Include="Migrations\201504270729344_initial.Designer.cs">
       <DependentUpon>201504270729344_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504271330188_as.cs" />
+    <Compile Include="Migrations\201504271330188_as.Designer.cs">
+      <DependentUpon>201504271330188_as.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -277,6 +282,21 @@
     <Content Include="images\pp21.jpg" />
     <Content Include="images\pp22.jpg" />
     <Content Include="images\qu.png" />
+    <Content Include="images\rating\accent.png" />
+    <Content Include="images\rating\bullet.png" />
+    <Content Include="images\rating\heroAccent.png" />
+    <Content Include="images\rating\orderedList0.png" />
+    <Content Include="images\rating\orderedList1.png" />
+    <Content Include="images\rating\orderedList2.png" />
+    <Content Include="images\rating\orderedList3.png" />
+    <Content Include="images\rating\orderedList4.png" />
+    <Content Include="images\rating\orderedList5.png" />
+    <Content Include="images\rating\orderedList6.png" />
+    <Content Include="images\rating\orderedList7.png" />
+    <Content Include="images\rating\orderedList8.png" />
+    <Content Include="images\rating\orderedList9.png" />
+    <Content Include="images\rating\star-empty-lg.png" />
+    <Content Include="images\rating\star-fill-lg.png" />
     <Content Include="images\se.png" />
     <Content Include="images\sin.jpg" />
     <Content Include="images\up.png" />
@@ -349,6 +369,11 @@
     <Content Include="Views\Videos\Edit.cshtml" />
     <Content Include="Views\Videos\Index.cshtml" />
     <Content Include="Views\Videos\Details.cshtml" />
+    <Content Include="Views\Ratings\Create.cshtml" />
+    <Content Include="Views\Ratings\Delete.cshtml" />
+    <Content Include="Views\Ratings\Details.cshtml" />
+    <Content Include="Views\Ratings\Edit.cshtml" />
+    <Content Include="Views\Ratings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -364,6 +389,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201504270729344_initial.resx">
       <DependentUpon>201504270729344_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504271330188_as.resx">
+      <DependentUpon>201504271330188_as.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

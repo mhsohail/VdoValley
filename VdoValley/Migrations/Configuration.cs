@@ -28,8 +28,7 @@ namespace VdoValley.Migrations
             //    );
             //
 
-            VdoValleyContext db = new VdoValleyContext();
-            
+            VdoValleyContext db = new VdoValleyContext();            
             using (var transaction = db.Database.BeginTransaction())
             {
                 try
