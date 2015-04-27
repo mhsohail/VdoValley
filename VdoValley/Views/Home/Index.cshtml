@@ -3,7 +3,6 @@
     <img src="images/back.png" alt="">
 </div>-->
 
-<iframe frameborder="0" width="480" height="270" src="//www.dailymotion.com/embed/video/x2nzrie" allowfullscreen></iframe><br /><a href="http://www.dailymotion.com/video/x2nzrie_shahid-afridi-s-exclusive-interview_news" target="_blank">Shahid Afridi&#039;s exclusive Interview</a> <i>by <a href="http://www.dailymotion.com/pakistanbroadcasters" target="_blank">pakistanbroadcasters</a></i>
 @{
     string url = "http://www.yahoo.com/";
     string str = ViewBag.Video;
@@ -34,9 +33,9 @@
         @foreach (var video in videos)
         {
             <div class="item g1">
-                <a href="single.html"><img class="lazyOwl " data-src="@video.thumbnail_large_url" alt="@video.thumbnail_large_url"></a>
+                <a href="Videos/Details/@video.Id"><img class="lazyOwl " data-src="@video.thumbnail_large_url" alt="@video.thumbnail_large_url"></a>
                 <div class="caption">
-                    <h3 class="cinema"><a href="Videos/Details/@video.Id">CINEMA</a></h3>
+                    <h3 class="cinema"><a href="Videos/Details/@video.Id">@video.Title</a></h3>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
                 </div>
             </div>
@@ -92,7 +91,7 @@
                                 @foreach (var video in videos)
                                 {
                                     string active = ((c == 0) ? "resp-tab-active" : string.Empty);
-                                    <li class="resp-tab-item @active" aria-controls="tab_item-@c" role="tab"><span><img src="@video.thumbnail_large_url" class="img-responsive" alt="@video.Title"></span></li>
+                                    <li class="resp-tab-item @active" aria-controls="tab_item-@c" role="tab"><span><a href="Videos/Details/@video.Id"><img src="@video.thumbnail_large_url" class="img-responsive" alt="@video.Title" /></a></span></li>
                                     c++;
                                 }
                                 <div class="clearfix"> </div>
@@ -428,9 +427,3 @@
     });
 </script>
 <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
- 
-@{
-    Disqus.Initialize("vdovalley");
-}
-
-@Disqus.ShowComments("1");

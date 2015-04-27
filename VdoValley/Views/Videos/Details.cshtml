@@ -1,50 +1,304 @@
 ﻿@model VdoValley.Models.Video
-
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.Title;
 }
+<asp:GridView id="GridView1" AutoGenerateColumns="false" CellPadding="5">
+    <Columns>
+        <asp:BoundField HeaderText="Article ID" />
+    </Columns>
+</asp:gridview>
+        <!--header-->
+        <div class="container">
+            <div class="main-top">
+                <div class="main">
+                    <!---->
+                    <div class="content">
+                        <div class="col-md-8 content-top">
+                            <div class="number">
+                                <div class="feb">
+                                    <b>28</b>
+                                    <label>FEB</label>
+                                </div>
+                                <h3>@Html.DisplayFor(model => model.Title)</h3>
+                                <p><iframe frameborder="0" width="700" height="400" src="//www.dailymotion.com/embed/video/@Model.getDailyMotionVideoCode(Model.Url)" allowfullscreen></iframe><br /></p>
+                                <!---->
+                                <div class="simply">
+                                    <div class="story">
+                                        <h4 class="stories stories-in"><span>Related Videos</span></h4>
+                                    </div>
+                                    <ul class="in-left">
+                                        <li><a href="#">Lorem Ipsum is simply dummy text </a></li>
+                                        <li><a href="#">printing and typesetting industry</a></li>
+                                        <li><a href="#">Lorem Ipsum has been the industry's  </a> </li>
+                                        <li><a href="#">standard dummy text ever since </a> </li>
+                                        <li><a href="#">Lorem Ipsum has been the industry's  </a> </li>
+                                    </ul>
+                                    <ul class="in-left">
+                                        <li><a href="#">Lorem Ipsum is simply dummy text </a></li>
+                                        <li><a href="#">printing and typesetting industry</a></li>
+                                        <li><a href="#">Lorem Ipsum has been the industry's  </a> </li>
+                                        <li><a href="#">standard dummy text ever since </a> </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <!---->
+                                <div class="simply">
+                                    @{
+                                        Disqus.Initialize("vdovalley");
+                                    }
+                                    @Disqus.ShowComments(Model.Id.ToString());
+                                </div>
 
-<h2>Details</h2>
+                                <!---->
+                            </div>
+                        </div>
+                        <!---->
+                        <div class="col-md-4 sin-bottom">
+                            <div class="story"><h4 class="stories"><span>Top Stories</span></h4></div>
+                            <!---->
+                            <div class="cd-tabs">
+                                <nav>
+                                    <ul class="cd-tabs-navigation">
+                                        <li><a data-content="fashion" href="#0">fashion <i> </i></a></li>
+                                        <li><a data-content="cinema" href="#0" class="selected fashion1">cinema<i> </i></a></li>
+                                        <li><a data-content="television" href="#0" class="fashion2">television<i> </i></a></li>
 
-<div>
-    <h4>Video</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+                                    </ul>
+                                </nav>
+                                <ul class="cd-tabs-content">
+                                    <li data-content="fashion">
+                                        <div class="top-men">
+                                            <div class="men">
+                                                <div class="grid-men">
+                                                    <img src="images/pp1.jpg" class="img-responsive" alt="">
+                                                </div>
+                                                <div class="men-grid">
+                                                    <h5>Lorem Ipsum is simply dummy text of the printing </h5>
+                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's </p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="men">
+                                                <div class="grid-men">
+                                                    <img src="images/pp11.jpg" class="img-responsive" alt="">
+                                                </div>
+                                                <div class="men-grid">
+                                                    <h5>Lorem Ipsum is simply dummy text of the printing </h5>
+                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's </p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="men">
+                                                <div class="grid-men">
+                                                    <img src="images/pp12.jpg" class="img-responsive" alt="">
+                                                </div>
+                                                <div class="men-grid">
+                                                    <h5>Lorem Ipsum is simply dummy text of the printing </h5>
+                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's </p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li data-content="cinema" class="selected">
+                                        <div class="top-men">
+                                            <div class="men">
+                                                <div class="grid-men">
+                                                    <img src="images/pp.jpg" class="img-responsive" alt="">
+                                                </div>
+                                                <div class="men-grid">
+                                                    <h5>Lorem Ipsum is simply dummy text of the printing </h5>
+                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's </p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="men">
+                                                <div class="grid-men">
+                                                    <img src="images/pp0.jpg" class="img-responsive" alt="">
+                                                </div>
+                                                <div class="men-grid">
+                                                    <h5>Lorem Ipsum is simply dummy text of the printing </h5>
+                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's </p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="men">
+                                                <div class="grid-men">
+                                                    <img src="images/pp01.jpg" class="img-responsive" alt="">
+                                                </div>
+                                                <div class="men-grid">
+                                                    <h5>Lorem Ipsum is simply dummy text of the printing </h5>
+                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's </p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+                                        </div>
+                                    </li>
+                                    <li data-content="television">
+                                        <div class="top-men">
+                                            <div class="men">
+                                                <div class="grid-men">
+                                                    <img src="images/pp2.jpg" class="img-responsive" alt="">
+                                                </div>
+                                                <div class="men-grid">
+                                                    <h5>Lorem Ipsum is simply dummy text of the printing </h5>
+                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's </p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="men">
+                                                <div class="grid-men">
+                                                    <img src="images/pp21.jpg" class="img-responsive" alt="">
+                                                </div>
+                                                <div class="men-grid">
+                                                    <h5>Lorem Ipsum is simply dummy text of the printing </h5>
+                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's </p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="men">
+                                                <div class="grid-men">
+                                                    <img src="images/pp22.jpg" class="img-responsive" alt="">
+                                                </div>
+                                                <div class="men-grid">
+                                                    <h5>Lorem Ipsum is simply dummy text of the printing </h5>
+                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's </p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!---->
+                            <div class="might">
+                                <h4>YOU MIGHT ALSO LIKE</h4>
+                                <div class="might-grid">
+                                    <div class="grid-might">
+                                        <img src="images/mi.jpg" class="img-responsive" alt="">
+                                    </div>
+                                    <div class="might-top">
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                        <a href="#">Medication <i> </i></a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="might-grid">
+                                    <div class="grid-might">
+                                        <img src="images/mi1.jpg" class="img-responsive" alt="">
+                                    </div>
+                                    <div class="might-top">
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                        <a href="#">Medication <i> </i></a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="might-grid">
+                                    <div class="grid-might">
+                                        <img src="images/mi2.jpg" class="img-responsive" alt="">
+                                    </div>
+                                    <div class="might-top">
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                        <a href="#">Medication <i> </i></a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="might-grid">
+                                    <div class="grid-might">
+                                        <img src="images/mi3.jpg" class="img-responsive" alt="">
+                                    </div>
+                                    <div class="might-top">
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                        <a href="#">Medication <i> </i></a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <!---->
+                            <div class="grid-top">
+                                <h4>Archives</h4>
+                                <ul>
+                                    <li><a href="#">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </a></li>
+                                    <li><a href="#">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</a></li>
+                                    <li><a href="#">When an unknown printer took a galley of type and scrambled it to make a type specimen book. </a> </li>
+                                    <li><a href="#">It has survived not only five centuries, but also the leap into electronic typesetting</a> </li>
+                                    <li><a href="#">Remaining essentially unchanged. It was popularised in the 1960s with the release of </a> </li>
+                                    <li><a href="#">Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing </a> </li>
+                                    <li><a href="#">Software like Aldus PageMaker including versionsof Lorem Ipsum.</a> </li>
+                                </ul>
+                            </div>
+                            <!---->
+                            <div class="grid-top-in">
+                                <h4>Tag cloud</h4>
+                                <p>
+                                    <a href="#" class="jol">Angelina Jolie</a>
+                                    <a href="#" class="lop"> Cssauthor</a>
+                                    <a href="#" class="bun">Aristokrasi Beyonce Blake</a>
+                                    <a href="#" class="live">Lively Brad Pitt Cameron</a>
+                                    <a href="#" class="dan">Diaz Daniel</a>
+                                    <a href="#" class="jol"> Radcliffe David</a>
+                                    <a href="#" class="live">Beckham Demi Moore Emma </a>
+                                    <a href="#" class="eva">Watson Eva</a>
+                                    <a href="#" class="live">Longoria Gisele </a>
+                                    <a href="#" class="bun">Bundchen Gwyneth Paltrow</a>
+                                    <a href="#" class="live">Halle Berry </a>
+                                    <a href="#" class="jol">Harry Potter</a>
+                                    <a href="#" class="live">Heidi Klum </a>
+                                    <a href="#" class="bun">James Franco</a>
+                                    <a href="#" class="live">Jennifer </a>
+                                    <a href="#" class="lop"> Lopez Jessica</a>
+                                    <a href="#" class="live">Alba Johnny Depp </a>
+                                    <a href="#" class="bun">Jon Hamm Jude</a>
+                                    <a href="#" class="eva">Law Kate Moss Kate</a>
+                                    <a href="#" class="live">Winslet Katie </a>
+                                    <a href="#" class="bun">Holmes Katy Perry</a>
+                                    <a href="#" class="live">Kim Kardashian </a>
+                                    <a href="#" class="dan">Kristen</a>
+                                    <a href="#" class="eva">Stewart</a>
+                                    <a href="#" class="live">Lady Gaga Madonna </a>
+                                    <a href="#" class="bun">Megan Fox Michelle</a>
+                                    <a href="#" class="live">Williams Natalie </a>
+                                    <a href="#" class="bun">Portman</a>
+                                    <a href="#" class="live">Nicole </a>
+                                    <a href="#" class="eva">Kidman Penelope</a>
+                                    <!---
+                                    <a href="#" class="live">Cruz Reese Witherspoon Reklam</a>
+                                    <a href="#" class="lop"> Rihanna</a>
+                                    <a href="#" class="live">Robert Pattin </a>
+                                    <a href="#" class="bun">Son Sarah</a>
+                                    <a href="#" class="live">Jessica </a>
+                                    <a href="#" class="jol">Parker Scar </a>
+                                    -->
+                                </p>
+                            </div>
+                            <!---->
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <i class="line"> </i>
+                <i class="line-in"> </i>
+                <i class="line-in line-in1"> </i>
+                <i class="line-in line-in2"> </i>
+            </div>
+            <p class="footer-class">Copyright © 2015 Magblog Template by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    /*
+                    var defaults = {
+                        containerID: 'toTop', // fading element id
+                        containerHoverID: 'toTopHover', // fading element hover id
+                        scrollSpeed: 1200,
+                        easingType: 'linear'
+                    };
+                    */
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Url)
-        </dt>
+                    $().UItoTop({ easingType: 'easeOutQuart' });
 
-        <dd>
-            @Html.DisplayFor(model => model.Url)
-        </dd>
+                });
+            </script>
+            <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.thumbnail_large_url)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.thumbnail_large_url)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        </div>

@@ -169,15 +169,16 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="htmlhelpers\ImageHelper.cs" />
-    <Compile Include="Migrations\201504261329593_initial.cs" />
-    <Compile Include="Migrations\201504261329593_initial.Designer.cs">
-      <DependentUpon>201504261329593_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201504270729344_initial.cs" />
+    <Compile Include="Migrations\201504270729344_initial.Designer.cs">
+      <DependentUpon>201504270729344_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DailymotionThumbnailSize.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Rating.cs" />
     <Compile Include="Models\VdoValleyContext.cs" />
     <Compile Include="Models\Video.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -344,9 +345,10 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Videos\Create.cshtml" />
     <Content Include="Views\Videos\Delete.cshtml" />
-    <Content Include="Views\Videos\Details.cshtml" />
+    <Content Include="Views\Videos\Details_orig.cshtml" />
     <Content Include="Views\Videos\Edit.cshtml" />
     <Content Include="Views\Videos\Index.cshtml" />
+    <Content Include="Views\Videos\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -360,8 +362,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201504261329593_initial.resx">
-      <DependentUpon>201504261329593_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504270729344_initial.resx">
+      <DependentUpon>201504270729344_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

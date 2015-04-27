@@ -65,8 +65,7 @@ namespace VdoValley.Controllers
 
             foreach(Video video in dbVideos)
             {
-                video.thumbnail_large_url = getDailyMotionThumb(getDailyMotionViewCode(video.Url), DailymotionThumbnailSize.thumbnail_large_url);
-                
+                video.thumbnail_large_url = getDailyMotionThumb(video.getDailyMotionVideoCode(video.Url), DailymotionThumbnailSize.thumbnail_large_url);
             }
             
             ViewData["videos"] = dbVideos;
@@ -101,21 +100,5 @@ namespace VdoValley.Controllers
             return vdo.thumbnail_large_url;
         }
 
-        public string getDailyMotionViewCode(string short_url)
-        {
-            string code = string.Empty;
-            string pattern = @"(http://dai.ly/)(\S*)";
-            Regex rgx = new Regex(pattern, RegexOptions.IgnoreCase);
-            MatchCollection matches = rgx.Matches(short_url);
-            if (matches.Count > 0)
-            {
-                foreach (Match match in matches)
-                {
-                    code = match.Value;
-                }
-            }
-
-            return matches[0].Groups[2].Value;
-        }
     }
 }

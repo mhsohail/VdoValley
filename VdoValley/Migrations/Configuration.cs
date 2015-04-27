@@ -29,39 +29,93 @@ namespace VdoValley.Migrations
             //
 
             VdoValleyContext db = new VdoValleyContext();
-            db.Videos.AddOrUpdate(
-
-                new Video
+            
+            using (var transaction = db.Database.BeginTransaction())
+            {
+                try
                 {
-                    Title = "Best Wedding Dance 2014",
-                    Url = "http://dai.ly/x213irw"
-                },
+                    db.Videos.AddOrUpdate(
+                        new Video
+                        {
+                            Title = "Best Wedding Dance 2014",
+                            Url = "http://dai.ly/x213irw"
+                        },
 
-                new Video
-                {
-                    Title = "Saint Mary's Huskies Football",
-                    Url = "http://dai.ly/x2o1c02"
-                },
+                        new Video
+                        {
+                            Title = "Saint Mary's Huskies Football",
+                            Url = "http://dai.ly/x2o1c02"
+                        },
 
-                new Video
-                {
-                    Title = "Paani Wala Dance HD Video Song Kuch Kuch Locha Hai [2015] Sunny Leone",
-                    Url = "http://dai.ly/x2m1j8c"
-                },
+                        new Video
+                        {
+                            Title = "Paani Wala Dance HD Video Song Kuch Kuch Locha Hai [2015] Sunny Leone",
+                            Url = "http://dai.ly/x2m1j8c"
+                        },
 
-                new Video
-                {
-                    Title = "Marine's biggest helicopter makes emergency landing in the middle of a beach",
-                    Url = "http://dai.ly/x2mw1e9"
-                },
+                        new Video
+                        {
+                            Title = "Marine's biggest helicopter makes emergency landing in the middle of a beach",
+                            Url = "http://dai.ly/x2mw1e9"
+                        },
 
-                new Video
-                {
-                    Title = "All about upcoming release 'Pixels'",
-                    Url = "http://dai.ly/x2myh6r"
+                        new Video
+                        {
+                            Title = "All about upcoming release 'Pixels'",
+                            Url = "http://dai.ly/x2myh6r"
+                        },
+
+                        new Video
+                        {
+                            Title = "Shahid Afridi's exclusive Interview",
+                            Url = "http://dai.ly/x2nzrie"
+                        },
+
+                        new Video
+                        {
+                            Title = "Pushing the Limits of BMX w/ Daniel Sandoval",
+                            Url = "http://dai.ly/x2nm6pf"
+                        },
+
+                        new Video
+                        {
+                            Title = "Surveillance Video Captures School Bus Crash",
+                            Url = "http://dai.ly/x2nx47z"
+                        },
+
+                        new Video
+                        {
+                            Title = "Recycle This Bottled Water Video",
+                            Url = "http://dai.ly/x2ny0lg"
+                        },
+
+                        new Video
+                        {
+                            Title = "Food Safety Education - Cook :30",
+                            Url = "http://dai.ly/x2nd744"
+                        },
+
+                        new Video
+                        {
+                            Title = "Why Do You Dance? - UNI Dance Marathon 2014",
+                            Url = "http://dai.ly/x2msup5"
+                        },
+
+                        new Video
+                        {
+                            Title = "Stage Collapses In The Middle Of Musical",
+                            Url = "http://dai.ly/x2ntme0"
+                        }
+                    );
+                    
+                    db.SaveChanges();
+                    transaction.Commit();
                 }
-
-            );
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                }
+            }             
         }
     }
 }
