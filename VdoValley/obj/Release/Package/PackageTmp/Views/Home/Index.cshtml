@@ -35,8 +35,14 @@
             <div class="item g1">
                 <a href="Videos/Details/@video.Id"><img class="lazyOwl " data-src="@video.thumbnail_large_url" alt="@video.thumbnail_large_url" style="min-height:50px; height:211px;" /></a>
                 <div class="caption">
-                    <h3 class="cinema"><a href="Videos/Details/@video.Id">@video.Title</a></h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+                    <h3 class="cinema">
+                            @{
+            int maxTitleLength = 25;
+            string title = string.Empty;
+            if (video.Title.Length > maxTitleLength) { title = video.Title.Substring(0, maxTitleLength - 1); } else { title = video.Title; }
+                            }
+                        <a href="Videos/Details/@video.Id">@Html.Raw(title) ...</a>
+                    </h3>
                 </div>
             </div>
         }
@@ -48,13 +54,6 @@
 <div class="content">
     <div class="col-md-8 content-top">
         <div class="number">
-            <div class="feb">
-                <b>28</b>
-                <label>FEB</label>
-            </div>
-            <h3><a href="single.html">Lorem Ipsum is simply dummy text of the printing </a></h3>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing </p>
-            <!---->
             <div class="span_8">
                 <div class="row_8">
                     <div class="sap_tabs">
@@ -88,15 +87,15 @@
                             </div>
                             <style>
                                 .thumbnail-container > a {
-	cursor:pointer;
-	text-decoration: none;
-}
+	                                cursor:pointer;
+	                                text-decoration: none;
+                                }
 
-.thumbnail-container > a img {
-	/* width:100%; */
-	width:220px;
-	height: 134px;
-}
+                                .thumbnail-container > a img {
+	                                /* width:100%; */
+	                                width:220px;
+	                                height: 100px;
+                                }
                                 </style>
                             <ul class="row">
                                 <!--<ul class="resp-tabs-list">-->
@@ -109,7 +108,7 @@
                                     c++;
                                     //min-width:150px;width:200px;max-width:200px;min-height:100px;height:100px;
                                     <div class="thumbnail-container col-lg-3 col-md-4 col-xs-6 thumb">
-                                        <a class="thumbnail" href="#">
+                                        <a class="thumbnail" href="Videos/Details/@video.Id">
                                             <img class="img-responsive" src="@video.thumbnail_large_url" alt="">
                                         </a>
                                     </div>
@@ -120,87 +119,7 @@
                     </div>
                 </div>
             </div>
-
-
             <!---->
-            <div class="movie">
-                <ul class="comment">
-                    <li><span>Category : <a href="single.html"> Movie</a> </span></li>
-                    <li><a href="#"><i> </i>5 Comments  </a></li>
-                </ul>
-                <a href="single.html" class="more">Read More </a>
-                <div class="clearfix"> </div>
-            </div>
-        </div>
-        <!---->
-        <div class="number">
-            <div class="feb">
-                <b>20</b>
-                <label>FEB</label>
-            </div>
-            <h3><a href="single.html">Lorem Ipsum is simply dummy text of the printing </a></h3>
-            <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
-            </p>
-            <!---->
-            <div class="span_8">
-                <div class="row_8">
-                    <div class="sap_tabs">
-                        <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
-                            <div class="resp-tabs-container">
-                                <h2 class="resp-accordion " role="tab" aria-controls="tab_item-0"><span class="resp-arrow"></span></h2>
-                                <div class="tab-1 resp-tab-content " aria-labelledby="tab_item-0">
-                                    <div class="facts">
-                                        <img src="images/fa.jpg" class="img-responsive" alt="">
-                                    </div>
-                                </div>
-                                <h2 class="resp-accordion resp-tab-active" role="tab" aria-controls="tab_item-1"><span class="resp-arrow"></span></h2>
-                                <div class="tab-1 resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-1">
-                                    <div class="facts">
-                                        <img src="images/fa1.jpg" class="img-responsive" alt="">
-                                    </div>
-                                </div>
-                                <h2 class="resp-accordion" role="tab" aria-controls="tab_item-2"><span class="resp-arrow"></span></h2>
-                                <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
-                                    <div class="facts">
-                                        <img src="images/fa2.jpg" class="img-responsive" alt="">
-                                    </div>
-                                </div>
-                                <h2 class="resp-accordion" role="tab" aria-controls="tab_item-3"><span class="resp-arrow"></span></h2>
-                                <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-3">
-                                    <div class="facts">
-                                        <img src="images/fa3.jpg" class="img-responsive" alt="">
-
-                                    </div>
-                                </div>
-                            </div>
-                            <ul class="resp-tabs-list">
-                                <li class="resp-tab-item resp-tab-active" aria-controls="tab_item-0" role="tab"><span><img src="images/f1.jpg" class="img-responsive" alt=""></span></li>
-                                <li class="resp-tab-item " aria-controls="tab_item-1" role="tab"><span><img src="images/f2.jpg" class="img-responsive" alt=""></span></li>
-                                <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span><img src="images/f3.jpg" class="img-responsive" alt=""></span></li>
-                                <li class="resp-tab-item" aria-controls="tab_item-3" role="tab"><span><img src="images/f4.jpg" class="img-responsive" alt=""></span></li>
-                                <div class="clearfix"> </div>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!---->
-            <div class="movie">
-                <ul class="comment">
-                    <li><span>Category : <a href="single.html">Fashion </a></span></li>
-                    <li><a href="#"><i> </i>5 Comments  </a></li>
-                </ul>
-                <a href="single.html" class="more">Read More </a>
-                <div class="clearfix"> </div>
-            </div>
-        </div>
-        <!---->
-        <div class="older-top">
-            <a href="#" class="older"><i> </i>older posts</a>
-            <a href="#" class="older top-old"><i> </i>newer posts</a>
-            <div class="clearfix"> </div>
         </div>
         <!---->
     </div>
