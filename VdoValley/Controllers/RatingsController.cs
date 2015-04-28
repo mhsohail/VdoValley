@@ -40,8 +40,27 @@ namespace VdoValley.Controllers
         public string Createe(Rating rating)
         {
             Dictionary<string, string> response = new Dictionary<string, string>();
-            response.Add("1", "success");
-            response.Add("0", "fail");
+
+            try
+            {
+                db.Ratings.Add(
+                    new Rating
+                    {
+                        Score = rating.Score,
+                        Date = rating.Date,
+                        VideoId = rating.VideoId
+                    }
+                );
+                db.SaveChanges();
+                response.Add("success", "1");
+                response.Add("message", "Thanks for rating");
+            }
+            catch(Exception e)
+            {
+                response.Add("success", "0");
+                response.Add("error", e.Message);
+            }
+            
             return JsonConvert.SerializeObject(response);
         }
 

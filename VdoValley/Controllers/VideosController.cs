@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using VdoValley.Models;
+using Microsoft.AspNet.Identity;
 
 namespace VdoValley.Controllers
 {
@@ -32,6 +33,10 @@ namespace VdoValley.Controllers
             {
                 return HttpNotFound();
             }
+            
+            //HttpContext.Current.User.Identity.GetUserId();
+            ViewBag.UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            
             return View(video);
         }
 

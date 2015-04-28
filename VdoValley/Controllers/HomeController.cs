@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +17,9 @@ namespace VdoValley.Controllers
         VdoValleyContext db = new VdoValleyContext();
         public ActionResult Index()
         {
+            var store = new UserStore<ApplicationUser>(db);
+            var userM = new UserManager<ApplicationUser>(store);
+            ApplicationUser user = userM.FindByNameAsync("fahad.farooq7013@gmail.com").Result;
             List<Video> dbVideos = db.Videos.ToList();
             
             Video v1 = new Video

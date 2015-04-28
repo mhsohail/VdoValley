@@ -1,5 +1,7 @@
 namespace VdoValley.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -15,6 +17,13 @@ namespace VdoValley.Migrations
 
         protected override void Seed(VdoValley.Models.VdoValleyContext context)
         {
+            if (!(context.ApplicationUsers.Any(u => u.UserName == "fahad.farooq7013@gmail.com")))
+            {
+                var userStore = new UserStore<ApplicationUser>(context);
+                var userManager = new UserManager<ApplicationUser>(userStore);
+                var userToInsert = new ApplicationUser { UserName = "fahad.farooq7013@gmail.com", Email = "fahad.farooq7013@gmail.com", PhoneNumber = "0797697898" };
+                userManager.Create(userToInsert, "Fahad@2");
+            }
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

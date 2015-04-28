@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -22,6 +23,23 @@ namespace VdoValley.Models
         public System.Data.Entity.DbSet<VdoValley.Models.Video> Videos { get; set; }
 
         public System.Data.Entity.DbSet<VdoValley.Models.Rating> Ratings { get; set; }
+        
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+
+            modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
+            modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
+            modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
+            base.OnModelCreating(modelBuilder);
+
+            ///////1-*     Video---Rating
+            modelBuilder.Entity<Video>()
+                        .HasMany<Rating>(v => v.Ratings)
+                        .WithRequired(r => r.Video)
+                        .HasForeignKey(r => r.VideoId).WillCascadeOnDelete(false);
+        }
     
     }
 }

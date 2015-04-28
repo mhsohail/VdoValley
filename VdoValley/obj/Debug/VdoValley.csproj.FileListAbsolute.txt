@@ -86,6 +86,9 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\System.Web.WebPages.Razor.d
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\WebGrease.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\EntityFramework.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\EntityFramework.SqlServer.xml
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.AspNet.Identity.Owin.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Newtonsoft.Json.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\System.Web.Helpers.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\System.Web.Mvc.xml
@@ -95,9 +98,6 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\System.Web.WebPages.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\System.Web.WebPages.Deployment.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\System.Web.WebPages.Razor.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Antlr3.Runtime.pdb
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.AspNet.Identity.Core.xml
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.AspNet.Identity.Owin.xml
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.Owin.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.Owin.Security.xml
@@ -107,9 +107,7 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.Owin.Security.OAu
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.csprojResolveAssemblyReference.cache
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.initial.resources
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.csproj.GenerateResource.Cache
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.pdb
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations._as.resources
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.initial.resources
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.csproj.GenerateResource.Cache

@@ -33,7 +33,7 @@
         @foreach (var video in videos)
         {
             <div class="item g1">
-                <a href="Videos/Details/@video.Id"><img class="lazyOwl " data-src="@video.thumbnail_large_url" alt="@video.thumbnail_large_url"></a>
+                <a href="Videos/Details/@video.Id"><img class="lazyOwl " data-src="@video.thumbnail_large_url" alt="@video.thumbnail_large_url" style="min-height:50px; height:211px;" /></a>
                 <div class="caption">
                     <h3 class="cinema"><a href="Videos/Details/@video.Id">@video.Title</a></h3>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
@@ -86,17 +86,37 @@
                                     </div>
                                 </div>
                             </div>
-                            <ul class="resp-tabs-list">
+                            <style>
+                                .thumbnail-container > a {
+	cursor:pointer;
+	text-decoration: none;
+}
+
+.thumbnail-container > a img {
+	/* width:100%; */
+	width:220px;
+	height: 134px;
+}
+                                </style>
+                            <ul class="row">
+                                <!--<ul class="resp-tabs-list">-->
                                 @{int c = 0;}
                                 @foreach (var video in videos)
                                 {
                                     string active = ((c == 0) ? "resp-tab-active" : string.Empty);
-                                    <li class="resp-tab-item @active" aria-controls="tab_item-@c" role="tab"><span><a href="Videos/Details/@video.Id"><img src="@video.thumbnail_large_url" class="img-responsive" alt="@video.Title" /></a></span></li>
+                                <!--<li class="resp-tab-item @active" aria-controls="tab_item-@c col-lg-12" role="tab"><span><a href="Videos/Details/@video.Id"><img src="@video.thumbnail_large_url" class="img-responsive" alt="@video.Title" style="min-height:50px; height:115px; width:171px;min-width:100px;" /></a></span></li>
+                                    <li class="col-xs-12 col-sm-6 col-md-12 col-lg-3" style="overflow:hidden;"><a href="Videos/Details/@video.Id"><img src="@video.thumbnail_large_url" class="img-responsive" alt="@video.Title" style="width:100%;height:100%;margin-bottom:5px;margin-top:5px;" /></a></li>-->
                                     c++;
+                                    //min-width:150px;width:200px;max-width:200px;min-height:100px;height:100px;
+                                    <div class="thumbnail-container col-lg-3 col-md-4 col-xs-6 thumb">
+                                        <a class="thumbnail" href="#">
+                                            <img class="img-responsive" src="@video.thumbnail_large_url" alt="">
+                                        </a>
+                                    </div>
                                 }
                                 <div class="clearfix"> </div>
                             </ul>
-                        </div>
+</div>
                     </div>
                 </div>
             </div>

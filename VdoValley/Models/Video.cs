@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -9,6 +10,7 @@ namespace VdoValley.Models
 {
     public class Video
     {
+        [Key]
         public int Id { get; set; }
         public string Title { get; set; }
         public string Url { get; set; }
@@ -16,6 +18,12 @@ namespace VdoValley.Models
 
         [HiddenInput(DisplayValue = false)]
         public string thumbnail_large_url { get; set; }
+        public virtual ICollection<Rating> Ratings { get; set; }
+
+        public Video()
+        {
+            Ratings = new List<Rating>();
+        }
 
         public string getDailyMotionVideoCode(string short_url)
         {

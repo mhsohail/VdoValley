@@ -97,9 +97,21 @@
                                             text-decoration: none;
                                         }
                                     </style>
-
+                                    @{
+                                        VdoValley.Models.VdoValleyContext db = new VdoValley.Models.VdoValleyContext();
+                                        List<VdoValley.Models.Rating> ratings = db.Ratings.Where(r => r.VideoId == Model.Id).ToList();
+                                        int TotalRating = 0;
+                                        foreach(VdoValley.Models.Rating rating in ratings)
+                                        {
+                                            TotalRating += rating.Score;
+                                        }
+                                        double AvgRating = TotalRating / (double)ratings.Count;
+                                        AvgRating = Math.Round(AvgRating, 2);
+                                        if (AvgRating == double.NaN) { AvgRating = 0.0; }
+                                    }
+                                    @Html.Raw("User Id: " + ViewBag.UserId)
                                     <div class="rating-star-block" id='div_0'>
-                                        <input type="hidden" class="articleID" value='@Model.Id' />Current Score :<span class="CurrentScore">3</span><br /><div class="yourScore">Your Score : </div>
+                                        <input type="hidden" class="articleID" value='@Model.Id' />Current Rating :<span class="CurrentScore">@AvgRating</span><br /><div class="yourScore">Your Score : </div>
                                         <a class="star outline" href="#" rating="1" title="vote 1"> vote 1</a>
                                         <a class="star outline" href="#" rating="2" title="vote 2"> vote 2</a>
                                         <a class="star outline" href="#" rating="3" title="vote 3"> vote 3</a>
