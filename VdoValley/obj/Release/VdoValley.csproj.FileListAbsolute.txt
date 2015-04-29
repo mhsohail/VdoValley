@@ -112,3 +112,4 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Release\VdoValley.Migration
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Release\VdoValley.csproj.GenerateResource.Cache
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Release\VdoValley.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Release\VdoValley.pdb
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Release\VdoValley.Migrations.a.resources

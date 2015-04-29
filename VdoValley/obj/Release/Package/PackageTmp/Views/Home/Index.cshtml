@@ -33,15 +33,15 @@
         @foreach (var video in videos)
         {
             <div class="item g1">
-                <a href="Videos/Details/@video.Id"><img class="lazyOwl " data-src="@video.thumbnail_large_url" alt="@video.thumbnail_large_url" style="min-height:50px; height:211px;" /></a>
+                <a href="/Videos/Details/@video.Id"><img class="lazyOwl " data-src="@video.thumbnail_large_url" alt="@video.thumbnail_large_url" style="min-height:50px; height:211px;" /></a>
                 <div class="caption">
                     <h3 class="cinema">
                             @{
             int maxTitleLength = 25;
             string title = string.Empty;
-            if (video.Title.Length > maxTitleLength) { title = video.Title.Substring(0, maxTitleLength - 1); } else { title = video.Title; }
+            if (video.Title.Length > maxTitleLength) { title = video.Title.Substring(0, maxTitleLength - 1) + "..."; } else { title = video.Title; }
                             }
-                        <a href="Videos/Details/@video.Id">@Html.Raw(title) ...</a>
+                        <a href="/Videos/Details/@video.Id">@Html.Raw(title)</a>
                     </h3>
                 </div>
             </div>
@@ -86,6 +86,16 @@
                                 </div>
                             </div>
                             <style>
+                                
+                                .thumbnail-container * {
+	                                padding:0px;
+                                    margin:0px;
+                                }
+
+                                .thumbnail-container {
+                                    margin-bottom: 5px;
+                                }
+
                                 .thumbnail-container > a {
 	                                cursor:pointer;
 	                                text-decoration: none;
@@ -96,6 +106,23 @@
 	                                width:220px;
 	                                height: 100px;
                                 }
+
+                                /* custom css code */
+                                .thumbnail-container .details {
+	                                background-color: #F2F2F2;
+	                                width: 100%;
+	                                height: 70px;
+	                                max-height: 70px;
+	                                overflow:hidden;
+                                }
+
+                                .thumbnail-container .details h3 {
+                                    font-size:1em;
+                                }
+
+                                .thumbnail-container .details div {
+                                    padding:5px;
+                                }
                                 </style>
                             <ul class="row">
                                 <!--<ul class="resp-tabs-list">-->
@@ -103,13 +130,23 @@
                                 @foreach (var video in videos)
                                 {
                                     string active = ((c == 0) ? "resp-tab-active" : string.Empty);
-                                <!--<li class="resp-tab-item @active" aria-controls="tab_item-@c col-lg-12" role="tab"><span><a href="Videos/Details/@video.Id"><img src="@video.thumbnail_large_url" class="img-responsive" alt="@video.Title" style="min-height:50px; height:115px; width:171px;min-width:100px;" /></a></span></li>
-                                    <li class="col-xs-12 col-sm-6 col-md-12 col-lg-3" style="overflow:hidden;"><a href="Videos/Details/@video.Id"><img src="@video.thumbnail_large_url" class="img-responsive" alt="@video.Title" style="width:100%;height:100%;margin-bottom:5px;margin-top:5px;" /></a></li>-->
+                                <!--<li class="resp-tab-item @active" aria-controls="tab_item-@c col-lg-12" role="tab"><span><a href="/Videos/Details/@video.Id"><img src="@video.thumbnail_large_url" class="img-responsive" alt="@video.Title" style="min-height:50px; height:115px; width:171px;min-width:100px;" /></a></span></li>
+                                    <li class="col-xs-12 col-sm-6 col-md-12 col-lg-3" style="overflow:hidden;"><a href="/Videos/Details/@video.Id"><img src="@video.thumbnail_large_url" class="img-responsive" alt="@video.Title" style="width:100%;height:100%;margin-bottom:5px;margin-top:5px;" /></a></li>-->
                                     c++;
                                     //min-width:150px;width:200px;max-width:200px;min-height:100px;height:100px;
                                     <div class="thumbnail-container col-lg-3 col-md-4 col-xs-6 thumb">
-                                        <a class="thumbnail" href="Videos/Details/@video.Id">
+                                        <a class="thumbnail" href="/Videos/Details/@video.Id">
                                             <img class="img-responsive" src="@video.thumbnail_large_url" alt="">
+                                            <div class="details">
+                                                <div class="panel-heading">
+                                                        @{
+                                                            int maxTitleLength = 40;
+                                                            string title = string.Empty;
+                                                            if (video.Title.Length > maxTitleLength) { title = video.Title.Substring(0, maxTitleLength - 1) + "..."; } else { title = video.Title; }
+                                                        }
+                                                    <h3 class="panel-title col-lg-offset-1">@title</h3>
+                                                </div>
+                                            </div>
                                         </a>
                                     </div>
                                 }

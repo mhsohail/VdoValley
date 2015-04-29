@@ -15,14 +15,15 @@ namespace VdoValley.Models
         public string Title { get; set; }
         public string Url { get; set; }
         public string Description { get; set; }
-
         [HiddenInput(DisplayValue = false)]
         public string thumbnail_large_url { get; set; }
+        
         public virtual ICollection<Rating> Ratings { get; set; }
-
+        public virtual ICollection<Tag> Tags { get; set; }
         public Video()
         {
-            Ratings = new List<Rating>();
+            this.Ratings = new List<Rating>();
+            this.Tags = new List<Tag>();
         }
 
         public string getDailyMotionVideoCode(string short_url)

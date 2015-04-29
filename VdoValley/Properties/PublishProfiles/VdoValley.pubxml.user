@@ -88,7 +88,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:21:31</publishTime>
     </File>
     <File Include="bin/VdoValley.dll">
-      <publishTime>04/28/2015 11:31:50</publishTime>
+      <publishTime>04/29/2015 11:30:35</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>04/25/2015 17:21:35</publishTime>
@@ -438,6 +438,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="images/up.png">
       <publishTime>04/25/2015 22:25:27</publishTime>
     </File>
+    <File Include="images/vdovalley_logo.png">
+      <publishTime>04/28/2015 21:16:24</publishTime>
+    </File>
     <File Include="packages.config">
       <publishTime>04/28/2015 01:04:20</publishTime>
     </File>
@@ -556,7 +559,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:20:56</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>04/28/2015 18:57:09</publishTime>
+      <publishTime>04/29/2015 22:30:34</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>04/25/2015 17:21:50</publishTime>
@@ -598,13 +601,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:21:50</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>04/27/2015 11:48:49</publishTime>
+      <publishTime>04/29/2015 22:40:01</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>04/25/2015 17:21:50</publishTime>
     </File>
+    <File Include="Views/Tags/Create.cshtml">
+      <publishTime>04/28/2015 22:39:54</publishTime>
+    </File>
+    <File Include="Views/Tags/Delete.cshtml">
+      <publishTime>04/28/2015 22:39:55</publishTime>
+    </File>
+    <File Include="Views/Tags/Details.cshtml">
+      <publishTime>04/28/2015 22:39:57</publishTime>
+    </File>
+    <File Include="Views/Tags/Edit.cshtml">
+      <publishTime>04/28/2015 22:39:58</publishTime>
+    </File>
+    <File Include="Views/Tags/Index.cshtml">
+      <publishTime>04/28/2015 22:39:59</publishTime>
+    </File>
     <File Include="Views/Videos/Create.cshtml">
-      <publishTime>04/26/2015 18:33:13</publishTime>
+      <publishTime>04/29/2015 22:41:44</publishTime>
     </File>
     <File Include="Views/Videos/Delete.cshtml">
       <publishTime>04/26/2015 18:31:40</publishTime>
@@ -628,7 +646,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:20:56</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/28/2015 02:50:10</publishTime>
+      <publishTime>04/28/2015 20:32:51</publishTime>
     </File>
   </ItemGroup>
 </Project>

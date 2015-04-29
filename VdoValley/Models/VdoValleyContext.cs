@@ -39,7 +39,19 @@ namespace VdoValley.Models
                         .HasMany<Rating>(v => v.Ratings)
                         .WithRequired(r => r.Video)
                         .HasForeignKey(r => r.VideoId).WillCascadeOnDelete(false);
+            
+            modelBuilder.Entity<Video>()
+                   .HasMany<Tag>(v => v.Tags)
+                   .WithMany(t => t.Videos)
+                   .Map(cs =>
+                   {
+                       cs.MapLeftKey("VideoRefId");
+                       cs.MapRightKey("TagRefId");
+                       cs.ToTable("VideoTag");
+                   });
         }
+
+        public System.Data.Entity.DbSet<VdoValley.Models.Tag> Tags { get; set; }
     
     }
 }
