@@ -23,21 +23,29 @@ namespace VdoValley.Controllers
 
         public string GetTags(List<Tag> tags)
         {
-            // get tag names for each tag and add to list
-            List<string> tagNames = new List<string>();
-            foreach (Tag tag in tags)
+            string jsonObj = string.Empty;
+            try
             {
-                tagNames.Add(tag.Name);
+                // get tag names for each tag and add to list
+                List<string> tagNames = new List<string>();
+                foreach (Tag tag in tags)
+                {
+                    tagNames.Add(tag.Name);
+                }
+
+                // get tag if it's name is in list created above
+                IQueryable<Tag> tagss = from tg in db.Tags
+                                        where tagNames.Contains(tg.Name)
+                                        select tg;
+                
+                //Tag t = tagss.FirstOrDefault<Tag>();
+
+                jsonObj = JsonConvert.SerializeObject(tagss);
+
+            } catch(Exception exc)
+            {
+
             }
-            
-            // get tag if it's name is in list created above
-            IQueryable<Tag> tagss = from tg in db.Tags.Include(t => t.Videos)
-            where tagNames.Contains(tg.Name)
-            select tg;
-
-            //Tag t = tagss.FirstOrDefault<Tag>();
-
-            string jsonObj = JsonConvert.SerializeObject(tagss);
             return jsonObj;
         }
 

@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = Model.Title;
 }
+
 <script>
     $(function () {
         $(".rating-star-block .star").mouseenter(function () {
@@ -99,7 +100,7 @@
                                     </style>
                                     @{
                                         VdoValley.Models.VdoValleyContext db = new VdoValley.Models.VdoValleyContext();
-                                        List<VdoValley.Models.Rating> ratings = db.Ratings.Where(r => r.VideoId == Model.Id).ToList();
+                                        List<VdoValley.Models.Rating> ratings = db.Ratings.Where(r => r.VideoId == Model.VideoId).ToList();
                                         int TotalRating = 0;
                                         foreach(VdoValley.Models.Rating rating in ratings)
                                         {
@@ -111,13 +112,27 @@
                                     }
                                     @Html.Raw("User Id: " + ViewBag.UserId)
                                     <div class="rating-star-block" id='div_0'>
-                                        <input type="hidden" class="articleID" value='@Model.Id' />Current Rating :<span class="CurrentScore">@AvgRating</span><br /><div class="yourScore">Your Score : </div>
+                                        <input type="hidden" class="articleID" value='@Model.VideoId' />Current Rating :<span class="CurrentScore">@AvgRating</span><br /><div class="yourScore">Your Score : </div>
                                         <a class="star outline" href="#" rating="1" title="vote 1"> vote 1</a>
                                         <a class="star outline" href="#" rating="2" title="vote 2"> vote 2</a>
                                         <a class="star outline" href="#" rating="3" title="vote 3"> vote 3</a>
                                         <a class="star outline" href="#" rating="4" title="vote 4"> vote 4</a>
                                         <a class="star outline" href="#" rating="5" title="vote 5"> vote 5</a>
                                     </div>
+                                    Tags: 
+                                    @{
+                                        ICollection<VdoValley.Models.Tag> tags = Model.Tags;
+                                        int counter = 0;
+                                        foreach(var tag in tags)
+                                        {
+                                            <span><a href="@Url.Action("Index","Tags")">@tag.Name</a></span>
+                                            if (!counter.Equals(tags.Count - 1))
+                                            {
+                                                <span>,</span>
+                                            }
+                                            counter++;
+                                        }
+}
                                 </div>
                                     <!---->
                                     <div class="simply">
@@ -144,7 +159,7 @@
                                         @{
                                             Disqus.Initialize("vdovalley");
                                         }
-                                        @Disqus.ShowComments(Model.Id.ToString());
+                                        @Disqus.ShowComments(Model.VideoId.ToString());
                                     </div>
 
                                     <!---->

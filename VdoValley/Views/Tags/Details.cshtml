@@ -19,16 +19,32 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.VideoId)
+            @Html.DisplayNameFor(model => model.TagId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.VideoId)
+            @Html.DisplayFor(model => model.TagId)
         </dd>
 
     </dl>
 </div>
+
+@{
+    ICollection<VdoValley.Models.Video> videos = Model.Videos;
+    foreach (var video in videos)
+    {
+        <div>
+            @Html.ActionLink(video.Title,
+                "Details",   // <-- ActionMethod
+                "Videos",  // <-- Controller Name.
+                 new { id = video.VideoId }, // <-- Route arguments. using "video.VideoId" only will cause ?VideoId=ID in url
+                null  // <-- htmlArguments
+            )
+        </div>
+    }
+}
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TagId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

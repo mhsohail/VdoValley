@@ -85,13 +85,22 @@ namespace VdoValley.Migrations
                 "dbo.Videos",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        VideoId = c.Int(nullable: false, identity: true),
                         Title = c.String(),
                         Url = c.String(),
                         Description = c.String(),
                         thumbnail_large_url = c.String(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.VideoId);
+            
+            CreateTable(
+                "dbo.Tags",
+                c => new
+                    {
+                        TagId = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                    })
+                .PrimaryKey(t => t.TagId);
             
             CreateTable(
                 "dbo.IdentityRoles",
@@ -102,21 +111,40 @@ namespace VdoValley.Migrations
                     })
                 .PrimaryKey(t => t.Id);
             
+            CreateTable(
+                "dbo.VideoTag",
+                c => new
+                    {
+                        VideoId = c.Int(nullable: false),
+                        TagId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.VideoId, t.TagId })
+                .ForeignKey("dbo.Videos", t => t.VideoId, cascadeDelete: true)
+                .ForeignKey("dbo.Tags", t => t.TagId, cascadeDelete: true)
+                .Index(t => t.VideoId)
+                .Index(t => t.TagId);
+            
         }
         
         public override void Down()
         {
             DropForeignKey("dbo.IdentityUserRoles", "IdentityRole_Id", "dbo.IdentityRoles");
+            DropForeignKey("dbo.VideoTag", "TagId", "dbo.Tags");
+            DropForeignKey("dbo.VideoTag", "VideoId", "dbo.Videos");
             DropForeignKey("dbo.Ratings", "VideoId", "dbo.Videos");
             DropForeignKey("dbo.IdentityUserRoles", "ApplicationUser_Id", "dbo.ApplicationUsers");
             DropForeignKey("dbo.IdentityUserLogins", "ApplicationUser_Id", "dbo.ApplicationUsers");
             DropForeignKey("dbo.IdentityUserClaims", "ApplicationUser_Id", "dbo.ApplicationUsers");
+            DropIndex("dbo.VideoTag", new[] { "TagId" });
+            DropIndex("dbo.VideoTag", new[] { "VideoId" });
             DropIndex("dbo.Ratings", new[] { "VideoId" });
             DropIndex("dbo.IdentityUserRoles", new[] { "IdentityRole_Id" });
             DropIndex("dbo.IdentityUserRoles", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserLogins", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserClaims", new[] { "ApplicationUser_Id" });
+            DropTable("dbo.VideoTag");
             DropTable("dbo.IdentityRoles");
+            DropTable("dbo.Tags");
             DropTable("dbo.Videos");
             DropTable("dbo.Ratings");
             DropTable("dbo.IdentityUserRoles");

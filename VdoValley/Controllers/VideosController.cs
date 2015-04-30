@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using VdoValley.Models;
 using Microsoft.AspNet.Identity;
+using VdoValley.ViewModels;
 
 namespace VdoValley.Controllers
 {
@@ -33,17 +34,18 @@ namespace VdoValley.Controllers
             {
                 return HttpNotFound();
             }
-            
+
             //HttpContext.Current.User.Identity.GetUserId();
             ViewBag.UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
-            
+
             return View(video);
         }
 
         // GET: Videos/Create
         public ActionResult Create()
         {
-            return View();
+            VideoViewModel vvm = new VideoViewModel();
+            return View(vvm);
         }
 
         // POST: Videos/Create
@@ -51,16 +53,52 @@ namespace VdoValley.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Url,Description,thumbnail_large_url")] Video video)
+        public ActionResult Create([Bind(Include = "Id,Title,Url,Description,Tags")] VideoViewModel vvm)
         {
             if (ModelState.IsValid)
             {
-                db.Videos.Add(video);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+                using (DbContextTransaction tran = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var video = ViewModelHelpers.VMHelper.ToDomainVideoModel(vvm);
+                        var tags = vvm.Tags.Split(',');
+                        List<Tag> tagsToAdd = new List<Tag>();
+                        foreach (var tag in tags)
+                        {
+                            Tag newTag = new Tag();
+                            newTag.Name = tag;
+                            tagsToAdd.Add(newTag);
+                        }
+
+                        db.Videos.Add(video);
+                        db.SaveChanges();
+                        video.Tags = new List<Tag>();
+                        foreach (var tag in tagsToAdd)
+                        {
+                            db.Tags.Add(tag);
+                            db.SaveChanges();
+                            db.Tags.Attach(tag);
+                            video.Tags.Add(tag);
+                            db.SaveChanges();
+                        }
+                       
+                        tran.Commit();
+                        return RedirectToAction("Index");
+                        
+                    }
+                    catch (Exception ex)
+                    {
+                        ModelState.AddModelError(string.Empty, ex.ToString());
+                        tran.Rollback();
+                    }
+                }
+                return View(vvm);
+
             }
 
-            return View(video);
+            return View(vvm);
         }
 
         // GET: Videos/Edit/5

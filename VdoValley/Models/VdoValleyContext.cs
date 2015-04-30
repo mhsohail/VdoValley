@@ -45,8 +45,8 @@ namespace VdoValley.Models
                    .WithMany(t => t.Videos)
                    .Map(cs =>
                    {
-                       cs.MapLeftKey("VideoRefId");
-                       cs.MapRightKey("TagRefId");
+                       cs.MapLeftKey("VideoId");
+                       cs.MapRightKey("TagId");
                        cs.ToTable("VideoTag");
                    });
         }

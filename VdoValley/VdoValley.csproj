@@ -174,13 +174,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="htmlhelpers\ImageHelper.cs" />
-    <Compile Include="Migrations\201504272125109_initial.cs" />
-    <Compile Include="Migrations\201504272125109_initial.Designer.cs">
-      <DependentUpon>201504272125109_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504281735308_a.cs" />
-    <Compile Include="Migrations\201504281735308_a.Designer.cs">
-      <DependentUpon>201504281735308_a.cs</DependentUpon>
+    <Compile Include="Migrations\201504292028417_initial.cs" />
+    <Compile Include="Migrations\201504292028417_initial.Designer.cs">
+      <DependentUpon>201504292028417_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -193,6 +189,8 @@
     <Compile Include="Models\Video.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModelHelpers\VMHelper.cs" />
+    <Compile Include="ViewModels\VideoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -316,7 +314,11 @@
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
     <Content Include="Scripts\jquery-2.1.3.min.map" />
+    <Content Include="Scripts\jquery-tags-input\README.md" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-tags-input\jquery.tagsinput.css" />
+    <Content Include="Scripts\jquery-tags-input\jquery.tagsinput.js" />
+    <Content Include="Scripts\jquery-tags-input\jquery.tagsinput.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -398,11 +400,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201504272125109_initial.resx">
-      <DependentUpon>201504272125109_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504281735308_a.resx">
-      <DependentUpon>201504281735308_a.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504292028417_initial.resx">
+      <DependentUpon>201504292028417_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

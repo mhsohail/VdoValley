@@ -11,7 +11,7 @@ namespace VdoValley.Models
     public class Video
     {
         [Key]
-        public int Id { get; set; }
+        public int VideoId { get; set; }
         public string Title { get; set; }
         public string Url { get; set; }
         public string Description { get; set; }
@@ -20,11 +20,7 @@ namespace VdoValley.Models
         
         public virtual ICollection<Rating> Ratings { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }
-        public Video()
-        {
-            this.Ratings = new List<Rating>();
-            this.Tags = new List<Tag>();
-        }
+
 
         public string getDailyMotionVideoCode(string short_url)
         {
