@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
 
 namespace VdoValley.Models
 {
-    public class VdoValleyContext : DbContext
+    public class VdoValleyContext : IdentityDbContext<ApplicationUser>
     {
         // You can add custom code to this file. Changes will not be overwritten.
         // 
@@ -24,22 +25,21 @@ namespace VdoValley.Models
 
         public System.Data.Entity.DbSet<VdoValley.Models.Rating> Ratings { get; set; }
         
-        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
             modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
             modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
             modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 
             ///////1-*     Video---Rating
             modelBuilder.Entity<Video>()
                         .HasMany<Rating>(v => v.Ratings)
                         .WithRequired(r => r.Video)
-                        .HasForeignKey(r => r.VideoId).WillCascadeOnDelete(false);
-            
+                        .HasForeignKey(r => r.VideoId).WillCascadeOnDelete(true);
+
+            ///////*-*     Video---Rating
             modelBuilder.Entity<Video>()
                    .HasMany<Tag>(v => v.Tags)
                    .WithMany(t => t.Videos)
@@ -49,6 +49,12 @@ namespace VdoValley.Models
                        cs.MapRightKey("TagId");
                        cs.ToTable("VideoTag");
                    });
+
+            ///////1-*     User---Rating
+            modelBuilder.Entity<ApplicationUser>()
+                        .HasMany<Rating>(au => au.Ratings)
+                        .WithRequired(r => r.ApplicationUser)
+                        .HasForeignKey(r => r.ApplicationUserId).WillCascadeOnDelete(true);
         }
 
         public System.Data.Entity.DbSet<VdoValley.Models.Tag> Tags { get; set; }

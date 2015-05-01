@@ -1,12 +1,20 @@
-﻿<!--header-->
-<!--<div class="back">
-    <img src="images/back.png" alt="">
-</div>-->
-
-@{
+﻿@{
     string url = "http://www.yahoo.com/";
     string str = ViewBag.Video;
-    List<VdoValley.Models.Video> videos = (List<VdoValley.Models.Video>)ViewData["videos"];
+    List<VdoValley.Models.Video> TopRatedVideos = new List<VdoValley.Models.Video>();
+    VdoValley.Models.VdoValleyContext db = new VdoValley.Models.VdoValleyContext();
+    List<VdoValley.Models.Video> vdos = db.Videos.ToList();
+    var ratings = db.Ratings.GroupBy(r => r.VideoId).Select(obj => new
+    {
+        VideoId = obj.Key,
+        AvgScore = obj.Average(i => i.Score)
+    }).OrderByDescending(obj=>obj.AvgScore);
+    
+    foreach(var rating in ratings)
+    {
+        VdoValley.Models.Video vdo = db.Videos.Where(v => v.VideoId.Equals(rating.VideoId)).ToList()[0];
+        TopRatedVideos.Add(vdo);
+    }
 }
 
 <!---->
@@ -30,10 +38,10 @@
     <!-- //requried-jsfiles-for owl -->
     <!-- start content_slider -->
     <div id="owl-demo" class="owl-carousel ">
-        @foreach (var video in videos)
+        @foreach (var video in TopRatedVideos)
         {
             <div class="item g1">
-                <a href="/Videos/Details/@video.VideoId"><img class="lazyOwl " data-src="@video.thumbnail_large_url" alt="@video.thumbnail_large_url" style="min-height:50px; height:211px;" /></a>
+                <a href="/Videos/Details/@video.VideoId"><img class="lazyOwl " data-src="@video.getDailyMotionThumb(video.getDailyMotionVideoCode(video.Url), VdoValley.Models.DailymotionThumbnailSize.thumbnail_large_url)" alt="@video.Title" style="min-height:50px; height:211px;" /></a>
                 <div class="caption">
                     <h3 class="cinema">
                             @{
@@ -85,70 +93,32 @@
                                     </div>
                                 </div>
                             </div>
-                            <style>
-                                
-                                .thumbnail-container * {
-	                                padding:0px;
-                                    margin:0px;
-                                }
-
-                                .thumbnail-container {
-                                    margin-bottom: 5px;
-                                }
-
-                                .thumbnail-container > a {
-	                                cursor:pointer;
-	                                text-decoration: none;
-                                }
-
-                                .thumbnail-container > a img {
-	                                /* width:100%; */
-	                                width:220px;
-	                                height: 100px;
-                                }
-
-                                /* custom css code */
-                                .thumbnail-container .details {
-	                                background-color: #F2F2F2;
-	                                width: 100%;
-	                                height: 70px;
-	                                max-height: 70px;
-	                                overflow:hidden;
-                                }
-
-                                .thumbnail-container .details h3 {
-                                    font-size:1em;
-                                }
-
-                                .thumbnail-container .details div {
-                                    padding:5px;
-                                }
-                                </style>
+                            
                             <ul class="row">
                                 <!--<ul class="resp-tabs-list">-->
-                                @{int c = 0;}
-                                @foreach (var video in videos)
-                                {
-                                    string active = ((c == 0) ? "resp-tab-active" : string.Empty);
-                                <!--<li class="resp-tab-item @active" aria-controls="tab_item-@c col-lg-12" role="tab"><span><a href="/Videos/Details/@video.VideoId"><img src="@video.thumbnail_large_url" class="img-responsive" alt="@video.Title" style="min-height:50px; height:115px; width:171px;min-width:100px;" /></a></span></li>
-                                    <li class="col-xs-12 col-sm-6 col-md-12 col-lg-3" style="overflow:hidden;"><a href="/Videos/Details/@video.VideoId"><img src="@video.thumbnail_large_url" class="img-responsive" alt="@video.Title" style="width:100%;height:100%;margin-bottom:5px;margin-top:5px;" /></a></li>-->
-                                    c++;
-                                    //min-width:150px;width:200px;max-width:200px;min-height:100px;height:100px;
-                                    <div class="thumbnail-container col-lg-3 col-md-4 col-xs-6 thumb">
-                                        <a class="thumbnail" href="/Videos/Details/@video.VideoId">
-                                            <img class="img-responsive" src="@video.thumbnail_large_url" alt="">
-                                            <div class="details">
-                                                <div class="panel-heading">
-                                                        @{
-                                                            int maxTitleLength = 40;
-                                                            string title = string.Empty;
-                                                            if (video.Title.Length > maxTitleLength) { title = video.Title.Substring(0, maxTitleLength - 1) + "..."; } else { title = video.Title; }
-                                                        }
-                                                    <h3 class="panel-title col-lg-offset-1">@title</h3>
+                                @{
+                                    List<VdoValley.Models.Video> AllVideos = db.Videos.ToList();
+                                    foreach (var video in AllVideos)
+                                    {
+                                        <!--<li class="resp-tab-item active" aria-controls="tab_item- col-lg-12" role="tab"><span><a href="/Videos/Details/video.VideoId"><img src="video.thumbnail_large_url" class="img-responsive" alt="video.Title" style="min-height:50px; height:115px; width:171px;min-width:100px;" /></a></span></li>
+                                        <li class="col-xs-12 col-sm-6 col-md-12 col-lg-3" style="overflow:hidden;"><a href="/Videos/Details/video.VideoId"><img src="video.thumbnail_large_url" class="img-responsive" alt="video.Title" style="width:100%;height:100%;margin-bottom:5px;margin-top:5px;" /></a></li>-->
+                                        //min-width:150px;width:200px;max-width:200px;min-height:100px;height:100px;
+                                        <div class="thumbnail-container col-lg-3 col-md-4 col-xs-6 thumb">
+                                            <a class="thumbnail" href="/Videos/Details/@video.VideoId">
+                                                <img class="img-responsive" src="@video.getDailyMotionThumb(video.getDailyMotionVideoCode(video.Url), VdoValley.Models.DailymotionThumbnailSize.thumbnail_large_url)" alt="">
+                                                <div class="details">
+                                                    <div class="panel-heading">
+                                                            @{
+                                                                int maxTitleLength = 40;
+                                                                string title = string.Empty;
+                                                                if (video.Title.Length > maxTitleLength) { title = video.Title.Substring(0, maxTitleLength - 1) + "..."; } else { title = video.Title; }
+                                                            }
+                                                        <h3 class="panel-title col-lg-offset-1">@title</h3>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </a>
-                                    </div>
+                                            </a>
+                                        </div>
+                                    }
                                 }
                                 <div class="clearfix"> </div>
                             </ul>

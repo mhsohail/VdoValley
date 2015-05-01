@@ -13,7 +13,7 @@ namespace VdoValley.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201504292028417_initial"; }
+            get { return "201505010716409_initial"; }
         }
         
         string IMigrationMetadata.Source

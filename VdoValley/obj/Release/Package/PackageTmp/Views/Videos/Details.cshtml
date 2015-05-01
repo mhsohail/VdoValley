@@ -1,4 +1,5 @@
 ﻿@model VdoValley.Models.Video
+@using Microsoft.AspNet.Identity;
 @{
     ViewBag.Title = Model.Title;
 }
@@ -25,12 +26,14 @@
             var newScore = 0;
             var updateP = "#" + $(this).parent().attr('id') + ' .CurrentScore';
             var artID = $("#" + $(this).parent().attr('id') + ' .articleID').val();
-            
+            var UserId = $(".UserID").val();
+
             //$("#" + $(this).parent().attr('id') + " .star").hide();
             $("#" + $(this).parent().attr('id') + " .yourScore").html("Your Score is : &nbsp;<b style='color:#ff9900; font-size:15px'>" + v + "</b>");
             
             var rating = {
                 VideoId: artID,
+                ApplicationUserId: UserId,
                 Score: v,
                 Date: "@DateTime.Now"
             };
@@ -113,6 +116,7 @@
                                     @Html.Raw("User Id: " + ViewBag.UserId)
                                     <div class="rating-star-block" id='div_0'>
                                         <input type="hidden" class="articleID" value='@Model.VideoId' />Current Rating :<span class="CurrentScore">@AvgRating</span><br /><div class="yourScore">Your Score : </div>
+                                        <input type="hidden" class="UserID" value='@System.Web.HttpContext.Current.User.Identity.GetUserId()' />
                                         <a class="star outline" href="#" rating="1" title="vote 1"> vote 1</a>
                                         <a class="star outline" href="#" rating="2" title="vote 2"> vote 2</a>
                                         <a class="star outline" href="#" rating="3" title="vote 3"> vote 3</a>
@@ -121,6 +125,7 @@
                                     </div>
                                     Tags: 
                                     @{
+                                        ICollection<VdoValley.Models.Video> relatedVideos = new List<VdoValley.Models.Video>();
                                         ICollection<VdoValley.Models.Tag> tags = Model.Tags;
                                         int counter = 0;
                                         foreach(var tag in tags)
@@ -131,27 +136,48 @@
                                                 <span>,</span>
                                             }
                                             counter++;
+                                            
+                                            // get videos for curren tag
+                                            foreach (var video in tag.Videos)
+                                            {
+                                                relatedVideos.Add(video);
+                                            }
                                         }
-}
+                                    }
+                                    
                                 </div>
                                     <!---->
                                     <div class="simply">
                                         <div class="story">
                                             <h4 class="stories stories-in"><span>Related Videos</span></h4>
                                         </div>
-                                        <ul class="in-left">
-                                            <li><a href="#">Lorem Ipsum is simply dummy text </a></li>
-                                            <li><a href="#">printing and typesetting industry</a></li>
-                                            <li><a href="#">Lorem Ipsum has been the industry's  </a> </li>
-                                            <li><a href="#">standard dummy text ever since </a> </li>
-                                            <li><a href="#">Lorem Ipsum has been the industry's  </a> </li>
-                                        </ul>
-                                        <ul class="in-left">
-                                            <li><a href="#">Lorem Ipsum is simply dummy text </a></li>
-                                            <li><a href="#">printing and typesetting industry</a></li>
-                                            <li><a href="#">Lorem Ipsum has been the industry's  </a> </li>
-                                            <li><a href="#">standard dummy text ever since </a> </li>
-                                        </ul>
+                                        @{
+                                            if (relatedVideos.Count == 0)
+                                            {
+                                                <span>No related videos available</span>
+                                            }
+                                            else 
+                                            { 
+                                                foreach (var video in relatedVideos)
+                                                {
+                                                    <div class="thumbnail-container col-lg-3 col-md-4 col-xs-6 thumb">
+                                                        <a class="thumbnail" href="/Videos/Details/@video.VideoId">
+                                                            <img class="img-responsive" src="@video.thumbnail_large_url" alt="">
+                                                            <div class="details">
+                                                                <div class="panel-heading">
+                                                                    @{
+                                                    int maxTitleLength = 40;
+                                                    string title = string.Empty;
+                                                    if (video.Title.Length > maxTitleLength) { title = video.Title.Substring(0, maxTitleLength - 1) + "..."; } else { title = video.Title; }
+                                                                    }
+                                                                    <h3 class="panel-title col-lg-offset-1">@title</h3>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                }
+                                            }
+                                        }
                                         <div class="clearfix"></div>
                                     </div>
                                     <!---->

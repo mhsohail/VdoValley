@@ -1,7 +1,5 @@
 namespace VdoValley.Migrations
 {
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -12,18 +10,11 @@ namespace VdoValley.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(VdoValley.Models.VdoValleyContext context)
         {
-            if (!(context.ApplicationUsers.Any(u => u.UserName == "fahad.farooq7013@gmail.com")))
-            {
-                var userStore = new UserStore<ApplicationUser>(context);
-                var userManager = new UserManager<ApplicationUser>(userStore);
-                var userToInsert = new ApplicationUser { UserName = "fahad.farooq7013@gmail.com", Email = "fahad.farooq7013@gmail.com", PhoneNumber = "0797697898" };
-                userManager.Create(userToInsert, "Fahad@2");
-            }
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
@@ -37,7 +28,7 @@ namespace VdoValley.Migrations
             //    );
             //
 
-            VdoValleyContext db = new VdoValleyContext();            
+            VdoValleyContext db = new VdoValleyContext();
             using (var transaction = db.Database.BeginTransaction())
             {
                 try
@@ -115,7 +106,7 @@ namespace VdoValley.Migrations
                             Url = "http://dai.ly/x2ntme0"
                         }
                     );
-                    
+
                     db.SaveChanges();
                     transaction.Commit();
                 }
@@ -123,7 +114,7 @@ namespace VdoValley.Migrations
                 {
                     transaction.Rollback();
                 }
-            }             
+            }
         }
     }
 }

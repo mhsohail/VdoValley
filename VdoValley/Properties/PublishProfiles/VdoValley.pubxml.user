@@ -88,7 +88,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:21:31</publishTime>
     </File>
     <File Include="bin/VdoValley.dll">
-      <publishTime>04/30/2015 14:09:51</publishTime>
+      <publishTime>05/01/2015 12:44:45</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>04/25/2015 17:21:35</publishTime>
@@ -571,7 +571,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:20:56</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>04/30/2015 01:31:33</publishTime>
+      <publishTime>05/01/2015 03:18:13</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>04/25/2015 17:21:50</publishTime>
@@ -613,7 +613,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:21:50</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>04/29/2015 22:40:01</publishTime>
+      <publishTime>04/30/2015 16:50:55</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>04/25/2015 17:21:50</publishTime>
@@ -640,7 +640,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/26/2015 18:31:40</publishTime>
     </File>
     <File Include="Views/Videos/Details.cshtml">
-      <publishTime>04/30/2015 16:33:56</publishTime>
+      <publishTime>05/01/2015 12:31:12</publishTime>
     </File>
     <File Include="Views/Videos/Details_orig.cshtml">
       <publishTime>04/26/2015 18:31:40</publishTime>
@@ -658,7 +658,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:20:56</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/30/2015 14:09:51</publishTime>
+      <publishTime>05/01/2015 11:37:02</publishTime>
     </File>
   </ItemGroup>
 </Project>

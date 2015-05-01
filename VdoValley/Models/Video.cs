@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
@@ -21,7 +23,6 @@ namespace VdoValley.Models
         public virtual ICollection<Rating> Ratings { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }
 
-
         public string getDailyMotionVideoCode(string short_url)
         {
             string code = string.Empty;
@@ -37,6 +38,19 @@ namespace VdoValley.Models
             }
             
             return matches[0].Groups[2].Value;
+        }
+
+        public string getDailyMotionThumb(string video_code, DailymotionThumbnailSize thumbnail_size)
+        {
+            string size = thumbnail_size.ToString();
+            string json = string.Empty;
+            using (var client = new WebClient())
+            {
+                json = client.DownloadString("https://api.dailymotion.com/video/" + video_code + "?fields=" + size);
+            }
+
+            Video vdo = JsonConvert.DeserializeObject<Video>(json);
+            return vdo.thumbnail_large_url;
         }
     }
 }

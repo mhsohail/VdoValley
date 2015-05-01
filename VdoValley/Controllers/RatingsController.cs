@@ -48,7 +48,8 @@ namespace VdoValley.Controllers
                     {
                         Score = rating.Score,
                         Date = rating.Date,
-                        VideoId = rating.VideoId
+                        VideoId = rating.VideoId,
+                        ApplicationUserId = rating.ApplicationUserId
                     }
                 );
                 db.SaveChanges();
