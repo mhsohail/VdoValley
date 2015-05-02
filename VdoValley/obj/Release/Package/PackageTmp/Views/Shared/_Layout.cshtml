@@ -136,6 +136,14 @@
                         @RenderSection("VideoDetails", required: false)
                     </div>
                 }
+                
+                @if (IsSectionDefined("VideoDetails"))
+                {
+                    <div class="content">
+                        @RenderSection("CategoryVideos", required: false)
+                    </div>
+                }
+                
                 <div class="col-md-4 content-bottom">
                     <div class="story"><h4 class="stories"><span>Top Videos</span></h4></div>
                     <!---->
