@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -11,130 +10,107 @@ using VdoValley.Models;
 
 namespace VdoValley.Controllers
 {
-    public class RatingsController : Controller
+    public class CategoriesController : Controller
     {
         private VdoValleyContext db = new VdoValleyContext();
 
-        // GET: Ratings
+        // GET: Categories
         public ActionResult Index()
         {
-            return View(db.Ratings.ToList());
+            return View(db.Categories.ToList());
         }
 
-        // GET: Ratings/Details/5
+        // GET: Categories/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Rating rating = db.Ratings.Find(id);
-            if (rating == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(rating);
+            return View(category);
         }
 
-        // GET: Ratings/Create
-        public string Createe(Rating rating)
+        // GET: Categories/Create
+        public ActionResult Create()
         {
-            Dictionary<string, string> response = new Dictionary<string, string>();
-
-            try
-            {
-                db.Ratings.Add(
-                    new Rating
-                    {
-                        Score = rating.Score,
-                        DateTime = rating.DateTime,
-                        VideoId = rating.VideoId,
-                        ApplicationUserId = rating.ApplicationUserId
-                    }
-                );
-                db.SaveChanges();
-                response.Add("success", "1");
-                response.Add("message", "Thanks for rating");
-            }
-            catch(Exception e)
-            {
-                response.Add("success", "0");
-                response.Add("error", e.Message);
-            }
-            
-            return JsonConvert.SerializeObject(response);
+            return View();
         }
 
-        // POST: Ratings/Create
+        // POST: Categories/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,VideoId,Score,Date")] Rating rating)
+        public ActionResult Create([Bind(Include = "CategoryId,Name,Description")] Category category)
         {
             if (ModelState.IsValid)
             {
-                db.Ratings.Add(rating);
+                db.Categories.Add(category);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(rating);
+            return View(category);
         }
 
-        // GET: Ratings/Edit/5
+        // GET: Categories/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Rating rating = db.Ratings.Find(id);
-            if (rating == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(rating);
+            return View(category);
         }
 
-        // POST: Ratings/Edit/5
+        // POST: Categories/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,VideoId,Score,Date")] Rating rating)
+        public ActionResult Edit([Bind(Include = "CategoryId,Name,Description")] Category category)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(rating).State = EntityState.Modified;
+                db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(rating);
+            return View(category);
         }
 
-        // GET: Ratings/Delete/5
+        // GET: Categories/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Rating rating = db.Ratings.Find(id);
-            if (rating == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(rating);
+            return View(category);
         }
 
-        // POST: Ratings/Delete/5
+        // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Rating rating = db.Ratings.Find(id);
-            db.Ratings.Remove(rating);
+            Category category = db.Categories.Find(id);
+            db.Categories.Remove(category);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

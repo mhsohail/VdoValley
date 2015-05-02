@@ -8,6 +8,32 @@ namespace VdoValley.Migrations
         public override void Up()
         {
             CreateTable(
+                "dbo.Categories",
+                c => new
+                    {
+                        CategoryId = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Description = c.String(),
+                    })
+                .PrimaryKey(t => t.CategoryId);
+            
+            CreateTable(
+                "dbo.Videos",
+                c => new
+                    {
+                        VideoId = c.Int(nullable: false, identity: true),
+                        Title = c.String(),
+                        Url = c.String(),
+                        Description = c.String(),
+                        thumbnail_large_url = c.String(),
+                        DateTime = c.DateTime(nullable: false),
+                        CategoryId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.VideoId)
+                .ForeignKey("dbo.Categories", t => t.CategoryId, cascadeDelete: true)
+                .Index(t => t.CategoryId);
+            
+            CreateTable(
                 "dbo.Ratings",
                 c => new
                     {
@@ -15,7 +41,7 @@ namespace VdoValley.Migrations
                         VideoId = c.Int(nullable: false),
                         ApplicationUserId = c.String(nullable: false, maxLength: 128),
                         Score = c.Int(nullable: false),
-                        Date = c.DateTime(nullable: false),
+                        DateTime = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId, cascadeDelete: true)
@@ -82,18 +108,6 @@ namespace VdoValley.Migrations
                 .Index(t => t.RoleId);
             
             CreateTable(
-                "dbo.Videos",
-                c => new
-                    {
-                        VideoId = c.Int(nullable: false, identity: true),
-                        Title = c.String(),
-                        Url = c.String(),
-                        Description = c.String(),
-                        thumbnail_large_url = c.String(),
-                    })
-                .PrimaryKey(t => t.VideoId);
-            
-            CreateTable(
                 "dbo.Tags",
                 c => new
                     {
@@ -130,6 +144,7 @@ namespace VdoValley.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Videos", "CategoryId", "dbo.Categories");
             DropForeignKey("dbo.VideoTag", "TagId", "dbo.Tags");
             DropForeignKey("dbo.VideoTag", "VideoId", "dbo.Videos");
             DropForeignKey("dbo.Ratings", "VideoId", "dbo.Videos");
@@ -147,15 +162,17 @@ namespace VdoValley.Migrations
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.Ratings", new[] { "ApplicationUserId" });
             DropIndex("dbo.Ratings", new[] { "VideoId" });
+            DropIndex("dbo.Videos", new[] { "CategoryId" });
             DropTable("dbo.VideoTag");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.Tags");
-            DropTable("dbo.Videos");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.Ratings");
+            DropTable("dbo.Videos");
+            DropTable("dbo.Categories");
         }
     }
 }

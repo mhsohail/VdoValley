@@ -19,7 +19,10 @@ namespace VdoValley.Models
         public string Description { get; set; }
         [HiddenInput(DisplayValue = false)]
         public string thumbnail_large_url { get; set; }
+        public DateTime DateTime { set; get; }
+        public int CategoryId { get; set; }
         
+        public virtual Category Category { set; get; }
         public virtual ICollection<Rating> Ratings { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }
 

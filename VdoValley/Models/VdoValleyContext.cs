@@ -39,6 +39,12 @@ namespace VdoValley.Models
                         .WithRequired(r => r.Video)
                         .HasForeignKey(r => r.VideoId).WillCascadeOnDelete(true);
 
+            ///////1-*     Category---Video
+            modelBuilder.Entity<Category>()
+                        .HasMany<Video>(c => c.Videos)
+                        .WithRequired(v => v.Category)
+                        .HasForeignKey(v => v.CategoryId).WillCascadeOnDelete(true);
+
             ///////*-*     Video---Rating
             modelBuilder.Entity<Video>()
                    .HasMany<Tag>(v => v.Tags)
@@ -58,6 +64,8 @@ namespace VdoValley.Models
         }
 
         public System.Data.Entity.DbSet<VdoValley.Models.Tag> Tags { get; set; }
+
+        public System.Data.Entity.DbSet<VdoValley.Models.Category> Categories { get; set; }
     
     }
 }

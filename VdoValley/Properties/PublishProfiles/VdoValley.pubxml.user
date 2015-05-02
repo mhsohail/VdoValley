@@ -88,7 +88,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:21:31</publishTime>
     </File>
     <File Include="bin/VdoValley.dll">
-      <publishTime>05/01/2015 12:44:45</publishTime>
+      <publishTime>05/02/2015 17:13:23</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>04/25/2015 17:21:35</publishTime>
@@ -525,8 +525,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/respond.min.js">
       <publishTime>04/25/2015 17:21:36</publishTime>
     </File>
+    <File Include="Scripts/sharethis/script.js">
+      <publishTime>05/02/2015 00:45:03</publishTime>
+    </File>
     <File Include="Scripts/_references.js">
-      <publishTime>04/30/2015 00:17:39</publishTime>
+      <publishTime>05/02/2015 00:33:32</publishTime>
     </File>
     <File Include="Views/Account/ConfirmEmail.cshtml">
       <publishTime>04/25/2015 17:21:49</publishTime>
@@ -564,6 +567,21 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Account/_ExternalLoginsListPartial.cshtml">
       <publishTime>04/25/2015 17:21:49</publishTime>
     </File>
+    <File Include="Views/Categories/Create.cshtml">
+      <publishTime>05/02/2015 13:36:33</publishTime>
+    </File>
+    <File Include="Views/Categories/Delete.cshtml">
+      <publishTime>05/02/2015 13:36:34</publishTime>
+    </File>
+    <File Include="Views/Categories/Details.cshtml">
+      <publishTime>05/02/2015 13:36:35</publishTime>
+    </File>
+    <File Include="Views/Categories/Edit.cshtml">
+      <publishTime>05/02/2015 13:36:36</publishTime>
+    </File>
+    <File Include="Views/Categories/Index.cshtml">
+      <publishTime>05/02/2015 13:36:37</publishTime>
+    </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>04/25/2015 17:20:56</publishTime>
     </File>
@@ -571,7 +589,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:20:56</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>05/01/2015 03:18:13</publishTime>
+      <publishTime>05/02/2015 09:22:14</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>04/25/2015 17:21:50</publishTime>
@@ -613,10 +631,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:21:50</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>04/30/2015 16:50:55</publishTime>
+      <publishTime>05/02/2015 09:55:04</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
-      <publishTime>04/25/2015 17:21:50</publishTime>
+      <publishTime>05/01/2015 15:49:56</publishTime>
     </File>
     <File Include="Views/Tags/Create.cshtml">
       <publishTime>04/28/2015 22:39:54</publishTime>
@@ -634,13 +652,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/30/2015 16:09:50</publishTime>
     </File>
     <File Include="Views/Videos/Create.cshtml">
-      <publishTime>04/30/2015 15:43:48</publishTime>
+      <publishTime>05/02/2015 14:00:33</publishTime>
     </File>
     <File Include="Views/Videos/Delete.cshtml">
       <publishTime>04/26/2015 18:31:40</publishTime>
     </File>
     <File Include="Views/Videos/Details.cshtml">
-      <publishTime>05/01/2015 12:31:12</publishTime>
+      <publishTime>05/02/2015 17:26:03</publishTime>
     </File>
     <File Include="Views/Videos/Details_orig.cshtml">
       <publishTime>04/26/2015 18:31:40</publishTime>

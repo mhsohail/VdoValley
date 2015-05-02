@@ -13,9 +13,11 @@ namespace VdoValley.ViewModelHelpers
         {
             var video = new Video();
             video.VideoId = vvm.VideoId;
+            video.CategoryId = vvm.SelectedCategory;
             video.Title = vvm.Title;
             video.Url = vvm.Url;
             video.Description = vvm.Description;
+            video.DateTime = vvm.DateTime;
 
             return video;
         }

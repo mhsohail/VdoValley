@@ -11,7 +11,9 @@ namespace VdoValley.ViewModels
         public string Title { get; set; }
         public string Url { get; set; }
         public string Description { get; set; }
+        public DateTime DateTime { get; set; }
         public string Tags { get; set; }
+        public int SelectedCategory { set; get; }
     }
     
 }

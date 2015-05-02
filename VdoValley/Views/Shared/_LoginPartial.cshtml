@@ -1,4 +1,18 @@
 ﻿@using Microsoft.AspNet.Identity
+<style>
+    .navbar-fixed-top {
+        min-height: 20px;
+        height: 35px;
+    }
+
+    .navbar-fixed-top ul li a {
+        text-transform:initial;
+        text-decoration: none;
+        font-weight: normal;
+        font-size: 16px;
+    }
+</style>
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))

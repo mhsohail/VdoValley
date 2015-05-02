@@ -7,6 +7,14 @@
 <h2>Submit Video</h2>
 
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="http://api.dmcdn.net/all.js"></script>
+<script>
+    DM.init({
+        apiKey: 'c3aae1f9b8cf64a567a8',
+        status: true, // check login status
+        cookie: true // enable cookies to allow the server to access the session
+    });
+</script>
 <script>
     $(function () {
         $("#Title").keyup(function () {
@@ -90,6 +98,21 @@
             }
         }
 
+        $("#Url").keyup(function () {
+            $.ajax({
+                type: "GET",
+                url: "https://api.dailymotion.com/video/x26ezj5?fields=id,title",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    alert(response)
+                },
+                error: function (xhr, status, error) {
+                    handleData(xhr.responseText);
+                }
+            });
+        });
+
     });
 
     
@@ -125,6 +148,14 @@
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SelectedCategory, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.SelectedCategory, new SelectList(TempData["Categories"] as System.Collections.IEnumerable, "CategoryID", "Name"), "-Select Category-", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SelectedCategory, "", new { @class = "text-danger" })
                 </div>
             </div>
 

@@ -44,6 +44,7 @@ namespace VdoValley.Controllers
         // GET: Videos/Create
         public ActionResult Create()
         {
+            TempData["Categories"] = db.Categories.ToList();
             VideoViewModel vvm = new VideoViewModel();
             return View(vvm);
         }
@@ -53,15 +54,15 @@ namespace VdoValley.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Url,Description,Tags")] VideoViewModel vvm)
+        public ActionResult Create([Bind(Include = "Id,Title,Url,Description,Tags,SelectedCategory")] VideoViewModel vvm)
         {
             if (ModelState.IsValid)
             {
-
                 using (DbContextTransaction tran = db.Database.BeginTransaction())
                 {
                     try
                     {
+                        vvm.DateTime = DateTime.Now;
                         var video = ViewModelHelpers.VMHelper.ToDomainVideoModel(vvm);
                         var tags = vvm.Tags.Split(',');
                         List<Tag> tagsToAdd = new List<Tag>();
