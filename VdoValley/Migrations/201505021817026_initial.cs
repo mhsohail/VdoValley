@@ -28,6 +28,7 @@ namespace VdoValley.Migrations
                         thumbnail_large_url = c.String(),
                         DateTime = c.DateTime(nullable: false),
                         CategoryId = c.Int(nullable: false),
+                        Featured = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.VideoId)
                 .ForeignKey("dbo.Categories", t => t.CategoryId, cascadeDelete: true)

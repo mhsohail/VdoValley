@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <meta property="og:image" content="@ViewBag.OgThumbnail">
     <title>@ViewBag.Title - VdoValley</title>
     @*@Styles.Render("~/Content/css")*@
     @Scripts.Render("~/bundles/modernizr")
@@ -78,8 +78,8 @@
                         <a href="/"><img src="/images/vdovalley_logo.png" alt=""></a>
                     </div>
                     <div class="search">
-                        <form>
-                            <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+                        <form method="GET" action="/Home/Search">
+                            <input type="text" name="q" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
                             <input type="submit" value="SEARCH">
                         </form>
                     </div>
@@ -103,18 +103,20 @@
                         </label>
                         <input id="mobile_menu" type="checkbox">
                         <ul class="nav">
-                            <li><a class="color1" href="/">Home</a></li>
-                            <li><a href="cinema.html" class="color2">cinema</a></li>
-                            <li><a href="magazine.html" class="color3">Magazine</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="color4">Topmenu<span> </span></a>
+                            <li><a class="color3" href="/">Home</a></li>
+                            <li><a href="/Categories/Details/2" class="color3">Talk Shows</a></li>
+                            <li><a href="/Categories/Details/3" class="color3">Politics</a></li>
+                            <li><a href="/Categories/Details/4" class="color3">Fashion</a></li>
+                            <li><a href="/Categories/Details/5" class="color3">Sports</a></li>
+                            <!--<li class="dropdown">
+                                <a href="#" class="color4">Fashion<span> </span></a>
                                 <ul>
-                                    <li><a href="cinema.html">cinema</a></li>
+                                    <li><a href="cinema.html">Sports</a></li>
                                     <li><a href="magazine.html">Magazine</a></li>
                                 </ul>
-                            </li>
-                            <li><a href="/Videos/Create" class="color5">Submit Video</a></li>
-                            <li><a href="contact.html" class="color6">Contact us</a></li>
+                            </li>-->
+                            <li><a href="/Videos/Create" class="color3">Submit Video</a></li>
+                            <li><a href="/Home/Contact" class="color3">Contact us</a></li>
                             <div class="clearfix"></div>
                         </ul>
                     </div>
@@ -136,131 +138,13 @@
                         @RenderSection("VideoDetails", required: false)
                     </div>
                 }
-                <div class="col-md-4 content-bottom">
-                    <div class="story"><h4 class="stories"><span>Top Videos</span></h4></div>
-                    <!---->
-                    <div class="cd-tabs">
-                        <ul class="cd-tabs-content">
-                            <li data-content="cinema" class="selected">
-                                <style>
-                                    .grid-men a img {
-                                        width: 95%;
-                                        max-width: 95%;
-                                        min-width: 90%;
-                                        height: 80px;
-                                        max-height: 80%;
-                                        min-height: 75%;
-                                    }
-                                </style>
-                                @{
-                                    int counter = 0;
-                                    VdoValley.Models.VdoValleyContext db = new VdoValley.Models.VdoValleyContext();
-                                    List<VdoValley.Models.Video> AllVideos = db.Videos.ToList();
-                                    foreach (VdoValley.Models.Video video in AllVideos)
-                                    {
-                                        <div class="men">
-                                            <div class="grid-men">
-                                                <a href="/Videos/Details/@video.VideoId"><img src="@video.getDailyMotionThumb(video.getDailyMotionVideoCode(video.Url), VdoValley.Models.DailymotionThumbnailSize.thumbnail_large_url)" class="img-responsive" alt="@video.Title"> </a>
-                                            </div>
-                                            <div class="men-grid">
-                                                <h5><a href="/Videos/Details/@video.VideoId">@video.Title</a></h5>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        counter++;
-                                        if (counter.Equals(5)) { break; }
-                                    }
-                                }
-                            </li>
-                            <div class="clearfix"></div>
-                        </ul>
-                    </div>
-                    <!---->
-                    <div class="grid-top">
-                        <h4>Recent Comments</h4>
-                        <ul>
-                            @{
-                                using (WebClient client = new WebClient())
-                                {
-                                    string s = client.DownloadString("https://disqus.com/api/3.0/forums/listPosts.json?order=desc&forum=vdovalley&api_key=M02296gbyd8Z6NCaSx7V0oRUAJyj0eiczZLkV4FTKJORcQi1aKlRxNiGMf1R6NPg&related=thread");
-                                    var comments = new
-                                    {
-                                        response = new[]
-                                {
-                                    new
-                                    {
-                                        forum = string.Empty,
-                                        raw_message = string.Empty,
-                                        url = string.Empty
-                                    }
-                                }
-                                    };
-
-                                    comments = Newtonsoft.Json.JsonConvert.DeserializeAnonymousType(s, comments);
-                                    for (int i = 0; i < comments.response.Length; i++)
-                                    {
-                                        int maxCommentLength = 100;
-                                        string comment = string.Empty;
-                                        if (comments.response[i].raw_message.Length > maxCommentLength) { comment = comments.response[i].raw_message.Substring(0, maxCommentLength - 1) + "..."; } else { comment = comments.response[i].raw_message; }
-                                        <li><p><a href="@comments.response[i].url">@comment</a></p></li>
-                                    }
-                                }
-                            }
-                        </ul>
-                    </div>
-                    <!---->
-                    <div class="grid-top-in">
-                        <h4>Tag cloud</h4>
-                        <p>
-                            <a href="#" class="jol">Angelina Jolie</a>
-                            <a href="#" class="lop"> Cssauthor</a>
-                            <a href="#" class="bun">Aristokrasi Beyonce Blake</a>
-                            <a href="#" class="live">Lively Brad Pitt Cameron</a>
-                            <a href="#" class="dan">Diaz Daniel</a>
-                            <a href="#" class="jol"> Radcliffe David</a>
-                            <a href="#" class="live">Beckham Demi Moore Emma </a>
-                            <a href="#" class="eva">Watson Eva</a>
-                            <a href="#" class="live">Longoria Gisele </a>
-                            <a href="#" class="bun">Bundchen Gwyneth Paltrow</a>
-                            <a href="#" class="live">Halle Berry </a>
-                            <a href="#" class="jol">Harry Potter</a>
-                            <a href="#" class="live">Heidi Klum </a>
-                            <a href="#" class="bun">James Franco</a>
-                            <a href="#" class="live">Jennifer </a>
-                            <a href="#" class="lop"> Lopez Jessica</a>
-                            <a href="#" class="live">Alba Johnny Depp </a>
-                            <a href="#" class="bun">Jon Hamm Jude</a>
-                            <a href="#" class="eva">Law Kate Moss Kate</a>
-                            <a href="#" class="live">Winslet Katie </a>
-                            <a href="#" class="bun">Holmes Katy Perry</a>
-                            <a href="#" class="live">Kim Kardashian </a>
-                            <a href="#" class="dan">Kristen</a>
-                            <a href="#" class="eva">Stewart</a>
-                            <a href="#" class="live">Lady Gaga Madonna </a>
-                            <a href="#" class="bun">Megan Fox Michelle</a>
-                            <a href="#" class="live">Williams Natalie </a>
-                            <a href="#" class="bun">Portman</a>
-                            <a href="#" class="live">Nicole </a>
-                            <a href="#" class="eva">Kidman Penelope</a>
-                            <!---
-                <a href="#" class="live">Cruz Reese Witherspoon Reklam</a>
-                <a href="#" class="lop"> Rihanna</a>
-                <a href="#" class="live">Robert Pattin </a>
-                <a href="#" class="bun">Son Sarah</a>
-                <a href="#" class="live">Jessica </a>
-                <a href="#" class="jol">Parker Scar </a>
-                -->
-                        </p>
-                    </div>
-                    <!---->
-                </div>
-                <div class="clearfix"></div>
+                
                 @RenderBody()
             </div>
             <i class="line"> </i>
             <i class="line-in"> </i>
-            <i class="line-in line-in1"> </i>
-            <i class="line-in line-in2"> </i>
+            <!--<i class="line-in line-in1"> </i>-->
+            <!--<i class="line-in line-in2"> </i>-->
         </div>
 
         @*@Scripts.Render("~/bundles/jquery")*@

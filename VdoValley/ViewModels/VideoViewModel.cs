@@ -13,6 +13,8 @@ namespace VdoValley.ViewModels
         public string Description { get; set; }
         public DateTime DateTime { get; set; }
         public string Tags { get; set; }
+        public bool Featured { get; set; }
+        
         public int SelectedCategory { set; get; }
     }
     

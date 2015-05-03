@@ -27,12 +27,14 @@ namespace VdoValley.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Category category = db.Categories.Find(id);
             if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            ViewBag.CategoryName = category.Name;
+            return View(category.Videos.ToList());
         }
 
         // GET: Categories/Create

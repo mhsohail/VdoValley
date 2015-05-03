@@ -21,6 +21,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/EntityFramework.SqlServer.dll">
       <publishTime>04/25/2015 17:28:34</publishTime>
     </File>
+    <File Include="bin/GridMvc.dll">
+      <publishTime>05/03/2015 15:46:26</publishTime>
+    </File>
     <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
       <publishTime>04/28/2015 00:33:11</publishTime>
     </File>
@@ -66,6 +69,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/Owin.dll">
       <publishTime>04/25/2015 17:22:16</publishTime>
     </File>
+    <File Include="bin/PagedList.dll">
+      <publishTime>05/02/2015 22:21:13</publishTime>
+    </File>
+    <File Include="bin/PagedList.Mvc.dll">
+      <publishTime>05/02/2015 22:21:15</publishTime>
+    </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>04/25/2015 17:21:31</publishTime>
     </File>
@@ -88,7 +97,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:21:31</publishTime>
     </File>
     <File Include="bin/VdoValley.dll">
-      <publishTime>05/02/2015 17:13:23</publishTime>
+      <publishTime>05/03/2015 23:48:26</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>04/25/2015 17:21:35</publishTime>
@@ -98,6 +107,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Content/bootstrap.min.css">
       <publishTime>04/25/2015 17:21:10</publishTime>
+    </File>
+    <File Include="Content/Gridmvc.css">
+      <publishTime>05/03/2015 15:46:48</publishTime>
     </File>
     <File Include="Content/magblog-web/bootstrap.css">
       <publishTime>04/25/2015 20:08:31</publishTime>
@@ -110,6 +122,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Content/magblog-web/style.css">
       <publishTime>04/25/2015 20:08:31</publishTime>
+    </File>
+    <File Include="Content/PagedList.css">
+      <publishTime>05/02/2015 22:21:22</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>04/25/2015 17:20:56</publishTime>
@@ -230,6 +245,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Global.asax">
       <publishTime>04/25/2015 17:20:56</publishTime>
+    </File>
+    <File Include="Grid.mvc.readme">
+      <publishTime>05/03/2015 15:46:48</publishTime>
     </File>
     <File Include="images/ar.png">
       <publishTime>04/25/2015 22:25:25</publishTime>
@@ -442,13 +460,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/28/2015 21:16:24</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>04/28/2015 01:04:20</publishTime>
+      <publishTime>05/03/2015 15:46:58</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>04/25/2015 17:21:10</publishTime>
     </File>
     <File Include="Scripts/bootstrap.min.js">
       <publishTime>04/25/2015 17:21:09</publishTime>
+    </File>
+    <File Include="Scripts/gridmvc.js">
+      <publishTime>05/03/2015 15:46:48</publishTime>
+    </File>
+    <File Include="Scripts/gridmvc.lang.ru.js">
+      <publishTime>05/03/2015 15:46:48</publishTime>
+    </File>
+    <File Include="Scripts/gridmvc.min.js">
+      <publishTime>05/03/2015 15:46:47</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.js">
       <publishTime>04/25/2015 17:21:11</publishTime>
@@ -529,7 +556,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/02/2015 00:45:03</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>05/02/2015 00:33:32</publishTime>
+      <publishTime>05/03/2015 15:46:48</publishTime>
     </File>
     <File Include="Views/Account/ConfirmEmail.cshtml">
       <publishTime>04/25/2015 17:21:49</publishTime>
@@ -573,14 +600,17 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Categories/Delete.cshtml">
       <publishTime>05/02/2015 13:36:34</publishTime>
     </File>
+    <File Include="Views/Categories/Details - Copy.cshtml">
+      <publishTime>05/03/2015 23:33:02</publishTime>
+    </File>
     <File Include="Views/Categories/Details.cshtml">
-      <publishTime>05/02/2015 13:36:35</publishTime>
+      <publishTime>05/03/2015 23:50:58</publishTime>
     </File>
     <File Include="Views/Categories/Edit.cshtml">
       <publishTime>05/02/2015 13:36:36</publishTime>
     </File>
     <File Include="Views/Categories/Index.cshtml">
-      <publishTime>05/02/2015 13:36:37</publishTime>
+      <publishTime>05/02/2015 18:44:42</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>04/25/2015 17:20:56</publishTime>
@@ -589,7 +619,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:20:56</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>05/02/2015 09:22:14</publishTime>
+      <publishTime>05/04/2015 00:08:42</publishTime>
+    </File>
+    <File Include="Views/Home/Search.cshtml">
+      <publishTime>05/03/2015 23:05:57</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>04/25/2015 17:21:50</publishTime>
@@ -630,11 +663,20 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Shared/Lockout.cshtml">
       <publishTime>04/25/2015 17:21:50</publishTime>
     </File>
+    <File Include="Views/Shared/_Grid.cshtml">
+      <publishTime>05/03/2015 15:46:47</publishTime>
+    </File>
+    <File Include="Views/Shared/_GridPager.cshtml">
+      <publishTime>05/03/2015 15:46:47</publishTime>
+    </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>05/02/2015 09:55:04</publishTime>
+      <publishTime>05/04/2015 00:33:45</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>05/01/2015 15:49:56</publishTime>
+    </File>
+    <File Include="Views/Shared/_SidebarPartial.cshtml">
+      <publishTime>05/03/2015 23:52:39</publishTime>
     </File>
     <File Include="Views/Tags/Create.cshtml">
       <publishTime>04/28/2015 22:39:54</publishTime>
@@ -652,13 +694,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/30/2015 16:09:50</publishTime>
     </File>
     <File Include="Views/Videos/Create.cshtml">
-      <publishTime>05/02/2015 14:00:33</publishTime>
+      <publishTime>05/04/2015 00:36:44</publishTime>
     </File>
     <File Include="Views/Videos/Delete.cshtml">
       <publishTime>04/26/2015 18:31:40</publishTime>
     </File>
     <File Include="Views/Videos/Details.cshtml">
-      <publishTime>05/02/2015 17:26:03</publishTime>
+      <publishTime>05/03/2015 14:09:11</publishTime>
     </File>
     <File Include="Views/Videos/Details_orig.cshtml">
       <publishTime>04/26/2015 18:31:40</publishTime>
@@ -676,7 +718,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:20:56</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/01/2015 11:37:02</publishTime>
+      <publishTime>05/03/2015 16:27:09</publishTime>
     </File>
   </ItemGroup>
 </Project>

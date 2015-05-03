@@ -21,6 +21,7 @@ namespace VdoValley.Models
         public string thumbnail_large_url { get; set; }
         public DateTime DateTime { set; get; }
         public int CategoryId { get; set; }
+        public bool Featured { get; set; }
         
         public virtual Category Category { set; get; }
         public virtual ICollection<Rating> Ratings { get; set; }

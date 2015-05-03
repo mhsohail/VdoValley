@@ -1,34 +1,82 @@
-﻿@model VdoValley.Models.Category
-
+﻿@model IEnumerable<VdoValley.Models.Video>
+@using PagedList
+@using PagedList.Mvc
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = ViewBag.CategoryName;
 }
 
-<h2>Details</h2>
+<h2>Category: @ViewBag.CategoryName</h2>
+<hr />
 
-<div>
-    <h4>Category</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+<div class="col-md-8 content-top">
+    <div class="number">
+        <div class="span_8">
+            <div class="row_8">
+                <div class="sap_tabs">
+                    <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+                        <div class="resp-tabs-container">
+                            <h2 class="resp-accordion " role="tab" aria-controls="tab_item-0"><span class="resp-arrow"></span></h2>
+                            <div class="tab-1 resp-tab-content " aria-labelledby="tab_item-0">
+                                <div class="facts">
+                                    <img src="images/pc.jpg" class="img-responsive" alt="">
+                                </div>
+                            </div>
+                            <h2 class="resp-accordion resp-tab-active" role="tab" aria-controls="tab_item-1"><span class="resp-arrow"></span></h2>
+                            <div class="tab-1 resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-1">
+                                <div class="facts">
+                                    <img src="images/pc1.jpg" class="img-responsive" alt="">
+                                </div>
+                            </div>
+                            <h2 class="resp-accordion" role="tab" aria-controls="tab_item-2"><span class="resp-arrow"></span></h2>
+                            <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
+                                <div class="facts">
+                                    <img src="images/pc2.jpg" class="img-responsive" alt="">
+                                </div>
+                            </div>
+                            <h2 class="resp-accordion" role="tab" aria-controls="tab_item-3"><span class="resp-arrow"></span></h2>
+                            <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-3">
+                                <div class="facts">
+                                    <img src="images/pc3.jpg" class="img-responsive" alt="">
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+                                </div>
+                            </div>
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+                        <ul class="row">
+                            <!--<ul class="resp-tabs-list">-->
+                            @{
+                                foreach (var video in Model)
+                                {
+                                    <!--<li class="resp-tab-item active" aria-controls="tab_item- col-lg-12" role="tab"><span><a href="/Videos/Details/video.VideoId"><img src="video.thumbnail_large_url" class="img-responsive" alt="video.Title" style="min-height:50px; height:115px; width:171px;min-width:100px;" /></a></span></li>
+                                    <li class="col-xs-12 col-sm-6 col-md-12 col-lg-3" style="overflow:hidden;"><a href="/Videos/Details/video.VideoId"><img src="video.thumbnail_large_url" class="img-responsive" alt="video.Title" style="width:100%;height:100%;margin-bottom:5px;margin-top:5px;" /></a></li>-->
+                                    //min-width:150px;width:200px;max-width:200px;min-height:100px;height:100px;
+                                    <div class="thumbnail-container col-lg-3 col-md-4 col-xs-6 thumb">
+                                        <a class="thumbnail" href="/Videos/Details/@video.VideoId">
+                                            <img class="img-responsive" src="@video.getDailyMotionThumb(video.getDailyMotionVideoCode(video.Url), VdoValley.Models.DailymotionThumbnailSize.thumbnail_large_url)" alt="">
+                                            <div class="details">
+                                                <div class="panel-heading">
+                                                    @{
+                                    int maxTitleLength = 40;
+                                    string title = string.Empty;
+                                    if (video.Title.Length > maxTitleLength) { title = video.Title.Substring(0, maxTitleLength - 1) + "..."; } else { title = video.Title; }
+                                                    }
+                                                    <h3 class="panel-title col-lg-offset-1">@title</h3>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                }
+                            }
+                            <div class="clearfix"> </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            @*<div class="col-lg-12 col-md-12">@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true })</div>*@
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-    </dl>
+        <!---->
+    </div>
+    <!---->
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CategoryId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+@Html.Partial("_SidebarPartial")

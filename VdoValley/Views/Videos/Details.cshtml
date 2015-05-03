@@ -2,6 +2,7 @@
 @using Microsoft.AspNet.Identity;
 @{
     ViewBag.Title = Model.Title;
+    ViewBag.OgThumbnail = Model.getDailyMotionThumb(Model.getDailyMotionVideoCode(Model.Url), VdoValley.Models.DailymotionThumbnailSize.thumbnail_large_url);
 }
 
 <script>
@@ -67,8 +68,11 @@
                         <div class="col-md-8 content-top">
                             <div class="number">
                                 <div class="feb">
-                                    <b>28</b>
-                                    <label>FEB</label>
+                                    <b>@Model.DateTime.Day</b>
+                                    @{
+                                        string AbbreviatedMonth = new System.Globalization.DateTimeFormatInfo().GetAbbreviatedMonthName(Model.DateTime.Month).ToUpper();
+                                    }
+                                    <label>@AbbreviatedMonth</label>
                                 </div>
                                 <h3>@Html.DisplayFor(model => model.Title)</h3>
                                 
@@ -218,6 +222,7 @@
                                 </div>
                         </div>
     }
+@Html.Partial("_SidebarPartial")
                         <!---->
             <p class="footer-class">Copyright © 2015 Magblog Template by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
             <script type="text/javascript">

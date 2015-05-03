@@ -108,7 +108,8 @@ namespace VdoValley.Migrations
                             Title = "Recycle This Bottled Water Video",
                             Url = "http://dai.ly/x2ny0lg",
                             DateTime = DateTime.Now,
-                            CategoryId = cat.CategoryId
+                            CategoryId = cat.CategoryId,
+                            Featured = true
                         },
 
                         new Video
@@ -133,7 +134,184 @@ namespace VdoValley.Migrations
                             Url = "http://dai.ly/x2ntme0",
                             DateTime = DateTime.Now,
                             CategoryId = cat.CategoryId
+                        },
+                        
+                        new Video
+                        {
+                            Title = "Amazing trick with Eggs for Home use",
+                            Url = "http://dai.ly/x2on26a",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "Can You Walk on Water (Non-Newtonian Fluid Pool)",
+                            Url = "http://dai.ly/x2on01r",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "Outside Television 2015: What's Next",
+                            Url = "http://dai.ly/x2oldaf",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "Menswear dog styles four pooches",
+                            Url = "http://dai.ly/x2omivj",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "Epic Domino Etch A Sketch Will Make You Say 'Wow!'",
+                            Url = "http://dai.ly/x2opv71",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "Sunset skater (private)",
+                            Url = "http://dai.ly/x2opv71",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "Nepal Earthquack Real LIVE footage",
+                            Url = "http://dai.ly/x2o4cc7",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "Karan Johan's hilarious joke on Anuragh Kashyap",
+                            Url = "http://dai.ly/x2okcl6",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "There's Something Oddly Satisfying About Watching 10,000 Marbles Roll",
+                            Url = "http://dai.ly/x2oqwej",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "Flowers Burst Into Full Bloom in Beautiful Time-Lapse Video",
+                            Url = "http://dai.ly/x2opusq",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "How to Get a Baby to Fall Asleep in Less Than One Minute",
+                            Url = "http://dai.ly/x2oput0",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "Cliff Diving in the Seaside Town Of Cartagena, Colombia",
+                            Url = "http://dai.ly/x2om451",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "Red Bull Hart Lines 2015",
+                            Url = "http://dai.ly/x2o79ns",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "Just Cause 3 | Gameplay Reveal Trailer (Xbox One)",
+                            Url = "http://dai.ly/x2oa6c0",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "A night in the streets with Baltimore protesters",
+                            Url = "http://dai.ly/x2o9w6j",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "nepal earthquake still photos",
+                            Url = "http://dai.ly/x2nxoih",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "Footage Of Everest Avalanche Caused By Aftershock From Nepal Earthquake",
+                            Url = "http://dai.ly/x2o4l7d",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "Breaking_ 7.5 magnitude earthquake hits Nepal",
+                            Url = "http://dai.ly/x2nxklp",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "This video of Nepal Earthquake Tells the whole store",
+                            Url = "http://dai.ly/x2nym17",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "LG G4 Wonderful Video HD",
+                            Url = "http://dai.ly/x2oe21d",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "WOW: First Ever Triple Backflip on a Motorcycle",
+                            Url = "http://dai.ly/x2oiahw",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "This Cigarette Lighter is Magic!",
+                            Url = "http://dai.ly/x2lncey",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
                         }
+
                     );
 
                     db.SaveChanges();

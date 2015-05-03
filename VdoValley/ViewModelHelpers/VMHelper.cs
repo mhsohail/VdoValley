@@ -17,6 +17,7 @@ namespace VdoValley.ViewModelHelpers
             video.Title = vvm.Title;
             video.Url = vvm.Url;
             video.Description = vvm.Description;
+            video.Featured = vvm.Featured;
             video.DateTime = vvm.DateTime;
 
             return video;

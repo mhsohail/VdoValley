@@ -39,6 +39,7 @@ namespace VdoValley.Controllers
         // GET: Ratings/Create
         public string Createe(Rating rating)
         {
+            rating.DateTime = DateTime.Now;
             Dictionary<string, string> response = new Dictionary<string, string>();
 
             try
