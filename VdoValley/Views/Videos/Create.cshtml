@@ -117,7 +117,10 @@
 
     
 </script>
-
+<!--
+    https://api.dailymotion.com/video/x2oiahw?fields=id,title,description
+    https://api.dailymotion.com/video/x2oiahw?fields=thumbnail_large_url
+-->
 <div ng-app="">
     @using (Html.BeginForm())
     {
@@ -128,9 +131,9 @@
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2", width="100px" })
+                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", ng_model = "name" } })
+                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", ng_model = "name", style = "width: 350px;" } })
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -138,7 +141,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @class = "form-control", style = "width: 350px;" } })
                     @Html.ValidationMessageFor(model => model.Url, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -146,7 +149,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", style = "width: 350px;" } })
                     @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -154,15 +157,15 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.SelectedCategory, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.SelectedCategory, new SelectList(TempData["Categories"] as System.Collections.IEnumerable, "CategoryID", "Name"), "-Select Category-", htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownListFor(model => model.SelectedCategory, new SelectList(TempData["Categories"] as System.Collections.IEnumerable, "CategoryID", "Name"), "-Select Category-", htmlAttributes: new { @class = "form-control", style = "width: 350px;" })
                     @Html.ValidationMessageFor(model => model.SelectedCategory, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-md-2" for="Tags">Tags</label>
+                <label class="control-label col-md-2" for="Tags">Tags (Comma separated)</label>
                 <div class="col-md-10">
-                    <input class="form-control tagsinput text-box single-line" id="tags_1_tagsinput" name="inputTags" type="text" value="">
+                    <input class="form-control tagsinput text-box single-line" id="tags_1_tagsinput" name="inputTags" type="text" value="" style="width: 350px;">
                     <span class="field-validation-valid text-danger" data-valmsg-for="Tags" data-valmsg-replace="true"></span>
                     <input id="tags_1_tagsinput" name="Tags" type="hidden" value="">
                 </div>
@@ -184,7 +187,7 @@
            
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
+                        <input type="submit" value="Submit" class="btn btn-default" />
                     </div>
                 </div>
             </div>

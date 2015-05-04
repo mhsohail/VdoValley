@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using VdoValley.Models;
 using Microsoft.AspNet.Identity;
 using VdoValley.ViewModels;
+using VdoValley.Attributes;
 
 namespace VdoValley.Controllers
 {
@@ -166,6 +167,12 @@ namespace VdoValley.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [AjaxRequestOnly]
+        public ActionResult VideoDetails()
+        {
+            return PartialView("VideoDetails");
         }
     }
 }

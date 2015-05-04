@@ -41,7 +41,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "@Url.Action("Createe", "Ratings")",
+                url: "@Url.Action("VideoDetails", "Videos")",
                 data: JSON.stringify(rating),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -49,8 +49,8 @@
                     //setNewScore(updateP, response);
                     console.log(response);
                 },
-                error: function (response) {
-                    console.log("ajax request response failed");
+                error: function (xhr, status, error) {
+                    console.log(xhr.responseText);
                 }
             });
         });

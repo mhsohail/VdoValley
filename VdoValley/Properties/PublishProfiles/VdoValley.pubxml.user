@@ -97,7 +97,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:21:31</publishTime>
     </File>
     <File Include="bin/VdoValley.dll">
-      <publishTime>05/03/2015 23:48:26</publishTime>
+      <publishTime>05/04/2015 05:34:04</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>04/25/2015 17:21:35</publishTime>
@@ -694,13 +694,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/30/2015 16:09:50</publishTime>
     </File>
     <File Include="Views/Videos/Create.cshtml">
-      <publishTime>05/04/2015 00:36:44</publishTime>
+      <publishTime>05/04/2015 03:17:51</publishTime>
     </File>
     <File Include="Views/Videos/Delete.cshtml">
       <publishTime>04/26/2015 18:31:40</publishTime>
     </File>
     <File Include="Views/Videos/Details.cshtml">
-      <publishTime>05/03/2015 14:09:11</publishTime>
+      <publishTime>05/04/2015 05:15:21</publishTime>
     </File>
     <File Include="Views/Videos/Details_orig.cshtml">
       <publishTime>04/26/2015 18:31:40</publishTime>
@@ -710,6 +710,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Views/Videos/Index.cshtml">
       <publishTime>04/30/2015 02:37:32</publishTime>
+    </File>
+    <File Include="Views/Videos/VideoDetails.cshtml">
+      <publishTime>05/04/2015 03:49:47</publishTime>
+    </File>
+    <File Include="Views/Videos/_VideoDetails.cshtml">
+      <publishTime>05/04/2015 03:49:47</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>04/25/2015 22:59:42</publishTime>
