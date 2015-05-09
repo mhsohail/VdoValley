@@ -44,7 +44,16 @@
         @Html.ActionLink("Login", "Login", "Account", new { returnUrl = Request.Url }, null)
          to chat</span>
     }
+    <audio id="chatmessagesound" src="~/Sounds/chatmessage.mp3" preload="auto"></audio>
 </div>
+<audio id="audiotag1" src="~/Sounds/chatmessage.mp3" preload="auto"></audio>
+
+<script type="text/javascript">
+    function play_single_sound() {
+        document.getElementById('audiotag1').play();
+    }
+</script>
+
 @section scripts {
     <!--Script references. -->
     <!--The jQuery library is required and is referenced by default in _Layout.cshtml. -->
@@ -81,6 +90,7 @@
                 var li = document.createElement("LI");
                 li.innerHTML = '<strong>' + name + '</strong>: ' + message;
                 $('#discussion').append(li);
+                play_single_sound();
             };
             // Get the user name and store it to prepend to messages.
             //$('#displayname').val(prompt('Enter your name:', ''));

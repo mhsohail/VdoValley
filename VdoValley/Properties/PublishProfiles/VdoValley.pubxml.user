@@ -103,7 +103,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:21:31</publishTime>
     </File>
     <File Include="bin/VdoValley.dll">
-      <publishTime>05/08/2015 22:48:42</publishTime>
+      <publishTime>05/09/2015 21:45:25</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>04/25/2015 17:21:35</publishTime>
@@ -570,6 +570,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/_references.js">
       <publishTime>05/08/2015 22:16:41</publishTime>
     </File>
+    <File Include="Sounds/chatmessage.mp3">
+      <publishTime>05/09/2015 21:34:01</publishTime>
+    </File>
     <File Include="Views/Account/ConfirmEmail.cshtml">
       <publishTime>04/25/2015 17:21:49</publishTime>
     </File>
@@ -628,7 +631,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:20:56</publishTime>
     </File>
     <File Include="Views/Home/Chat.cshtml">
-      <publishTime>05/09/2015 18:10:21</publishTime>
+      <publishTime>05/09/2015 22:00:07</publishTime>
     </File>
     <File Include="Views/Home/Contact.cshtml">
       <publishTime>04/25/2015 17:20:56</publishTime>
