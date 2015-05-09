@@ -85,7 +85,7 @@ namespace VdoValley.Controllers
                             video.Tags.Add(tag);
                             db.SaveChanges();
                         }
-                       
+                        
                         tran.Commit();
                         return RedirectToAction("Index");
                         
@@ -96,8 +96,19 @@ namespace VdoValley.Controllers
                         tran.Rollback();
                     }
                 }
-                return View(vvm);
 
+                /*
+                    Value cannot be null.
+                    Parameter name: items
+                    Description: An unhandled exception occurred during the execution of the current web request. Please review the stack trace for more information about the error and where it originated in the code. 
+                */
+                // this line is to avoid above error
+                // if the form is not valid or some other error occurs, the form is displayed again,
+                // and the TempData should be available again to populate the dropdown list,
+                // that's why, this line is required.
+                TempData["Categories"] = db.Categories.ToList();
+                
+                return View(vvm);
             }
 
             return View(vvm);
@@ -115,7 +126,18 @@ namespace VdoValley.Controllers
             {
                 return HttpNotFound();
             }
-            return View(video);
+
+            VideoViewModel vvm = new VideoViewModel();
+            vvm.VideoId = video.VideoId;
+            vvm.Url = video.Url;
+            vvm.Title = video.Title;
+            vvm.SelectedCategory = video.CategoryId;
+            vvm.Description = video.Description;
+            vvm.DateTime = video.DateTime;
+            vvm.Featured = video.Featured;
+            TempData["Categories"] = db.Categories.ToList();
+
+            return View(vvm);
         }
 
         // POST: Videos/Edit/5
@@ -123,14 +145,92 @@ namespace VdoValley.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Url,Description,thumbnail_large_url")] Video video)
+        public ActionResult Edit([Bind(Include = "VideoId,DateTime,Title,Url,Description,Tags,SelectedCategory")] VideoViewModel vvm)
         {
+            Video video = null;
             if (ModelState.IsValid)
             {
-                db.Entry(video).State = EntityState.Modified;
-                db.SaveChanges();
+                using (DbContextTransaction transaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        // get the domain model from VM
+                        video = ViewModelHelpers.VMHelper.ToDomainVideoModel(vvm);
+                        
+                        // get tags
+                        var updatedTags = vvm.Tags.Split(',').ToList();
+
+                        // load current video from database including tags
+                        db.Configuration.ProxyCreationEnabled = false;
+                        var vdo = db.Videos.Where(v => v.VideoId.Equals(video.VideoId)).AsNoTracking().Include(v => v.Tags).FirstOrDefault();
+                        db.Configuration.ProxyCreationEnabled = true;
+
+                        // remove all tags
+                        /*
+                        vdo.Tags.Clear(); // break relationship
+                        db.SaveChanges();
+                        */
+                        
+                        // remove individual tags
+                        foreach (var tg in vdo.Tags.ToList())
+                        {
+                            // if the database tags list doesn't contain the updated tag, delete it
+                            if (!updatedTags.Contains(tg.Name))
+                            {
+                                vdo.Tags.Remove(tg); // break realation
+                                db.SaveChanges();
+                            }
+                            else
+                            {
+                                // if the database tags list contains the updated tag, delete it
+                                // no need to create relationship or insert to database again, if it is already there
+                                updatedTags.Remove(tg.Name);
+                            }
+                        }
+                        
+                        /*
+                        List<Tag> tagsToAdd = new List<Tag>();
+                        foreach (var tag in tags)
+                        {
+                            Tag newTag = new Tag();
+                            newTag.Name = tag;
+                            tagsToAdd.Add(newTag);
+                        }
+                        */
+                        
+                        // update video
+                        db.Entry(video).State = EntityState.Modified;
+                        db.SaveChanges();
+
+                        List<Tag> updatedTagsList = new List<Tag>();
+                        foreach (var tag in updatedTags)
+                        {
+                            Tag newTag = new Tag();
+                            newTag.Name = tag;
+                            updatedTagsList.Add(newTag);
+                        }
+                        
+                        video.Tags = vdo.Tags.ToList();
+                        foreach (var tag in updatedTagsList)
+                        {
+                            db.Tags.Add(tag);
+                            db.SaveChanges();
+                            //db.Tags.Attach(tag);
+                            //video.Tags.Add(tag);
+                            //db.SaveChanges();
+                        }
+                        
+                        transaction.Commit();
+                    }
+                    catch(Exception exc)
+                    {
+                        transaction.Rollback();
+                    }
+                }
+                
                 return RedirectToAction("Index");
             }
+
             return View(video);
         }
 
@@ -169,7 +269,7 @@ namespace VdoValley.Controllers
             base.Dispose(disposing);
         }
 
-        [AjaxRequestOnly]
+        //[AjaxRequestOnly]
         public ActionResult VideoDetails()
         {
             return PartialView("VideoDetails");

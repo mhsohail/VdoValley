@@ -28,7 +28,7 @@
                 };
                 tags.push(tag);
             });
-                        
+
             $.ajax({
                 type: "POST",
                 url: "@Url.Action("GetTags", "Tags")",
@@ -62,7 +62,7 @@
 
             // split the value by comman to make array
             tagArray = tags.split(",");
-            
+
             // get index of tagName to be removed
             var index = tagArray.indexOf(tagName);
 
@@ -79,13 +79,13 @@
             $(this).remove();
         });
 
-        $("input[name='inputTags']").keyup(function (e) {
+        $("input[name='InputTags']").keyup(function (e) {
             if ($(this).val().substr(-1) == ",") {
-                appendTag($(this).val().substring(0, $(this).val().length - 1));        
+                appendTag($(this).val().substring(0, $(this).val().length - 1));
                 $(this).val("");
             }
         });
-        
+
         function appendTag(tagName) {
             if ($("#suggested-tags").find("#" + tagName).length > 0) return;
             var li = "<li class=\"active\" id=\"" + tagName + "\"><a href=\"#\" style=\"background-color: #EEEEEE;padding:5px;color:grey;text-transform: lowercase;\">" + tagName + "</a></li>";
@@ -98,24 +98,57 @@
             }
         }
 
-        $("#Url").keyup(function () {
+        $("#Url").change(function () {
+            var input = $(this).val();
+            var matches = input.match(/(http:\/\/dai.ly\/)(\S+)/);
+            var videoCode = null;
+            if (matches == null || matches.length == 0) {
+                alert("Invalid short URL");
+                console.log(matches);
+                return;
+            } else {
+                console.log(matches[2]);
+                videoCode = matches[2];
+            }
+            
             $.ajax({
                 type: "GET",
-                url: "https://api.dailymotion.com/video/x26ezj5?fields=id,title",
+                url: "https://api.dailymotion.com/video/" + videoCode + "?fields=id,title,description",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
-                    alert(response)
+                    //var obj = $.parseJSON(response);
+                    console.log(response);
+                    fillVideoDetails(response);
                 },
                 error: function (xhr, status, error) {
-                    handleData(xhr.responseText);
+                    //var obj = $.parseJSON(xhr.responseText);
+                    console.log(xhr.responseText);
+                    fillVideoDetails(xhr.responseText);
                 }
             });
         });
 
+        function fillVideoDetails(data) {
+            // if video is found, a valid object is returned, json string will be returned otherwise
+            if (typeof data === 'object') {
+                $("#Title").val(data.title);
+                $("#Title").attr("disabled",false);
+                $("#Description").val(data.description.replace(/<.*>/g, ""));
+                $("#Description").attr("disabled", false);
+            } else {
+                $("#Title").val("");
+                $("#Title").attr("disabled", true);
+                $("#Description").val("");
+                $("#Description").attr("disabled", true);
+                var response = $.parseJSON(data);
+                alert(response.error.message);
+            }
+        }
+
     });
 
-    
+
 </script>
 <!--
     https://api.dailymotion.com/video/x2oiahw?fields=id,title,description
@@ -131,14 +164,6 @@
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", ng_model = "name", style = "width: 350px;" } })
-                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            
-            <div class="form-group">
                 @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @class = "form-control", style = "width: 350px;" } })
@@ -147,9 +172,17 @@
             </div>
 
             <div class="form-group">
+                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", ng_model = "name", style = "width: 350px;", disabled = "true" } })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
                 @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", style = "width: 350px;" } })
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", style = "width: 350px;", disabled = "true" } })
                     @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -161,13 +194,13 @@
                     @Html.ValidationMessageFor(model => model.SelectedCategory, "", new { @class = "text-danger" })
                 </div>
             </div>
-
+            
             <div class="form-group">
-                <label class="control-label col-md-2" for="Tags">Tags (Comma separated)</label>
+                @Html.LabelFor(model => model.Tags, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    <input class="form-control tagsinput text-box single-line" id="tags_1_tagsinput" name="inputTags" type="text" value="" style="width: 350px;">
-                    <span class="field-validation-valid text-danger" data-valmsg-for="Tags" data-valmsg-replace="true"></span>
-                    <input id="tags_1_tagsinput" name="Tags" type="hidden" value="">
+                    @Html.TextBoxFor(model => model.Tags, new { @class = "form-control", style = "width: 350px;", id = "InputTags", Name = "InputTags" })
+                    @Html.ValidationMessageFor(model => model.Tags, "", new { @class = "text-danger" })
+                    <input id="Tags" name="Tags" type="hidden" value="">
                 </div>
             </div>
             
@@ -193,6 +226,7 @@
             </div>
     }
 </div>
+
 <div>
     @*@Html.ActionLink("Back to List", "Index")*@
 </div>

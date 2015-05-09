@@ -21,16 +21,16 @@ namespace VdoValley.Controllers
             return View(db.Tags.ToList());
         }
 
-        public string GetTags(List<Tag> tags)
+        public string GetTags(List<Tag> tokens)
         {
             string jsonObj = string.Empty;
             try
             {
                 // get tag names for each tag and add to list
                 List<string> tagNames = new List<string>();
-                foreach (Tag tag in tags)
+                foreach (Tag token in tokens)
                 {
-                    tagNames.Add(tag.Name);
+                    tagNames.Add(token.Name);
                 }
 
                 // get tag if it's name is in list created above
@@ -47,6 +47,23 @@ namespace VdoValley.Controllers
 
             }
             return jsonObj;
+        }
+
+        public string GetTagsFor(int id)
+        {
+            string tagsStr = string.Empty;
+            //List<Tag> tagsModel = new List<Tag>();
+            var tags = db.Videos.Where(v => v.VideoId == id).FirstOrDefault().Tags;
+
+            List<Tag> tagsList = new List<Tag>();
+
+            foreach (var tag in tags)
+            {
+                tagsList.Add(new Tag() { TagId = tag.TagId, Name = tag.Name });
+            }
+
+            string json = JsonConvert.SerializeObject(tagsList);
+            return json;
         }
 
         // GET: Tags/Details/5
@@ -107,7 +124,7 @@ namespace VdoValley.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,VideoId")] Tag tag)
+        public ActionResult Edit([Bind(Include = "TagId,Name,VideoId")] Tag tag)
         {
             if (ModelState.IsValid)
             {

@@ -310,6 +310,86 @@ namespace VdoValley.Migrations
                             Url = "http://dai.ly/x2lncey",
                             DateTime = DateTime.Now,
                             CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "Fast & Furious 8 Early Details",
+                            Url = "http://dai.ly/x2oljdk",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "Fun Facts about Superheroes: Avengers: Age of Ultron",
+                            Url = "http://dai.ly/x2ohrdl",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "First Look Friday: X-Men Apocalypse, Suicide Squad, Batman v. Superman",
+                            Url = "http://dai.ly/x2oqdxm",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "Fifty Shades Darker",
+                            Url = "http://dai.ly/x2omisj",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "First Look Friday: X-Men Apocalypse, Suicide Squad, Batman v. Superman",
+                            Url = "http://dai.ly/x2oqdxm",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "Hot Pursuit Red Carpet",
+                            Url = "http://dai.ly/x2orelm",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "20-Second Guacamole!",
+                            Url = "http://dai.ly/x2oqtud",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "How to Make Perfect Hard Boiled Eggs - Perfect Easter Eggs",
+                            Url = "http://dai.ly/x2lr6an",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "How to Make Perfect Hard Boiled Eggs - Perfect Easter Eggs",
+                            Url = "http://dai.ly/x2lr6an",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
+                        },
+
+                        new Video
+                        {
+                            Title = "Killing eyes makeup tutorial",
+                            Url = "http://dai.ly/x2lr4qp",
+                            DateTime = DateTime.Now,
+                            CategoryId = cat.CategoryId
                         }
 
                     );

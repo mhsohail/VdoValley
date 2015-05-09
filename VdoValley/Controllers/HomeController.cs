@@ -19,19 +19,17 @@ namespace VdoValley.Controllers
         VdoValleyContext db = new VdoValleyContext();
         public ActionResult Index(int? page)
         {
-            var store = new UserStore<ApplicationUser>(db);
-            var userM = new UserManager<ApplicationUser>(store);
-            ApplicationUser user = userM.FindByNameAsync("fahad.farooq7013@gmail.com").Result;
-            List<Video> dbVideos = db.Videos.ToList();
-            
-            Video v5 = new Video
+            IPagedList<Video> videos = null;
+            try
             {
-                Title = "Shahid Afridi Telling Funny Story Of How He Got Married - Watch Video",
-                Description = "Description 5",
-                Url = "http://www.dailymotion.com/video/x2nxjqb_shahid-afridi-telling-funny-story-of-how-he-got-married-watch-video_news"
-            };
+                videos = db.Videos.ToList().ToPagedList(page ?? 1, 12);
+            }
+            catch(Exception e)
+            {
+                
+            }
 
-            return View(db.Videos.ToList().ToPagedList(page ?? 1, 12));
+            return View(videos);
         }
 
         public ActionResult About()
@@ -51,6 +49,11 @@ namespace VdoValley.Controllers
         public ActionResult Search(string q)
         {
             return View(db.Videos.Where(v => v.Title.Contains(q)).ToList());
+        }
+
+        public ActionResult Chat()
+        {
+            return View();
         }
 
     }
