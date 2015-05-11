@@ -185,6 +185,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RatingsController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\VideosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -193,9 +194,17 @@
     <Compile Include="Helpers\VideoHelper.cs" />
     <Compile Include="htmlhelpers\ImageHelper.cs" />
     <Compile Include="Hubs\ChatHub.cs" />
-    <Compile Include="Migrations\201505021817026_initial.cs" />
-    <Compile Include="Migrations\201505021817026_initial.Designer.cs">
-      <DependentUpon>201505021817026_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201505100723216_initial.cs" />
+    <Compile Include="Migrations\201505100723216_initial.Designer.cs">
+      <DependentUpon>201505100723216_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505101040021_a.cs" />
+    <Compile Include="Migrations\201505101040021_a.Designer.cs">
+      <DependentUpon>201505101040021_a.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505101504447_aa.cs" />
+    <Compile Include="Migrations\201505101504447_aa.Designer.cs">
+      <DependentUpon>201505101504447_aa.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -203,7 +212,10 @@
     <Compile Include="Models\DailymotionThumbnailSize.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Rating.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\VdoValleyContext.cs" />
     <Compile Include="Models\Video.cs" />
@@ -429,6 +441,12 @@
     <Content Include="Views\Categories\Details - Copy.cshtml" />
     <Content Include="Views\Videos\VideoDetails.cshtml" />
     <Content Include="Views\Home\Chat.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Roles\Edit.cshtml" />
+    <Content Include="Views\Roles\Delete.cshtml" />
+    <Content Include="Views\Roles\Details.cshtml" />
+    <Content Include="Views\Roles\ManageUserRoles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -442,8 +460,14 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201505021817026_initial.resx">
-      <DependentUpon>201505021817026_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201505100723216_initial.resx">
+      <DependentUpon>201505100723216_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505101040021_a.resx">
+      <DependentUpon>201505101040021_a.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505101504447_aa.resx">
+      <DependentUpon>201505101504447_aa.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

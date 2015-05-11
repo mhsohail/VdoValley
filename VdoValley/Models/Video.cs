@@ -16,6 +16,8 @@ namespace VdoValley.Models
         public int VideoId { get; set; }
         public string Title { get; set; }
         public string Url { get; set; }
+        public string VideoType { get; set; }
+        public string EmbedCode { get; set; }
         public string Description { get; set; }
         [HiddenInput(DisplayValue = false)]
         public string thumbnail_large_url { get; set; }

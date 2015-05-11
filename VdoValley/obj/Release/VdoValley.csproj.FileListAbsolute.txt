@@ -121,3 +121,5 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.AspNet.SignalR.Co
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.AspNet.SignalR.Core.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Release\VdoValley.Migrations.a.resources
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Release\VdoValley.Migrations.aa.resources

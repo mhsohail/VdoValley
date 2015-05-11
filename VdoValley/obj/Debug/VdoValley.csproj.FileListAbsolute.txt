@@ -65,6 +65,8 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\GridMvc.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.Owin.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.Owin.Host.SystemWeb.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.Owin.Security.Cookies.dll
@@ -92,6 +94,8 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\EntityFramework.SqlServer.x
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Newtonsoft.Json.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\PagedList.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\PagedList.Mvc.xml
@@ -116,4 +120,5 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.csproj.GenerateResource.Cache
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.pdb
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.csprojResolveAssemblyReference.cache
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.a.resources
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.aa.resources

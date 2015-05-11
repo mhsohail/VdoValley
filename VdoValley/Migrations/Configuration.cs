@@ -1,5 +1,7 @@
 namespace VdoValley.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -33,6 +35,35 @@ namespace VdoValley.Migrations
             {
                 try
                 {
+
+                    var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                    var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+
+                    // Create Admin Role
+                    string roleName = "Administrator";
+                    IdentityResult roleResult;
+                    // Check to see if Role Exists, if not create it
+                    if (!RoleManager.RoleExists(roleName))
+                    {
+                        roleResult = RoleManager.Create(new IdentityRole(roleName));
+                    }
+
+                    // Create Moderator Role
+                    roleName = "Moderator";
+                    // Check to see if Role Exists, if not create it
+                    if (!RoleManager.RoleExists(roleName))
+                    {
+                        roleResult = RoleManager.Create(new IdentityRole(roleName));
+                    }
+
+                    // Create Member Role
+                    roleName = "Member";
+                    // Check to see if Role Exists, if not create it
+                    if (!RoleManager.RoleExists(roleName))
+                    {
+                        roleResult = RoleManager.Create(new IdentityRole(roleName));
+                    }
+
                     Category cat = new Category();
                     cat.Name = "General Category";
                     db.Categories.AddOrUpdate(cat);

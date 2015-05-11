@@ -22,7 +22,7 @@ namespace VdoValley.Controllers
             IPagedList<Video> videos = null;
             try
             {
-                videos = db.Videos.ToList().ToPagedList(page ?? 1, 12);
+                videos = db.Videos.ToList().ToPagedList(page ?? 1, 20);
             }
             catch(Exception e)
             {

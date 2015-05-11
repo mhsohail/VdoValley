@@ -10,6 +10,7 @@ using VdoValley.Models;
 using Microsoft.AspNet.Identity;
 using VdoValley.ViewModels;
 using VdoValley.Attributes;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace VdoValley.Controllers
 {
@@ -161,9 +162,14 @@ namespace VdoValley.Controllers
                         var updatedTags = vvm.Tags.Split(',').ToList();
 
                         // load current video from database including tags
-                        db.Configuration.ProxyCreationEnabled = false;
-                        var vdo = db.Videos.Where(v => v.VideoId.Equals(video.VideoId)).AsNoTracking().Include(v => v.Tags).FirstOrDefault();
-                        db.Configuration.ProxyCreationEnabled = true;
+                        //db.Configuration.ProxyCreationEnabled = false;
+                        //var vdo = db.Videos.Where(v => v.VideoId.Equals(video.VideoId)).Include(v => v.Tags).FirstOrDefault();
+                        //db.Configuration.ProxyCreationEnabled = true;
+
+                        var vdo = db.Videos
+                            .Where(v => v.VideoId == video.VideoId)
+                            .Include(v => v.Tags)
+                            .FirstOrDefault();
 
                         // remove all tags
                         /*
@@ -174,7 +180,7 @@ namespace VdoValley.Controllers
                         // remove individual tags
                         foreach (var tg in vdo.Tags.ToList())
                         {
-                            // if the database tags list doesn't contain the updated tag, delete it
+                            // if the updated tags list doesn't contain the database tag, delete it
                             if (!updatedTags.Contains(tg.Name))
                             {
                                 vdo.Tags.Remove(tg); // break realation
@@ -210,14 +216,13 @@ namespace VdoValley.Controllers
                             updatedTagsList.Add(newTag);
                         }
                         
-                        video.Tags = vdo.Tags.ToList();
                         foreach (var tag in updatedTagsList)
                         {
                             db.Tags.Add(tag);
                             db.SaveChanges();
-                            //db.Tags.Attach(tag);
-                            //video.Tags.Add(tag);
-                            //db.SaveChanges();
+                            db.Tags.Attach(tag);
+                            vdo.Tags.Add(tag);
+                            db.SaveChanges();
                         }
                         
                         transaction.Commit();
