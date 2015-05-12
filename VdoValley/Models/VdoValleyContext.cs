@@ -24,7 +24,7 @@ namespace VdoValley.Models
         public System.Data.Entity.DbSet<VdoValley.Models.Video> Videos { get; set; }
 
         public System.Data.Entity.DbSet<VdoValley.Models.Rating> Ratings { get; set; }
-        public System.Data.Entity.DbSet<VdoValley.Models.Person> Persons { get; set; }
+        public System.Data.Entity.DbSet<VdoValley.Models.Person> People { get; set; }
         
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

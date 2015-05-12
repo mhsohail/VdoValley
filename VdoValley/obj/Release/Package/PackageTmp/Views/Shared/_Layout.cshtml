@@ -18,7 +18,17 @@
     <script src="@Url.Content("~/Scripts/magblog-web/move-top.js")"></script>
     <script src="@Url.Content("~/Scripts/magblog-web/easing.js")"></script>
     @RenderSection("styles", required: false)
-    
+    @{
+        VdoValley.Models.VdoValleyContext db = new VdoValley.Models.VdoValleyContext();
+        VdoValley.Models.Student student = new VdoValley.Models.Student();
+        student.Gender = "Male";
+        student.Name = "Sohail";
+        student.Program = "MCS";
+        student.RollNo = 2;
+        db.People.Add(student);
+        db.SaveChanges();
+    }
+
     <style>
         .thumbnail-container * {
             padding: 0px;

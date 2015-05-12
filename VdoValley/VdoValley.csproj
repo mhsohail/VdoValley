@@ -194,17 +194,9 @@
     <Compile Include="Helpers\VideoHelper.cs" />
     <Compile Include="htmlhelpers\ImageHelper.cs" />
     <Compile Include="Hubs\ChatHub.cs" />
-    <Compile Include="Migrations\201505100723216_initial.cs" />
-    <Compile Include="Migrations\201505100723216_initial.Designer.cs">
-      <DependentUpon>201505100723216_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505101040021_a.cs" />
-    <Compile Include="Migrations\201505101040021_a.Designer.cs">
-      <DependentUpon>201505101040021_a.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505101504447_aa.cs" />
-    <Compile Include="Migrations\201505101504447_aa.Designer.cs">
-      <DependentUpon>201505101504447_aa.cs</DependentUpon>
+    <Compile Include="Migrations\201505121821237_initial.cs" />
+    <Compile Include="Migrations\201505121821237_initial.Designer.cs">
+      <DependentUpon>201505121821237_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -217,8 +209,10 @@
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Tag.cs" />
+    <Compile Include="Models\Teacher.cs" />
     <Compile Include="Models\VdoValleyContext.cs" />
     <Compile Include="Models\Video.cs" />
+    <Compile Include="Models\VideoType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModelHelpers\VMHelper.cs" />
@@ -460,14 +454,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201505100723216_initial.resx">
-      <DependentUpon>201505100723216_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505101040021_a.resx">
-      <DependentUpon>201505101040021_a.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505101504447_aa.resx">
-      <DependentUpon>201505101504447_aa.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201505121821237_initial.resx">
+      <DependentUpon>201505121821237_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

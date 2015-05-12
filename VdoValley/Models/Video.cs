@@ -24,7 +24,9 @@ namespace VdoValley.Models
         public DateTime DateTime { set; get; }
         public int CategoryId { get; set; }
         public bool Featured { get; set; }
-        
+        public int TotalRating { get; set; }
+        public int RatingCount { get; set; }
+
         public virtual Category Category { set; get; }
         public virtual ICollection<Rating> Ratings { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }
