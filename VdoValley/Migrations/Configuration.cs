@@ -4,8 +4,10 @@ namespace VdoValley.Migrations
     using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using System.Xml;
     using VdoValley.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<VdoValley.Models.VdoValleyContext>
@@ -30,6 +32,7 @@ namespace VdoValley.Migrations
             //    );
             //
 
+            base.Seed(context);
             VdoValleyContext db = new VdoValleyContext();
             using (var transaction = db.Database.BeginTransaction())
             {
@@ -38,7 +41,7 @@ namespace VdoValley.Migrations
 
                     var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
                     var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
-
+                    /*
                     // Create Admin Role
                     string roleName = "Administrator";
                     IdentityResult roleResult;
@@ -426,6 +429,7 @@ namespace VdoValley.Migrations
                     );
 
                     db.SaveChanges();
+                    */
                     transaction.Commit();
                 }
                 catch (Exception)

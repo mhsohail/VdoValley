@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace VdoValley.ViewModels
 {
@@ -13,9 +14,10 @@ namespace VdoValley.ViewModels
         public string Title { get; set; }
         
         [Display(Name="Short URL")]
-        [Required]
         public string Url { get; set; }
-        
+        [AllowHtml]
+        [DataType(DataType.MultilineText)]
+        public string EmbedCode { get; set; }
         public string Description { get; set; }
         
         public DateTime DateTime { get; set; }

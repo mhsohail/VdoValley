@@ -19,7 +19,7 @@ namespace VdoValley.ViewModelHelpers
             video.Description = vvm.Description;
             video.Featured = vvm.Featured;
             video.DateTime = vvm.DateTime;
-
+            video.EmbedCode = vvm.EmbedCode;
             return video;
         }
     }

@@ -194,14 +194,15 @@
     <Compile Include="Helpers\VideoHelper.cs" />
     <Compile Include="htmlhelpers\ImageHelper.cs" />
     <Compile Include="Hubs\ChatHub.cs" />
-    <Compile Include="Migrations\201505121821237_initial.cs" />
-    <Compile Include="Migrations\201505121821237_initial.Designer.cs">
-      <DependentUpon>201505121821237_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201505161108026_dsfd.cs" />
+    <Compile Include="Migrations\201505161108026_dsfd.Designer.cs">
+      <DependentUpon>201505161108026_dsfd.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\DailymotionThumbnailSize.cs" />
+    <Compile Include="Models\FacebookThumbnailSize.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Person.cs" />
@@ -216,6 +217,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModelHelpers\VMHelper.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\VideoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -371,7 +373,9 @@
     <Content Include="Scripts\sharethis\script.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Sounds\chatmessage.mp3" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -454,8 +458,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201505121821237_initial.resx">
-      <DependentUpon>201505121821237_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201505161108026_dsfd.resx">
+      <DependentUpon>201505161108026_dsfd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

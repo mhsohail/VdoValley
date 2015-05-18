@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using VdoValley.Models;
 using PagedList.Mvc;
 using PagedList;
+using VdoValley.ViewModels;
 
 namespace VdoValley.Controllers
 {
@@ -19,10 +20,13 @@ namespace VdoValley.Controllers
         VdoValleyContext db = new VdoValleyContext();
         public ActionResult Index(int? page)
         {
+            HomeViewModel hvm = new HomeViewModel();
+            hvm.AllVideos = db.Videos.ToList();
+
             IPagedList<Video> videos = null;
             try
             {
-                videos = db.Videos.ToList().ToPagedList(page ?? 1, 20);
+                videos = db.Videos.ToList().ToPagedList(page ?? 1, 24);
             }
             catch(Exception e)
             {

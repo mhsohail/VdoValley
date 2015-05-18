@@ -48,6 +48,26 @@ namespace VdoValley.Models
             return matches[0].Groups[2].Value;
         }
 
+        public string getFacebookVideoCode(string embed_code)
+        {
+            //<div id="fb-root"></div><div class="fb-video" data-allowfullscreen="true" data-href="/KaroMAZAcom/videos/vb.1415391255370815/1625483954361543/?type=1"><div class="fb-xfbml-parse-ignore"><blockquote cite="/KaroMAZAcom/videos/1625483954361543/"><a href="/KaroMAZAcom/videos/1625483954361543/"></a><p>Kamal Kar diya Isny Tou</p>Posted by <a href="https://www.facebook.com/KaroMAZAcom">Karo MAZA</a> on Saturday, May 16, 2015</blockquote></div></div>
+            //string pattern = ;
+            string code = string.Empty;
+            //string pattern = "data-href=\\\"/[A-Za-z]+/videos/vb.[0-9]+/[0-9]+/?type=1";
+            string pattern = "data-href=\\\"/[A-Za-z0-9.]+/videos/vb.[0-9]+/([0-9]+)/\\?type=1";
+            Regex rgx = new Regex(pattern, RegexOptions.IgnoreCase);
+            MatchCollection matches = rgx.Matches(embed_code);
+            if (matches.Count > 0)
+            {
+                foreach (Match match in matches)
+                {
+                    code = match.Value;
+                }
+            }
+
+            return matches[0].Groups[1].Value;
+        }
+
         public string getDailyMotionThumb(string video_code, DailymotionThumbnailSize thumbnail_size)
         {
             string size = thumbnail_size.ToString();
@@ -60,5 +80,41 @@ namespace VdoValley.Models
             Video vdo = JsonConvert.DeserializeObject<Video>(json);
             return vdo.thumbnail_large_url;
         }
+
+        public string getFacebookVideoThumbnail(string video_code, FacebookThumbnailSize size)
+        {
+            string thumbnail_path = string.Empty;
+            string json = string.Empty;
+            using (var client = new WebClient())
+            {
+                json = client.DownloadString("https://graph.facebook.com/" + video_code);
+            }
+            
+            var fbVideo = new
+            {
+                description = string.Empty,
+                format = new[]
+                {
+                    new
+                    {
+                        picture = string.Empty
+                    }
+                }
+            };
+            
+            var vdo = JsonConvert.DeserializeAnonymousType(json,fbVideo);
+
+            if (size.Equals(FacebookThumbnailSize.SMALL))
+            {
+                thumbnail_path = vdo.format[0].picture;
+            }
+            else
+            {
+                thumbnail_path = vdo.format[1].picture;
+            }
+            
+            return thumbnail_path;
+        }
+
     }
 }

@@ -63,6 +63,7 @@ namespace VdoValley.Controllers
         // GET: Categories/Edit/5
         public ActionResult Edit(int? id)
         {
+            return View();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -82,6 +83,7 @@ namespace VdoValley.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CategoryId,Name,Description")] Category category)
         {
+            return View();
             if (ModelState.IsValid)
             {
                 db.Entry(category).State = EntityState.Modified;
@@ -94,6 +96,7 @@ namespace VdoValley.Controllers
         // GET: Categories/Delete/5
         public ActionResult Delete(int? id)
         {
+            return View();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -111,6 +114,7 @@ namespace VdoValley.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            return View();
             Category category = db.Categories.Find(id);
             db.Categories.Remove(category);
             db.SaveChanges();

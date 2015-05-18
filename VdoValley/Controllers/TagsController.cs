@@ -107,6 +107,7 @@ namespace VdoValley.Controllers
         // GET: Tags/Edit/5
         public ActionResult Edit(int? id)
         {
+            return View();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -126,6 +127,7 @@ namespace VdoValley.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "TagId,Name,VideoId")] Tag tag)
         {
+            return View();
             if (ModelState.IsValid)
             {
                 db.Entry(tag).State = EntityState.Modified;
@@ -138,6 +140,7 @@ namespace VdoValley.Controllers
         // GET: Tags/Delete/5
         public ActionResult Delete(int? id)
         {
+            return View();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -155,6 +158,7 @@ namespace VdoValley.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            return View();
             Tag tag = db.Tags.Find(id);
             db.Tags.Remove(tag);
             db.SaveChanges();

@@ -56,7 +56,7 @@ namespace VdoValley.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Url,Description,Tags,SelectedCategory")] VideoViewModel vvm)
+        public ActionResult Create([Bind(Include = "Id,Title,Url,EmbedCode,Description,Tags,SelectedCategory")] VideoViewModel vvm)
         {
             if (ModelState.IsValid)
             {
@@ -72,7 +72,15 @@ namespace VdoValley.Controllers
                         {
                             Tag newTag = new Tag();
                             newTag.Name = tag;
-                            tagsToAdd.Add(newTag);
+                            var tagInDb = db.Tags.FirstOrDefault(t => t.Name.Equals(tag));
+                            if (tagInDb == null)
+                            {
+                                tagsToAdd.Add(newTag);
+                            }
+                            else
+                            {
+                                tagsToAdd.Add(tagInDb);
+                            }
                         }
 
                         db.Videos.Add(video);
@@ -80,8 +88,12 @@ namespace VdoValley.Controllers
                         video.Tags = new List<Tag>();
                         foreach (var tag in tagsToAdd)
                         {
-                            db.Tags.Add(tag);
-                            db.SaveChanges();
+                            if(tag.TagId.Equals(0))
+                            {
+                                db.Tags.Add(tag);
+                                db.SaveChanges();
+                            }
+                            
                             db.Tags.Attach(tag);
                             video.Tags.Add(tag);
                             db.SaveChanges();
@@ -118,6 +130,7 @@ namespace VdoValley.Controllers
         // GET: Videos/Edit/5
         public ActionResult Edit(int? id)
         {
+            return View();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -148,6 +161,7 @@ namespace VdoValley.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "VideoId,DateTime,Title,Url,Description,Tags,SelectedCategory")] VideoViewModel vvm)
         {
+            return View();
             Video video = null;
             if (ModelState.IsValid)
             {
@@ -242,6 +256,7 @@ namespace VdoValley.Controllers
         // GET: Videos/Delete/5
         public ActionResult Delete(int? id)
         {
+            return View();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -259,6 +274,7 @@ namespace VdoValley.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            return View();
             Video video = db.Videos.Find(id);
             db.Videos.Remove(video);
             db.SaveChanges();
