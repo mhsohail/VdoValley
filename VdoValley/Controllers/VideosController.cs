@@ -100,7 +100,7 @@ namespace VdoValley.Controllers
                         }
                         
                         tran.Commit();
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Details/"+video.VideoId);
                         
                     }
                     catch (Exception ex)
@@ -261,7 +261,7 @@ namespace VdoValley.Controllers
                     }
                 }
                 
-                return RedirectToAction("Index");
+                return RedirectToAction("Details/"+video.VideoId);
             }
 
             return View(video);

@@ -55,10 +55,7 @@ namespace VdoValley.Models
             string code = string.Empty;
             //string pattern = "data-href=\\\"/[A-Za-z]+/videos/vb.[0-9]+/[0-9]+/?type=1";
             string pattern0 = "data-href=\\\"/[A-Za-z0-9.]+/videos/vb.[0-9]+/([0-9]+)/\\?type=1";
-            string pattern1 ="data-href=\\\"https://www.facebook.com/video.php\\?v=(1002844759727049)";
-                               //data-href="/mavikocaelicomtr/videos/vb.444491188930383/934797263233104/?type=1"><div class="fb-xfbml-parse-ignore"><blockquote cite="/mavikocaelicomtr/videos/934797263233104/"><a href="/mavikocaelicomtr/videos/934797263233104/"></a><p>so close to death</p>Posted by <a href="https://www.facebook.com/mavikocaelicomtr">Mavi Kocaeli</a> on Friday, May 15, 2015</blockquote></div></div>
-            
-            //accident
+            string pattern1 = "data-href=\\\"https://www.facebook.com/video.php\\?v=([0-9]+)";
             //<div id="fb-root"></div><script>(function(d, s, id) {  var js, fjs = d.getElementsByTagName(s)[0];  if (d.getElementById(id)) return;  js = d.createElement(s); js.id = id;  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";  fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script><div class="fb-video" data-allowfullscreen="true" data-href="/mavikocaelicomtr/videos/vb.444491188930383/934797263233104/?type=1"><div class="fb-xfbml-parse-ignore"><blockquote cite="/mavikocaelicomtr/videos/934797263233104/"><a href="/mavikocaelicomtr/videos/934797263233104/"></a><p>so close to death</p>Posted by <a href="https://www.facebook.com/mavikocaelicomtr">Mavi Kocaeli</a> on Friday, May 15, 2015</blockquote></div></div>
             
             Regex rgx = new Regex(pattern0, RegexOptions.IgnoreCase);
@@ -84,12 +81,20 @@ namespace VdoValley.Models
         {
             string size = thumbnail_size.ToString();
             string json = string.Empty;
-            using (var client = new WebClient())
+            Video vdo = new Video();
+            try
             {
-                json = client.DownloadString("https://api.dailymotion.com/video/" + video_code + "?fields=" + size);
+                using (var client = new WebClient())
+                {
+                    json = client.DownloadString("https://api.dailymotion.com/video/" + video_code + "?fields=" + size);
+                }
+                vdo = JsonConvert.DeserializeObject<Video>(json);
             }
-
-            Video vdo = JsonConvert.DeserializeObject<Video>(json);
+            catch (Exception exc)
+            {
+                vdo.thumbnail_large_url = exc.Message;
+            }
+            
             return vdo.thumbnail_large_url;
         }
 
@@ -97,32 +102,39 @@ namespace VdoValley.Models
         {
             string thumbnail_path = string.Empty;
             string json = string.Empty;
-            using (var client = new WebClient())
+            try
             {
-                json = client.DownloadString("https://graph.facebook.com/" + video_code);
-            }
-            
-            var fbVideo = new
-            {
-                description = string.Empty,
-                format = new[]
+                using (var client = new WebClient())
+                {
+                    json = client.DownloadString("https://graph.facebook.com/" + video_code);
+                }
+
+                var fbVideo = new
+                {
+                    description = string.Empty,
+                    format = new[]
                 {
                     new
                     {
                         picture = string.Empty
                     }
                 }
-            };
-            
-            var vdo = JsonConvert.DeserializeAnonymousType(json,fbVideo);
+                };
 
-            if (size.Equals(FacebookThumbnailSize.SMALL))
-            {
-                thumbnail_path = vdo.format[0].picture;
+                var vdo = JsonConvert.DeserializeAnonymousType(json, fbVideo);
+
+                if (size.Equals(FacebookThumbnailSize.SMALL))
+                {
+                    thumbnail_path = vdo.format[0].picture;
+                }
+                else
+                {
+                    thumbnail_path = vdo.format[1].picture;
+                }
             }
-            else
+            catch(Exception exc)
             {
-                thumbnail_path = vdo.format[1].picture;
+                thumbnail_path = exc.Message;
             }
             
             return thumbnail_path;
