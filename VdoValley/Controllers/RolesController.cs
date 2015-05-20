@@ -126,5 +126,22 @@ namespace VdoValley.Controllers
 
             return View("ManageUserRoles");
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RoleAddToUser(string UserName, string RoleName)
+        {
+            ApplicationUser user = db.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+            var account = new AccountController();
+            account.UserManager.AddToRoleAsync(user.Id, RoleName);
+
+            ViewBag.ResultMessage = "Role created successfully !";
+
+            // prepopulat roles for the view dropdown
+            var list = db.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
+            ViewBag.Roles = list;
+
+            return View("ManageUserRoles");
+        }
     }
 }

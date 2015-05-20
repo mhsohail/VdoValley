@@ -71,7 +71,7 @@ namespace VdoValley.Controllers
                         foreach (var tag in tags)
                         {
                             Tag newTag = new Tag();
-                            newTag.Name = tag;
+                            newTag.Name = tag.Trim();
                             var tagInDb = db.Tags.FirstOrDefault(t => t.Name.Equals(tag));
                             if (tagInDb == null)
                             {
@@ -177,14 +177,18 @@ namespace VdoValley.Controllers
 
                         // load current video from database including tags
                         //db.Configuration.ProxyCreationEnabled = false;
-                        //var vdo = db.Videos.Where(v => v.VideoId.Equals(video.VideoId)).Include(v => v.Tags).FirstOrDefault();
+                        var vdo = db.Videos.Include(v => v.Tags).FirstOrDefault(v => v.VideoId.Equals(video.VideoId));
+                        vdo.Title = video.Title;
+                        vdo.Description = video.Description;
+                        vdo.CategoryId = video.CategoryId;
+                        
                         //db.Configuration.ProxyCreationEnabled = true;
-
+                        /*
                         var vdo = db.Videos
                             .Where(v => v.VideoId == video.VideoId)
                             .Include(v => v.Tags)
                             .FirstOrDefault();
-
+                        */
                         // remove all tags
                         /*
                         vdo.Tags.Clear(); // break relationship
@@ -207,7 +211,6 @@ namespace VdoValley.Controllers
                                 updatedTags.Remove(tg.Name);
                             }
                         }
-                        
                         /*
                         List<Tag> tagsToAdd = new List<Tag>();
                         foreach (var tag in tags)
@@ -217,23 +220,34 @@ namespace VdoValley.Controllers
                             tagsToAdd.Add(newTag);
                         }
                         */
-                        
                         // update video
-                        db.Entry(video).State = EntityState.Modified;
+                        db.Entry(vdo).State = EntityState.Modified;
                         db.SaveChanges();
 
                         List<Tag> updatedTagsList = new List<Tag>();
                         foreach (var tag in updatedTags)
                         {
                             Tag newTag = new Tag();
-                            newTag.Name = tag;
-                            updatedTagsList.Add(newTag);
+                            newTag.Name = tag.Trim();
+                            var tagInDb = db.Tags.FirstOrDefault(t => t.Name.Equals(tag));
+                            if (tagInDb == null)
+                            {
+                                updatedTagsList.Add(newTag);
+                            }
+                            else
+                            {
+                                updatedTagsList.Add(tagInDb);
+                            }
                         }
                         
                         foreach (var tag in updatedTagsList)
                         {
-                            db.Tags.Add(tag);
-                            db.SaveChanges();
+                            if (tag.TagId.Equals(0))
+                            {
+                                db.Tags.Add(tag);
+                                db.SaveChanges();
+                            }
+
                             db.Tags.Attach(tag);
                             vdo.Tags.Add(tag);
                             db.SaveChanges();
@@ -256,7 +270,7 @@ namespace VdoValley.Controllers
         // GET: Videos/Delete/5
         public ActionResult Delete(int? id)
         {
-            return View();
+            //return View();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -272,13 +286,21 @@ namespace VdoValley.Controllers
         // POST: Videos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id, FormCollection collection)
         {
-            return View();
-            Video video = db.Videos.Find(id);
-            db.Videos.Remove(video);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            string DeletePassword = collection["DeletePassword"];
+            
+            if (DeletePassword.Equals("0707"))
+            {
+                Video video = db.Videos.Find(id);
+                db.Videos.Remove(video);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         protected override void Dispose(bool disposing)

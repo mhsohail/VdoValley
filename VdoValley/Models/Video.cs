@@ -54,15 +54,27 @@ namespace VdoValley.Models
             //string pattern = ;
             string code = string.Empty;
             //string pattern = "data-href=\\\"/[A-Za-z]+/videos/vb.[0-9]+/[0-9]+/?type=1";
-            string pattern = "data-href=\\\"/[A-Za-z0-9.]+/videos/vb.[0-9]+/([0-9]+)/\\?type=1";
-            Regex rgx = new Regex(pattern, RegexOptions.IgnoreCase);
+            string pattern0 = "data-href=\\\"/[A-Za-z0-9.]+/videos/vb.[0-9]+/([0-9]+)/\\?type=1";
+            string pattern1 ="data-href=\\\"https://www.facebook.com/video.php\\?v=(1002844759727049)";
+                               //data-href="/mavikocaelicomtr/videos/vb.444491188930383/934797263233104/?type=1"><div class="fb-xfbml-parse-ignore"><blockquote cite="/mavikocaelicomtr/videos/934797263233104/"><a href="/mavikocaelicomtr/videos/934797263233104/"></a><p>so close to death</p>Posted by <a href="https://www.facebook.com/mavikocaelicomtr">Mavi Kocaeli</a> on Friday, May 15, 2015</blockquote></div></div>
+            
+            //accident
+            //<div id="fb-root"></div><script>(function(d, s, id) {  var js, fjs = d.getElementsByTagName(s)[0];  if (d.getElementById(id)) return;  js = d.createElement(s); js.id = id;  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";  fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script><div class="fb-video" data-allowfullscreen="true" data-href="/mavikocaelicomtr/videos/vb.444491188930383/934797263233104/?type=1"><div class="fb-xfbml-parse-ignore"><blockquote cite="/mavikocaelicomtr/videos/934797263233104/"><a href="/mavikocaelicomtr/videos/934797263233104/"></a><p>so close to death</p>Posted by <a href="https://www.facebook.com/mavikocaelicomtr">Mavi Kocaeli</a> on Friday, May 15, 2015</blockquote></div></div>
+            
+            Regex rgx = new Regex(pattern0, RegexOptions.IgnoreCase);
             MatchCollection matches = rgx.Matches(embed_code);
+
             if (matches.Count > 0)
             {
                 foreach (Match match in matches)
                 {
                     code = match.Value;
                 }
+            }
+            else
+            {
+                rgx = new Regex(pattern1, RegexOptions.IgnoreCase);
+                matches = rgx.Matches(embed_code);
             }
 
             return matches[0].Groups[1].Value;

@@ -52,7 +52,14 @@
                                     //min-width:150px;width:200px;max-width:200px;min-height:100px;height:100px;
                                     <div class="thumbnail-container col-lg-3 col-md-4 col-xs-6 thumb">
                                         <a class="thumbnail" href="/Videos/Details/@video.VideoId">
-                                            <img class="img-responsive" src="@video.getDailyMotionThumb(video.getDailyMotionVideoCode(video.Url), VdoValley.Models.DailymotionThumbnailSize.thumbnail_large_url)" alt="">
+                                            @if (video.Url == null)
+                                            {
+                                                <img class="img-responsive" src="@video.getFacebookVideoThumbnail(video.getFacebookVideoCode(video.EmbedCode), VdoValley.Models.FacebookThumbnailSize.MEDIUM)" alt="@video.Title">
+                                            }
+                                            else
+                                            { 
+                                                <img class="img-responsive" src="@video.getDailyMotionThumb(video.getDailyMotionVideoCode(video.Url), VdoValley.Models.DailymotionThumbnailSize.thumbnail_large_url)" alt="@video.Title">
+                                            }
                                             <div class="details">
                                                 <div class="panel-heading">
                                                     @{

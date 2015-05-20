@@ -45,7 +45,7 @@
             {
                 @Html.ActionLink("Edit", "Edit", new { id=item.VideoId })
             }
-            @Html.ActionLink("Details", "Details", new { id = item.VideoId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.VideoId, title = item.Title.Replace(" ", "-") }) |
             @*@if (System.Web.HttpContext.Current.User.IsInRole("Administrator"))*@
             {
                 @Html.ActionLink("Delete", "Delete", new { id = item.VideoId })

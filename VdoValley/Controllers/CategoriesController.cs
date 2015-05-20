@@ -96,7 +96,7 @@ namespace VdoValley.Controllers
         // GET: Categories/Delete/5
         public ActionResult Delete(int? id)
         {
-            return View();
+            //return View();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -114,7 +114,7 @@ namespace VdoValley.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            return View();
+            //return View();
             Category category = db.Categories.Find(id);
             db.Categories.Remove(category);
             db.SaveChanges();

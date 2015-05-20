@@ -25,6 +25,7 @@ namespace VdoValley.Models
 
         public System.Data.Entity.DbSet<VdoValley.Models.Rating> Ratings { get; set; }
         public System.Data.Entity.DbSet<VdoValley.Models.Person> People { get; set; }
+        public System.Data.Entity.DbSet<IdentityUserLogin> UserLogins { get; set; }
         
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

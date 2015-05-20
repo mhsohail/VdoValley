@@ -3,6 +3,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace VdoValley.Models
 {
+    public class RoleViewModel
+    {
+        public string Id { get; set; }
+        [Required]
+        [Display(Name = "RoleName")]
+        public string Name { get; set; }
+    }
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
@@ -65,6 +72,10 @@ namespace VdoValley.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "User name")]
+        public string UserName { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -79,6 +90,11 @@ namespace VdoValley.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Phone No")]
+        public string PhoneNo { get; set; }
+
     }
 
     public class ResetPasswordViewModel
