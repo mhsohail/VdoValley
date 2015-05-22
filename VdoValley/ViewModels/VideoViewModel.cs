@@ -12,6 +12,7 @@ namespace VdoValley.ViewModels
         public int VideoId { get; set; }
         [Required]
         public string Title { get; set; }
+        public string VideoType { get; set; }
         
         [Display(Name="Short URL")]
         public string Url { get; set; }
@@ -19,12 +20,10 @@ namespace VdoValley.ViewModels
         [DataType(DataType.MultilineText)]
         public string EmbedCode { get; set; }
         public string Description { get; set; }
-        
         public DateTime DateTime { get; set; }
         
         [Display(Name="Tags (Comma Separated)")]
-        public string Tags { get; set; }
-        
+        public string Tags { get; set; }        
         public bool Featured { get; set; }
         
         [Display(Name="Category")]

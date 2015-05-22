@@ -63,11 +63,17 @@ namespace VdoValley.Models
                         .HasMany<Rating>(au => au.Ratings)
                         .WithRequired(r => r.ApplicationUser)
                         .HasForeignKey(r => r.ApplicationUserId).WillCascadeOnDelete(true);
+
+            ///////1-*     VideoType---Videos
+            modelBuilder.Entity<VideoType>()
+                        .HasMany<Video>(vt => vt.Videos)
+                        .WithOptional(v => v.VideoType)
+                        .HasForeignKey(v => v.VideoTypeId).WillCascadeOnDelete(true);
         }
 
         public System.Data.Entity.DbSet<VdoValley.Models.Tag> Tags { get; set; }
-
         public System.Data.Entity.DbSet<VdoValley.Models.Category> Categories { get; set; }
+        public System.Data.Entity.DbSet<VdoValley.Models.VideoType> VideoTypes { get; set; }
     
     }
 }

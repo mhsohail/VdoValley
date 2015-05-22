@@ -47,6 +47,7 @@ namespace VdoValley.Controllers
         public ActionResult Create()
         {
             TempData["Categories"] = db.Categories.ToList();
+            TempData["VideoTypes"] = db.VideoTypes.ToList();
             VideoViewModel vvm = new VideoViewModel();
             return View(vvm);
         }
@@ -71,7 +72,7 @@ namespace VdoValley.Controllers
                         foreach (var tag in tags)
                         {
                             Tag newTag = new Tag();
-                            newTag.Name = tag.Trim();
+                            newTag.Name = tag.Trim().ToLower();
                             var tagInDb = db.Tags.FirstOrDefault(t => t.Name.Equals(tag));
                             if (tagInDb == null)
                             {
@@ -228,7 +229,7 @@ namespace VdoValley.Controllers
                         foreach (var tag in updatedTags)
                         {
                             Tag newTag = new Tag();
-                            newTag.Name = tag.Trim();
+                            newTag.Name = tag.Trim().ToLower();
                             var tagInDb = db.Tags.FirstOrDefault(t => t.Name.Equals(tag));
                             if (tagInDb == null)
                             {

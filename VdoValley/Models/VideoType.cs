@@ -5,8 +5,11 @@ using System.Web;
 
 namespace VdoValley.Models
 {
-    public enum VideoType
+    public class VideoType
     {
-        DAILYMOTION, FACEBOOK
+        public int VideoTypeId { get; set; }
+        public VideoTypeEnum VideoTypeName { get; set; }
+        
+        public virtual ICollection<Video> Videos { get; set; }
     }
 }

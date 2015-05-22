@@ -7,13 +7,13 @@ namespace VdoValley.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class dsfd : IMigrationMetadata
+    public sealed partial class grgrgr : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(dsfd));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(grgrgr));
         
         string IMigrationMetadata.Id
         {
-            get { return "201505161108026_dsfd"; }
+            get { return "201505210827379_grgrgr"; }
         }
         
         string IMigrationMetadata.Source

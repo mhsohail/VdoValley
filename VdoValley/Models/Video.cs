@@ -16,7 +16,7 @@ namespace VdoValley.Models
         public int VideoId { get; set; }
         public string Title { get; set; }
         public string Url { get; set; }
-        public string VideoType { get; set; }
+        public int? VideoTypeId { get; set; }
         public string EmbedCode { get; set; }
         public string Description { get; set; }
         [HiddenInput(DisplayValue = false)]
@@ -30,7 +30,8 @@ namespace VdoValley.Models
         public virtual Category Category { set; get; }
         public virtual ICollection<Rating> Ratings { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }
-
+        public virtual VideoType VideoType { get; set; }
+        
         public string getDailyMotionVideoCode(string short_url)
         {
             string code = string.Empty;
@@ -54,27 +55,24 @@ namespace VdoValley.Models
             //string pattern = ;
             string code = string.Empty;
             //string pattern = "data-href=\\\"/[A-Za-z]+/videos/vb.[0-9]+/[0-9]+/?type=1";
-            string pattern0 = "data-href=\\\"/[A-Za-z0-9.]+/videos/vb.[0-9]+/([0-9]+)/\\?type=1";
+            string pattern0 = "data-href=\\\"/[A-Za-z0-9.]+/videos/(vb.[0-9]+/)?([0-9]+)/(\\?type=1)?";
             string pattern1 = "data-href=\\\"https://www.facebook.com/video.php\\?v=([0-9]+)";
-            //<div id="fb-root"></div><script>(function(d, s, id) {  var js, fjs = d.getElementsByTagName(s)[0];  if (d.getElementById(id)) return;  js = d.createElement(s); js.id = id;  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";  fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script><div class="fb-video" data-allowfullscreen="true" data-href="/mavikocaelicomtr/videos/vb.444491188930383/934797263233104/?type=1"><div class="fb-xfbml-parse-ignore"><blockquote cite="/mavikocaelicomtr/videos/934797263233104/"><a href="/mavikocaelicomtr/videos/934797263233104/"></a><p>so close to death</p>Posted by <a href="https://www.facebook.com/mavikocaelicomtr">Mavi Kocaeli</a> on Friday, May 15, 2015</blockquote></div></div>
             
-            Regex rgx = new Regex(pattern0, RegexOptions.IgnoreCase);
-            MatchCollection matches = rgx.Matches(embed_code);
+            Regex rgx0 = new Regex(pattern0, RegexOptions.IgnoreCase);
+            MatchCollection matches0 = rgx0.Matches(embed_code);
 
-            if (matches.Count > 0)
+            if (matches0.Count > 0)
             {
-                foreach (Match match in matches)
-                {
-                    code = match.Value;
-                }
+                code = matches0[0].Groups[2].Value;
             }
             else
             {
-                rgx = new Regex(pattern1, RegexOptions.IgnoreCase);
-                matches = rgx.Matches(embed_code);
+                Regex rgx1 = new Regex(pattern1, RegexOptions.IgnoreCase);
+                MatchCollection matches1 = rgx1.Matches(embed_code);
+                code = matches1[0].Groups[1].Value;
             }
 
-            return matches[0].Groups[1].Value;
+            return code;
         }
 
         public string getDailyMotionThumb(string video_code, DailymotionThumbnailSize thumbnail_size)
@@ -139,6 +137,6 @@ namespace VdoValley.Models
             
             return thumbnail_path;
         }
-
     }
+
 }

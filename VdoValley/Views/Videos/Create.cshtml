@@ -164,6 +164,14 @@
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
+                @Html.LabelFor(model => model.VideoType, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.VideoType, new SelectList(TempData["VideoTypes"] as System.Collections.IEnumerable, "VideoTypeId", "VideoTypeName"), "-Select Video Type-", htmlAttributes: new { @class = "form-control", style = "width: 350px;" })
+                    @Html.ValidationMessage("VideoType", "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
                 @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @class = "form-control", style = "width: 350px;" } })
