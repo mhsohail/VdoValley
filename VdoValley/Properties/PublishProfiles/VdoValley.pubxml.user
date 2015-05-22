@@ -13,7 +13,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/26/2015 17:55:49</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
-      <publishTime>04/25/2015 17:21:34</publishTime>
+      <publishTime>05/23/2015 00:22:55</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>04/25/2015 17:28:33</publishTime>
@@ -40,31 +40,31 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/08/2015 22:15:59</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.dll">
-      <publishTime>04/25/2015 17:22:16</publishTime>
+      <publishTime>05/23/2015 00:23:14</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
-      <publishTime>04/25/2015 17:22:17</publishTime>
+      <publishTime>05/23/2015 00:23:15</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
-      <publishTime>04/25/2015 17:22:18</publishTime>
+      <publishTime>05/23/2015 00:23:17</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.dll">
-      <publishTime>04/25/2015 17:22:17</publishTime>
+      <publishTime>05/23/2015 00:23:15</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.Facebook.dll">
-      <publishTime>04/25/2015 17:22:17</publishTime>
+      <publishTime>05/23/2015 00:23:17</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.Google.dll">
-      <publishTime>04/25/2015 17:22:19</publishTime>
+      <publishTime>05/23/2015 00:23:18</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.MicrosoftAccount.dll">
-      <publishTime>04/25/2015 17:22:20</publishTime>
+      <publishTime>05/23/2015 00:23:18</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.OAuth.dll">
-      <publishTime>04/25/2015 17:22:18</publishTime>
+      <publishTime>05/23/2015 00:23:18</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.Twitter.dll">
-      <publishTime>04/25/2015 17:22:19</publishTime>
+      <publishTime>05/23/2015 00:23:19</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>04/25/2015 17:21:33</publishTime>
@@ -82,46 +82,58 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/02/2015 22:21:15</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
-      <publishTime>05/19/2015 18:46:31</publishTime>
+      <publishTime>05/23/2015 00:23:12</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
-      <publishTime>04/25/2015 17:21:31</publishTime>
+      <publishTime>05/23/2015 00:23:07</publishTime>
     </File>
     <File Include="bin/System.Web.Http.dll">
-      <publishTime>05/19/2015 18:46:41</publishTime>
+      <publishTime>05/23/2015 00:23:13</publishTime>
     </File>
     <File Include="bin/System.Web.Http.WebHost.dll">
-      <publishTime>05/19/2015 18:46:42</publishTime>
+      <publishTime>05/23/2015 00:23:14</publishTime>
     </File>
     <File Include="bin/System.Web.Mvc.dll">
-      <publishTime>04/25/2015 17:21:33</publishTime>
+      <publishTime>05/23/2015 00:23:11</publishTime>
     </File>
     <File Include="bin/System.Web.Optimization.dll">
       <publishTime>04/25/2015 17:21:30</publishTime>
     </File>
     <File Include="bin/System.Web.Razor.dll">
-      <publishTime>04/25/2015 17:21:29</publishTime>
+      <publishTime>05/23/2015 00:23:06</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.Deployment.dll">
-      <publishTime>04/25/2015 17:21:31</publishTime>
+      <publishTime>05/23/2015 00:23:08</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.dll">
-      <publishTime>04/25/2015 17:21:31</publishTime>
+      <publishTime>05/23/2015 00:23:08</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.Razor.dll">
-      <publishTime>04/25/2015 17:21:31</publishTime>
+      <publishTime>05/23/2015 00:23:09</publishTime>
     </File>
     <File Include="bin/VdoValley.dll">
-      <publishTime>05/22/2015 15:39:38</publishTime>
+      <publishTime>05/23/2015 00:35:34</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
-      <publishTime>04/25/2015 17:21:35</publishTime>
+      <publishTime>05/23/2015 00:23:20</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.css">
+      <publishTime>05/23/2015 00:25:25</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.css.map">
+      <publishTime>05/23/2015 00:25:25</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.min.css">
+      <publishTime>05/23/2015 00:25:25</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
-      <publishTime>04/25/2015 17:21:10</publishTime>
+      <publishTime>05/23/2015 00:25:26</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css.map">
+      <publishTime>05/23/2015 00:25:25</publishTime>
     </File>
     <File Include="Content/bootstrap.min.css">
-      <publishTime>04/25/2015 17:21:10</publishTime>
+      <publishTime>05/23/2015 00:25:25</publishTime>
     </File>
     <File Include="Content/Gridmvc.css">
       <publishTime>05/03/2015 15:46:48</publishTime>
@@ -247,22 +259,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:20:56</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.eot">
-      <publishTime>04/25/2015 17:21:10</publishTime>
+      <publishTime>05/23/2015 00:25:25</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.svg">
-      <publishTime>04/25/2015 17:21:10</publishTime>
+      <publishTime>05/23/2015 00:25:25</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.ttf">
-      <publishTime>04/25/2015 17:21:10</publishTime>
+      <publishTime>05/23/2015 00:25:25</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.woff">
-      <publishTime>04/25/2015 17:21:10</publishTime>
+      <publishTime>05/23/2015 00:25:25</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff2">
+      <publishTime>05/23/2015 00:25:25</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>04/25/2015 17:20:56</publishTime>
     </File>
     <File Include="Grid.mvc.readme">
       <publishTime>05/03/2015 15:46:48</publishTime>
+    </File>
+    <File Include="Icon.png">
+      <publishTime>05/23/2015 00:25:25</publishTime>
     </File>
     <File Include="images/ar.png">
       <publishTime>04/25/2015 22:25:25</publishTime>
@@ -475,13 +493,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/28/2015 21:16:24</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>05/19/2015 18:46:44</publishTime>
+      <publishTime>05/23/2015 00:26:31</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
-      <publishTime>04/25/2015 17:21:10</publishTime>
+      <publishTime>05/23/2015 00:25:25</publishTime>
     </File>
     <File Include="Scripts/bootstrap.min.js">
-      <publishTime>04/25/2015 17:21:09</publishTime>
+      <publishTime>05/23/2015 00:25:24</publishTime>
     </File>
     <File Include="Scripts/gridmvc.js">
       <publishTime>05/03/2015 15:46:48</publishTime>
@@ -510,6 +528,15 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/jquery-2.1.3.min.map">
       <publishTime>04/26/2015 01:31:33</publishTime>
     </File>
+    <File Include="Scripts/jquery-2.1.4.js">
+      <publishTime>05/23/2015 00:24:53</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.4.min.js">
+      <publishTime>05/23/2015 00:24:53</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.4.min.map">
+      <publishTime>05/23/2015 00:24:53</publishTime>
+    </File>
     <File Include="Scripts/jquery-tags-input/jquery.tagsinput.css">
       <publishTime>04/30/2015 00:17:31</publishTime>
     </File>
@@ -535,16 +562,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/08/2015 22:16:40</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.js">
-      <publishTime>04/25/2015 17:21:37</publishTime>
+      <publishTime>05/23/2015 00:25:29</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.min.js">
-      <publishTime>04/25/2015 17:21:37</publishTime>
+      <publishTime>05/23/2015 00:25:29</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.js">
-      <publishTime>04/25/2015 17:21:38</publishTime>
+      <publishTime>05/23/2015 00:26:05</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.min.js">
-      <publishTime>04/25/2015 17:21:38</publishTime>
+      <publishTime>05/23/2015 00:26:05</publishTime>
     </File>
     <File Include="Scripts/magblog-webb/easing.js">
       <publishTime>04/26/2015 00:35:27</publishTime>
@@ -567,17 +594,29 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/modernizr-2.6.2.js">
       <publishTime>04/25/2015 17:21:34</publishTime>
     </File>
+    <File Include="Scripts/modernizr-2.8.3.js">
+      <publishTime>05/23/2015 00:26:27</publishTime>
+    </File>
+    <File Include="Scripts/npm.js">
+      <publishTime>05/23/2015 00:25:24</publishTime>
+    </File>
     <File Include="Scripts/respond.js">
-      <publishTime>04/25/2015 17:21:36</publishTime>
+      <publishTime>05/23/2015 00:26:29</publishTime>
+    </File>
+    <File Include="Scripts/respond.matchmedia.addListener.js">
+      <publishTime>05/23/2015 00:26:29</publishTime>
+    </File>
+    <File Include="Scripts/respond.matchmedia.addListener.min.js">
+      <publishTime>05/23/2015 00:26:29</publishTime>
     </File>
     <File Include="Scripts/respond.min.js">
-      <publishTime>04/25/2015 17:21:36</publishTime>
+      <publishTime>05/23/2015 00:26:29</publishTime>
     </File>
     <File Include="Scripts/sharethis/script.js">
-      <publishTime>05/02/2015 00:45:03</publishTime>
+      <publishTime>05/23/2015 01:18:24</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>05/08/2015 22:16:41</publishTime>
+      <publishTime>05/23/2015 00:26:29</publishTime>
     </File>
     <File Include="Sounds/chatmessage.mp3">
       <publishTime>05/09/2015 21:34:01</publishTime>
@@ -730,7 +769,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/03/2015 15:46:47</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>05/20/2015 23:40:42</publishTime>
+      <publishTime>05/23/2015 01:19:53</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>05/01/2015 15:49:56</publishTime>
@@ -814,7 +853,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:20:56</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/20/2015 16:52:06</publishTime>
+      <publishTime>05/23/2015 00:28:11</publishTime>
     </File>
   </ItemGroup>
 </Project>
