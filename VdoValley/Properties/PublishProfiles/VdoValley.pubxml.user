@@ -112,7 +112,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2015 00:23:09</publishTime>
     </File>
     <File Include="bin/VdoValley.dll">
-      <publishTime>05/23/2015 00:35:34</publishTime>
+      <publishTime>05/23/2015 11:20:35</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>05/23/2015 00:23:20</publishTime>

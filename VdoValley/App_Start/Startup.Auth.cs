@@ -54,15 +54,15 @@ namespace VdoValley
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "1576894379240839",
+               appSecret: "a8819f2ce74b92e436b1e96607ef0058");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "406059334990-cm8so11jaleocbnkt04j1ekqgnpou50d.apps.googleusercontent.com",
+                ClientSecret = "-YWFyprz2g07h-2QUfnBXRLt"
+            });
         }
     }
 }
