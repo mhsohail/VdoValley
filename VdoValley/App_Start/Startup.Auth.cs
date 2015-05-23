@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using VdoValley.Models;
+using Microsoft.Owin.Security.Facebook;
 
 namespace VdoValley
 {
@@ -46,23 +47,30 @@ namespace VdoValley
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
             // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
+            //app.UseMicrosoftAccountAuthentication(new MicrosoftAccountAuthenticationOptions()
+            //{
+            //    ClientId = "",
+            //    ClientSecret = "",
+            //    Scope = { "wl.basic", "wl.emails" } // without defining this property, the email in ExternalLoginCallback is null
+            //});
 
             //app.UseTwitterAuthentication(
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            app.UseFacebookAuthentication(
-               appId: "1576894379240839",
-               appSecret: "a8819f2ce74b92e436b1e96607ef0058");
-
+            app.UseFacebookAuthentication(new FacebookAuthenticationOptions
+            {
+                AppId = "1576894379240839",
+                AppSecret = "a8819f2ce74b92e436b1e96607ef0058",
+                Scope = { "email", "public_profile" } // without defining this property, the email in ExternalLoginCallback is null
+            });
+            
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
                 ClientId = "406059334990-cm8so11jaleocbnkt04j1ekqgnpou50d.apps.googleusercontent.com",
                 ClientSecret = "-YWFyprz2g07h-2QUfnBXRLt"
             });
+
         }
     }
 }

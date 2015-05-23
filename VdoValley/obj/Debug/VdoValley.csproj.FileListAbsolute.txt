@@ -124,7 +124,7 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\System.Web.Http.WebHost.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\System.Net.Http.Formatting.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\System.Web.Http.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\System.Web.Http.WebHost.xml
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.csprojResolveAssemblyReference.cache
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.grgrgr.resources
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.csproj.GenerateResource.Cache
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.grgrgrhhh.resources
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.csprojResolveAssemblyReference.cache
