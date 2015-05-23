@@ -7,6 +7,8 @@ using Microsoft.Owin.Security.Google;
 using Owin;
 using VdoValley.Models;
 using Microsoft.Owin.Security.Facebook;
+using Microsoft.Owin.Security.MicrosoftAccount;
+using Owin.Security.Providers.Yahoo;
 
 namespace VdoValley
 {
@@ -47,16 +49,16 @@ namespace VdoValley
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
             // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(new MicrosoftAccountAuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = "",
-            //    Scope = { "wl.basic", "wl.emails" } // without defining this property, the email in ExternalLoginCallback is null
-            //});
+            app.UseMicrosoftAccountAuthentication(new MicrosoftAccountAuthenticationOptions()
+            {
+                ClientId = "000000004C151C4E",
+                ClientSecret = "crOaHJkumg-g0J56nh95GB0QVn6YonED",
+                Scope = { "wl.basic", "wl.emails" } // without defining this property, the email in ExternalLoginCallback is null
+            });
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+            app.UseTwitterAuthentication(
+               consumerKey: "v6tRKRLiFVVTH7ct71YNkcgvE",
+               consumerSecret: "8aQnR6R5WraxYxnoDUNhXBCzGNFCQczkQ5ijmsnt3V2N5X31dk");
 
             app.UseFacebookAuthentication(new FacebookAuthenticationOptions
             {
@@ -71,6 +73,29 @@ namespace VdoValley
                 ClientSecret = "-YWFyprz2g07h-2QUfnBXRLt"
             });
 
+            var options = new YahooAuthenticationOptions
+            {
+                ConsumerKey = "dj0yJmk9U2lYV0Y5Tm5FaE9WJmQ9WVdrOWRtVlJNVTFITm5NbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD1kYQ--",
+                ConsumerSecret = "aa89d834b100dae0fada444216701161c2f6caa0",
+                Provider = new YahooAuthenticationProvider
+                {
+                    OnAuthenticated = async context =>
+                    {
+                        // Retrieve the OAuth access token to store for subsequent API calls
+                        string accessToken = context.AccessToken;
+                        string accessTokenSecret = context.AccessTokenSecret;
+
+                        // Retrieve the user ID
+                        string yahooUserName = context.UserId;
+
+                        // You can even retrieve the full JSON-serialized user
+                        var serializedUser = context.User;
+                        var serializedEmail = context.Email;
+                    }
+                }
+            };
+
+            app.UseYahooAuthentication(options);
         }
     }
 }
