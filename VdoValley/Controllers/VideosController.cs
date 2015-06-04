@@ -31,7 +31,7 @@ namespace VdoValley.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Video video = db.Videos.Find(id);
+            var video = db.Videos.Find(id);
             if (video == null)
             {
                 return HttpNotFound();
@@ -39,8 +39,57 @@ namespace VdoValley.Controllers
 
             //HttpContext.Current.User.Identity.GetUserId();
             ViewBag.UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            if (video.Url == null)
+            {
+                ViewBag.OgThumbnail = video.getFacebookVideoThumbnail(video.getFacebookVideoCode(video.EmbedCode), VdoValley.Models.FacebookThumbnailSize.MEDIUM).Replace("amp;", string.Empty);
+            }
+            else
+            {
+                ViewBag.OgThumbnail = video.getDailyMotionThumb(video.getDailyMotionVideoCode(video.Url), VdoValley.Models.DailymotionThumbnailSize.thumbnail_large_url);
+            }
 
-            return View(video);
+            List<Rating> ratings = db.Ratings.Where(r => r.VideoId == video.VideoId).ToList();
+            int TotalRating = 0;
+            foreach (Rating rating in ratings)
+            {
+                TotalRating += rating.Score;
+            }
+            
+            double AvgRating = TotalRating / (double)ratings.Count;
+            AvgRating = Math.Round(AvgRating, 2);
+            if (double.IsNaN(AvgRating)) { AvgRating = 0.0; }
+
+            // get logged in user and its score for this video
+            string LoggedInUserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            int CurrentUsersScore = 0;
+            VdoValley.Models.Rating VideoScorer = db.Ratings.FirstOrDefault(r => r.ApplicationUserId.Equals(LoggedInUserId) && r.VideoId.Equals(video.VideoId));
+            if (VideoScorer != null)
+            {
+                CurrentUsersScore = VideoScorer.Score;
+            }
+            
+            VideoDetailsViewModel vdvm = new VideoDetailsViewModel();
+            vdvm.Video = video;
+            vdvm.AverageRating = AvgRating;
+            vdvm.CurrentUsersScore = CurrentUsersScore;
+            vdvm.VideoScorer = VideoScorer;
+
+            var relatedVideos = new List<Video>();
+            var tags = video.Tags;
+            foreach (var tag in tags)
+            {
+                // get videos for curren tag
+                foreach (var vdo in tag.Videos)
+                {
+                    if(vdo.VideoId != video.VideoId && !relatedVideos.Contains(vdo))
+                    {
+                        relatedVideos.Add(vdo);   
+                    }
+                }
+            }
+            vdvm.RelatedVideos = relatedVideos;
+
+            return View(vdvm);
         }
 
         // GET: Videos/Create
@@ -67,7 +116,13 @@ namespace VdoValley.Controllers
                     {
                         vvm.DateTime = DateTime.Now;
                         var video = ViewModelHelpers.VMHelper.ToDomainVideoModel(vvm);
-                        var tags = vvm.Tags.Split(',');
+
+                        List<string> tags = new List<string>();
+                        if (vvm.Tags != null)
+                        {
+                            tags = vvm.Tags.Split(',').ToList();
+                        }
+
                         List<Tag> tagsToAdd = new List<Tag>();
                         foreach (var tag in tags)
                         {
@@ -129,9 +184,10 @@ namespace VdoValley.Controllers
         }
 
         // GET: Videos/Edit/5
+        [Authorize(Roles="Administrator")]
         public ActionResult Edit(int? id)
         {
-            return View();
+            //return View();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -158,11 +214,12 @@ namespace VdoValley.Controllers
         // POST: Videos/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "VideoId,DateTime,Title,Url,Description,Tags,SelectedCategory")] VideoViewModel vvm)
         {
-            return View();
+            //return View();
             Video video = null;
             if (ModelState.IsValid)
             {
@@ -174,7 +231,11 @@ namespace VdoValley.Controllers
                         video = ViewModelHelpers.VMHelper.ToDomainVideoModel(vvm);
                         
                         // get tags
-                        var updatedTags = vvm.Tags.Split(',').ToList();
+                        List<string> updatedTags = new List<string>();
+                        if (vvm.Tags != null)
+                        {
+                            updatedTags = vvm.Tags.Split(',').ToList();
+                        }
 
                         // load current video from database including tags
                         //db.Configuration.ProxyCreationEnabled = false;
@@ -268,6 +329,7 @@ namespace VdoValley.Controllers
             return View(video);
         }
 
+        [Authorize(Roles = "Administrator")]
         // GET: Videos/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -284,24 +346,16 @@ namespace VdoValley.Controllers
             return View(video);
         }
 
+        [Authorize(Roles = "Administrator")]
         // POST: Videos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id, FormCollection collection)
         {
-            string DeletePassword = collection["DeletePassword"];
-            
-            if (DeletePassword.Equals("0707"))
-            {
-                Video video = db.Videos.Find(id);
-                db.Videos.Remove(video);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                return View();
-            }
+            Video video = db.Videos.Find(id);
+            db.Videos.Remove(video);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

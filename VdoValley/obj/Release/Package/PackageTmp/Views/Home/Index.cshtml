@@ -58,12 +58,7 @@
                 }
                 <div class="caption">
                     <h3 class="cinema">
-                            @{
-            int maxTitleLength = 25;
-            string title = string.Empty;
-            if (video.Title.Length > maxTitleLength) { title = video.Title.Substring(0, maxTitleLength - 1) + "..."; } else { title = video.Title; }
-                            }
-                        <a href="/Videos/Details/@video.VideoId">@Html.Raw(title)</a>
+                        <a href="/Videos/Details/@video.VideoId">@Html.Raw(video.Title.PadRight(25).Substring(0, 25))</a>
                     </h3>
                 </div>
             </div>
@@ -147,12 +142,7 @@
                                                 <img class="img-responsive" src="@video.getDailyMotionThumb(video.getDailyMotionVideoCode(video.Url), VdoValley.Models.DailymotionThumbnailSize.thumbnail_large_url)" alt="">
                                                 <div class="details">
                                                     <div class="panel-heading">
-                                                            @{
-                                                                int maxTitleLength = 40;
-                                                                string title = string.Empty;
-                                                                if (video.Title.Length > maxTitleLength) { title = video.Title.Substring(0, maxTitleLength - 1) + "..."; } else { title = video.Title; }
-                                                            }
-                                                        <h3 class="panel-title col-lg-offset-1">@title</h3>
+                                                        <h3 class="panel-title col-lg-offset-1">@video.Title.PadRight(40).Substring(0, 40)</h3>
                                                     </div>
                                                 </div>
                                             </a>

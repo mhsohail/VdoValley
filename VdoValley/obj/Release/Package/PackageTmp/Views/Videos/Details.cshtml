@@ -1,15 +1,7 @@
-﻿@model VdoValley.Models.Video
+﻿@model VdoValley.ViewModels.VideoDetailsViewModel
 @using Microsoft.AspNet.Identity;
 @{
-    ViewBag.Title = Model.Title;
-    if (Model.Url == null)
-    {
-        ViewBag.OgThumbnail = Model.getFacebookVideoThumbnail(Model.getFacebookVideoCode(Model.EmbedCode), VdoValley.Models.FacebookThumbnailSize.MEDIUM).Replace("amp;", string.Empty);
-    }
-    else
-    {
-        ViewBag.OgThumbnail = Model.getDailyMotionThumb(Model.getDailyMotionVideoCode(Model.Url), VdoValley.Models.DailymotionThumbnailSize.thumbnail_large_url);
-    }
+    ViewBag.Title = Model.Video.Title;
 }
 
 <script>
@@ -75,39 +67,61 @@
                         <div class="col-md-8 content-top">
                             <div class="number">
                                 <div class="feb">
-                                    <b>@Model.DateTime.Day</b>
+                                    <b>@Model.Video.DateTime.Day</b>
                                     @{
-                                        string AbbreviatedMonth = new System.Globalization.DateTimeFormatInfo().GetAbbreviatedMonthName(Model.DateTime.Month).ToUpper();
+                                        string AbbreviatedMonth = new System.Globalization.DateTimeFormatInfo().GetAbbreviatedMonthName(Model.Video.DateTime.Month).ToUpper();
                                     }
                                     <label>@AbbreviatedMonth</label>
                                 </div>
-                                <h3>@Html.DisplayFor(model => model.Title)</h3>
+                                <h3>@Html.DisplayFor(model => model.Video.Title)</h3>
                                 
                                 <!-- AddThis: Put the following code in body tag -->
                                 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50ac72a051b245aa" async="async"></script>
 
                                 <!-- AddThis: Put the following code where to show the social media sharing icons -->
                                 <div class="addthis_sharing_toolbox"></div>
-                                @if (Model.Url == null)
+                                @if (Model.Video.Url == null)
                                 {
-                                    <div id="fb-root"></div>
-                                    <script>
-                                        (function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3"; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'facebook-jssdk'));
-                                        $(function () {
+                                    if(Model.Video.EmbedId == null)
+                                    {
+                                        <div id="fb-root"></div>
+                                        <script>
+                                            (function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3"; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'facebook-jssdk'));
+                                            $(function () {
                                             
-                                        });
-                                    </script>
-                                    <style>
-                                        .fb-video {
-                                            max-width: 700px !important;
-                                            max-height: 400px !important;
-                                        }
-                                    </style>
-                                    <p>@Html.Raw(Model.EmbedCode)</p>
+                                            });
+                                        </script>
+                                        <style>
+                                            .fb-video {
+                                                max-width: 700px !important;
+                                                max-height: 400px !important;
+                                            }
+                                        </style>
+                                        <p>@Html.Raw(Model.Video.EmbedCode)</p>
+                                    }
+                                    else
+                                    {
+                                        <div id="fb-root"></div>
+                                        <div class="fb-video"
+                                             data-href="https://www.facebook.com/video.php?v=@Model.Video.EmbedId"
+                                             data-width="700"
+                                             data-height="400"
+                                             data-allowfullscreen="true">
+                                        </div>
+                                        <script>
+                                            (function (d, s, id) {
+                                                var js, fjs = d.getElementsByTagName(s)[0];
+                                                if (d.getElementById(id)) return;
+                                                js = d.createElement(s); js.id = id;
+                                                js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+                                                fjs.parentNode.insertBefore(js, fjs);
+                                            }(document, 'script', 'facebook-jssdk'));
+                                        </script>
+                                    }
                                 }
                                 else
                                 {
-                                    <p><iframe frameborder="0" width="700" height="400" src="//www.dailymotion.com/embed/video/@Model.getDailyMotionVideoCode(Model.Url)" allowfullscreen></iframe><br /></p>
+                                    <p><iframe frameborder="0" width="700" height="400" src="//www.dailymotion.com/embed/video/@Model.Video.getDailyMotionVideoCode(Model.Video.Url)" allowfullscreen></iframe><br /></p>
                                 }
 
                                 <div class="simply">
@@ -134,35 +148,13 @@
                                             text-decoration: none;
                                         }
                                     </style>
-                                    @{
-                                        VdoValley.Models.VdoValleyContext db = new VdoValley.Models.VdoValleyContext();
-                                        List<VdoValley.Models.Rating> ratings = db.Ratings.Where(r => r.VideoId == Model.VideoId).ToList();
-                                        int TotalRating = 0;
-                                        foreach(VdoValley.Models.Rating rating in ratings)
-                                        {
-                                            TotalRating += rating.Score;
-                                        }
-                                        double AvgRating = TotalRating / (double)ratings.Count;
-                                        AvgRating = Math.Round(AvgRating, 2);
-                                        if (double.IsNaN(AvgRating)) { AvgRating = 0.0; }
-                                        
-                                        string LoggedInUserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
-                                        int CurrentUsersScore = 0;
-                                        List<VdoValley.Models.Rating> VideoScorer = db.Ratings.Where(r => r.ApplicationUserId.Equals(LoggedInUserId) && r.VideoId.Equals(Model.VideoId)).ToList();
-
-                                        if (VideoScorer.Count > 0)
-                                        {
-                                            CurrentUsersScore = VideoScorer[0].Score;
-                                        }
-                                        
-                                    }
                                     <div class="row">
                                         <div class="col-sm-6 col-md-6 col-lg-6">
                                             <div class="rating-star-block" id='div_0'>
-                                                <input type="hidden" class="articleID" value='@Model.VideoId' />Current Rating : <span class="CurrentScore">@AvgRating / 5</span><br /><div class="yourScore">Your Score is : @CurrentUsersScore</div>
+                                                <input type="hidden" class="articleID" value='@Model.Video.VideoId' />Current Rating : <span class="CurrentScore">@Model.AverageRating / 5</span><br /><div class="yourScore">Your Score is : @Model.CurrentUsersScore</div>
                                                 <input type="hidden" class="UserID" value='@System.Web.HttpContext.Current.User.Identity.GetUserId()' />
                                                 @{
-                                                    if (VideoScorer.Count == 0)
+                                                    if (Model.VideoScorer == null)
                                                     {
                                                         <a class="star outline" href="#" rating="1" title="vote 1"> vote 1</a>
                                                         <a class="star outline" href="#" rating="2" title="vote 2"> vote 2</a>
@@ -175,8 +167,7 @@
                                             <div class="tags-block">
                                                 <span>Tags: </span>
                                                 @{
-                                                    ICollection<VdoValley.Models.Video> relatedVideos = new List<VdoValley.Models.Video>();
-                                                    ICollection<VdoValley.Models.Tag> tags = Model.Tags;
+                                                    ICollection<VdoValley.Models.Tag> tags = Model.Video.Tags;
                                                     int counter = 0;
                                                     foreach (var tag in tags)
                                                     {
@@ -186,15 +177,6 @@
                                                             <span>,</span>
                                                         }
                                                         counter++;
-
-                                                        // get videos for curren tag
-                                                        foreach (var video in tag.Videos)
-                                                        {
-                                                            if(video.VideoId != Model.VideoId && !relatedVideos.Contains(video))
-                                                            {
-                                                                relatedVideos.Add(video);   
-                                                            }
-                                                        }
                                                     }
                                                 }
                                             </div>
@@ -202,7 +184,7 @@
                                         <div class="col-sm-6 col-md-6 col-lg-6">
                                             <!-- AddThis: Put the following code where to show the social media sharing icons -->
                                             <div class="addthis_sharing_toolbox col-md-12"></div>
-                                            <div class="col-md-12">Category: <a href="@Url.Action("Details", "Categories", new { id = Model.Category.CategoryId })">@Model.Category.Name</a></div>
+                                            <div class="col-md-12">Category: <a href="@Url.Action("Details", "Categories", new { id = Model.Video.Category.CategoryId })">@Model.Video.Category.Name</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -212,13 +194,13 @@
                                             <h4 class="stories stories-in"><span>Related Videos</span></h4>
                                         </div>
                                         @{
-                                            if (relatedVideos.Count == 0)
+                                            if (Model.RelatedVideos.Count() == 0)
                                             {
                                                 <span>No related videos available</span>
                                             }
                                             else 
                                             { 
-                                                foreach (var video in relatedVideos)
+                                                foreach (var video in Model.RelatedVideos)
                                                 {
                                                     <div class="thumbnail-container col-lg-3 col-md-4 col-xs-6 thumb">
                                                         <a class="thumbnail" href="/Videos/Details/@video.VideoId">
@@ -252,7 +234,7 @@
                                         @{
                                             Disqus.Initialize("vdovalley");
                                         }
-                                        @Disqus.ShowComments(Model.VideoId.ToString());
+                                        @Disqus.ShowComments(Model.Video.VideoId.ToString());
                                     </div>
 
                                     <!---->

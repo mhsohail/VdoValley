@@ -21,14 +21,26 @@
 
             var tokens = $(this).val().split(" ");
             var tags = [];
-
+            
             $(tokens).each(function (key, value) {
-                var tag = {
-                    Name:value
-                };
-                tags.push(tag);
-            });
+                
+                for (var j = key; j < tokens.length; j++)
+                {
+                    var token = "";
+                    for (var k = key; k <= j; k++)
+                    {
+                        token = token + " " + tokens[k];
+                    }
 
+                    if (token != " ") {
+                        var tag = {
+                            Name: token.trim()
+                        };
+                        tags.push(tag);
+                    }
+                }
+            });
+            
             $.ajax({
                 type: "POST",
                 url: "@Url.Action("GetTags", "Tags")",
@@ -87,8 +99,8 @@
         });
 
         function appendTag(tagName) {
-            if ($("#suggested-tags").find("#" + tagName).length > 0) return;
-            var li = "<li class=\"active\" id=\"" + tagName + "\"><a href=\"#\" style=\"background-color: #EEEEEE;padding:5px;color:grey;text-transform: lowercase;\">" + tagName + "</a></li>";
+            if ($("#suggested-tags").find("#" + tagName.replace(/\s/g, "_")).length > 0) return;
+            var li = "<li class=\"active\" id=\"" + tagName.replace(/\s/g, "_") + "\"><a href=\"#\" style=\"background-color: #EEEEEE;padding:5px;color:grey;text-transform: lowercase;\">" + tagName + "</a></li>";
             $("#suggested-tags").append(li);
 
             if ($("input[name='Tags").val().length == 0) {

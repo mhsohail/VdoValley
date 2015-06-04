@@ -41,12 +41,12 @@
             @Html.DisplayFor(modelItem => item.thumbnail_large_url)
         </td>
         <td>
-            @*@if (System.Web.HttpContext.Current.User.IsInRole("Administrator"))*@
+            @if (System.Web.HttpContext.Current.User.IsInRole("Administrator"))
             {
                 @Html.ActionLink("Edit", "Edit", new { id=item.VideoId })
             }
-            @Html.ActionLink("Details", "Details", new { id = item.VideoId, title = item.Title.Replace(" ", "-") }) |
-            @*@if (System.Web.HttpContext.Current.User.IsInRole("Administrator"))*@
+            @Html.ActionLink("Details", "Details", new { id = item.VideoId, title = item.Title.Replace(" ", "-") })
+            @if (System.Web.HttpContext.Current.User.IsInRole("Administrator"))
             {
                 @Html.ActionLink("Delete", "Delete", new { id = item.VideoId })
             }

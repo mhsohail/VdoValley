@@ -13,7 +13,6 @@ namespace VdoValley.ViewModels
         [Required]
         public string Title { get; set; }
         public string VideoType { get; set; }
-        
         [Display(Name="Short URL")]
         public string Url { get; set; }
         [AllowHtml]
@@ -21,11 +20,9 @@ namespace VdoValley.ViewModels
         public string EmbedCode { get; set; }
         public string Description { get; set; }
         public DateTime DateTime { get; set; }
-        
         [Display(Name="Tags (Comma Separated)")]
-        public string Tags { get; set; }        
+        public string Tags { get; set; }
         public bool Featured { get; set; }
-        
         [Display(Name="Category")]
         public int SelectedCategory { set; get; }
     }

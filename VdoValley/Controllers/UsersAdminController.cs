@@ -11,7 +11,7 @@ using VdoValley.Models;
 
 namespace VdoValley.Controllers
 {
-    //[Authorize(Roles = "SuperAdmin")]
+    [Authorize(Roles = "Administrator")]
     public class UsersAdminController : Controller
     {
         public UserManager<ApplicationUser> UserManager { get; private set; }

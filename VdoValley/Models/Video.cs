@@ -18,6 +18,7 @@ namespace VdoValley.Models
         public string Url { get; set; }
         public int? VideoTypeId { get; set; }
         public string EmbedCode { get; set; }
+        public string EmbedId { get; set; }
         public string Description { get; set; }
         [HiddenInput(DisplayValue = false)]
         public string thumbnail_large_url { get; set; }
@@ -55,22 +56,42 @@ namespace VdoValley.Models
             //string pattern = ;
             string code = string.Empty;
             //string pattern = "data-href=\\\"/[A-Za-z]+/videos/vb.[0-9]+/[0-9]+/?type=1";
-            string pattern0 = "data-href=\\\"/[A-Za-z0-9.]+/videos/(vb.[0-9]+/)?([0-9]+)/(\\?type=1)?";
-            string pattern1 = "data-href=\\\"https://www.facebook.com/video.php\\?v=([0-9]+)";
-            
-            Regex rgx0 = new Regex(pattern0, RegexOptions.IgnoreCase);
-            MatchCollection matches0 = rgx0.Matches(embed_code);
 
-            if (matches0.Count > 0)
+            List<string> patterns = new List<string>();
+            patterns.Add("data-href=\\\"/[A-Za-z0-9.]+/videos/(vb.[0-9]+/)?([0-9]+)/(\\?type=1)?");
+            patterns.Add("data-href=\\\"https://www.(facebook).com/video.php\\?v=([0-9]+)");
+            patterns.Add("<iframe src=\\\"https://www.(facebook).com/video/embed\\?video_id=([0-9]+)\"");
+
+            int i = 0;
+            bool retry = false;
+            do
             {
-                code = matches0[0].Groups[2].Value;
+                try
+                {
+                    Regex rgx = new Regex(patterns[i], RegexOptions.IgnoreCase);
+                    MatchCollection matches = rgx.Matches(embed_code);
+                    code = matches[0].Groups[2].Value;
+                    retry = false;
+                }
+                catch (ArgumentOutOfRangeException exc)
+                {
+                    if (i != patterns.Count - 1)
+                    {
+                        i++;
+                        retry = true;
+                    }
+                    else
+                    {
+                        code = "No match found";
+                        break;
+                    }
+                }
+                catch (Exception)
+                {
+                    code = "No match found";
+                }
             }
-            else
-            {
-                Regex rgx1 = new Regex(pattern1, RegexOptions.IgnoreCase);
-                MatchCollection matches1 = rgx1.Matches(embed_code);
-                code = matches1[0].Groups[1].Value;
-            }
+            while(retry);
 
             return code;
         }

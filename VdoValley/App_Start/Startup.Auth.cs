@@ -9,6 +9,7 @@ using VdoValley.Models;
 using Microsoft.Owin.Security.Facebook;
 using Microsoft.Owin.Security.MicrosoftAccount;
 using Owin.Security.Providers.Yahoo;
+using Owin.Security.Providers.LinkedIn;
 
 namespace VdoValley
 {
@@ -75,8 +76,8 @@ namespace VdoValley
 
             var options = new YahooAuthenticationOptions
             {
-                ConsumerKey = "dj0yJmk9U2lYV0Y5Tm5FaE9WJmQ9WVdrOWRtVlJNVTFITm5NbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD1kYQ--",
-                ConsumerSecret = "aa89d834b100dae0fada444216701161c2f6caa0",
+                ConsumerKey = "dj0yJmk9YU1WdGhtaFhueXhLJmQ9WVdrOVlWUXplRlUzTldVbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD1hMw--",
+                ConsumerSecret = "4739386db9b11509feadeeb178ee46af10077c2d",
                 Provider = new YahooAuthenticationProvider
                 {
                     OnAuthenticated = async context =>
@@ -96,6 +97,10 @@ namespace VdoValley
             };
 
             app.UseYahooAuthentication(options);
-        }
+
+            app.UseLinkedInAuthentication(
+                clientId: "77b6gb2j6qzwer",
+                clientSecret: "bll2q33FHVjDS1uZ");
+            }
     }
 }

@@ -129,3 +129,6 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.csproj.Gene
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.grgrgrhhh.resources
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Owin.Security.Providers.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.csprojResolveAssemblyReference.cache
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.EmbedIdFieldAdded.resources
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.VideoDetailsViewModelCreated.resources
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.Web.Administration.dll

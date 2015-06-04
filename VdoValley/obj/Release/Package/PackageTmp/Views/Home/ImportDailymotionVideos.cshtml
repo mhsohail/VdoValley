@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "ImportDailymotionVideos";
+}
+
+<h2>ImportDailymotionVideos</h2>
+
+@using (Ajax.BeginForm("GetDailymotionVideos", "Home", new { EmbedId = 1 },
+    new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "GET",
+        OnFailure = "ajaxFailed",
+        LoadingElementId = "ajax-loader",
+        UpdateTargetId = "searchresults",
+        OnComplete = "ajaxComplete",
+        OnSuccess = "ajaxSuccess"
+    }, new { id = "SelectFacebookPageForm" })
+)
+{
+    @Html.DropDownList("SelectDailymotionSource", new SelectList(
+        new List<Object> {
+            new { value = "zemtv", text = "Zem TV"  },
+            new { value = "Aman_Asif", text = "Aman Asif" }
+        },
+        "value",
+        "text", 0))
+    <img id="ajax-loader" src="@Url.Content("~/Images/ajax-loader.gif")" style="display:none;width:20px;" />
+}
+
+<div id="searchresults"></div>
+
+<script src="http://api.dmcdn.net/all.js"></script>    
+<script>
+    DM.init({
+        apiKey: 'c3aae1f9b8cf64a567a8',
+        status: true, // check login status
+        cookie: true // enable cookies to allow the server to access the session
+    });
+
+    function getDailymotionVideos(source) {
+        DM.getLoginStatus();
+        DM.api("/user/" + source + "/videos", { limit: 100, page: 2 }, function (response) {
+            //alert('Got ' + response.list.length + ' videos' + (response.has_more ? ' and has more' : ''));
+            $(response.list).each(function (k, v) {
+                $(".table tbody").append("<tr>" +
+                    "<td>" + v.id + "</td>" +
+                    "<td>" + v.title + "</td>" +
+                    "<td>" + getForm(v.id, v.title) + "</td>" +
+                "</tr>");
+            });
+            //$("#videos").html("<pre>videos: " + JSON.stringify(response));
+        });
+    }
+
+    $("#SelectDailymotionSource").change(function () {
+        getDailymotionVideos($(this).val())
+    });
+    
+    function getForm(EmbedId, Title)
+    {
+        return "<form class='addToVdoValleyForm'" +
+            "method='post'" +
+            "action='/Home/ImportFacebookVideo'>" +
+            "<input type='hidden' value='" + EmbedId + "' name='EmbedId'>" +
+            "<input type='hidden' value='" + Title + "' name='Title'>" +
+            "<input type='hidden' value='' name='Description'>" +
+            "<input type='hidden' value='' name='EmbedCode'>" +
+            "<input type='hidden' value='' name='PageName'>" +
+            "<input type='hidden' value='" + $("#VideoTypeId").val() + "' name='VideoTypeId'>" +
+            "<input type='submit' value='Add'>" +
+            "<img class=\"ajax-loader\" src=\"/Images/ajax-loader.gif\" style=\"display:none;width:20px;\" /></form>";
+    }
+
+    $(function () {
+        $(document).on("submit", ".addToVdoValleyForm", function (e) {
+            $(this).find(".ajax-loader").show();
+
+            var data = {
+                video: {
+                    EmbedId: $(this).find("input[name='EmbedId']").val(),
+                    Title: $(this).find("input[name='Title']").val(),
+                    Description: $(this).find("input[name='Description']").val(),
+                    EmbedCode: "",
+                    PageName: "",
+                    VideoTypeId: $(this).find("input[name='VideoTypeId']").val()
+                }
+            };
+
+            $.ajax({
+                url: "/Home/ImportFacebookVideo",
+                type:"POST",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(data),
+                complete: function (xhr, status) {
+                    alert(xhr);
+                }
+            });
+
+            e.preventDefault();
+        });
+    });
+
+</script>
+
+<div id="videos"></div>
+
+<table class="table">
+    <tr id="theader">
+        <th>Id</th>
+        <th>Title</th>
+        <th>Import</th>
+        <th></th>
+    </tr>
+    <tbody>
+
+    </tbody>
+</table>
+
+<input type="hidden" value="@ViewBag.VideoTypeId" id="VideoTypeId">
