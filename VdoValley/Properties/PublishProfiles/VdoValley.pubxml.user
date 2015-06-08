@@ -508,7 +508,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/26/2015 23:59:25</publishTime>
     </File>
     <File Include="Scripts/AutoTagsSuggestion.js">
-      <publishTime>06/08/2015 11:13:19</publishTime>
+      <publishTime>06/08/2015 11:56:34</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>05/23/2015 00:25:25</publishTime>

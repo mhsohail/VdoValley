@@ -55,7 +55,6 @@ function handleData(data, pageName) {
 function appendTag(tagName, pageName) {
     
     if (pageName == "createVideo" || pageName == "editVideo") {
-        alert(tagName);
         if ($("#suggested-tags").find("#" + tagName.replace(/[\s']/g, "_")).length > 0) return;
         var li = "<li class=\"active\" id=\"" + tagName.replace(/[\s']/g, "_") + "\"><a href=\"#\" style=\"background-color: #EEEEEE;padding:5px;color:grey;text-transform: lowercase;\">" + tagName + "</a></li>";
         $("#suggested-tags").append(li);
