@@ -24,19 +24,23 @@ namespace VdoValley.Controllers
         public ActionResult Index(int? page)
         {
             HomeViewModel hvm = new HomeViewModel();
-            hvm.AllVideos = db.Videos.ToList();
-
             IPagedList<Video> videos = null;
             try
             {
                 videos = db.Videos.ToList().ToPagedList(page ?? 1, 24);
+                hvm.AllVideos = db.Videos;
+                hvm.FashionVideos = db.Categories.FirstOrDefault(c => c.CategoryId == 15).Videos.OrderByDescending(v => v.DateTime).Take(8);
+                hvm.FunnyVideos = db.Categories.FirstOrDefault(c => c.CategoryId == 12).Videos.OrderByDescending(v => v.DateTime).Take(8);
+                hvm.PoliticsVideos = db.Categories.FirstOrDefault(c => c.CategoryId == 13).Videos.OrderByDescending(v => v.DateTime).Take(8);
+                hvm.SportsVideos = db.Categories.FirstOrDefault(c => c.CategoryId == 14).Videos.OrderByDescending(v => v.DateTime).Take(8);
+                hvm.TalkShowVideos = db.Categories.FirstOrDefault(c => c.CategoryId == 16).Videos.OrderByDescending(v => v.DateTime).Take(8);
             }
             catch(Exception e)
             {
                 
             }
 
-            return View(videos);
+            return View(hvm);
         }
 
         public ActionResult About()
@@ -69,44 +73,50 @@ namespace VdoValley.Controllers
         }
 
         [AjaxRequestOnly]
-        public string ImportFacebookVideo([Bind(Include = "EmbedId,Title,Description,EmbedCode,PageName,VideoTypeId")] Video video)
+        public string ImportFacebookVideo([Bind(Include = "EmbedId,Title,Description,EmbedCode,PageName,VideoTypeId,SelectedCategory,Tags")] VideoViewModel vvm)
         {
             Dictionary<string, object> response = new Dictionary<string, object>();
-            
+            new VideosController().Create(vvm);
             try
             {
-                var ii = (int)VideoTypeEnum.DAILYMOTION;
-                var jj = VideoTypeEnum.DAILYMOTION.ToString();
-                if (int.Parse("12") == video.VideoTypeId)
-                { }
-                
-                video.EmbedCode = WebUtility.HtmlDecode(video.EmbedCode);
-                video.DateTime = DateTime.Now;
-                video.Featured = false;
-                video.CategoryId = 1;
-                if (video.Title == null)
-                {
-                    video.Title = video.Description;
-                }
-
-                var videoInDb = db.Videos.FirstOrDefault(v => v.EmbedId.Equals(video.EmbedId));
-                if (videoInDb != null)
-                {
-                    response["success"] = true;
-                    response["message"] = "Video already added to VdoValley.";
-                    return JsonConvert.SerializeObject(response);
-                }
-                db.Videos.Add(video);
-                db.SaveChanges();
-                
-                response["success"] = true;
-                response["message"] = "Video saved.";
+                //video.EmbedCode = WebUtility.HtmlDecode(video.EmbedCode);
+                //if (video.VideoTypeId == 1) // id dailymotion video
+                //{
+                //    video.Url = "http://dai.ly/" + video.EmbedId;
+                //    video.EmbedCode = string.Empty;
+                //}
+                //
+                //if (video.VideoTypeId != 1) // id fb video
+                //{
+                //    video.CategoryId = 1;
+                //}
+                //
+                //video.DateTime = DateTime.Now;
+                //video.Featured = false;
+                //
+                //if (video.Title == null)
+                //{
+                //    video.Title = video.Description;
+                //}
+                //
+                //var videoInDb = db.Videos.FirstOrDefault(v => v.EmbedId.Equals(video.EmbedId));
+                //if (videoInDb != null)
+                //{
+                //    response["success"] = true;
+                //    response["message"] = "Video already added to VdoValley.";
+                //    return JsonConvert.SerializeObject(response);
+                //}
+                //db.Videos.Add(video);
+                //db.SaveChanges();
+                //
+                //response["success"] = true;
+                //response["message"] = "Video saved.";
                 return JsonConvert.SerializeObject(response);
             }
             catch(Exception exc)
             {
-                response["success"] = false;
-                response["message"] = "Video saving failed.";
+                //response["success"] = false;
+                //response["message"] = "Video saving failed.";
                 return JsonConvert.SerializeObject(response);
             }
         }
@@ -179,8 +189,17 @@ namespace VdoValley.Controllers
 
         public ActionResult ImportDailymotionVideos()
         {
-            var VideoTypeId = db.VideoTypes.FirstOrDefault(vt => vt.VideoTypeName == VideoTypeEnum.DAILYMOTION).VideoTypeId;
-            ViewBag.VideoTypeId = VideoTypeId;
+            var VideoTypeId = 0;
+            try
+            {
+                VideoTypeId = db.VideoTypes.FirstOrDefault(vt => vt.VideoTypeName == VideoTypeEnum.DAILYMOTION).VideoTypeId;
+                ViewBag.VideoTypeId = VideoTypeId;
+            }
+            catch(Exception exc)
+            {
+            
+            }
+            
             return View();
         }
     }

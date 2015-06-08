@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
+using VdoValley.Models;
 
 namespace VdoValley.Helpers
 {
@@ -29,6 +30,14 @@ namespace VdoValley.Helpers
                 commentsCount = threads.response[0].posts;
             }
             return commentsCount;
+        }
+
+        public static bool VideoExists(Video video)
+        {
+            VdoValleyContext db = new VdoValleyContext();
+            var vdo = db.Videos.FirstOrDefault(v => v.EmbedId == video.EmbedId);
+            if (vdo == null) { return false; }
+            return true;
         }
     }
 }

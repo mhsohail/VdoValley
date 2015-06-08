@@ -18,51 +18,10 @@
 <script>
     $(function () {
         $("#Title").keyup(function () {
-
-            var tokens = $(this).val().split(" ");
-            var tags = [];
-            
-            $(tokens).each(function (key, value) {
-                
-                for (var j = key; j < tokens.length; j++)
-                {
-                    var token = "";
-                    for (var k = key; k <= j; k++)
-                    {
-                        token = token + " " + tokens[k];
-                    }
-
-                    if (token != " ") {
-                        var tag = {
-                            Name: token.trim()
-                        };
-                        tags.push(tag);
-                    }
-                }
-            });
-            
-            $.ajax({
-                type: "POST",
-                url: "@Url.Action("GetTags", "Tags")",
-                data: JSON.stringify(tags),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    handleData(response);
-                },
-                error: function (xhr, status, error) {
-                    handleData(xhr.responseText);
-                }
-            });
+            // below function is defined in AutoTagsSuggestion.js file
+            getTags($(this).val(), "createVideo");
         });
-
-        function handleData(data) {
-            console.log(data);
-            $(data).each(function (key, val) {
-                appendTag(val.Name);
-            });
-        }
-
+        
         $("#suggested-tags").on("click", ".active", function (e) {
             e.preventDefault();
 
@@ -92,24 +51,13 @@
         });
 
         $("input[name='InputTags']").keyup(function (e) {
-            if ($(this).val().substr(-1) == ",") {
-                appendTag($(this).val().substring(0, $(this).val().length - 1));
+            var tag = $(this).val();
+            if (tag.substr(-1) == ",") {
+                appendTag(tag.substring(0, tag.length - 1), "createVideo");
                 $(this).val("");
             }
         });
-
-        function appendTag(tagName) {
-            if ($("#suggested-tags").find("#" + tagName.replace(/\s/g, "_")).length > 0) return;
-            var li = "<li class=\"active\" id=\"" + tagName.replace(/\s/g, "_") + "\"><a href=\"#\" style=\"background-color: #EEEEEE;padding:5px;color:grey;text-transform: lowercase;\">" + tagName + "</a></li>";
-            $("#suggested-tags").append(li);
-
-            if ($("input[name='Tags").val().length == 0) {
-                $("input[name='Tags").val(tagName);
-            } else {
-                $("input[name='Tags").val($("input[name='Tags").val() + "," + tagName);
-            }
-        }
-
+        
         $("#Url").change(function () {
             var input = $(this).val();
             var matches = input.match(/(http:\/\/dai.ly\/)(\S+)/);
@@ -176,9 +124,9 @@
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                @Html.LabelFor(model => model.VideoType, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.VideoTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.VideoType, new SelectList(TempData["VideoTypes"] as System.Collections.IEnumerable, "VideoTypeId", "VideoTypeName"), "-Select Video Type-", htmlAttributes: new { @class = "form-control", style = "width: 350px;" })
+                    @Html.DropDownListFor(model => model.VideoTypeId, new SelectList(TempData["VideoTypes"] as System.Collections.IEnumerable, "VideoTypeId", "VideoTypeName"), "-Select Video Type-", htmlAttributes: new { @class = "form-control", style = "width: 350px;" })
                     @Html.ValidationMessage("VideoType", "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -222,7 +170,15 @@
                     @Html.ValidationMessageFor(model => model.SelectedCategory, "", new { @class = "text-danger" })
                 </div>
             </div>
-            
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Featured, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Featured, new { htmlAttributes = new { @class = "form-control", style = "width: 350px;" } })
+                    @Html.ValidationMessageFor(model => model.Featured, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Tags, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -254,7 +210,7 @@
             </div>
     }
 </div>
-
+<script src="~/Scripts/AutoTagsSuggestion.js"></script>
 <div>
     @*@Html.ActionLink("Back to List", "Index")*@
 </div>

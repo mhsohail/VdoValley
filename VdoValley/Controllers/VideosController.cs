@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 using VdoValley.ViewModels;
 using VdoValley.Attributes;
 using Microsoft.AspNet.Identity.EntityFramework;
+using VdoValley.Helpers;
 
 namespace VdoValley.Controllers
 {
@@ -106,7 +107,7 @@ namespace VdoValley.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Url,EmbedCode,Description,Tags,SelectedCategory")] VideoViewModel vvm)
+        public ActionResult Create([Bind(Include = "Id,Title,Url,EmbedCode,EmbedId,Description,Tags,SelectedCategory,VideoTypeId,PageName,Featured")] VideoViewModel vvm)
         {
             if (ModelState.IsValid)
             {
@@ -115,49 +116,99 @@ namespace VdoValley.Controllers
                     try
                     {
                         vvm.DateTime = DateTime.Now;
+                        vvm.Tags = (vvm.Tags == null) ? vvm.Tags : Uri.UnescapeDataString(vvm.Tags);
                         var video = ViewModelHelpers.VMHelper.ToDomainVideoModel(vvm);
+                        video.EmbedCode = WebUtility.HtmlDecode(video.EmbedCode);
 
-                        List<string> tags = new List<string>();
-                        if (vvm.Tags != null)
+                        if (video.VideoTypeId == 1) // id dailymotion video
                         {
-                            tags = vvm.Tags.Split(',').ToList();
-                        }
-
-                        List<Tag> tagsToAdd = new List<Tag>();
-                        foreach (var tag in tags)
-                        {
-                            Tag newTag = new Tag();
-                            newTag.Name = tag.Trim().ToLower();
-                            var tagInDb = db.Tags.FirstOrDefault(t => t.Name.Equals(tag));
-                            if (tagInDb == null)
+                            if (video.Url == null && video.EmbedId != null)
                             {
-                                tagsToAdd.Add(newTag);
+                                video.Url = "http://dai.ly/" + video.EmbedId;
                             }
-                            else
-                            {
-                                tagsToAdd.Add(tagInDb);
-                            }
-                        }
 
-                        db.Videos.Add(video);
-                        db.SaveChanges();
-                        video.Tags = new List<Tag>();
-                        foreach (var tag in tagsToAdd)
-                        {
-                            if(tag.TagId.Equals(0))
+                            if (video.EmbedId == null && video.Url != null)
                             {
-                                db.Tags.Add(tag);
-                                db.SaveChanges();
+                                video.EmbedId = video.getDailyMotionVideoCode(video.Url);
                             }
                             
-                            db.Tags.Attach(tag);
-                            video.Tags.Add(tag);
-                            db.SaveChanges();
+                            video.EmbedCode = null;
                         }
                         
-                        tran.Commit();
-                        return RedirectToAction("Details/"+video.VideoId);
-                        
+                        if (video.VideoTypeId != 1) // id fb video
+                        {
+                            video.CategoryId = 1;
+                        }
+
+                        if (video.Title == null)
+                        {
+                            video.Title = video.Description;
+                        }
+
+                        if (VideoHelper.VideoExists(video))
+                        {
+                            // if this video already exists in database
+                            /*
+                            response["success"] = true;
+                            response["message"] = "Video already added to VdoValley.";
+                            return JsonConvert.SerializeObject(response);
+                            */
+                        }
+                        else
+                        {
+                            if (video.Featured == true)
+                            {
+                                var FeaturedVideos = db.Videos.Where(v => v.Featured == true);
+                                foreach (var fv in FeaturedVideos)
+                                {
+                                    if (fv != video) // if the featured video is not the current video being posted
+                                    {
+                                        fv.Featured = false;
+                                    }
+                                }
+                            }
+
+                            List<string> tags = new List<string>();
+                            if (vvm.Tags != null)
+                            {
+                                tags = vvm.Tags.Split(',').ToList();
+                            }
+
+                            List<Tag> tagsToAdd = new List<Tag>();
+                            foreach (var tag in tags)
+                            {
+                                Tag newTag = new Tag();
+                                newTag.Name = tag.Trim().ToLower();
+                                var tagInDb = db.Tags.FirstOrDefault(t => t.Name.Equals(tag));
+                                if (tagInDb == null)
+                                {
+                                    tagsToAdd.Add(newTag);
+                                }
+                                else
+                                {
+                                    tagsToAdd.Add(tagInDb);
+                                }
+                            }
+
+                            db.Videos.Add(video);
+                            db.SaveChanges();
+                            video.Tags = new List<Tag>();
+                            foreach (var tag in tagsToAdd)
+                            {
+                                if (tag.TagId.Equals(0))
+                                {
+                                    db.Tags.Add(tag);
+                                    db.SaveChanges();
+                                }
+
+                                db.Tags.Attach(tag);
+                                video.Tags.Add(tag);
+                                db.SaveChanges();
+                            }
+
+                            tran.Commit();
+                            return RedirectToAction("Details/" + video.VideoId);
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -217,7 +268,7 @@ namespace VdoValley.Controllers
         [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "VideoId,DateTime,Title,Url,Description,Tags,SelectedCategory")] VideoViewModel vvm)
+        public ActionResult Edit([Bind(Include = "VideoId,DateTime,Title,Url,Description,Tags,SelectedCategory,Featured")] VideoViewModel vvm)
         {
             //return View();
             Video video = null;
@@ -229,8 +280,21 @@ namespace VdoValley.Controllers
                     {
                         // get the domain model from VM
                         video = ViewModelHelpers.VMHelper.ToDomainVideoModel(vvm);
-                        
+
+                        if (video.Featured == true)
+                        {
+                            var FeaturedVideos = db.Videos.Where(v => v.Featured == true);
+                            foreach(var fv in FeaturedVideos)
+                            {
+                                if (fv != video) // if the featured video is not the current video being posted
+                                {
+                                    fv.Featured = false;
+                                }
+                            }
+                        }
+
                         // get tags
+                        vvm.Tags = (vvm.Tags == null) ? vvm.Tags : Uri.UnescapeDataString(vvm.Tags);
                         List<string> updatedTags = new List<string>();
                         if (vvm.Tags != null)
                         {
@@ -243,7 +307,8 @@ namespace VdoValley.Controllers
                         vdo.Title = video.Title;
                         vdo.Description = video.Description;
                         vdo.CategoryId = video.CategoryId;
-                        
+                        vdo.Featured = video.Featured;
+
                         //db.Configuration.ProxyCreationEnabled = true;
                         /*
                         var vdo = db.Videos

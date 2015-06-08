@@ -21,7 +21,14 @@
     @Html.DropDownList("SelectDailymotionSource", new SelectList(
         new List<Object> {
             new { value = "zemtv", text = "Zem TV"  },
-            new { value = "Aman_Asif", text = "Aman Asif" }
+            new { value = "vdovalley", text = "VdoValley"  },
+            new { value = "Aman_Asif", text = "Aman Asif" },
+            new { value = "glowtvpk", text = "GlowTvPK" },
+            new { value = "fashioncentralpk", text = "FashionCentralPK" },
+            new { value = "PkdanceCreations", text = "PkDanceCreations" },
+            new { value = "eddythunderstorms", text = "EddyThunderStorms Funny Videos" },
+            new { value = "funnyworld20", text = "FunnyWorld20" },
+            new { value = "PTVSports", text = "PTVSports" },
         },
         "value",
         "text", 0))
@@ -39,35 +46,53 @@
     });
 
     function getDailymotionVideos(source) {
+        $(".table tbody").html("");
         DM.getLoginStatus();
-        DM.api("/user/" + source + "/videos", { limit: 100, page: 2 }, function (response) {
+        DM.api("/user/" + source + "/videos", { limit: 100, page: 1 }, function (response) {
             //alert('Got ' + response.list.length + ' videos' + (response.has_more ? ' and has more' : ''));
             $(response.list).each(function (k, v) {
-                $(".table tbody").append("<tr>" +
-                    "<td>" + v.id + "</td>" +
-                    "<td>" + v.title + "</td>" +
-                    "<td>" + getForm(v.id, v.title) + "</td>" +
-                "</tr>");
+                
+                var thumbUrl = null;
+                DM.api("/video/" + v.id + "?fields=thumbnail_small_url", function (response) {
+                    thumbUrl = response.thumbnail_small_url;
+                    $(".table tbody").append("<tr>" +
+                        "<td>" + v.id + "</td>" +
+                        "<td class='video-title'>" + v.title + "</td>" +
+                        "<td><a href='http://dai.ly/" + v.id + "' target='_blank'><img src='" + thumbUrl + "' /></a></td>" +
+                        "<td class='suggested-tags'></td>" +
+                        "<td>" + getForm(v.id, v.title) + "</td>" +
+                    "</tr>");
+                });
             });
-            //$("#videos").html("<pre>videos: " + JSON.stringify(response));
         });
     }
 
     $("#SelectDailymotionSource").change(function () {
         getDailymotionVideos($(this).val())
     });
-    
+
     function getForm(EmbedId, Title)
     {
         return "<form class='addToVdoValleyForm'" +
             "method='post'" +
             "action='/Home/ImportFacebookVideo'>" +
             "<input type='hidden' value='" + EmbedId + "' name='EmbedId'>" +
-            "<input type='hidden' value='" + Title + "' name='Title'>" +
+            "<input type='hidden' value='" + Title.replace(/'/g, "%27") + "' name='Title'>" +
             "<input type='hidden' value='' name='Description'>" +
             "<input type='hidden' value='' name='EmbedCode'>" +
             "<input type='hidden' value='' name='PageName'>" +
             "<input type='hidden' value='" + $("#VideoTypeId").val() + "' name='VideoTypeId'>" +
+            "<input type='text' value=\"\" name='InputTags' id='InputTags'>" +
+            "<select id='SelectedCategory' name='SelectedCategory'>" +
+                "<option value=''>-Select Category-</option>" +
+                "<option value='1'>General Category</option>" +
+                "<option value='12'>Funny Videos</option>" +
+                "<option value='13'>Politics</option>" +
+                "<option value='14'>Sports</option>" +
+                "<option value='15'>Fashion &amp; Designing</option>" +
+                "<option value='16'>Talk Show</option>" +
+            "</select>" +
+            "<input id='Tags' name='Tags' type='hidden' value=\"\">" +
             "<input type='submit' value='Add'>" +
             "<img class=\"ajax-loader\" src=\"/Images/ajax-loader.gif\" style=\"display:none;width:20px;\" /></form>";
     }
@@ -77,16 +102,18 @@
             $(this).find(".ajax-loader").show();
 
             var data = {
-                video: {
+                vvm: {
                     EmbedId: $(this).find("input[name='EmbedId']").val(),
                     Title: $(this).find("input[name='Title']").val(),
                     Description: $(this).find("input[name='Description']").val(),
-                    EmbedCode: "",
-                    PageName: "",
-                    VideoTypeId: $(this).find("input[name='VideoTypeId']").val()
+                    EmbedCode: null,
+                    PageName: null,
+                    VideoTypeId: $(this).find("input[name='VideoTypeId']").val(),
+                    SelectedCategory: $(this).find("select[name='SelectedCategory']").val(),
+                    Tags: $(this).find("input[name='Tags']").val()
                 }
             };
-
+            
             $.ajax({
                 url: "/Home/ImportFacebookVideo",
                 type:"POST",
@@ -94,7 +121,8 @@
                 dataType: "json",
                 data: JSON.stringify(data),
                 complete: function (xhr, status) {
-                    alert(xhr);
+                    alert(JSON.stringify(xhr));
+                    $(this).find(".ajax-loader").show();
                 }
             });
 
@@ -106,10 +134,22 @@
 
 <div id="videos"></div>
 
+<style>
+    .nav-pills li a {
+        background-color: lightgray;
+    }
+
+    #suggested-tags {
+        margin-left: 18%;
+    }
+</style>
+
 <table class="table">
     <tr id="theader">
         <th>Id</th>
         <th>Title</th>
+        <th>Preview</th>
+        <th>Tags</th>
         <th>Import</th>
         <th></th>
     </tr>
@@ -119,3 +159,5 @@
 </table>
 
 <input type="hidden" value="@ViewBag.VideoTypeId" id="VideoTypeId">
+
+<script src="~/Scripts/AutoTagsSuggestion.js"></script>

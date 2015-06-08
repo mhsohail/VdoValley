@@ -27,6 +27,7 @@ namespace VdoValley.Models
         public bool Featured { get; set; }
         public int TotalRating { get; set; }
         public int RatingCount { get; set; }
+        public string PageName { get; set; }
 
         public virtual Category Category { set; get; }
         public virtual ICollection<Rating> Ratings { get; set; }
@@ -38,16 +39,25 @@ namespace VdoValley.Models
             string code = string.Empty;
             string pattern = @"(http://dai.ly/)(\S*)";
             Regex rgx = new Regex(pattern, RegexOptions.IgnoreCase);
-            MatchCollection matches = rgx.Matches(short_url);
-            if (matches.Count > 0)
+            MatchCollection matches = null;
+
+            try
             {
-                foreach (Match match in matches)
+                matches = rgx.Matches(short_url);
+                if (matches.Count > 0)
                 {
-                    code = match.Value;
+                    foreach (Match match in matches)
+                    {
+                        code = matches[0].Groups[2].Value;
+                    }
                 }
             }
+            catch(Exception exc)
+            {
+                code = exc.Message;
+            }
             
-            return matches[0].Groups[2].Value;
+            return code;
         }
 
         public string getFacebookVideoCode(string embed_code)

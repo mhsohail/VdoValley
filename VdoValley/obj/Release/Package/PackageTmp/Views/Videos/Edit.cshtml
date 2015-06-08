@@ -26,7 +26,7 @@
             var tags = $.parseJSON(data);
             console.log(tags);
             $(tags).each(function (index, val) {
-                appendTag(val.Name);
+                appendTag(val.Name, "editVideo");
             });
         }
 
@@ -59,23 +59,13 @@
         });
 
         $("input[name='InputTags']").keyup(function (e) {
-            if ($(this).val().substr(-1) == ",") {
-                appendTag($(this).val().substring(0, $(this).val().length - 1));
+            var tag = $(this).val();
+            if (tag.substr(-1) == ",") {
+                appendTag(tag.substring(0, tag.length - 1), "editVideo");
                 $(this).val("");
             }
         });
 
-        function appendTag(tagName) {
-            if ($("#suggested-tags").find("#" + tagName).length > 0) return;
-            var li = "<li class=\"active\" id=\"" + tagName + "\"><a href=\"#\" style=\"background-color: #EEEEEE;padding:5px;color:grey;text-transform: lowercase;\">" + tagName + "</a></li>";
-            $("#suggested-tags").append(li);
-
-            if ($("input[name='Tags").val().length == 0) {
-                $("input[name='Tags").val(tagName);
-            } else {
-                $("input[name='Tags").val($("input[name='Tags").val() + "," + tagName);
-            }
-        }
     });
 </script>
 <h2>Edit</h2>
@@ -124,6 +114,14 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Featured, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Featured, new { htmlAttributes = new { @class = "form-control", style = "width: 350px;" } })
+                @Html.ValidationMessageFor(model => model.Featured, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.Tags, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.Tags, new { @class = "form-control", style = "width: 350px;", id = "InputTags", Name = "InputTags" })
@@ -154,7 +152,7 @@
         </div>
     </div>
 }
-
+<script src="~/Scripts/AutoTagsSuggestion.js"></script>
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

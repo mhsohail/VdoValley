@@ -132,3 +132,4 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Owin.Security.Providers.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Release\VdoValley.Migrations.EmbedIdFieldAdded.resources
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Release\VdoValley.Migrations.VideoDetailsViewModelCreated.resources
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.Web.Administration.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Release\VdoValley.Migrations.PageNameFieldAdded.resources

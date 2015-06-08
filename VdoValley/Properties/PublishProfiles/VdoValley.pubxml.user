@@ -118,7 +118,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2015 00:23:09</publishTime>
     </File>
     <File Include="bin/VdoValley.dll">
-      <publishTime>06/03/2015 12:24:53</publishTime>
+      <publishTime>06/08/2015 11:38:11</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>05/23/2015 00:23:20</publishTime>
@@ -507,6 +507,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="packages.config">
       <publishTime>05/26/2015 23:59:25</publishTime>
     </File>
+    <File Include="Scripts/AutoTagsSuggestion.js">
+      <publishTime>06/08/2015 11:13:19</publishTime>
+    </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>05/23/2015 00:25:25</publishTime>
     </File>
@@ -703,16 +706,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:20:56</publishTime>
     </File>
     <File Include="Views/Home/FacebookImport.cshtml">
-      <publishTime>05/28/2015 19:53:00</publishTime>
+      <publishTime>06/05/2015 14:12:13</publishTime>
     </File>
     <File Include="Views/Home/ImportDailymotionVideos.cshtml">
-      <publishTime>05/31/2015 10:57:22</publishTime>
+      <publishTime>06/08/2015 09:21:07</publishTime>
     </File>
     <File Include="Views/Home/ImportFacebookVideo.cshtml">
       <publishTime>05/31/2015 10:02:12</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>05/28/2015 19:43:50</publishTime>
+      <publishTime>06/07/2015 16:18:58</publishTime>
     </File>
     <File Include="Views/Home/Search.cshtml">
       <publishTime>05/03/2015 23:05:57</publishTime>
@@ -799,13 +802,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/03/2015 15:46:47</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>05/30/2015 21:06:02</publishTime>
+      <publishTime>06/06/2015 17:13:51</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>05/01/2015 15:49:56</publishTime>
     </File>
     <File Include="Views/Shared/_SidebarPartial.cshtml">
-      <publishTime>05/17/2015 00:32:52</publishTime>
+      <publishTime>06/07/2015 17:57:32</publishTime>
     </File>
     <File Include="Views/Tags/Create.cshtml">
       <publishTime>05/18/2015 00:01:55</publishTime>
@@ -838,19 +841,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/19/2015 21:02:28</publishTime>
     </File>
     <File Include="Views/Videos/Create.cshtml">
-      <publishTime>06/03/2015 12:21:07</publishTime>
+      <publishTime>06/08/2015 11:02:47</publishTime>
     </File>
     <File Include="Views/Videos/Delete.cshtml">
       <publishTime>05/20/2015 17:35:13</publishTime>
     </File>
     <File Include="Views/Videos/Details.cshtml">
-      <publishTime>05/28/2015 02:16:35</publishTime>
+      <publishTime>06/06/2015 16:50:16</publishTime>
     </File>
     <File Include="Views/Videos/Details_orig.cshtml">
-      <publishTime>04/26/2015 18:31:40</publishTime>
+      <publishTime>06/06/2015 17:21:41</publishTime>
     </File>
     <File Include="Views/Videos/Edit.cshtml">
-      <publishTime>05/08/2015 18:16:13</publishTime>
+      <publishTime>06/08/2015 11:15:41</publishTime>
     </File>
     <File Include="Views/Videos/Index.cshtml">
       <publishTime>05/25/2015 15:05:39</publishTime>
