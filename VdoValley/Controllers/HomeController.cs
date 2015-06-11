@@ -34,6 +34,7 @@ namespace VdoValley.Controllers
                 hvm.PoliticsVideos = db.Categories.FirstOrDefault(c => c.CategoryId == 13).Videos.OrderByDescending(v => v.DateTime).Take(8);
                 hvm.SportsVideos = db.Categories.FirstOrDefault(c => c.CategoryId == 14).Videos.OrderByDescending(v => v.DateTime).Take(8);
                 hvm.TalkShowVideos = db.Categories.FirstOrDefault(c => c.CategoryId == 16).Videos.OrderByDescending(v => v.DateTime).Take(8);
+                hvm.NewsVideos = db.Categories.FirstOrDefault(c => c.CategoryId == 17).Videos.OrderByDescending(v => v.DateTime).Take(8);
             }
             catch(Exception e)
             {

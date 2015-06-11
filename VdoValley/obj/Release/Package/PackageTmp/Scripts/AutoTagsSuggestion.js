@@ -20,6 +20,14 @@ function getTags(title, pageName) {
             }
 
             if (token != " ") {
+
+                // remove special characters at start of string
+                token = token.replace(/^([^a-zA-Z0-9])*/, "");
+                // remove special characters at the end of string
+                token = token.replace(/([^a-zA-Z0-9])*$/, "");
+                // remove 's|' at the end of string
+                token = token.replace(/('s|')$/, "");
+
                 var tag = {
                     Name: token.trim()
                 };

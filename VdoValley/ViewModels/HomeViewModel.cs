@@ -16,5 +16,6 @@ namespace VdoValley.ViewModels
         public IEnumerable<Video> FashionVideos { get; set; }
         public IEnumerable<Video> SportsVideos { get; set; }
         public IEnumerable<Video> FunnyVideos { get; set; }
+        public IEnumerable<Video> NewsVideos { get; set; }
     }
 }
