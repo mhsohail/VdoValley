@@ -74,8 +74,7 @@ namespace VdoValley.Models
         public System.Data.Entity.DbSet<VdoValley.Models.Tag> Tags { get; set; }
         public System.Data.Entity.DbSet<VdoValley.Models.Category> Categories { get; set; }
         public System.Data.Entity.DbSet<VdoValley.Models.VideoType> VideoTypes { get; set; }
-
         public System.Data.Entity.DbSet<VdoValley.Models.FbVideo> FbVideos { get; set; }
-    
+        public System.Data.Entity.DbSet<VdoValley.Models.Post> Posts { get; set; }
     }
 }
