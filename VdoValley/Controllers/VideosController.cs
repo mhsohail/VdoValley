@@ -137,7 +137,10 @@ namespace VdoValley.Controllers
                         
                         if (video.VideoTypeId != 1) // id fb video
                         {
-                            video.CategoryId = 1;
+                            if (video.CategoryId == null)
+                            {
+                                video.CategoryId = 1;
+                            }
                         }
 
                         if (video.Title == null)

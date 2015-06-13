@@ -128,8 +128,8 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.csproj.GenerateResource.Cache
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.grgrgrhhh.resources
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Owin.Security.Providers.dll
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.csprojResolveAssemblyReference.cache
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.EmbedIdFieldAdded.resources
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.VideoDetailsViewModelCreated.resources
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.Web.Administration.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.PageNameFieldAdded.resources
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\AuthorizeNet.dll

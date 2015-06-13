@@ -35,7 +35,7 @@ namespace VdoValley.Helpers
         public static bool VideoExists(Video video)
         {
             VdoValleyContext db = new VdoValleyContext();
-            var vdo = db.Videos.FirstOrDefault(v => v.EmbedId == video.EmbedId);
+            var vdo = db.Videos.FirstOrDefault(v => v.EmbedId == video.EmbedId && v.EmbedId != null);
             if (vdo == null) { return false; }
             return true;
         }
