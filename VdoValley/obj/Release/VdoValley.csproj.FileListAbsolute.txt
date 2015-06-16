@@ -135,3 +135,6 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.Web.Administratio
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Release\VdoValley.Migrations.PageNameFieldAdded.resources
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\AuthorizeNet.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Release\VdoValley.Migrations.postModel.resources
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Release\VdoValley.Migrations.PostModelModified.resources
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Release\VdoValley.Migrations.PostModelModified1.resources
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Release\VdoValley.Migrations.PostModelModified2.resources

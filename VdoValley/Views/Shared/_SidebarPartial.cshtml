@@ -58,7 +58,7 @@
     <div class="grid-top">
         <h4>Recent Comments</h4>
         <ul>
-            @{
+            @*@{
                 using (WebClient client = new WebClient())
                 {
                     string s = client.DownloadString("https://disqus.com/api/3.0/forums/listPosts.json?order=desc&forum=vdovalley&api_key=M02296gbyd8Z6NCaSx7V0oRUAJyj0eiczZLkV4FTKJORcQi1aKlRxNiGMf1R6NPg&related=thread");
@@ -87,7 +87,7 @@
 
 
 
-            }
+            }*@
         </ul>
     </div>
     <!---->

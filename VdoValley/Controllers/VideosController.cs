@@ -12,6 +12,7 @@ using VdoValley.ViewModels;
 using VdoValley.Attributes;
 using Microsoft.AspNet.Identity.EntityFramework;
 using VdoValley.Helpers;
+using Newtonsoft.Json;
 
 namespace VdoValley.Controllers
 {
@@ -439,6 +440,20 @@ namespace VdoValley.Controllers
         public ActionResult VideoDetails()
         {
             return PartialView("VideoDetails");
+        }
+
+        [AjaxRequestOnly]
+        public string VideoExists(string EmbedId, string Title)
+        {
+            EmbedId = (EmbedId == null) ? EmbedId : Uri.UnescapeDataString(EmbedId);
+            Title = (Title == null) ? Title : Uri.UnescapeDataString(Title);
+
+            Dictionary<string, object> Video = new Dictionary<string, object>();
+            Video["Id"] = EmbedId;
+            Video["Title"] = Title;
+            Video["Exists"] = VideoHelper.VideoExists(EmbedId);
+
+            return JsonConvert.SerializeObject(Video);
         }
     }
 }

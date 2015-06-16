@@ -31,10 +31,12 @@
             new { value = "PTVSports", text = "PTVSports" },
             new { value = "ak472522", text = "AK472522" },
             new { value = "mubashir-luqman", text = "Mubashir-Luqman" },
-            new { value = "imrankhan012", text = "ImranKhan012" }
+            new { value = "imrankhan012", text = "ImranKhan012" },
+            new { value = "lodhionline", text = "Babar Lodhi" }
         },
         "value",
         "text", 0))
+    <input type="number" value="1" id="page_number" min="1" step="1" />
     <img id="ajax-loader" src="@Url.Content("~/Images/ajax-loader.gif")" style="display:none;width:20px;" />
 }
 
@@ -48,30 +50,49 @@
         cookie: true // enable cookies to allow the server to access the session
     });
 
-    function getDailymotionVideos(source) {
+    function getDailymotionVideos(source, page_number) {
         $(".table tbody").html("");
         DM.getLoginStatus();
-        DM.api("/user/" + source + "/videos", { limit: 100, page: 1 }, function (response) {
+        DM.api("/user/" + source + "/videos", { limit: 100, page: page_number }, function (response) {
             //alert('Got ' + response.list.length + ' videos' + (response.has_more ? ' and has more' : ''));
-            $(response.list).each(function (k, v) {
-                
-                var thumbUrl = null;
-                DM.api("/video/" + v.id + "?fields=thumbnail_small_url", function (response) {
-                    thumbUrl = response.thumbnail_small_url;
-                    $(".table tbody").append("<tr>" +
-                        "<td>" + v.id + "</td>" +
-                        "<td class='video-title'>" + v.title + "</td>" +
-                        "<td><a href='http://dai.ly/" + v.id + "' target='_blank'><img src='" + thumbUrl + "' /></a></td>" +
-                        "<td class='suggested-tags'></td>" +
-                        "<td>" + getForm(v.id, v.title) + "</td>" +
-                    "</tr>");
+            if(response.list.length > 0) {
+                $(response.list).each(function (k, v) {
+                    DM.api("/video/" + v.id + "?fields=thumbnail_small_url", function (response) {
+
+                        $.ajax({
+                            url: "/Videos/VideoExists?EmbedId=" + encodeURIComponent(v.id) + "&Title=" + encodeURIComponent(v.title),
+                            success: function (result) {
+                                var Video = JSON.parse(result);
+                                var thumbUrl = null;
+                                thumbUrl = response.thumbnail_small_url;
+                                if (!Video.Exists) {
+                                    $(".table tbody").append("<tr>" +
+                                        "<td>" + Video.Id + " - " + Video.Exists + "</td>" +
+                                        "<td class='video-title'>" + Video.Title + "</td>" +
+                                        "<td><a href='http://dai.ly/" + Video.Id + "' target='_blank'><img src='" + thumbUrl + "' /></a></td>" +
+                                        "<td class='suggested-tags'></td>" +
+                                        "<td>" + getForm(Video.Id, Video.Title) + "</td>" +
+                                    "</tr>");
+                                }
+                            }
+                        });
+                    });
+                    return;
                 });
-            });
+            } else {
+                $(".table tbody").append("<tr><td>No video available.</td></tr>");
+            }
+
         });
     }
 
     $("#SelectDailymotionSource").change(function () {
-        getDailymotionVideos($(this).val())
+        getDailymotionVideos($(this).val(), $("#page_number").val())
+    });
+
+    $("#page_number").change(function () {
+        if ($(this).val() == "" || $(this).val() == null) { $(this).val(1); }
+        getDailymotionVideos($("#SelectDailymotionSource").val(), $(this).val())
     });
 
     function getForm(EmbedId, Title)
@@ -133,8 +154,21 @@
 
             e.preventDefault();
         });
-    });
 
+        $("#page_number").keypress(function (e) {
+            var ZERO = 48;
+            var NINE = 57
+            var BACKSPACE = 08;
+            var DEL = 127
+            var ARROWS = 0;
+
+            if ((e.which >= ZERO && e.which <= NINE) || e.which == BACKSPACE || e.which == DEL || e.which == ARROWS) {
+                
+            } else {
+                e.preventDefault();
+            }
+        });
+    });
 </script>
 
 <div id="videos"></div>
@@ -166,3 +200,28 @@
 <input type="hidden" value="@ViewBag.VideoTypeId" id="VideoTypeId">
 
 <script src="~/Scripts/AutoTagsSuggestion.js"></script>
+
+<div id="fb-root"></div>
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '1576894379240839',
+            xfbml: true,
+            version: 'v2.3'
+        });
+
+        // other code goes here
+        FB.ui({
+             method: 'share',
+             href: 'https://developers.facebook.com/docs/'
+        }, function (response) { });
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>

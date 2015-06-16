@@ -47,7 +47,7 @@ namespace VdoValley.Models
                         .WithRequired(v => v.Category)
                         .HasForeignKey(v => v.CategoryId).WillCascadeOnDelete(true);
 
-            ///////*-*     Video---Rating
+            ///////*-*     Video---Tags
             modelBuilder.Entity<Video>()
                    .HasMany<Tag>(v => v.Tags)
                    .WithMany(t => t.Videos)
@@ -56,6 +56,17 @@ namespace VdoValley.Models
                        cs.MapLeftKey("VideoId");
                        cs.MapRightKey("TagId");
                        cs.ToTable("VideoTag");
+                   });
+
+            ///////*-*     Post---Tags
+            modelBuilder.Entity<Post>()
+                   .HasMany<Tag>(p => p.Tags)
+                   .WithMany(t => t.Posts)
+                   .Map(cs =>
+                   {
+                       cs.MapLeftKey("Post_PostId");
+                       cs.MapRightKey("Tag_TagId");
+                       cs.ToTable("PostTags");
                    });
 
             ///////1-*     User---Rating
@@ -69,6 +80,8 @@ namespace VdoValley.Models
                         .HasMany<Video>(vt => vt.Videos)
                         .WithOptional(v => v.VideoType)
                         .HasForeignKey(v => v.VideoTypeId).WillCascadeOnDelete(true);
+
+            
         }
 
         public System.Data.Entity.DbSet<VdoValley.Models.Tag> Tags { get; set; }

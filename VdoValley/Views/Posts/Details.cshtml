@@ -1,34 +1,173 @@
 ﻿@model VdoValley.Models.Post
 
-@{
-    ViewBag.Title = "Details";
+    @{
+        ViewBag.Title = Model.Title;
+    }
+@*
+    <h2>Details</h2>
+
+    <div>
+        <h4>Post</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Content)
+            </dt>
+
+            <dd>
+                @Html.Raw(Model.Content)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.PostId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@
+
+@section VideoDetails {
+    <div class="col-md-8 content-top">
+        <div class="number">
+            <div class="feb">
+                <b>@Model.DateTime.Day</b>
+                @{
+                    string AbbreviatedMonth = new System.Globalization.DateTimeFormatInfo().GetAbbreviatedMonthName(Model.DateTime.Month).ToUpper();
+                }
+                <label>@AbbreviatedMonth</label>
+            </div>
+            <h3 dir="rtl">@Html.DisplayFor(model => model.Title)</h3>
+
+            <!-- AddThis: Put the following code in body tag -->
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50ac72a051b245aa" async="async"></script>
+
+            <!-- AddThis: Put the following code where to show the social media sharing icons -->
+            <div class="addthis_sharing_toolbox"></div>
+            <div dir="rtl">@Html.Raw(Model.Content)</div>
+    <div class="simply">
+        <style type="text/css">
+            .rating-star-block .star.outline {
+                background: url("/images/rating/star-empty-lg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+            }
+
+            .rating-star-block .star.filled {
+                background: url("/images/rating/star-fill-lg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+            }
+
+            .rating-star-block .star {
+                color: rgba(0,0,0,0);
+                display: inline-block;
+                height: 24px;
+                overflow: hidden;
+                text-indent: -999em;
+                width: 24px;
+            }
+
+            a {
+                color: #005782;
+                text-decoration: none;
+            }
+        </style>
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="rating-star-block" id='div_0'>
+                    <input type="hidden" class="articleID" value='@*@Model.Video.VideoId*@123' />Current Rating : <span class="CurrentScore">@*@Model.AverageRating / 5*@0.00</span><br /><div class="yourScore">Your Score is : 0.00 @*@Model.CurrentUsersScore*@</div>
+                    <input type="hidden" class="UserID" value='@*@System.Web.HttpContext.Current.User.Identity.GetUserId()*@234' />
+                    @{
+                        //if (Model.VideoScorer == null)
+                        {
+                            <a class="star outline" href="#" rating="1" title="vote 1"> vote 1</a>
+                            <a class="star outline" href="#" rating="2" title="vote 2"> vote 2</a>
+                            <a class="star outline" href="#" rating="3" title="vote 3"> vote 3</a>
+                            <a class="star outline" href="#" rating="4" title="vote 4"> vote 4</a>
+                            <a class="star outline" href="#" rating="5" title="vote 5"> vote 5</a>
+                        }
+                    }
+                </div>
+                <div class="tags-block">
+                    <span>Tags: </span>
+                    @{
+                        @*ICollection<VdoValley.Models.Tag> tags = Model.Video.Tags;
+                            int counter = 0;
+                            foreach (var tag in tags)
+                            {
+                                <span><a href="@Url.Action("Details", "Tags", new { id = tag.TagId })">@tag.Name</a></span>
+                                if (!counter.Equals(tags.Count - 1))
+                                {
+                                    <span>,</span>
+                                }
+                                counter++;
+                            }*@
+                    }
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <!-- AddThis: Put the following code where to show the social media sharing icons -->
+                <div class="addthis_sharing_toolbox col-md-12"></div>
+                <div class="col-md-12">Category: <a href="@Url.Action("Details", "Categories", new { id = @*Model.Video.Category.CategoryId*@ 111 })">@*@Model.Video.Category.Name*@</a></div>
+            </div>
+        </div>
+    </div>
+    <!---->
+    <div class="simply">
+        <div class="story">
+            <h4 class="stories stories-in"><span>Related Videos</span></h4>
+        </div>
+        @{
+            @*if (Model.RelatedVideos.Count() == 0)
+                {
+                    <span>No related videos available</span>
+                }
+                else
+                {
+                    foreach (var video in Model.RelatedVideos)
+                    {
+                        <div class="thumbnail-container col-lg-3 col-md-4 col-xs-6 thumb">
+                            <a class="thumbnail" href="/Videos/Details/@video.VideoId">
+                                @if (video.Url == null)
+                                {
+                                    <img class="img-responsive" src="@video.getFacebookVideoThumbnail(video.getFacebookVideoCode(video.EmbedCode), VdoValley.Models.FacebookThumbnailSize.SMALL)" alt="">
+                                }
+                                else
+                                {
+                                    <img class="img-responsive" src="@video.getDailyMotionThumb(video.getDailyMotionVideoCode(video.Url), VdoValley.Models.DailymotionThumbnailSize.thumbnail_large_url)" alt="">
+                                }
+                                <div class="details">
+                                    <div class="panel-heading">
+                                        @{
+                                int maxTitleLength = 40;
+                                string title = string.Empty;
+                                if (video.Title.Length > maxTitleLength) { title = video.Title.Substring(0, maxTitleLength - 1) + "..."; } else { title = video.Title; }
+                                        }
+                                        <h3 class="panel-title col-lg-offset-1">@title</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                }*@
+        }
+        <div class="clearfix"></div>
+    </div>
+    <!---->
+    <div class="simply">
+        @{
+            Disqus.Initialize("vdovalley");
+        }
+        @*@Disqus.ShowComments(Model.Video.VideoId.ToString());*@
+    </div>
+
+    <!---->
+</div>
+    </div>
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Post</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Content)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.PostId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+@Html.Partial("_SidebarPartial")
+<!---->

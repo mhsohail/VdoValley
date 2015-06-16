@@ -9,10 +9,12 @@ namespace VdoValley.Models
     {
         public int Id { get; set; }
         public int VideoId { get; set; }
+        public int? PostId { get; set; }
         public string ApplicationUserId { set; get; }
         public int Score { get; set; }
         public DateTime DateTime { get; set; }
         public virtual Video Video { get; set; }
+        public virtual Video Post { get; set; }
         public virtual ApplicationUser ApplicationUser { set; get; }
     }
 }

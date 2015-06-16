@@ -39,5 +39,13 @@ namespace VdoValley.Helpers
             if (vdo == null) { return false; }
             return true;
         }
+
+        public static bool VideoExists(string EmbedId)
+        {
+            VdoValleyContext db = new VdoValleyContext();
+            var vdo = db.Videos.FirstOrDefault(v => v.EmbedId == EmbedId && v.EmbedId != null);
+            if (vdo == null) { return false; }
+            return true;
+        }
     }
 }

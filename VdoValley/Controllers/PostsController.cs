@@ -46,13 +46,19 @@ namespace VdoValley.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PostId,Title,Content")] Post post)
+        public ActionResult Create([Bind(Include = "PostId,Title,Content,Language")] Post post)
         {
             if (ModelState.IsValid)
             {
-                db.Posts.Add(post);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    post.DateTime = DateTime.Now;
+                    post.CategoryId = 1;
+                    db.Posts.Add(post);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch(Exception exc) { }
             }
 
             return View(post);
@@ -78,13 +84,21 @@ namespace VdoValley.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PostId,Title,Content")] Post post)
+        public ActionResult Edit([Bind(Include = "PostId,Title,Content,Language")] Post post)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(post).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    Post Post = db.Posts.FirstOrDefault(p => p.PostId == post.PostId);
+                    Post.Title = post.Title;
+                    Post.Content = post.Content;
+
+                    db.Entry(Post).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch(Exception exc) {}
             }
             return View(post);
         }

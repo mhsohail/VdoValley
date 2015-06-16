@@ -14,5 +14,7 @@ namespace VdoValley.Models
         [JsonIgnore]
         public virtual ICollection<Video> Videos { get; set; }
 
+        public virtual ICollection<Post> Posts { get; set; }
+
     }
 }
