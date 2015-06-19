@@ -23,6 +23,8 @@ namespace VdoValley.ViewModelHelpers
             video.EmbedId = vvm.EmbedId;
             video.VideoTypeId = vvm.VideoTypeId;
             video.PageName = vvm.PageName;
+            video.ThumbnailURL = vvm.ThumbnailURL;
+            
             return video;
         }
     }

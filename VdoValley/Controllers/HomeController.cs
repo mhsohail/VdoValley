@@ -75,10 +75,11 @@ namespace VdoValley.Controllers
         }
 
         [AjaxRequestOnly]
-        public string ImportFacebookVideo([Bind(Include = "EmbedId,Title,Description,EmbedCode,PageName,VideoTypeId,SelectedCategory,Tags")] VideoViewModel vvm)
+        public string ImportFacebookVideo([Bind(Include = "EmbedId,Title,Description,EmbedCode,PageName,VideoTypeId,SelectedCategory,Tags,IsJsonRequest")] VideoViewModel vvm)
         {
             Dictionary<string, object> response = new Dictionary<string, object>();
-            new VideosController().Create(vvm);
+            var vvv = new VideosController().Create(vvm);
+
             try
             {
                 //video.EmbedCode = WebUtility.HtmlDecode(video.EmbedCode);
@@ -113,7 +114,7 @@ namespace VdoValley.Controllers
                 //
                 //response["success"] = true;
                 //response["message"] = "Video saved.";
-                return JsonConvert.SerializeObject(response);
+                return JsonConvert.SerializeObject(vvv);
             }
             catch(Exception exc)
             {

@@ -267,6 +267,10 @@
     <Compile Include="Migrations\201506141246499_PostModelModified2.Designer.cs">
       <DependentUpon>201506141246499_PostModelModified2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506162018027_ThumbnailURL_added_Video.cs" />
+    <Compile Include="Migrations\201506162018027_ThumbnailURL_added_Video.Designer.cs">
+      <DependentUpon>201506162018027_ThumbnailURL_added_Video.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -340,6 +344,7 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\VideoDetailsStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -1117,6 +1122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506141246499_PostModelModified2.resx">
       <DependentUpon>201506141246499_PostModelModified2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506162018027_ThumbnailURL_added_Video.resx">
+      <DependentUpon>201506162018027_ThumbnailURL_added_Video.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

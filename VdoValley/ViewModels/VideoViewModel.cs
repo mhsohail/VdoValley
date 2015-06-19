@@ -17,6 +17,9 @@ namespace VdoValley.ViewModels
         public string Url { get; set; }
         [AllowHtml]
         [DataType(DataType.MultilineText)]
+        public string Thumbnail { get; set; }
+        [Display(Name = "Thumbnail URL")]
+        public string ThumbnailURL { get; set; }
         public string EmbedCode { get; set; }
         public string EmbedId { get; set; }
         public string Description { get; set; }
@@ -27,6 +30,7 @@ namespace VdoValley.ViewModels
         [Display(Name="Category")]
         public int SelectedCategory { set; get; }
         public string PageName { set; get; }
+        public bool IsJsonRequest { get; set; }
     }
     
 }

@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = Model.Video.Title;
 }
-
+<link href="~/Content/VideoDetailsStyle.css" rel="stylesheet" property="stylesheet" type="text/css">
 <script>
     $(function () {
         $(".rating-star-block .star").mouseenter(function () {
@@ -91,13 +91,8 @@
                                             
                                             });
                                         </script>
-                                        <style>
-                                            .fb-video {
-                                                max-width: 700px !important;
-                                                max-height: 400px !important;
-                                            }
-                                        </style>
-                                        <p>@Html.Raw(Model.Video.EmbedCode)</p>
+                                        <!-- style went here -->
+                                        @Html.Raw(Model.Video.EmbedCode)
                                     }
                                     else
                                     {
@@ -121,33 +116,11 @@
                                 }
                                 else
                                 {
-                                    <p><iframe frameborder="0" width="700" height="400" src="//www.dailymotion.com/embed/video/@Model.Video.getDailyMotionVideoCode(Model.Video.Url)?autoplay=1&logo=0&info=1&hideInfos=0&start=0&syndication=263313&foreground=&highlight=&background=" allowfullscreen></iframe></p>
+                                    <iframe frameborder="0" width="700" height="400" src="//www.dailymotion.com/embed/video/@Model.Video.getDailyMotionVideoCode(Model.Video.Url)?autoplay=1&amp;logo=0&amp;info=1&amp;hideInfos=0&amp;start=0&amp;syndication=263313&amp;foreground=&amp;highlight=&amp;background=" allowfullscreen></iframe>
                                 }
 
                                 <div class="simply">
-                                    <style type="text/css">
-                                        .rating-star-block .star.outline {
-                                            background: url("/images/rating/star-empty-lg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-                                        }
-
-                                        .rating-star-block .star.filled {
-                                            background: url("/images/rating/star-fill-lg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-                                        }
-
-                                        .rating-star-block .star {
-                                            color: rgba(0,0,0,0);
-                                            display: inline-block;
-                                            height: 24px;
-                                            overflow: hidden;
-                                            text-indent: -999em;
-                                            width: 24px;
-                                        }
-
-                                        a {
-                                            color: #005782;
-                                            text-decoration: none;
-                                        }
-                                    </style>
+                                    <!-- style went here -->
                                     <div class="row">
                                         <div class="col-sm-6 col-md-6 col-lg-6">
                                             <div class="rating-star-block" id='div_0'>

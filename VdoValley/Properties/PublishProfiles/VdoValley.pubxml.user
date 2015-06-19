@@ -121,7 +121,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2015 00:23:09</publishTime>
     </File>
     <File Include="bin/VdoValley.dll">
-      <publishTime>06/16/2015 15:50:22</publishTime>
+      <publishTime>06/19/2015 17:01:05</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>05/23/2015 00:23:20</publishTime>
@@ -163,7 +163,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/02/2015 22:21:22</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>04/25/2015 17:20:56</publishTime>
+      <publishTime>06/17/2015 13:43:06</publishTime>
     </File>
     <File Include="Content/themes/base/accordion.css">
       <publishTime>04/26/2015 01:36:29</publishTime>
@@ -263,6 +263,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Content/themes/base/tooltip.css">
       <publishTime>04/26/2015 01:36:28</publishTime>
+    </File>
+    <File Include="Content/VideoDetailsStyle.css">
+      <publishTime>06/17/2015 12:22:04</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>04/25/2015 17:20:56</publishTime>
@@ -2269,13 +2272,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/12/2015 17:31:47</publishTime>
     </File>
     <File Include="Views/Home/ImportDailymotionVideos.cshtml">
-      <publishTime>06/16/2015 17:53:18</publishTime>
+      <publishTime>06/19/2015 15:35:55</publishTime>
     </File>
     <File Include="Views/Home/ImportFacebookVideo.cshtml">
       <publishTime>05/31/2015 10:02:12</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>06/10/2015 14:02:02</publishTime>
+      <publishTime>06/19/2015 15:15:52</publishTime>
     </File>
     <File Include="Views/Home/Search.cshtml">
       <publishTime>05/03/2015 23:05:57</publishTime>
@@ -2302,7 +2305,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:21:50</publishTime>
     </File>
     <File Include="Views/Posts/Create.cshtml">
-      <publishTime>06/14/2015 20:53:14</publishTime>
+      <publishTime>06/17/2015 00:26:55</publishTime>
     </File>
     <File Include="Views/Posts/Delete.cshtml">
       <publishTime>06/13/2015 20:20:53</publishTime>
@@ -2311,7 +2314,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/16/2015 14:29:25</publishTime>
     </File>
     <File Include="Views/Posts/Edit.cshtml">
-      <publishTime>06/14/2015 19:40:48</publishTime>
+      <publishTime>06/17/2015 00:04:51</publishTime>
     </File>
     <File Include="Views/Posts/Index.cshtml">
       <publishTime>06/13/2015 20:21:04</publishTime>
@@ -2377,13 +2380,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/03/2015 15:46:47</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>06/06/2015 17:13:51</publishTime>
+      <publishTime>06/19/2015 12:00:59</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
-      <publishTime>05/01/2015 15:49:56</publishTime>
+      <publishTime>06/17/2015 13:42:48</publishTime>
     </File>
     <File Include="Views/Shared/_SidebarPartial.cshtml">
-      <publishTime>06/14/2015 12:55:24</publishTime>
+      <publishTime>06/17/2015 14:02:22</publishTime>
     </File>
     <File Include="Views/Tags/Create.cshtml">
       <publishTime>05/18/2015 00:01:55</publishTime>
@@ -2416,19 +2419,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/19/2015 21:02:28</publishTime>
     </File>
     <File Include="Views/Videos/Create.cshtml">
-      <publishTime>06/08/2015 19:55:52</publishTime>
+      <publishTime>06/17/2015 01:29:59</publishTime>
     </File>
     <File Include="Views/Videos/Delete.cshtml">
       <publishTime>05/20/2015 17:35:13</publishTime>
     </File>
     <File Include="Views/Videos/Details.cshtml">
-      <publishTime>06/06/2015 16:50:16</publishTime>
+      <publishTime>06/17/2015 13:52:24</publishTime>
     </File>
     <File Include="Views/Videos/Details_orig.cshtml">
       <publishTime>06/06/2015 17:21:41</publishTime>
     </File>
     <File Include="Views/Videos/Edit.cshtml">
-      <publishTime>06/08/2015 11:15:41</publishTime>
+      <publishTime>06/17/2015 00:57:13</publishTime>
     </File>
     <File Include="Views/Videos/Index.cshtml">
       <publishTime>05/25/2015 15:05:39</publishTime>

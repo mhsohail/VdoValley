@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -16,6 +17,7 @@ namespace VdoValley.Models
         public Language Language { get; set; }
         public DateTime DateTime { get; set; }
         public byte[] Thumbnail { get; set; }
+        [Display(Name = "Thumbnail URL")]
         public string ThumbnailUrl { get; set; }
         public int CategoryId { get; set; }
         public int TotalRating { get; set; }

@@ -27,7 +27,10 @@ namespace VdoValley.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            
             Post post = db.Posts.Find(id);
+            ViewBag.OgThumbnail = post.ThumbnailUrl;
+            
             if (post == null)
             {
                 return HttpNotFound();
@@ -46,7 +49,7 @@ namespace VdoValley.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PostId,Title,Content,Language")] Post post)
+        public ActionResult Create([Bind(Include = "PostId,Title,Content,Language,ThumbnailUrl")] Post post)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +87,7 @@ namespace VdoValley.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PostId,Title,Content,Language")] Post post)
+        public ActionResult Edit([Bind(Include = "PostId,Title,Content,Language,ThumbnailUrl")] Post post)
         {
             if (ModelState.IsValid)
             {
@@ -93,6 +96,7 @@ namespace VdoValley.Controllers
                     Post Post = db.Posts.FirstOrDefault(p => p.PostId == post.PostId);
                     Post.Title = post.Title;
                     Post.Content = post.Content;
+                    Post.ThumbnailUrl = post.ThumbnailUrl;
 
                     db.Entry(Post).State = EntityState.Modified;
                     db.SaveChanges();

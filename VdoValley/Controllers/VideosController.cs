@@ -43,11 +43,25 @@ namespace VdoValley.Controllers
             ViewBag.UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
             if (video.Url == null)
             {
-                ViewBag.OgThumbnail = video.getFacebookVideoThumbnail(video.getFacebookVideoCode(video.EmbedCode), VdoValley.Models.FacebookThumbnailSize.MEDIUM).Replace("amp;", string.Empty);
+                if (video.ThumbnailURL == null)
+                {
+                    ViewBag.OgThumbnail = video.getFacebookVideoThumbnail(video.getFacebookVideoCode(video.EmbedCode), VdoValley.Models.FacebookThumbnailSize.MEDIUM).Replace("amp;", string.Empty);
+                }
+                else
+                {
+                    ViewBag.OgThumbnail = video.ThumbnailURL;
+                }
             }
             else
             {
-                ViewBag.OgThumbnail = video.getDailyMotionThumb(video.getDailyMotionVideoCode(video.Url), VdoValley.Models.DailymotionThumbnailSize.thumbnail_large_url);
+                if (video.ThumbnailURL == null)
+                {
+                    ViewBag.OgThumbnail = video.getDailyMotionThumb(video.getDailyMotionVideoCode(video.Url), VdoValley.Models.DailymotionThumbnailSize.thumbnail_large_url);
+                }
+                else
+                {
+                    ViewBag.OgThumbnail = video.ThumbnailURL;
+                }
             }
 
             List<Rating> ratings = db.Ratings.Where(r => r.VideoId == video.VideoId).ToList();
@@ -88,6 +102,7 @@ namespace VdoValley.Controllers
                         relatedVideos.Add(vdo);   
                     }
                 }
+                if (relatedVideos.Count == 8) break;
             }
             vdvm.RelatedVideos = relatedVideos;
 
@@ -108,7 +123,7 @@ namespace VdoValley.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Url,EmbedCode,EmbedId,Description,Tags,SelectedCategory,VideoTypeId,PageName,Featured")] VideoViewModel vvm)
+        public ActionResult Create([Bind(Include = "Id,Title,Url,EmbedCode,EmbedId,Description,Tags,SelectedCategory,VideoTypeId,PageName,Featured,ThumbnailURL,IsJsonRequest")] VideoViewModel vvm)
         {
             if (ModelState.IsValid)
             {
@@ -121,7 +136,7 @@ namespace VdoValley.Controllers
                         var video = ViewModelHelpers.VMHelper.ToDomainVideoModel(vvm);
                         video.EmbedCode = WebUtility.HtmlDecode(video.EmbedCode);
 
-                        if (video.VideoTypeId == 1) // id dailymotion video
+                        if (video.VideoTypeId == 1) // if dailymotion video
                         {
                             if (video.Url == null && video.EmbedId != null)
                             {
@@ -211,7 +226,31 @@ namespace VdoValley.Controllers
                             }
 
                             tran.Commit();
-                            return RedirectToAction("Details/" + video.VideoId);
+                            if (vvm.IsJsonRequest)
+                            {
+                                Dictionary<string, object> VideoDTO = new Dictionary<string, object>();
+                                VideoDTO.Add("Id", video.VideoId);
+                                VideoDTO.Add("Title", video.Title);
+                                VideoDTO.Add("Description", video.Description);
+
+                                if (video.VideoTypeId == 1)
+                                {
+                                    if (video.EmbedId != null && video.ThumbnailURL == null)
+                                    {
+                                        VideoDTO.Add("ThumbnailURL", video.getDailyMotionThumb(video.EmbedId, DailymotionThumbnailSize.thumbnail_large_url));
+                                    }
+                                    else
+                                    {
+                                        VideoDTO.Add("ThumbnailURL", video.ThumbnailURL);
+                                    }
+                                }
+
+                                return RedirectToAction(JsonConvert.SerializeObject(VideoDTO));
+                            }
+                            else
+                            {
+                                return RedirectToAction("Details/" + video.VideoId);
+                            }
                         }
                     }
                     catch (Exception ex)
@@ -261,6 +300,8 @@ namespace VdoValley.Controllers
             vvm.Description = video.Description;
             vvm.DateTime = video.DateTime;
             vvm.Featured = video.Featured;
+            vvm.ThumbnailURL = video.ThumbnailURL;
+            
             TempData["Categories"] = db.Categories.ToList();
 
             return View(vvm);
@@ -272,7 +313,7 @@ namespace VdoValley.Controllers
         [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "VideoId,DateTime,Title,Url,Description,Tags,SelectedCategory,Featured")] VideoViewModel vvm)
+        public ActionResult Edit([Bind(Include = "VideoId,DateTime,Title,Url,Description,Tags,SelectedCategory,Featured,ThumbnailURL")] VideoViewModel vvm)
         {
             //return View();
             Video video = null;
@@ -312,7 +353,8 @@ namespace VdoValley.Controllers
                         vdo.Description = video.Description;
                         vdo.CategoryId = video.CategoryId;
                         vdo.Featured = video.Featured;
-
+                        vdo.ThumbnailURL = video.ThumbnailURL;
+                        
                         //db.Configuration.ProxyCreationEnabled = true;
                         /*
                         var vdo = db.Videos

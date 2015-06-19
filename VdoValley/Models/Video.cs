@@ -20,6 +20,9 @@ namespace VdoValley.Models
         public string EmbedCode { get; set; }
         public string EmbedId { get; set; }
         public string Description { get; set; }
+        public string Thumbnail { get; set; }
+        [Display(Name = "Thumbnail URL")]
+        public string ThumbnailURL { get; set; }
         [HiddenInput(DisplayValue = false)]
         public string thumbnail_large_url { get; set; }
         public DateTime DateTime { set; get; }
@@ -54,7 +57,7 @@ namespace VdoValley.Models
             }
             catch(Exception exc)
             {
-                code = exc.Message;
+                code = string.Empty;
             }
             
             return code;
@@ -92,13 +95,13 @@ namespace VdoValley.Models
                     }
                     else
                     {
-                        code = "No match found";
+                        code = string.Empty;
                         break;
                     }
                 }
                 catch (Exception)
                 {
-                    code = "No match found";
+                    code = string.Empty;
                 }
             }
             while(retry);
@@ -121,7 +124,7 @@ namespace VdoValley.Models
             }
             catch (Exception exc)
             {
-                vdo.thumbnail_large_url = exc.Message;
+                vdo.thumbnail_large_url = "http://s4.postimg.org/735fasm5p/loading_spinner_icon.png";
             }
             
             return vdo.thumbnail_large_url;
@@ -163,7 +166,7 @@ namespace VdoValley.Models
             }
             catch(Exception exc)
             {
-                thumbnail_path = exc.Message;
+                thumbnail_path = "http://s4.postimg.org/735fasm5p/loading_spinner_icon.png";
             }
             
             return thumbnail_path;

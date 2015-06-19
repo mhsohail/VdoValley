@@ -84,10 +84,10 @@
                             }
                             <div class="row">
                                 <div class="col-md-8">
-                                    <img class="img-responsive" src="@FeaturedVideo.getDailyMotionThumb(FeaturedVideo.getDailyMotionVideoCode(FeaturedVideo.Url), VdoValley.Models.DailymotionThumbnailSize.thumbnail_large_url)" alt="@FeaturedVideo.Title">
+                                    <a href="/Videos/Details/@FeaturedVideo.VideoId"><img class="img-responsive" src="@FeaturedVideo.getDailyMotionThumb(FeaturedVideo.getDailyMotionVideoCode(FeaturedVideo.Url), VdoValley.Models.DailymotionThumbnailSize.thumbnail_large_url)" alt="@FeaturedVideo.Title"></a>
                                 </div>
                                 <div class="col-md-4">
-                                    <h4>@FeaturedVideo.Title</h4>
+                                    <h4><a href="/Videos/Details/@FeaturedVideo.VideoId">@FeaturedVideo.Title</a></h4>
                                     <p>@FeaturedVideo.Description</p>
                                     <div class="well well-sm">Comments: @VdoValley.Helpers.VideoHelper.GetCommentsCount(FeaturedVideo.VideoId)</div>
                                 </div>
