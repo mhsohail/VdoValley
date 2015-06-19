@@ -121,7 +121,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2015 00:23:09</publishTime>
     </File>
     <File Include="bin/VdoValley.dll">
-      <publishTime>06/19/2015 17:01:05</publishTime>
+      <publishTime>06/20/2015 00:40:51</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>05/23/2015 00:23:20</publishTime>
@@ -2386,7 +2386,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/17/2015 13:42:48</publishTime>
     </File>
     <File Include="Views/Shared/_SidebarPartial.cshtml">
-      <publishTime>06/17/2015 14:02:22</publishTime>
+      <publishTime>06/20/2015 00:35:15</publishTime>
     </File>
     <File Include="Views/Tags/Create.cshtml">
       <publishTime>05/18/2015 00:01:55</publishTime>
