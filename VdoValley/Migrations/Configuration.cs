@@ -15,6 +15,7 @@ namespace VdoValley.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = false;
         }
 
         protected override void Seed(VdoValley.Models.VdoValleyContext context)

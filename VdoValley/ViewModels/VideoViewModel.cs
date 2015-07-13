@@ -15,13 +15,14 @@ namespace VdoValley.ViewModels
         public int VideoTypeId { get; set; }
         [Display(Name="Short URL")]
         public string Url { get; set; }
-        [AllowHtml]
-        [DataType(DataType.MultilineText)]
         public string Thumbnail { get; set; }
         [Display(Name = "Thumbnail URL")]
         public string ThumbnailURL { get; set; }
+        [AllowHtml]
+        [DataType(DataType.MultilineText)]
         public string EmbedCode { get; set; }
         public string EmbedId { get; set; }
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         public DateTime DateTime { get; set; }
         [Display(Name="Tags (Comma Separated)")]
@@ -32,5 +33,4 @@ namespace VdoValley.ViewModels
         public string PageName { set; get; }
         public bool IsJsonRequest { get; set; }
     }
-    
 }

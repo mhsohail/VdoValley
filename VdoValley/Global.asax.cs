@@ -13,7 +13,7 @@ namespace VdoValley
     {
         protected void Application_Start()
         {
-            Database.SetInitializer<Models.VdoValleyContext>(null);
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<VdoValley.Models.VdoValleyContext, VdoValley.Migrations.Configuration>());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

@@ -121,7 +121,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2015 00:23:09</publishTime>
     </File>
     <File Include="bin/VdoValley.dll">
-      <publishTime>06/20/2015 00:40:51</publishTime>
+      <publishTime>06/29/2015 02:05:27</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>05/23/2015 00:23:20</publishTime>
@@ -2272,7 +2272,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/12/2015 17:31:47</publishTime>
     </File>
     <File Include="Views/Home/ImportDailymotionVideos.cshtml">
-      <publishTime>06/19/2015 15:35:55</publishTime>
+      <publishTime>06/29/2015 02:04:16</publishTime>
     </File>
     <File Include="Views/Home/ImportFacebookVideo.cshtml">
       <publishTime>05/31/2015 10:02:12</publishTime>
@@ -2386,7 +2386,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/17/2015 13:42:48</publishTime>
     </File>
     <File Include="Views/Shared/_SidebarPartial.cshtml">
-      <publishTime>06/20/2015 00:35:15</publishTime>
+      <publishTime>06/23/2015 13:25:40</publishTime>
     </File>
     <File Include="Views/Tags/Create.cshtml">
       <publishTime>05/18/2015 00:01:55</publishTime>
@@ -2425,13 +2425,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/20/2015 17:35:13</publishTime>
     </File>
     <File Include="Views/Videos/Details.cshtml">
-      <publishTime>06/17/2015 13:52:24</publishTime>
+      <publishTime>06/20/2015 02:59:14</publishTime>
     </File>
     <File Include="Views/Videos/Details_orig.cshtml">
       <publishTime>06/06/2015 17:21:41</publishTime>
     </File>
     <File Include="Views/Videos/Edit.cshtml">
-      <publishTime>06/17/2015 00:57:13</publishTime>
+      <publishTime>06/23/2015 23:55:21</publishTime>
     </File>
     <File Include="Views/Videos/Index.cshtml">
       <publishTime>05/25/2015 15:05:39</publishTime>

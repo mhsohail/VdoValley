@@ -22,7 +22,6 @@ namespace VdoValley.Models
         }
 
         public System.Data.Entity.DbSet<VdoValley.Models.Video> Videos { get; set; }
-
         public System.Data.Entity.DbSet<VdoValley.Models.Rating> Ratings { get; set; }
         public System.Data.Entity.DbSet<VdoValley.Models.Person> People { get; set; }
         public System.Data.Entity.DbSet<IdentityUserLogin> UserLogins { get; set; }
@@ -34,7 +33,7 @@ namespace VdoValley.Models
             modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
             base.OnModelCreating(modelBuilder);
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-
+			
             ///////1-*     Video---Rating
             modelBuilder.Entity<Video>()
                         .HasMany<Rating>(v => v.Ratings)

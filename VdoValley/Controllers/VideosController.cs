@@ -99,8 +99,9 @@ namespace VdoValley.Controllers
                 {
                     if(vdo.VideoId != video.VideoId && !relatedVideos.Contains(vdo))
                     {
-                        relatedVideos.Add(vdo);   
+                        relatedVideos.Add(vdo);
                     }
+                    if (relatedVideos.Count == 8) break;
                 }
                 if (relatedVideos.Count == 8) break;
             }
@@ -151,7 +152,7 @@ namespace VdoValley.Controllers
                             video.EmbedCode = null;
                         }
                         
-                        if (video.VideoTypeId != 1) // id fb video
+                        if (video.VideoTypeId != 1) // if fb video
                         {
                             if (video.CategoryId == null)
                             {
@@ -295,14 +296,17 @@ namespace VdoValley.Controllers
             VideoViewModel vvm = new VideoViewModel();
             vvm.VideoId = video.VideoId;
             vvm.Url = video.Url;
+            vvm.EmbedCode = video.EmbedCode;
             vvm.Title = video.Title;
             vvm.SelectedCategory = video.CategoryId;
             vvm.Description = video.Description;
             vvm.DateTime = video.DateTime;
             vvm.Featured = video.Featured;
             vvm.ThumbnailURL = video.ThumbnailURL;
+            vvm.VideoTypeId = int.Parse(video.VideoTypeId.ToString());
             
             TempData["Categories"] = db.Categories.ToList();
+            TempData["VideoTypes"] = db.VideoTypes.ToList();
 
             return View(vvm);
         }
@@ -313,7 +317,7 @@ namespace VdoValley.Controllers
         [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "VideoId,DateTime,Title,Url,Description,Tags,SelectedCategory,Featured,ThumbnailURL")] VideoViewModel vvm)
+        public ActionResult Edit([Bind(Include = "VideoId,Title,Url,EmbedCode,EmbedId,Description,Tags,SelectedCategory,VideoTypeId,PageName,Featured,ThumbnailURL,IsJsonRequest")] VideoViewModel vvm)
         {
             //return View();
             Video video = null;
@@ -325,6 +329,34 @@ namespace VdoValley.Controllers
                     {
                         // get the domain model from VM
                         video = ViewModelHelpers.VMHelper.ToDomainVideoModel(vvm);
+
+                        if (video.VideoTypeId == 1) // if dailymotion video
+                        {
+                            if (video.Url == null && video.EmbedId != null)
+                            {
+                                video.Url = "http://dai.ly/" + video.EmbedId;
+                            }
+
+                            if (video.EmbedId == null && video.Url != null)
+                            {
+                                video.EmbedId = video.getDailyMotionVideoCode(video.Url);
+                            }
+
+                            video.EmbedCode = null;
+                        }
+
+                        if (video.VideoTypeId != 1) // id fb video
+                        {
+                            if (video.CategoryId == null)
+                            {
+                                video.CategoryId = 1;
+                            }
+                        }
+
+                        if (video.Title == null)
+                        {
+                            video.Title = video.Description;
+                        }
 
                         if (video.Featured == true)
                         {
@@ -350,10 +382,15 @@ namespace VdoValley.Controllers
                         //db.Configuration.ProxyCreationEnabled = false;
                         var vdo = db.Videos.Include(v => v.Tags).FirstOrDefault(v => v.VideoId.Equals(video.VideoId));
                         vdo.Title = video.Title;
+                        vdo.Url = video.Url;
+                        vdo.EmbedCode = video.EmbedCode;
+                        vdo.EmbedId= video.EmbedId;
                         vdo.Description = video.Description;
+                        vdo.VideoTypeId = video.VideoTypeId;
                         vdo.CategoryId = video.CategoryId;
                         vdo.Featured = video.Featured;
                         vdo.ThumbnailURL = video.ThumbnailURL;
+                        vdo.PageName = video.PageName;
                         
                         //db.Configuration.ProxyCreationEnabled = true;
                         /*

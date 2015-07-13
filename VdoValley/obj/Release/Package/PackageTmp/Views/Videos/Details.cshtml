@@ -80,6 +80,12 @@
 
                                 <!-- AddThis: Put the following code where to show the social media sharing icons -->
                                 <div class="addthis_sharing_toolbox"></div>
+
+                                @if (System.Web.HttpContext.Current.User.IsInRole("Administrator"))
+                                {
+                                    @Html.ActionLink("Share", "Share")
+                                }
+                                
                                 @if (Model.Video.Url == null)
                                 {
                                     if(Model.Video.EmbedId == null)
