@@ -13,12 +13,19 @@ using VdoValley.Attributes;
 using Microsoft.AspNet.Identity.EntityFramework;
 using VdoValley.Helpers;
 using Newtonsoft.Json;
+using VdoValley.Infrastructure;
 
 namespace VdoValley.Controllers
 {
     public class VideosController : Controller
     {
-        private VdoValleyContext db = new VdoValleyContext();
+        VideoRepository repo;
+        private VdoValley.Models.VdoValleyContext db = new VdoValley.Models.VdoValleyContext();
+
+        public VideosController()
+        {
+            repo = new VideoRepository();
+        }
 
         // GET: Videos
         public ActionResult Index()
@@ -45,7 +52,8 @@ namespace VdoValley.Controllers
             {
                 if (video.ThumbnailURL == null)
                 {
-                    ViewBag.OgThumbnail = video.getFacebookVideoThumbnail(video.getFacebookVideoCode(video.EmbedCode), VdoValley.Models.FacebookThumbnailSize.MEDIUM).Replace("amp;", string.Empty);
+                    ViewBag.OgThumbnail = VdoValley.Helpers.VideoHelper.getFacebookVideoThumbnail(video, VdoValley.Helpers.VideoHelper.getFacebookVideoCode(video, video.EmbedCode), VdoValley.Models.FacebookThumbnailSize.MEDIUM).Replace("amp;", string.Empty);
+                    //ViewBag.OgThumbnail = video.getFacebookVideoThumbnail(video.getFacebookVideoCode(video.EmbedCode), VdoValley.Models.FacebookThumbnailSize.MEDIUM).Replace("amp;", string.Empty);
                 }
                 else
                 {
@@ -56,7 +64,8 @@ namespace VdoValley.Controllers
             {
                 if (video.ThumbnailURL == null)
                 {
-                    ViewBag.OgThumbnail = video.getDailyMotionThumb(video.getDailyMotionVideoCode(video.Url), VdoValley.Models.DailymotionThumbnailSize.thumbnail_large_url);
+                    ViewBag.OgThumbnail = VideoHelper.getDailyMotionThumb(video, VideoHelper.getDailyMotionVideoCode(video, video.Url), VdoValley.Models.DailymotionThumbnailSize.thumbnail_large_url);
+                    //ViewBag.OgThumbnail = video.getDailyMotionThumb(video.getDailyMotionVideoCode(video.Url), VdoValley.Models.DailymotionThumbnailSize.thumbnail_large_url);
                 }
                 else
                 {
@@ -146,7 +155,7 @@ namespace VdoValley.Controllers
 
                             if (video.EmbedId == null && video.Url != null)
                             {
-                                video.EmbedId = video.getDailyMotionVideoCode(video.Url);
+                                video.EmbedId = VideoHelper.getDailyMotionVideoCode(video, video.Url);
                             }
                             
                             video.EmbedCode = null;
@@ -238,7 +247,7 @@ namespace VdoValley.Controllers
                                 {
                                     if (video.EmbedId != null && video.ThumbnailURL == null)
                                     {
-                                        VideoDTO.Add("ThumbnailURL", video.getDailyMotionThumb(video.EmbedId, DailymotionThumbnailSize.thumbnail_large_url));
+                                        VideoDTO.Add("ThumbnailURL", VideoHelper.getDailyMotionThumb(video, video.EmbedId, DailymotionThumbnailSize.thumbnail_large_url));
                                     }
                                     else
                                     {
@@ -339,7 +348,7 @@ namespace VdoValley.Controllers
 
                             if (video.EmbedId == null && video.Url != null)
                             {
-                                video.EmbedId = video.getDailyMotionVideoCode(video.Url);
+                                video.EmbedId = VideoHelper.getDailyMotionVideoCode(video, video.Url);
                             }
 
                             video.EmbedCode = null;

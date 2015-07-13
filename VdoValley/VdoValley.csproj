@@ -1134,6 +1134,16 @@
       <DependentUpon>201506162018027_ThumbnailURL_added_Video.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VdoValley.Core\VdoValley.Core.csproj">
+      <Project>{ef7cf569-05f3-47b0-8460-ac068048e15a}</Project>
+      <Name>VdoValley.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VdoValley.Infrastructure\VdoValley.Infrastructure.csproj">
+      <Project>{22009c2e-61da-40b5-8510-5df06b3e5d62}</Project>
+      <Name>VdoValley.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

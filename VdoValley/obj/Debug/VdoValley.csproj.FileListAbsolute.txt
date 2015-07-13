@@ -138,3 +138,13 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.csproj.GenerateResource.Cache
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.pdb
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.csprojResolveAssemblyReference.cache
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\AutoMapper.Net4.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\AutoMapper.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\VdoValley.Core.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\VdoValley.Infrastructure.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\VdoValley.Core.pdb
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\VdoValley.Infrastructure.pdb
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\AutoMapper.pdb
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\AutoMapper.xml
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\AutoMapper.Net4.pdb

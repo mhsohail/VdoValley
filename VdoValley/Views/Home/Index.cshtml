@@ -50,11 +50,11 @@
             <div class="item g1">
                 @if (video.Url == null)
                 {
-                    <a href="/Videos/Details/@video.VideoId"><img class="lazyOwl " data-src="@video.getFacebookVideoThumbnail(video.getFacebookVideoCode(video.EmbedCode), VdoValley.Models.FacebookThumbnailSize.MEDIUM)" alt="@video.Title" style="min-height:50px; height:211px;" /></a>
+                    <a href="/Videos/Details/@video.VideoId"><img class="lazyOwl " data-src="@VdoValley.Helpers.VideoHelper.getFacebookVideoThumbnail(video, VdoValley.Helpers.VideoHelper.getFacebookVideoCode(video, video.EmbedCode), VdoValley.Models.FacebookThumbnailSize.MEDIUM)" alt="@video.Title" style="min-height:50px; height:211px;" /></a>
                 }
                 else
                 {
-                    <a href="/Videos/Details/@video.VideoId"><img class="lazyOwl " data-src="@video.getDailyMotionThumb(video.getDailyMotionVideoCode(video.Url), VdoValley.Models.DailymotionThumbnailSize.thumbnail_large_url)" alt="@video.Title" style="min-height:50px; height:211px;" /></a>
+                    <a href="/Videos/Details/@video.VideoId"><img class="lazyOwl " data-src="@VdoValley.Helpers.VideoHelper.getDailyMotionThumb(video, VdoValley.Helpers.VideoHelper.getDailyMotionVideoCode(video, video.Url), VdoValley.Models.DailymotionThumbnailSize.thumbnail_large_url)" alt="@video.Title" style="min-height:50px; height:211px;" /></a>
                 }
                 <div class="caption">
                     <h3 class="cinema">
