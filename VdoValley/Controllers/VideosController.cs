@@ -218,7 +218,7 @@ namespace VdoValley.Controllers
                                     tagsToAdd.Add(tagInDb);
                                 }
                             }
-
+							
                             db.Videos.Add(video);
                             db.SaveChanges();
                             video.Tags = new List<Tag>();

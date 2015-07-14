@@ -157,6 +157,8 @@
                 complete: function (xhr, status) {
                     //alert(JSON.stringify(xhr));
                     Form.find(".ajax-loader").hide();
+                    Form.parents("tr").remove();
+                    return;
                     //$(".main-top h2").html(JSON.stringify(xhr.responseText));
                     /*
                     {
