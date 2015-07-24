@@ -1,91 +1,85 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
+using VdoValley.Core.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace VdoValley.Infrastructure
 {
-    public class VdoValleyContext : DbContext //IdentityDbContext<ApplicationUser>
+    public class VdoValleyContext : IdentityDbContext<ApplicationUser>
     {
-        // You can add custom code to this file. Changes will not be overwritten.
-        // 
-        // If you want Entity Framework to drop and regenerate your database
-        // automatically whenever you change your model schema, please use data migrations.
-        // For more information refer to the documentation:
-        // http://msdn.microsoft.com/en-us/data/jj591621.aspx
-        
-        public VdoValleyContext() : base("VdoValleyContext")
+        public VdoValleyContext()
+            : base("VdoValleyContext")
         {
         }
 
-        public System.Data.Entity.DbSet<VdoValley.Core.Models.Videoo> Videos { get; set; }
-        //public System.Data.Entity.DbSet<VdoValley.Models.Rating> Ratings { get; set; }
-        //public System.Data.Entity.DbSet<VdoValley.Models.Person> People { get; set; }
-        //public System.Data.Entity.DbSet<IdentityUserLogin> UserLogins { get; set; }
+        public DbSet<Video> Videos { get; set; }
+        public DbSet<Rating> Ratings { get; set; }
+        public DbSet<Person> People { get; set; }
+        public DbSet<IdentityUserLogin> UserLogins { get; set; }
         
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
-            //modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
-            //modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
-            //base.OnModelCreating(modelBuilder);
-            //modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-			
-            /////////1-*     Video---Rating
-            //modelBuilder.Entity<Video>()
-            //            .HasMany<Rating>(v => v.Ratings)
-            //            .WithRequired(r => r.Video)
-            //            .HasForeignKey(r => r.VideoId).WillCascadeOnDelete(true);
+            modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
+            modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
+            modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 
-            /////////1-*     Category---Video
-            //modelBuilder.Entity<Category>()
-            //            .HasMany<Video>(c => c.Videos)
-            //            .WithRequired(v => v.Category)
-            //            .HasForeignKey(v => v.CategoryId).WillCascadeOnDelete(true);
+            ///////1-*     Video---Rating
+            modelBuilder.Entity<Video>()
+                        .HasMany<Rating>(v => v.Ratings)
+                        .WithRequired(r => r.Video)
+                        .HasForeignKey(r => r.VideoId).WillCascadeOnDelete(true);
 
-            /////////*-*     Video---Tags
-            //modelBuilder.Entity<Video>()
-            //       .HasMany<Tag>(v => v.Tags)
-            //       .WithMany(t => t.Videos)
-            //       .Map(cs =>
-            //       {
-            //           cs.MapLeftKey("VideoId");
-            //           cs.MapRightKey("TagId");
-            //           cs.ToTable("VideoTag");
-            //       });
+            ///////1-*     Category---Video
+            modelBuilder.Entity<Category>()
+                        .HasMany<Video>(c => c.Videos)
+                        .WithRequired(v => v.Category)
+                        .HasForeignKey(v => v.CategoryId).WillCascadeOnDelete(true);
 
-            /////////*-*     Post---Tags
-            //modelBuilder.Entity<Post>()
-            //       .HasMany<Tag>(p => p.Tags)
-            //       .WithMany(t => t.Posts)
-            //       .Map(cs =>
-            //       {
-            //           cs.MapLeftKey("Post_PostId");
-            //           cs.MapRightKey("Tag_TagId");
-            //           cs.ToTable("PostTags");
-            //       });
+            ///////*-*     Video---Tags
+            modelBuilder.Entity<Video>()
+                   .HasMany<Tag>(v => v.Tags)
+                   .WithMany(t => t.Videos)
+                   .Map(cs =>
+                   {
+                       cs.MapLeftKey("VideoId");
+                       cs.MapRightKey("TagId");
+                       cs.ToTable("VideoTag");
+                   });
 
-            /////////1-*     User---Rating
-            //modelBuilder.Entity<ApplicationUser>()
-            //            .HasMany<Rating>(au => au.Ratings)
-            //            .WithRequired(r => r.ApplicationUser)
-            //            .HasForeignKey(r => r.ApplicationUserId).WillCascadeOnDelete(true);
+            ///////*-*     Post---Tags
+            modelBuilder.Entity<Post>()
+                   .HasMany<Tag>(p => p.Tags)
+                   .WithMany(t => t.Posts)
+                   .Map(cs =>
+                   {
+                       cs.MapLeftKey("Post_PostId");
+                       cs.MapRightKey("Tag_TagId");
+                       cs.ToTable("PostTags");
+                   });
 
-            /////////1-*     VideoType---Videos
-            //modelBuilder.Entity<VideoType>()
-            //            .HasMany<Video>(vt => vt.Videos)
-            //            .WithOptional(v => v.VideoType)
-            //            .HasForeignKey(v => v.VideoTypeId).WillCascadeOnDelete(true);
+            /////1-*     User---Rating
+            modelBuilder.Entity<ApplicationUser>()
+                        .HasMany<Rating>(au => au.Ratings)
+                        .WithRequired(r => r.ApplicationUser)
+                        .HasForeignKey(r => r.ApplicationUserId).WillCascadeOnDelete(true);
 
-            
+            ///////1-*     VideoType---Videos
+            modelBuilder.Entity<VideoType>()
+                        .HasMany<Video>(vt => vt.Videos)
+                        .WithOptional(v => v.VideoType)
+                        .HasForeignKey(v => v.VideoTypeId).WillCascadeOnDelete(true);
         }
 
-        //public System.Data.Entity.DbSet<VdoValley.Models.Tag> Tags { get; set; }
-        //public System.Data.Entity.DbSet<VdoValley.Models.Category> Categories { get; set; }
-        //public System.Data.Entity.DbSet<VdoValley.Models.VideoType> VideoTypes { get; set; }
-        //public System.Data.Entity.DbSet<VdoValley.Models.FbVideo> FbVideos { get; set; }
-        //public System.Data.Entity.DbSet<VdoValley.Models.Post> Posts { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<VideoType> VideoTypes { get; set; }
+        public DbSet<FbVideo> FbVideos { get; set; }
+        public DbSet<Post> Posts { get; set; }   
     }
 }

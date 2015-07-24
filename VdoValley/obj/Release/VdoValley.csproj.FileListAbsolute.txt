@@ -139,3 +139,12 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Release\VdoValley.Migration
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Release\VdoValley.Migrations.PostModelModified1.resources
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Release\VdoValley.Migrations.PostModelModified2.resources
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Release\VdoValley.Migrations.ThumbnailURL_added_Video.resources
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\AutoMapper.Net4.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\AutoMapper.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\VdoValley.Core.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\VdoValley.Infrastructure.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\VdoValley.Core.pdb
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\VdoValley.Infrastructure.pdb
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\AutoMapper.pdb
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\AutoMapper.xml
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\AutoMapper.Net4.pdb

@@ -211,100 +211,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Attributes\AjaxRequestOnlyAttribute.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CategoriesController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\PostsController.cs" />
-    <Compile Include="Controllers\RatingsController.cs" />
-    <Compile Include="Controllers\RolesAdminController.cs" />
-    <Compile Include="Controllers\RolesController.cs" />
-    <Compile Include="Controllers\TagsController.cs" />
-    <Compile Include="Controllers\UsersAdminController.cs" />
-    <Compile Include="Controllers\VideosController.cs" />
-    <Compile Include="Controllers\VideoTypesController.cs" />
-    <Compile Include="Enums\Language.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Helpers\VideoHelper.cs" />
     <Compile Include="htmlhelpers\ImageHelper.cs" />
     <Compile Include="Hubs\ChatHub.cs" />
-    <Compile Include="Migrations\201505210827379_grgrgr.cs" />
-    <Compile Include="Migrations\201505210827379_grgrgr.Designer.cs">
-      <DependentUpon>201505210827379_grgrgr.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505210928561_grgrgrhhh.cs" />
-    <Compile Include="Migrations\201505210928561_grgrgrhhh.Designer.cs">
-      <DependentUpon>201505210928561_grgrgrhhh.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505251422002_EmbedIdFieldAdded.cs" />
-    <Compile Include="Migrations\201505251422002_EmbedIdFieldAdded.Designer.cs">
-      <DependentUpon>201505251422002_EmbedIdFieldAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505251443171_VideoDetailsViewModelCreated.cs" />
-    <Compile Include="Migrations\201505251443171_VideoDetailsViewModelCreated.Designer.cs">
-      <DependentUpon>201505251443171_VideoDetailsViewModelCreated.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506062222534_PageNameFieldAdded.cs" />
-    <Compile Include="Migrations\201506062222534_PageNameFieldAdded.Designer.cs">
-      <DependentUpon>201506062222534_PageNameFieldAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506131526066_postModel.cs" />
-    <Compile Include="Migrations\201506131526066_postModel.Designer.cs">
-      <DependentUpon>201506131526066_postModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506141213578_PostModelModified.cs" />
-    <Compile Include="Migrations\201506141213578_PostModelModified.Designer.cs">
-      <DependentUpon>201506141213578_PostModelModified.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506141241198_PostModelModified1.cs" />
-    <Compile Include="Migrations\201506141241198_PostModelModified1.Designer.cs">
-      <DependentUpon>201506141241198_PostModelModified1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506141246499_PostModelModified2.cs" />
-    <Compile Include="Migrations\201506141246499_PostModelModified2.Designer.cs">
-      <DependentUpon>201506141246499_PostModelModified2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506162018027_ThumbnailURL_added_Video.cs" />
-    <Compile Include="Migrations\201506162018027_ThumbnailURL_added_Video.Designer.cs">
-      <DependentUpon>201506162018027_ThumbnailURL_added_Video.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\DailymotionThumbnailSize.cs" />
-    <Compile Include="Models\FacebookPage.cs" />
-    <Compile Include="Models\FacebookThumbnailSize.cs" />
-    <Compile Include="Models\FbVideo.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Person.cs" />
-    <Compile Include="Models\Post.cs" />
-    <Compile Include="Models\Rating.cs" />
-    <Compile Include="Models\Role.cs" />
-    <Compile Include="Models\Student.cs" />
-    <Compile Include="Models\Tag.cs" />
-    <Compile Include="Models\Teacher.cs" />
-    <Compile Include="Models\VdoValleyContext.cs" />
-    <Compile Include="Models\Video.cs" />
-    <Compile Include="Models\VideoType.cs" />
-    <Compile Include="Models\VideoTypeEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Startup.cs" />
-    <Compile Include="ViewModelHelpers\VMHelper.cs" />
-    <Compile Include="ViewModels\FacebookImportViewModel.cs" />
-    <Compile Include="ViewModels\HomeViewModel.cs" />
-    <Compile Include="ViewModels\PostViewModel.cs" />
-    <Compile Include="ViewModels\VideoDetailsViewModel.cs" />
-    <Compile Include="ViewModels\VideoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -352,7 +262,6 @@
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Content\VideoDetailsStyle.css" />
     <Content Include="favicon.ico" />
-    <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Icon.png" />
     <Content Include="images\ajax-loader.gif" />
@@ -1097,42 +1006,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Enums\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Models\" />
+    <Folder Include="ViewModelHelpers\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201505210827379_grgrgr.resx">
-      <DependentUpon>201505210827379_grgrgr.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505210928561_grgrgrhhh.resx">
-      <DependentUpon>201505210928561_grgrgrhhh.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505251422002_EmbedIdFieldAdded.resx">
-      <DependentUpon>201505251422002_EmbedIdFieldAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505251443171_VideoDetailsViewModelCreated.resx">
-      <DependentUpon>201505251443171_VideoDetailsViewModelCreated.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506062222534_PageNameFieldAdded.resx">
-      <DependentUpon>201506062222534_PageNameFieldAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506131526066_postModel.resx">
-      <DependentUpon>201506131526066_postModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506141213578_PostModelModified.resx">
-      <DependentUpon>201506141213578_PostModelModified.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506141241198_PostModelModified1.resx">
-      <DependentUpon>201506141241198_PostModelModified1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506141246499_PostModelModified2.resx">
-      <DependentUpon>201506141246499_PostModelModified2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506162018027_ThumbnailURL_added_Video.resx">
-      <DependentUpon>201506162018027_ThumbnailURL_added_Video.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VdoValley.Core\VdoValley.Core.csproj">

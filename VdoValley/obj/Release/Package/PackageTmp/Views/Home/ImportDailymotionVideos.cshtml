@@ -54,7 +54,7 @@
         $(".table tbody").html("");
         DM.getLoginStatus();
         DM.api("/user/" + source + "/videos", { limit: 50, page: page_number }, function (response) {
-            //alert('Got ' + response.list.length + ' videos' + (response.has_more ? ' and has more' : ''));
+            //zalert('Got ' + response.list.length + ' videos' + (response.has_more ? ' and has more' : ''));
             if(response.list.length > 0) {
                 $(response.list).each(function (k, v) {
                     DM.api("/video/" + v.id + "?fields=thumbnail_small_url", function (response) {
@@ -157,6 +157,8 @@
                 complete: function (xhr, status) {
                     //alert(JSON.stringify(xhr));
                     Form.find(".ajax-loader").hide();
+                    Form.parents("tr").remove();
+
                     //$(".main-top h2").html(JSON.stringify(xhr.responseText));
                     /*
                     {

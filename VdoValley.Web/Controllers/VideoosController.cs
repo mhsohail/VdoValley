@@ -28,7 +28,7 @@ namespace VdoValley.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Videoo videoo = db.Videos.Find(id);
+            Video videoo = db.Videos.Find(id);
             if (videoo == null)
             {
                 return HttpNotFound();
@@ -47,7 +47,7 @@ namespace VdoValley.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "VideooId,Title")] Videoo videoo)
+        public ActionResult Create([Bind(Include = "VideooId,Title")] Video videoo)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +66,7 @@ namespace VdoValley.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Videoo videoo = db.Videos.Find(id);
+            Video videoo = db.Videos.Find(id);
             if (videoo == null)
             {
                 return HttpNotFound();
@@ -79,7 +79,7 @@ namespace VdoValley.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "VideooId,Title")] Videoo videoo)
+        public ActionResult Edit([Bind(Include = "VideooId,Title")] Video videoo)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +97,7 @@ namespace VdoValley.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Videoo videoo = db.Videos.Find(id);
+            Video videoo = db.Videos.Find(id);
             if (videoo == null)
             {
                 return HttpNotFound();
@@ -110,7 +110,7 @@ namespace VdoValley.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Videoo videoo = db.Videos.Find(id);
+            Video videoo = db.Videos.Find(id);
             db.Videos.Remove(videoo);
             db.SaveChanges();
             return RedirectToAction("Index");

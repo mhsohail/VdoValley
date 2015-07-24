@@ -5,7 +5,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using VdoValley.Web.Models;
+using VdoValley.Core.Models;
 
 namespace VdoValley.Web
 {

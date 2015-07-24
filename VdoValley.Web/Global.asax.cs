@@ -12,11 +12,8 @@ namespace VdoValley.Web
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        DbInitializer db = new DbInitializer();
-
         protected void Application_Start()
         {
-            Database.SetInitializer(db);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

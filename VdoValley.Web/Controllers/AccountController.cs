@@ -8,9 +8,10 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using VdoValley.Web.Models;
+using VdoValley.Core.Models;
+using VdoValley.Web;
 
-namespace VdoValley.Web.Controllers
+namespace VdoValley.Controllers
 {
     [Authorize]
     public class AccountController : Controller

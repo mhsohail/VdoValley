@@ -18,6 +18,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/AuthorizeNet.dll">
       <publishTime>06/12/2015 23:41:39</publishTime>
     </File>
+    <File Include="bin/AutoMapper.dll">
+      <publishTime>07/13/2015 15:57:23</publishTime>
+    </File>
+    <File Include="bin/AutoMapper.Net4.dll">
+      <publishTime>07/13/2015 15:57:24</publishTime>
+    </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>04/25/2015 17:28:33</publishTime>
     </File>
@@ -120,8 +126,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/System.Web.WebPages.Razor.dll">
       <publishTime>05/23/2015 00:23:09</publishTime>
     </File>
+    <File Include="bin/VdoValley.Core.dll">
+      <publishTime>07/15/2015 02:03:15</publishTime>
+    </File>
     <File Include="bin/VdoValley.dll">
-      <publishTime>06/29/2015 02:05:27</publishTime>
+      <publishTime>07/15/2015 02:03:32</publishTime>
+    </File>
+    <File Include="bin/VdoValley.Infrastructure.dll">
+      <publishTime>07/15/2015 02:03:18</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>05/23/2015 00:23:20</publishTime>
@@ -511,7 +523,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/28/2015 21:16:24</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>06/13/2015 19:49:37</publishTime>
+      <publishTime>07/13/2015 15:57:45</publishTime>
     </File>
     <File Include="Scripts/AutoTagsSuggestion.js">
       <publishTime>06/11/2015 19:09:06</publishTime>
@@ -2197,7 +2209,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/13/2015 19:49:17</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>06/14/2015 00:33:06</publishTime>
+      <publishTime>07/10/2015 20:55:12</publishTime>
     </File>
     <File Include="Sounds/chatmessage.mp3">
       <publishTime>05/09/2015 21:34:01</publishTime>
@@ -2272,13 +2284,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/12/2015 17:31:47</publishTime>
     </File>
     <File Include="Views/Home/ImportDailymotionVideos.cshtml">
-      <publishTime>06/29/2015 02:04:16</publishTime>
+      <publishTime>07/15/2015 02:51:04</publishTime>
     </File>
     <File Include="Views/Home/ImportFacebookVideo.cshtml">
       <publishTime>05/31/2015 10:02:12</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>06/19/2015 15:15:52</publishTime>
+      <publishTime>07/15/2015 01:42:24</publishTime>
     </File>
     <File Include="Views/Home/Search.cshtml">
       <publishTime>05/03/2015 23:05:57</publishTime>
@@ -2380,13 +2392,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/03/2015 15:46:47</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>06/19/2015 12:00:59</publishTime>
+      <publishTime>07/10/2015 16:30:51</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>06/17/2015 13:42:48</publishTime>
     </File>
     <File Include="Views/Shared/_SidebarPartial.cshtml">
-      <publishTime>06/23/2015 13:25:40</publishTime>
+      <publishTime>07/15/2015 01:46:28</publishTime>
     </File>
     <File Include="Views/Tags/Create.cshtml">
       <publishTime>05/18/2015 00:01:55</publishTime>
@@ -2425,7 +2437,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/20/2015 17:35:13</publishTime>
     </File>
     <File Include="Views/Videos/Details.cshtml">
-      <publishTime>06/20/2015 02:59:14</publishTime>
+      <publishTime>07/15/2015 03:26:01</publishTime>
     </File>
     <File Include="Views/Videos/Details_orig.cshtml">
       <publishTime>06/06/2015 17:21:41</publishTime>
@@ -2464,7 +2476,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/25/2015 17:20:56</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/13/2015 22:46:49</publishTime>
+      <publishTime>07/15/2015 02:04:24</publishTime>
     </File>
   </ItemGroup>
 </Project>

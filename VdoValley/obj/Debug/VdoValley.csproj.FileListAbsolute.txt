@@ -55,11 +55,13 @@ c:\Users\pc\Documents\Visual Studio 2013\Projects\VdoValley\VdoValley\obj\Debug\
 C:\Users\pc\documents\visual studio 2013\Projects\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.initial.resources
 C:\Users\pc\documents\visual studio 2013\Projects\VdoValley\VdoValley\obj\Debug\VdoValley.csproj.GenerateResource.Cache
 C:\Users\pc\documents\visual studio 2013\Projects\VdoValley\VdoValley\obj\Debug\VdoValley.csprojResolveAssemblyReference.cache
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\AutoMapper.Net4.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\VdoValley.dll.config
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\VdoValley.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\VdoValley.pdb
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Antlr3.Runtime.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\AuthorizeNet.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\AutoMapper.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\EntityFramework.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\EntityFramework.SqlServer.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\GridMvc.dll
@@ -94,8 +96,15 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\System.Web.Razor.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\System.Web.WebPages.Deployment.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\System.Web.WebPages.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\System.Web.WebPages.Razor.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\VdoValley.Core.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\VdoValley.Infrastructure.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\WebGrease.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\VdoValley.Core.pdb
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\VdoValley.Infrastructure.pdb
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Antlr3.Runtime.pdb
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\AutoMapper.pdb
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\AutoMapper.xml
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\AutoMapper.Net4.pdb
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\EntityFramework.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\EntityFramework.SqlServer.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\Microsoft.AspNet.Identity.Core.xml
@@ -125,26 +134,6 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\System.Web.WebPages.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\System.Web.WebPages.Deployment.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\System.Web.WebPages.Razor.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\System.Web.Optimization.xml
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.grgrgr.resources
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.grgrgrhhh.resources
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.EmbedIdFieldAdded.resources
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.VideoDetailsViewModelCreated.resources
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.PageNameFieldAdded.resources
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.postModel.resources
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.PostModelModified.resources
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.PostModelModified1.resources
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.PostModelModified2.resources
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.Migrations.ThumbnailURL_added_Video.resources
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.csproj.GenerateResource.Cache
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.csprojResolveAssemblyReference.cache
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.pdb
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\obj\Debug\VdoValley.csprojResolveAssemblyReference.cache
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\AutoMapper.Net4.dll
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\AutoMapper.dll
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\VdoValley.Core.dll
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\VdoValley.Infrastructure.dll
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\VdoValley.Core.pdb
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\VdoValley.Infrastructure.pdb
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\AutoMapper.pdb
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\AutoMapper.xml
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley\bin\AutoMapper.Net4.pdb

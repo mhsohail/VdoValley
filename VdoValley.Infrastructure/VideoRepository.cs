@@ -13,13 +13,13 @@ namespace VdoValley.Infrastructure
     {
         VdoValleyContext db = new VdoValleyContext();
 
-        public void Add(Videoo Video)
+        public void Add(Video Video)
         {
             db.Videos.Add(Video);
             db.SaveChanges();
         }
 
-        public void Edit(Videoo Video)
+        public void Edit(Video Video)
         {
             db.Entry(Video).State = EntityState.Modified;
             db.SaveChanges();
@@ -27,19 +27,19 @@ namespace VdoValley.Infrastructure
 
         public void Remove(int VideoID)
         {
-            Videoo Video = db.Videos.Find(VideoID);
+            Video Video = db.Videos.Find(VideoID);
             db.Videos.Remove(Video);
             db.SaveChanges();
         }
 
-        public List<Videoo> GetVideos()
+        public List<Video> GetVideos()
         {
-            return db.Videos.ToList<Videoo>();
+            return db.Videos.ToList<Video>();
         }
 
-        public Videoo FindById(int VideoID)
+        public Video FindById(int VideoID)
         {
-            var Video = (from v in db.Videos where v.VideooId == VideoID select v).FirstOrDefault();
+            var Video = (from v in db.Videos where v.VideoId == VideoID select v).FirstOrDefault();
             return Video;
         }
     }

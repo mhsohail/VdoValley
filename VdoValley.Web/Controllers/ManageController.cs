@@ -6,9 +6,10 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using VdoValley.Web.Models;
+using VdoValley.Web;
+using VdoValley.Core.Models;
 
-namespace VdoValley.Web.Controllers
+namespace VdoValley.Controllers
 {
     [Authorize]
     public class ManageController : Controller

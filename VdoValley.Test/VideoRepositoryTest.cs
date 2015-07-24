@@ -13,8 +13,8 @@ namespace VdoValley.Test
         [TestInitialize]
         public void TestSetup()
         {
-            DbInitializer db = new DbInitializer();
-            Database.SetInitializer(db);
+            //DbInitializer db = new DbInitializer();
+            //Database.SetInitializer(db);
             repo = new VideoRepository();
         }
 

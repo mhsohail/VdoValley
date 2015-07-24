@@ -122,9 +122,9 @@
                                 }
                                 else
                                 {
-                                    <iframe frameborder="0" width="700" height="400" src="//www.dailymotion.com/embed/video/@Model.Video.getDailyMotionVideoCode(Model.Video.Url)?autoplay=1&amp;logo=0&amp;info=1&amp;hideInfos=0&amp;start=0&amp;syndication=263313&amp;foreground=&amp;highlight=&amp;background=" allowfullscreen></iframe>
+                                    <iframe frameborder="0" width="700" height="400" src="//www.dailymotion.com/embed/video/@VdoValley.Helpers.VideoHelper.getDailyMotionVideoCode(Model.Video, Model.Video.Url)?autoplay=1&amp;logo=0&amp;info=1&amp;hideInfos=0&amp;start=0&amp;syndication=263313&amp;foreground=&amp;highlight=&amp;background=" allowfullscreen></iframe>
                                 }
-
+                                
                                 <div class="simply">
                                     <!-- style went here -->
                                     <div class="row">
@@ -185,11 +185,11 @@
                                                         <a class="thumbnail" href="/Videos/Details/@video.VideoId">
                                                             @if(video.Url == null)
                                                             {
-                                                                <img class="img-responsive" src="@video.getFacebookVideoThumbnail(video.getFacebookVideoCode(video.EmbedCode), VdoValley.Models.FacebookThumbnailSize.SMALL)" alt="">
+                                                                <img class="img-responsive" src="@VdoValley.Helpers.VideoHelper.getFacebookVideoThumbnail(video, VdoValley.Helpers.VideoHelper.getFacebookVideoCode(video, video.EmbedCode), VdoValley.Models.FacebookThumbnailSize.SMALL)" alt="">
                                                             }
                                                             else
                                                             {
-                                                                <img class="img-responsive" src="@video.getDailyMotionThumb(video.getDailyMotionVideoCode(video.Url), VdoValley.Models.DailymotionThumbnailSize.thumbnail_large_url)" alt="">
+                                                                <img class="img-responsive" src="@VdoValley.Helpers.VideoHelper.getDailyMotionThumb(video, VdoValley.Helpers.VideoHelper.getDailyMotionVideoCode(video, video.Url), VdoValley.Models.DailymotionThumbnailSize.thumbnail_large_url)" alt="">
                                                             }
                                                             <div class="details">
                                                                 <div class="panel-heading">
