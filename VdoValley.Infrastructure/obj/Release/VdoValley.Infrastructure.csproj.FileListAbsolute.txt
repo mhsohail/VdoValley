@@ -1,0 +1,12 @@
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Infrastructure\bin\Release\VdoValley.Infrastructure.dll.config
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Infrastructure\bin\Release\VdoValley.Infrastructure.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Infrastructure\bin\Release\VdoValley.Infrastructure.pdb
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Infrastructure\bin\Release\EntityFramework.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Infrastructure\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Infrastructure\bin\Release\VdoValley.Core.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Infrastructure\bin\Release\VdoValley.Core.pdb
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Infrastructure\bin\Release\EntityFramework.xml
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Infrastructure\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Infrastructure\obj\Release\VdoValley.Infrastructure.csprojResolveAssemblyReference.cache
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Infrastructure\obj\Release\VdoValley.Infrastructure.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Infrastructure\obj\Release\VdoValley.Infrastructure.pdb

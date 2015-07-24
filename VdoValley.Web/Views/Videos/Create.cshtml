@@ -1,0 +1,232 @@
+﻿@model VdoValley.Web.ViewModels.VideoViewModel
+
+@{
+    ViewBag.Title = "Submit Video";
+}
+
+<h2>Submit Video</h2>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="http://api.dmcdn.net/all.js"></script>
+<script>
+    DM.init({
+        apiKey: 'c3aae1f9b8cf64a567a8',
+        status: true, // check login status
+        cookie: true // enable cookies to allow the server to access the session
+    });
+</script>
+<script>
+    $(function () {
+        $("#Title").keyup(function () {
+            // below function is defined in AutoTagsSuggestion.js file
+            getTags($(this).val(), "createVideo");
+        });
+        
+        $("#suggested-tags").on("click", ".active", function (e) {
+            e.preventDefault();
+
+            // get the tagName which is clicked and needs to be removed
+            var tagName = $(this).find("a").text();
+
+            // get hidden Tags input value
+            var tags = $("input[name='Tags']").val();
+
+            // split the value by comman to make array
+            tagArray = tags.split(",");
+
+            // get index of tagName to be removed
+            var index = tagArray.indexOf(tagName);
+
+            // remove the tag from array
+            tagArray.splice(index, 1);
+
+            // join the updated array to make updated comma separated string
+            var updatedTags = tagArray.join();
+
+            // update the hidden Tags field with new comman separated tags string
+            $("input[name='Tags']").val(updatedTags);
+
+            // remove the clicked tag
+            $(this).remove();
+        });
+
+        $("input[name='InputTags']").keyup(function (e) {
+            var tag = $(this).val();
+            if (tag.substr(-1) == ",") {
+                appendTag(tag.substring(0, tag.length - 1), "createVideo");
+                $(this).val("");
+            }
+        });
+        
+        $("#Url").change(function () {
+            var input = $(this).val();
+            var matches = input.match(/(http:\/\/dai.ly\/)(\S+)/);
+            var videoCode = null;
+            if (matches == null || matches.length == 0) {
+                alert("Invalid short URL");
+                console.log(matches);
+                return;
+            } else {
+                console.log(matches[2]);
+                videoCode = matches[2];
+            }
+            
+            $.ajax({
+                type: "GET",
+                url: "https://api.dailymotion.com/video/" + videoCode + "?fields=id,title,description",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    //var obj = $.parseJSON(response);
+                    console.log(response);
+                    fillVideoDetails(response);
+                },
+                error: function (xhr, status, error) {
+                    //var obj = $.parseJSON(xhr.responseText);
+                    console.log(xhr.responseText);
+                    fillVideoDetails(xhr.responseText);
+                }
+            });
+        });
+
+        function fillVideoDetails(data) {
+            // if video is found, a valid object is returned, json string will be returned otherwise
+            if (typeof data === 'object') {
+                $("#Title").val(data.title);
+                $("#Title").attr("disabled",false);
+                $("#Description").val(data.description.replace(/<.*>/g, ""));
+                $("#Description").attr("disabled", false);
+            } else {
+                $("#Title").val("");
+                //$("#Title").attr("disabled", true);
+                $("#Description").val("");
+                //$("#Description").attr("disabled", true);
+                var response = $.parseJSON(data);
+                //alert(response.error.message);
+            }
+        }
+
+    });
+
+
+</script>
+<!--
+    https://api.dailymotion.com/video/x2oiahw?fields=id,title,description
+    https://api.dailymotion.com/video/x2oiahw?fields=thumbnail_large_url
+-->
+<div ng-app="">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.VideoTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.VideoTypeId, new SelectList(TempData["VideoTypes"] as System.Collections.IEnumerable, "VideoTypeId", "VideoTypeName"), "-Select Video Type-", htmlAttributes: new { @class = "form-control", style = "width: 350px;" })
+                    @Html.ValidationMessage("VideoType", "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @class = "form-control", style = "width: 350px;" } })
+                    @Html.ValidationMessageFor(model => model.Url, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.EmbedCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.EmbedCode, new { htmlAttributes = new { @class = "form-control", style = "width: 350px;" } })
+                    @Html.ValidationMessageFor(model => model.EmbedCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", ng_model = "name", style = "width: 350px;" } })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ThumbnailURL, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ThumbnailURL, new { htmlAttributes = new { @class = "form-control", style = "width: 350px;" } })
+                    @Html.ValidationMessageFor(model => model.ThumbnailURL, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", style = "width: 350px;" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SelectedCategory, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.SelectedCategory, new SelectList(TempData["Categories"] as System.Collections.IEnumerable, "CategoryID", "Name"), "-Select Category-", htmlAttributes: new { @class = "form-control", style = "width: 350px;" })
+                    @Html.ValidationMessageFor(model => model.SelectedCategory, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Featured, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Featured, new { htmlAttributes = new { @class = "form-control", style = "width: 350px;" } })
+                    @Html.ValidationMessageFor(model => model.Featured, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Tags, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Tags, new { @class = "form-control", style = "width: 350px;", id = "InputTags", Name = "InputTags" })
+                    @Html.ValidationMessageFor(model => model.Tags, "", new { @class = "text-danger" })
+                    <input id="Tags" name="Tags" type="hidden" value="">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <style>
+                    .nav-pills li a {
+                        background-color: lightgray;
+                    }
+                    #suggested-tags {
+                        margin-left: 18%;
+                    }
+                </style>
+                <ul class="nav nav-pills col-lg-offset-6 col-lg-10" id="suggested-tags">
+                    <!--<li class="active"><a href="#" style="background-color: #EEEEEE;padding:5px;color:grey;">Home</a></li>-->
+                </ul>
+            </div>
+           
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Submit" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+    }
+</div>
+<script src="~/Scripts/AutoTagsSuggestion.js"></script>
+<div>
+    @*@Html.ActionLink("Back to List", "Index")*@
+</div>
+@section styles{
+ 
+<link href="~/Scripts/jquery-tags-input/jquery.tagsinput.css" rel="stylesheet" />
+ }
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery-tags-input/jquery.tagsinput.js"></script>
+}

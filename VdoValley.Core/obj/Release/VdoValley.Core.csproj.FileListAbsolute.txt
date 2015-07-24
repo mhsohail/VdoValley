@@ -1,0 +1,5 @@
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Core\bin\Release\VdoValley.Core.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Core\bin\Release\VdoValley.Core.pdb
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Core\obj\Release\VdoValley.Core.csprojResolveAssemblyReference.cache
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Core\obj\Release\VdoValley.Core.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Core\obj\Release\VdoValley.Core.pdb
