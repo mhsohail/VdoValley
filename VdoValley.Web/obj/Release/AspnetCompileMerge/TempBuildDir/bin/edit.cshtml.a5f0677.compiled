@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<preserve resultType="2" virtualPath="/Views/Posts/Edit.cshtml" hash="ffffffff885e8f6d" filehash="4155ee32fddb" flags="110000" assembly="App_Web_5waoqvhv" type="ASP._Page_Views_Posts_Edit_cshtml">
+    <filedeps>
+        <filedep name="/Views/Posts/Edit.cshtml" />
+    </filedeps>
+</preserve>

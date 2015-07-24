@@ -1,0 +1,246 @@
+﻿@model VdoValley.Web.ViewModels.VideoDetailsViewModel
+@using Microsoft.AspNet.Identity;
+@{
+    ViewBag.Title = Model.Video.Title;
+}
+<link href="~/Content/VideoDetailsStyle.css" rel="stylesheet" property="stylesheet" type="text/css">
+<script>
+    $(function () {
+        $(".rating-star-block .star").mouseenter(function () {
+            var hoverVal = $(this).attr('rating');
+            $(this).prevUntil().addClass("filled");
+            $(this).addClass("filled");
+            $("#RAT").html(hoverVal);
+        });
+
+        $(".rating-star-block .star").mouseleave(function () {
+            $("#" + $(this).parent().attr('id') + " .star").each(function () {
+                $(this).addClass("outline");
+                $(this).removeClass("filled");
+            });
+        });
+
+        $(".rating-star-block .star").click(function (e) {
+            e.preventDefault();
+            var v = $(this).attr('rating');
+            var newScore = 0;
+            var updateP = "#" + $(this).parent().attr('id') + ' .CurrentScore';
+            var artID = $("#" + $(this).parent().attr('id') + ' .articleID').val();
+            var UserId = $(".UserID").val();
+
+            //$("#" + $(this).parent().attr('id') + " .star").hide();
+            $("#" + $(this).parent().attr('id') + " .yourScore").html("Your Score is : &nbsp;<b style='color:#ff9900; font-size:15px'>" + v + "</b>");
+            
+            var rating = {
+                VideoId: artID,
+                ApplicationUserId: UserId,
+                Score: v,
+                Date: "@DateTime.Now"
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Createe", "Ratings")",
+                data: JSON.stringify(rating),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    //setNewScore(updateP, response);
+                    console.log(response);
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+    });
+
+    function setNewScore(container, data) {
+        $(container).html(data);
+        $("#myElem").show('1000').delay(2000).queue(function (n) {
+            $(this).hide(); n();
+        });
+    }
+
+</script>
+@section VideoDetails {
+                        <div class="col-md-8 content-top">
+                            <div class="number">
+                                <div class="feb">
+                                    <b>@Model.Video.DateTime.Day</b>
+                                    @{
+                                        string AbbreviatedMonth = new System.Globalization.DateTimeFormatInfo().GetAbbreviatedMonthName(Model.Video.DateTime.Month).ToUpper();
+                                    }
+                                    <label>@AbbreviatedMonth</label>
+                                </div>
+                                <h3>@Html.DisplayFor(model => model.Video.Title)</h3>
+                                
+                                <!-- AddThis: Put the following code in body tag -->
+                                <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50ac72a051b245aa" async="async"></script>
+
+                                <!-- AddThis: Put the following code where to show the social media sharing icons -->
+                                <div class="addthis_sharing_toolbox"></div>
+
+                                @if (System.Web.HttpContext.Current.User.IsInRole("Administrator"))
+                                {
+                                    @Html.ActionLink("Share", "Share")
+                                }
+                                
+                                @if (Model.Video.Url == null)
+                                {
+                                    if(Model.Video.EmbedId == null)
+                                    {
+                                        <div id="fb-root"></div>
+                                        <script>
+                                            (function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3"; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'facebook-jssdk'));
+                                            $(function () {
+                                            
+                                            });
+                                        </script>
+                                        <!-- style went here -->
+                                        @Html.Raw(Model.Video.EmbedCode)
+                                    }
+                                    else
+                                    {
+                                        <div id="fb-root"></div>
+                                        <div class="fb-video"
+                                             data-href="https://www.facebook.com/video.php?v=@Model.Video.EmbedId"
+                                             data-width="700"
+                                             data-height="400"
+                                             data-allowfullscreen="true">
+                                        </div>
+                                        <script>
+                                            (function (d, s, id) {
+                                                var js, fjs = d.getElementsByTagName(s)[0];
+                                                if (d.getElementById(id)) return;
+                                                js = d.createElement(s); js.id = id;
+                                                js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+                                                fjs.parentNode.insertBefore(js, fjs);
+                                            }(document, 'script', 'facebook-jssdk'));
+                                        </script>
+                                    }
+                                }
+                                else
+                                {
+                                    <iframe frameborder="0" width="700" height="400" src="//www.dailymotion.com/embed/video/@VdoValley.Web.Helpers.VideoHelper.getDailyMotionVideoCode(Model.Video, Model.Video.Url)?autoplay=1&amp;logo=0&amp;info=1&amp;hideInfos=0&amp;start=0&amp;syndication=263313&amp;foreground=&amp;highlight=&amp;background=" allowfullscreen></iframe>
+                                }
+                                
+                                <div class="simply">
+                                    <!-- style went here -->
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-6 col-lg-6">
+                                            <div class="rating-star-block" id='div_0'>
+                                                <input type="hidden" class="articleID" value='@Model.Video.VideoId' />Current Rating : <span class="CurrentScore">@Model.AverageRating / 5</span><br /><div class="yourScore">Your Score is : @Model.CurrentUsersScore</div>
+                                                <input type="hidden" class="UserID" value='@System.Web.HttpContext.Current.User.Identity.GetUserId()' />
+                                                @{
+                                                    if (Model.VideoScorer == null)
+                                                    {
+                                                        <a class="star outline" href="#" rating="1" title="vote 1"> vote 1</a>
+                                                        <a class="star outline" href="#" rating="2" title="vote 2"> vote 2</a>
+                                                        <a class="star outline" href="#" rating="3" title="vote 3"> vote 3</a>
+                                                        <a class="star outline" href="#" rating="4" title="vote 4"> vote 4</a>
+                                                        <a class="star outline" href="#" rating="5" title="vote 5"> vote 5</a>
+                                                    }
+                                                }
+                                            </div>
+                                            <div class="tags-block">
+                                                <span>Tags: </span>
+                                                @{
+                                                    ICollection<VdoValley.Core.Models.Tag> tags = Model.Video.Tags;
+                                                    int counter = 0;
+                                                    foreach (var tag in tags)
+                                                    {
+                                                        <span><a href="@Url.Action("Details", "Tags", new { id = tag.TagId })">@tag.Name</a></span>
+                                                        if (!counter.Equals(tags.Count - 1))
+                                                        {
+                                                            <span>,</span>
+                                                        }
+                                                        counter++;
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-6">
+                                            <!-- AddThis: Put the following code where to show the social media sharing icons -->
+                                            <div class="addthis_sharing_toolbox col-md-12"></div>
+                                            <div class="col-md-12">Category: <a href="@Url.Action("Details", "Categories", new { id = Model.Video.Category.CategoryId })">@Model.Video.Category.Name</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <!---->
+                                    <div class="simply">
+                                        <div class="story">
+                                            <h4 class="stories stories-in"><span>Related Videos</span></h4>
+                                        </div>
+                                        @{
+                                            if (Model.RelatedVideos.Count() == 0)
+                                            {
+                                                <span>No related videos available</span>
+                                            }
+                                            else 
+                                            { 
+                                                foreach (var video in Model.RelatedVideos)
+                                                {
+                                                    <div class="thumbnail-container col-lg-3 col-md-4 col-xs-6 thumb">
+                                                        <a class="thumbnail" href="/Videos/Details/@video.VideoId">
+                                                            @if(video.Url == null)
+                                                            {
+                                                                <img class="img-responsive" src="@VdoValley.Web.Helpers.VideoHelper.getFacebookVideoThumbnail(video, VdoValley.Web.Helpers.VideoHelper.getFacebookVideoCode(video, video.EmbedCode), VdoValley.Core.Models.FacebookThumbnailSize.SMALL)" alt="">
+                                                            }
+                                                            else
+                                                            {
+                                                                <img class="img-responsive" src="@VdoValley.Web.Helpers.VideoHelper.getDailyMotionThumb(video, VdoValley.Web.Helpers.VideoHelper.getDailyMotionVideoCode(video, video.Url), VdoValley.Core.Models.DailymotionThumbnailSize.thumbnail_large_url)" alt="">
+                                                            }
+                                                            <div class="details">
+                                                                <div class="panel-heading">
+                                                                    @{
+                                                    int maxTitleLength = 40;
+                                                    string title = string.Empty;
+                                                    if (video.Title.Length > maxTitleLength) { title = video.Title.Substring(0, maxTitleLength - 1) + "..."; } else { title = video.Title; }
+                                                                    }
+                                                                    <h3 class="panel-title col-lg-offset-1">@title</h3>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <!---->
+                                    <div class="simply">
+                                        @{
+                                            // Install-Package Disqus.Helper
+                                            Disqus.Initialize("vdovalley");
+                                        }
+                                        @Disqus.ShowComments(Model.Video.VideoId.ToString());
+                                    </div>
+
+                                    <!---->
+                                </div>
+                        </div>
+    }
+
+@Html.Partial("_SidebarPartial")
+                        <!---->
+            <p class="footer-class">Copyright © 2015 Magblog Template by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    /*
+                    var defaults = {
+                        containerID: 'toTop', // fading element id
+                        containerHoverID: 'toTopHover', // fading element hover id
+                        scrollSpeed: 1200,
+                        easingType: 'linear'
+                    };
+                    */
+
+                    $().UItoTop({ easingType: 'easeOutQuart' });
+
+                });
+            </script>
+            <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+
+
+        </div>
