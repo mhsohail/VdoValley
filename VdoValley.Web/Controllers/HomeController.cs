@@ -11,7 +11,7 @@ using System.Web.Mvc;
 using VdoValley.Core.Models;
 using PagedList.Mvc;
 using PagedList;
-using VdoValley.ViewModels;
+using VdoValley.Web.ViewModels;
 using System.Threading.Tasks;
 using VdoValley.Attributes;
 using AuthorizeNet;
@@ -25,6 +25,7 @@ namespace VdoValley.Controllers
     {
         VdoValleyContext db = new VdoValleyContext();
         VideoRepository VideoRepo = new VideoRepository();
+        CategoryRepository CategoryRepo = new CategoryRepository();
 
         public ActionResult Index(int? page)
         {
@@ -35,12 +36,12 @@ namespace VdoValley.Controllers
                 //videos = db.Videos.ToList().ToPagedList(page ?? 1, 24);
                 
                 hvm.AllVideos = VideoRepo.GetVideos();
-                hvm.FashionVideos = db.Categories.FirstOrDefault(c => c.CategoryId == 15).Videos.OrderByDescending(v => v.DateTime).Take(8);
-                hvm.FunnyVideos = db.Categories.FirstOrDefault(c => c.CategoryId == 12).Videos.OrderByDescending(v => v.DateTime).Take(8);
-                hvm.PoliticsVideos = db.Categories.FirstOrDefault(c => c.CategoryId == 13).Videos.OrderByDescending(v => v.DateTime).Take(8);
-                hvm.SportsVideos = db.Categories.FirstOrDefault(c => c.CategoryId == 14).Videos.OrderByDescending(v => v.DateTime).Take(8);
-                hvm.TalkShowVideos = db.Categories.FirstOrDefault(c => c.CategoryId == 16).Videos.OrderByDescending(v => v.DateTime).Take(8);
-                hvm.NewsVideos = db.Categories.FirstOrDefault(c => c.CategoryId == 17).Videos.OrderByDescending(v => v.DateTime).Take(8);
+                hvm.FashionVideos = CategoryRepo.GetCategories().FirstOrDefault(c => c.CategoryId == 15).Videos.OrderByDescending(v => v.DateTime).Take(8);
+                hvm.FunnyVideos = CategoryRepo.GetCategories().FirstOrDefault(c => c.CategoryId == 12).Videos.OrderByDescending(v => v.DateTime).Take(8);
+                hvm.PoliticsVideos = CategoryRepo.GetCategories().FirstOrDefault(c => c.CategoryId == 13).Videos.OrderByDescending(v => v.DateTime).Take(8);
+                hvm.SportsVideos = CategoryRepo.GetCategories().FirstOrDefault(c => c.CategoryId == 14).Videos.OrderByDescending(v => v.DateTime).Take(8);
+                hvm.TalkShowVideos = CategoryRepo.GetCategories().FirstOrDefault(c => c.CategoryId == 16).Videos.OrderByDescending(v => v.DateTime).Take(8);
+                hvm.NewsVideos = CategoryRepo.GetCategories().FirstOrDefault(c => c.CategoryId == 17).Videos.OrderByDescending(v => v.DateTime).Take(8);
             }
             catch(Exception e)
             {

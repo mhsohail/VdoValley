@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using VdoValley.Core.Models;
 
-namespace VdoValley.ViewModels
+namespace VdoValley.Web.ViewModels
 {
     public class FacebookImportViewModel
     {

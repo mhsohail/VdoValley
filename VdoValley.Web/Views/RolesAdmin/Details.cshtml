@@ -19,7 +19,7 @@
 @if (TempData["usersInRole"] != null)
 {
     <table class="table table-striped">
-        @foreach (var item in TempData["usersInRole"] as IEnumerable<VdoValley.Models.ApplicationUser>)
+        @foreach (var item in TempData["usersInRole"] as IEnumerable<VdoValley.Core.Models.ApplicationUser>)
         {
             <tr>
                 <td>

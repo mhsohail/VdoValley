@@ -7,6 +7,7 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\AuthorizeNet.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\AutoMapper.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\EntityFramework.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\EntityFramework.SqlServer.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\GridMvc.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Microsoft.AspNet.Identity.Owin.dll
@@ -26,6 +27,8 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Newtonsoft.Json.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Owin.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\PagedList.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\PagedList.Mvc.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Net.Http.Extensions.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Net.Http.Primitives.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Web.Helpers.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Web.Mvc.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Web.Optimization.dll
@@ -53,8 +56,11 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Microsoft.Owin.Security
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Newtonsoft.Json.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\PagedList.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\PagedList.Mvc.xml
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Net.Http.Extensions.xml
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Net.Http.Primitives.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Web.Helpers.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Web.Mvc.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Web.Optimization.xml
@@ -63,11 +69,11 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Web.WebPages.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Web.WebPages.Deployment.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Web.WebPages.Razor.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Antlr3.Runtime.pdb
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Newtonsoft.Json.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Microsoft.AspNet.Identity.Owin.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\obj\Debug\VdoValley.Web.csproj.App.config
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\obj\Debug\VdoValley.Web.csprojResolveAssemblyReference.cache
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\obj\Debug\VdoValley.Web.Migrations.Init.resources
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\obj\Debug\VdoValley.Web.csproj.GenerateResource.Cache

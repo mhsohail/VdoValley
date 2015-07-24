@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+﻿@using VdoValley.Core.Models
+@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
 
 @{
     ViewBag.Title = "Index";
@@ -17,7 +18,7 @@
         <th></th>
     </tr>
     @{
-        List<VdoValley.Models.Role> roles = new List<VdoValley.Models.Role>();
+        List<Role> roles = new List<Role>();
     }
     @foreach (var role in Model)
     {

@@ -13,7 +13,7 @@ namespace VdoValley.Controllers
 {
     public class CategoriesController : Controller
     {
-        private VdoValleyContext db = new VdoValleyContext();
+        VdoValleyContext db = new VdoValleyContext();
         private CategoryRepository CategoryRepo = new CategoryRepository();
 
         // GET: Categories
@@ -30,7 +30,6 @@ namespace VdoValley.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            //Category category = db.Categories.Find(id);
             Category category = CategoryRepo.FindById((int)id);
 
             if (category == null)
@@ -56,8 +55,6 @@ namespace VdoValley.Controllers
         {
             if (ModelState.IsValid)
             {
-                //db.Categories.Add(category);
-                //db.SaveChanges();
                 CategoryRepo.Add(category);
                 return RedirectToAction("Index");
             }
@@ -72,7 +69,7 @@ namespace VdoValley.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Category category = db.Categories.Find(id);
+            
             Category category = CategoryRepo.FindById((int)id);
             if (category == null)
             {
@@ -90,8 +87,6 @@ namespace VdoValley.Controllers
         {
             if (ModelState.IsValid)
             {
-                //db.Entry(category).State = EntityState.Modified;
-                //db.SaveChanges();
                 CategoryRepo.Edit(category);
                 return RedirectToAction("Index");
             }
@@ -106,7 +101,7 @@ namespace VdoValley.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Category category = db.Categories.Find(id);
+            
             Category category = CategoryRepo.FindById((int)id);
             if (category == null)
             {
@@ -120,10 +115,6 @@ namespace VdoValley.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            //return View();
-            //Category category = db.Categories.Find(id);
-            //db.Categories.Remove(category);
-            //db.SaveChanges();
             CategoryRepo.Remove(id);
             return RedirectToAction("Index");
         }

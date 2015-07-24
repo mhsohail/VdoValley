@@ -1,4 +1,5 @@
-﻿@model VdoValley.Core.Models.Tag
+﻿@using VdoValley.Core.Models
+@model VdoValley.Core.Models.Tag
 
 @{
     ViewBag.Title = "Details";
@@ -30,7 +31,7 @@
 </div>
 
 @{
-    ICollection<VdoValley.Models.Video> videos = Model.Videos;
+    ICollection<Video> videos = Model.Videos;
     foreach (var video in videos)
     {
         <div>

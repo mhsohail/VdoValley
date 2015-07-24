@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using VdoValley.Core.Models;
-using VdoValley.ViewModels;
+using VdoValley.Web.ViewModels;
 using VdoValley.Web.ViewModels;
 
 namespace VdoValley.Web.ViewModelHelpers

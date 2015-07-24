@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using VdoValley.Enums;
 
-namespace VdoValley.ViewModels
+namespace VdoValley.Web.ViewModels
 {
     public class PostViewModel
     {

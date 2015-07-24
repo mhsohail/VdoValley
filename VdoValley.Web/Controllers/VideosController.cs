@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using VdoValley.Core.Models;
 using Microsoft.AspNet.Identity;
-using VdoValley.ViewModels;
+using VdoValley.Web.ViewModels;
 using VdoValley.Attributes;
 using Microsoft.AspNet.Identity.EntityFramework;
 using VdoValley.Web.Helpers;
