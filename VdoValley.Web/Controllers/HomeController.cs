@@ -18,6 +18,9 @@ using AuthorizeNet;
 using VdoValley.Infrastructure;
 using VdoValley.Web.Controllers;
 using VdoValley.Web.ViewModels;
+using System.IO;
+using VdoValley.Infrastructure.Repositories;
+using VdoValley.Web.Helpers;
 
 namespace VdoValley.Controllers
 {
@@ -65,6 +68,82 @@ namespace VdoValley.Controllers
             return View();
         }
 
+        [HttpPost]
+        [AjaxRequestOnly]
+        public void ImportZemTvVideos(int page)
+        {
+            MatchCollection aMatchCollection = null;
+            using (WebClient client = new WebClient()) // WebClient class inherits IDisposable
+            {
+                string htmlCode = client.DownloadString("http://www.zemtv.com/category/user-submitted/page/" + page + "/");
+                string Pattern = "(?<=<div class=\"thumbnail\">[\\r\\n\\s]*<a href=\")http://www.zemtv.com/[0-9]{4}/[0-9]{2}/[0-9]{2}/[a-zA-Z_0-9-]+";
+                Regex aRegex = new Regex(Pattern, RegexOptions.IgnoreCase);
+                aMatchCollection = aRegex.Matches(htmlCode);
+                foreach (Match aMatch in aMatchCollection.Cast<Match>().Reverse())
+                {
+                    using (WebClient client2 = new WebClient()) // WebClient class inherits IDisposable
+                    {
+                        htmlCode = client.DownloadString(aMatch.Value);
+                        Pattern = "<iframe.+src=\"http://www.dailymotion.com/embed/video/(\\w+)?.+\"></iframe>";
+                        aRegex = new Regex(Pattern, RegexOptions.IgnoreCase);
+                        Match aMatch2 = aRegex.Match(htmlCode);
+                        if (aMatch2.Success)
+                        {
+                            var VideoCode = aMatch2.Groups[1].Value;
+                            if (VideoHelper.VideoExists(VideoCode)) continue;
+                            //"https://api.dailymotion.com/video/" + videoCode + "?fields=id,title,description"
+                            string serviceUrl = string.Format("https://api.dailymotion.com/video/" + VideoCode + "?fields=id,title,description");
+                            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(serviceUrl);
+                            request.Method = "GET";
+                            request.Accept = "application/json; charset=UTF-8";
+
+                            try
+                            {
+                                var httpResponse = (HttpWebResponse)request.GetResponse();
+                                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                                {
+                                    var responstText = streamReader.ReadToEnd();
+                                    //Receipt = serializer.Deserialize<Receipt>(responstText);
+                                    var DMVideo = new
+                                    {
+                                        Id = string.Empty,
+                                        Title = string.Empty,
+                                        Description = string.Empty
+                                    };
+
+                                    DMVideo = Newtonsoft.Json.JsonConvert.DeserializeAnonymousType(responstText, DMVideo);
+                                    var SuggestedTags = TagRepository.GetSuggestedTagsForTitle(DMVideo.Title, string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~")));
+                                    VdoValley.Web.ViewModels.VideoViewModel vvm = new VdoValley.Web.ViewModels.VideoViewModel();
+
+                                    var SuggestedTagsStr = string.Empty;
+                                    if (SuggestedTags.Count > 0) SuggestedTagsStr = SuggestedTags[0].Name;
+                                    foreach (var SuggestedTag in SuggestedTags.Skip(1))
+                                    {
+                                        SuggestedTagsStr += "," + SuggestedTag.Name;
+                                    }
+
+                                    vvm.Tags = SuggestedTagsStr;
+                                    vvm.Title = DMVideo.Title;
+                                    vvm.EmbedId = DMVideo.Id;
+                                    vvm.Description = DMVideo.Description;
+                                    vvm.VideoTypeId = 1;
+                                    vvm.Url = "http://dai.ly/" + DMVideo.Id;
+                                    vvm.SelectedCategory = 1;
+                                    vvm.Featured = false;
+                                    vvm.IsJsonRequest = true;
+
+                                    var vvv = new VideosController().Create(vvm);
+                                    int a = 9;
+                                }
+                            }
+                            catch(WebException WebExc) { }
+                            catch (Exception Exc) { }
+                        }
+                    }
+                }
+            }
+        }
+
         public ActionResult Search(string q)
         {
             return View(db.Videos.Where(v => v.Title.Contains(q)).ToList());
@@ -81,7 +160,7 @@ namespace VdoValley.Controllers
         }
 
         [AjaxRequestOnly]
-        public string ImportFacebookVideo([Bind(Include = "EmbedId,Title,Description,EmbedCode,PageName,VideoTypeeId,SelectedCategory,Tags,IsJsonRequest")] VideoViewModel vvm)
+        public string ImportFacebookVideo([Bind(Include = "EmbedId,Title,Description,EmbedCode,PageName,VideoTypeId,SelectedCategory,Tags,IsJsonRequest")] VideoViewModel vvm)
         {
             Dictionary<string, object> response = new Dictionary<string, object>();
             var vvv = new VideosController().Create(vvm);

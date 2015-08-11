@@ -1,0 +1,108 @@
+﻿@model IEnumerable<VdoValley.Core.Models.AutoImportedVideo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmbedId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.URL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThumbnailURL)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmbedId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.URL)
+        </td>
+        <td>
+            <a href="http://dai.ly/@item.EmbedId" target="_blank"><img src="@item.ThumbnailURL" style="width: 150px;"></a>
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AutoImportedVideoId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AutoImportedVideoId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AutoImportedVideoId })
+        </td>
+        <td>
+            @using (Html.BeginForm("", "", FormMethod.Post, new { @class = "ShareForm" }))
+            {
+                @Html.HiddenFor(model => item.AutoImportedVideoId)
+                @Html.HiddenFor(model => item.Title)
+                @Html.HiddenFor(model => item.URL)
+                @Html.HiddenFor(model => item.EmbedId)
+                @Html.HiddenFor(model => item.VideoId)
+                @Html.HiddenFor(model => item.Description)
+                @Html.HiddenFor(model => item.ThumbnailURL)
+                @Html.HiddenFor(model => item.IsShared)
+                <input type="submit" value="Share" />
+            }
+        </td>
+    </tr>
+}
+
+</table>
+<script>
+    $(function() {
+        $(".ShareForm").submit(function () {
+            var Form = $(this);
+            var VideoDTO = {
+                Id: $(this).find("#item_VideoId").val(),
+                Title: $(this).find("#item_Title").val(),
+                Description: $(this).find("#item_Description").val(),
+                ThumbnailURL: $(this).find("#item_ThumbnailURL").val()
+            };
+
+            if (typeof window.fbAsyncInit != 'undefined') {
+                //window.fbAsyncInit(VideoDTO.Id, VideoDTO.Title, VideoDTO.Description, VideoDTO.ThumbnailURL, Form);
+            }
+
+            ShareToSocialMedia(VideoDTO, Form);
+
+            var AIVideo = {
+                AutoImportedVideoId: $("#item_AutoImportedVideoId").val(),
+                Title: $("#item_Title").val(),
+                URL: $("#item_URL").val(),
+                EmbedId: $("#item_EmbedId").val(),
+                VideoId: $("#item_VideoId").val(),
+                Description: $("#item_Description").val(),
+                ThumbnailURL: $("#item_ThumbnailURL").val(),
+                IsShared: true
+            };
+            console.log(JSON.stringify(AIVideo));
+            $.ajax({
+                method: "post",
+                contentType: "application/json",
+                data: JSON.stringify(AIVideo),
+                url: "/AutoImportedVideos/Edit/" + AIVideo.AutoImportedVideoId,
+                success: function () {
+
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<script src="~/Scripts/SocialSharingScript.js"></script>
+<div id="fb-root"></div>

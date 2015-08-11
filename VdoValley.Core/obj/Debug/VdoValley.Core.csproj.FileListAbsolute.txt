@@ -33,3 +33,4 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Core\bin\Debug\Newtonsoft.Json.
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Core\bin\Debug\nunit.framework.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Core\obj\Debug\VdoValley.Core.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Core\obj\Debug\VdoValley.Core.pdb
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Core\obj\Debug\VdoValley.Core.csprojResolveAssemblyReference.cache

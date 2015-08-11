@@ -15,6 +15,10 @@ using VdoValley.Web.Helpers;
 using Newtonsoft.Json;
 using VdoValley.Infrastructure;
 using VdoValley.Web.ViewModels;
+using System.Text.RegularExpressions;
+using System.Text;
+using System.IO;
+using VdoValley.Infrastructure.Repositories;
 
 namespace VdoValley.Web.Controllers
 {
@@ -143,7 +147,7 @@ namespace VdoValley.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Url,EmbedCode,EmbedId,Description,Tags,SelectedCategory,VideoTypeeId,PageName,Featured,ThumbnailURL,IsJsonRequest")] VideoViewModel vvm)
+        public ActionResult Create([Bind(Include = "Id,Title,Url,EmbedCode,EmbedId,Description,Tags,SelectedCategory,VideoTypeId,PageName,Featured,ThumbnailURL,IsJsonRequest")] VideoViewModel vvm)
         {
             if (ModelState.IsValid)
             {
@@ -171,7 +175,7 @@ namespace VdoValley.Web.Controllers
                             video.EmbedCode = null;
                         }
                         
-                        if (video.VideoTypeId != 1) // if fb video
+                        if (video.VideoTypeId == 2) // if fb video
                         {
                             if (video.CategoryId == null)
                             {
@@ -248,6 +252,17 @@ namespace VdoValley.Web.Controllers
                             tran.Commit();
                             if (vvm.IsJsonRequest)
                             {
+                                AutoImportedVideo AIVideo = new AutoImportedVideo();
+                                
+                                AIVideo.Title = video.Title;
+                                AIVideo.EmbedId = video.EmbedId;
+                                AIVideo.VideoId = video.VideoId;
+                                AIVideo.IsShared = false;
+                                AIVideo.Description = video.Description;
+                                AIVideo.URL = "http://vdovalley.com/videos/details/" + video.VideoId;
+                                
+                                new AutoImportedVideosRepository().Add(AIVideo);
+                                
                                 Dictionary<string, object> VideoDTO = new Dictionary<string, object>();
                                 VideoDTO.Add("Id", video.VideoId);
                                 VideoDTO.Add("Title", video.Title);
@@ -297,6 +312,12 @@ namespace VdoValley.Web.Controllers
             return View(vvm);
         }
 
+        [HttpPost]
+        public void EditCategory(int VideoId, int CategoryId)
+        { 
+            
+        }
+
         // GET: Videos/Edit/5
         [Authorize(Roles="Administrator")]
         public ActionResult Edit(int? id)
@@ -336,7 +357,7 @@ namespace VdoValley.Web.Controllers
         [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "VideooId,Title,Url,EmbedCode,EmbedId,Description,Tags,SelectedCategory,VideoTypeeId,PageName,Featured,ThumbnailURL,IsJsonRequest")] VideoViewModel vvm)
+        public ActionResult Edit([Bind(Include = "VideoId,Title,Url,EmbedCode,EmbedId,Description,Tags,SelectedCategory,VideoTypeId,PageName,Featured,ThumbnailURL,IsJsonRequest")] VideoViewModel vvm)
         {
             //return View();
             Video video = null;

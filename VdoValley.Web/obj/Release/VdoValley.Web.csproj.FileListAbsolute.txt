@@ -67,7 +67,6 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Web.Razor.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Web.WebPages.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Web.WebPages.Deployment.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Web.WebPages.Razor.xml
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Antlr3.Runtime.pdb
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Microsoft.AspNet.Identity.Owin.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Microsoft.AspNet.Identity.EntityFramework.xml
@@ -79,3 +78,7 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\obj\Release\VdoValley.Web.c
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\obj\Release\VdoValley.Web.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\obj\Release\VdoValley.Web.pdb
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\GridMvc.dll
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Antlr3.Runtime.xml
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\obj\Release\VdoValley.Web.Migrations.AutoImportedVideoCreated.resources
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\obj\Release\VdoValley.Web.Migrations.TitleFieldAddedToAutoImportedVideoModel.resources
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\obj\Release\VdoValley.Web.Migrations.NewFieldsAddedToAutoImportedVideoModel.resources

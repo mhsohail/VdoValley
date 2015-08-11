@@ -20,6 +20,7 @@ namespace VdoValley.Infrastructure
         public DbSet<Rating> Ratings { get; set; }
         public DbSet<Person> People { get; set; }
         public DbSet<IdentityUserLogin> UserLogins { get; set; }
+        public DbSet<AutoImportedVideo> AutoImportedVideos { get; set; }
         
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

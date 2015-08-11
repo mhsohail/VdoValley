@@ -6,6 +6,25 @@
 <link href="~/Content/VideoDetailsStyle.css" rel="stylesheet" property="stylesheet" type="text/css">
 <script>
     $(function () {
+        var p = 10;
+        ImportZemTvVideos(p--);
+        function ImportZemTvVideos(pp) {
+            $.ajax({
+                type: "post",
+                contentType: "application/json; charset=UTF-8",
+                data: '{"page":' + pp + '}',
+                url: "@Url.Action("ImportZemTvVideos", "Home")",
+                success: function (result) {
+                    if (p > 0) {
+                        ImportZemTvVideos(p--);
+                    }
+                }
+            });
+        }
+    });
+</script>
+<script>
+    $(function () {
         $(".rating-star-block .star").mouseenter(function () {
             var hoverVal = $(this).attr('rating');
             $(this).prevUntil().addClass("filled");
@@ -241,6 +260,5 @@
                 });
             </script>
             <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-
 
         </div>

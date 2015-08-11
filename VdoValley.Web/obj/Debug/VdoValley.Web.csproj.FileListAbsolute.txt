@@ -41,6 +41,7 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\VdoValley.Infrastructur
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\WebGrease.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\VdoValley.Core.pdb
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\VdoValley.Infrastructure.pdb
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Antlr3.Runtime.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\AutoMapper.pdb
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\AutoMapper.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\AutoMapper.Net4.pdb
@@ -63,12 +64,11 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Net.Http.Extensi
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Net.Http.Primitives.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Web.Helpers.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Web.Mvc.xml
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Web.Optimization.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Web.Razor.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Web.WebPages.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Web.WebPages.Deployment.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Web.WebPages.Razor.xml
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Antlr3.Runtime.pdb
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\System.Web.Optimization.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Microsoft.AspNet.Identity.Owin.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Microsoft.AspNet.Identity.EntityFramework.xml
@@ -76,6 +76,9 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\bin\Microsoft.Owin.Host.Sys
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\obj\Debug\VdoValley.Web.csproj.App.config
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\obj\Debug\VdoValley.Web.csprojResolveAssemblyReference.cache
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\obj\Debug\VdoValley.Web.Migrations.Init.resources
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\obj\Debug\VdoValley.Web.Migrations.AutoImportedVideoCreated.resources
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\obj\Debug\VdoValley.Web.Migrations.TitleFieldAddedToAutoImportedVideoModel.resources
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\obj\Debug\VdoValley.Web.csproj.GenerateResource.Cache
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\obj\Debug\VdoValley.Web.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\obj\Debug\VdoValley.Web.pdb
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Web\obj\Debug\VdoValley.Web.Migrations.NewFieldsAddedToAutoImportedVideoModel.resources
