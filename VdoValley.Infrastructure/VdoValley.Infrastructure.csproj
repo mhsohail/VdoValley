@@ -62,7 +62,7 @@
     <Compile Include="Repositories\AutoImportedVideosRepository.cs" />
     <Compile Include="VdoValleyContext.cs" />
     <Compile Include="CategoryRepository.cs" />
-    <Compile Include="VideoRepository.cs" />
+    <Compile Include="VideosRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

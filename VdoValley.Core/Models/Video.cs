@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -33,9 +34,16 @@ namespace VdoValley.Core.Models
         public int RatingCount { get; set; }
         public string PageName { get; set; }
 
+        [JsonIgnore]
         public virtual Category Category { set; get; }
+        
+        [JsonIgnore]
         public virtual ICollection<Rating> Ratings { get; set; }
+        
+        [JsonIgnore]
         public virtual ICollection<Tag> Tags { get; set; }
+        
+        [JsonIgnore]
         public virtual VideoType VideoType { get; set; }
     }
 }

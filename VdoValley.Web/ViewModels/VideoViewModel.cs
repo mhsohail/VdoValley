@@ -32,5 +32,6 @@ namespace VdoValley.Web.ViewModels
         public int SelectedCategory { set; get; }
         public string PageName { set; get; }
         public bool IsJsonRequest { get; set; }
+        public bool IsAutoImported { get; set; }
     }
 }

@@ -24,12 +24,12 @@ namespace VdoValley.Web.Controllers
 {
     public class VideosController : Controller
     {
-        VideoRepository VideoRepo;
+        VideosRepository VideosRepo;
         private VdoValley.Infrastructure.VdoValleyContext db = new VdoValley.Infrastructure.VdoValleyContext();
 
         public VideosController()
         {
-            VideoRepo = new VideoRepository();
+            VideosRepo = new VideosRepository();
         }
 
         // GET: Videos
@@ -37,7 +37,7 @@ namespace VdoValley.Web.Controllers
         {
             try
             {
-                return View(VideoRepo.GetVideos());
+                return View(VideosRepo.GetVideos());
             }
             catch(Exception exc)
             {
@@ -54,7 +54,7 @@ namespace VdoValley.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var video = VideoRepo.FindById((int)id);
+            var video = VideosRepo.FindById((int)id);
             if (video == null)
             {
                 return HttpNotFound();
@@ -129,7 +129,8 @@ namespace VdoValley.Web.Controllers
                 if (relatedVideos.Count == 8) break;
             }
             vdvm.RelatedVideos = relatedVideos;
-
+            vdvm.LatestVideos = VideosRepo.GetLatestVideos(0, 10);
+            
             return View(vdvm);
         }
 
@@ -147,7 +148,7 @@ namespace VdoValley.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Url,EmbedCode,EmbedId,Description,Tags,SelectedCategory,VideoTypeId,PageName,Featured,ThumbnailURL,IsJsonRequest")] VideoViewModel vvm)
+        public ActionResult Create([Bind(Include = "Id,Title,Url,EmbedCode,EmbedId,Description,Tags,SelectedCategory,VideoTypeId,PageName,Featured,ThumbnailURL,IsJsonRequest,IsAutoImported")] VideoViewModel vvm)
         {
             if (ModelState.IsValid)
             {
@@ -252,16 +253,17 @@ namespace VdoValley.Web.Controllers
                             tran.Commit();
                             if (vvm.IsJsonRequest)
                             {
-                                AutoImportedVideo AIVideo = new AutoImportedVideo();
-                                
-                                AIVideo.Title = video.Title;
-                                AIVideo.EmbedId = video.EmbedId;
-                                AIVideo.VideoId = video.VideoId;
-                                AIVideo.IsShared = false;
-                                AIVideo.Description = video.Description;
-                                AIVideo.URL = "http://vdovalley.com/videos/details/" + video.VideoId;
-                                
-                                new AutoImportedVideosRepository().Add(AIVideo);
+                                if (vvm.IsAutoImported)
+                                {
+                                    AutoImportedVideo AIVideo = new AutoImportedVideo();
+                                    AIVideo.Title = video.Title;
+                                    AIVideo.EmbedId = video.EmbedId;
+                                    AIVideo.VideoId = video.VideoId;
+                                    AIVideo.IsShared = false;
+                                    AIVideo.Description = video.Description;
+                                    AIVideo.URL = "http://vdovalley.com/videos/details/" + video.VideoId;
+                                    new AutoImportedVideosRepository().Add(AIVideo);
+                                }
                                 
                                 Dictionary<string, object> VideoDTO = new Dictionary<string, object>();
                                 VideoDTO.Add("Id", video.VideoId);
@@ -312,12 +314,6 @@ namespace VdoValley.Web.Controllers
             return View(vvm);
         }
 
-        [HttpPost]
-        public void EditCategory(int VideoId, int CategoryId)
-        { 
-            
-        }
-
         // GET: Videos/Edit/5
         [Authorize(Roles="Administrator")]
         public ActionResult Edit(int? id)
@@ -351,15 +347,11 @@ namespace VdoValley.Web.Controllers
             return View(vvm);
         }
 
-        // POST: Videos/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "VideoId,Title,Url,EmbedCode,EmbedId,Description,Tags,SelectedCategory,VideoTypeId,PageName,Featured,ThumbnailURL,IsJsonRequest")] VideoViewModel vvm)
         {
-            //return View();
             Video video = null;
             if (ModelState.IsValid)
             {
@@ -367,7 +359,6 @@ namespace VdoValley.Web.Controllers
                 {
                     try
                     {
-                        // get the domain model from VM
                         video = ViewModelHelpers.VMHelper.ToDomainVideoModel(vvm);
 
                         if (video.VideoTypeId == 1) // if dailymotion video
@@ -419,7 +410,6 @@ namespace VdoValley.Web.Controllers
                         }
 
                         // load current video from database including tags
-                        //db.Configuration.ProxyCreationEnabled = false;
                         var vdo = db.Videos.Include(v => v.Tags).FirstOrDefault(v => v.VideoId.Equals(video.VideoId));
                         vdo.Title = video.Title;
                         vdo.Url = video.Url;
@@ -432,7 +422,6 @@ namespace VdoValley.Web.Controllers
                         vdo.ThumbnailURL = video.ThumbnailURL;
                         vdo.PageName = video.PageName;
                         
-                        //db.Configuration.ProxyCreationEnabled = true;
                         /*
                         var vdo = db.Videos
                             .Where(v => v.VideooId == video.VideooId)

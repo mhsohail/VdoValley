@@ -1,7 +1,8 @@
 ﻿@using VdoValley.Core.Models;
 @using VdoValley.Infrastructure;
 @using VdoValley.Web.Helpers;
-
+@using VdoValley.Web.ViewModels;
+@model IEnumerable<Video>
 <div class="col-md-4 content-bottom">
     <div class="grid-top-in">
         <h4>Like us on Facebook</h4>
@@ -27,22 +28,19 @@
     <!-- -->
     <div class="cd-tabs">
         <ul class="cd-tabs-content">
-            <li data-content="cinema" class="selected">
-                <style>
-                    .grid-men a img {
-                        width: 95%;
-                        max-width: 95%;
-                        min-width: 90%;
-                        height: 80px;
-                        max-height: 80%;
-                        min-height: 75%;
-                    }
-                </style>
+            <style>
+                .grid-men a img {
+                    width: 95%;
+                    max-width: 95%;
+                    min-width: 90%;
+                    height: 80px;
+                    max-height: 80%;
+                    min-height: 75%;
+                }
+            </style>
+            <li data-content="cinema" class="selected" id="LatestVideosContainer">
                 @{
-                    int counter = 0;
-                    VdoValleyContext db = new VdoValleyContext();
-                    List<Video> AllVideos = db.Videos.OrderByDescending(v => v.DateTime).Take(10).ToList();
-                    foreach (Video video in AllVideos)
+                    foreach (Video video in Model)
                     {
                         <div class="men">
                             <div class="grid-men">
@@ -54,7 +52,6 @@
                                 {
                                     <a href="/Videos/Details/@video.VideoId"><img src="@VideoHelper.getDailyMotionThumb(video, VideoHelper.getDailyMotionVideoCode(video, video.Url), DailymotionThumbnailSize.thumbnail_large_url)" class="img-responsive" alt="@video.Title"> </a>
                                 }
-                                
                             </div>
                             <style>
                                 .well-sm {
@@ -70,14 +67,91 @@
                             </div>
                             <div class="clearfix"></div>
                         </div>
-                        counter++;
-                        if (counter.Equals(10)) { break; }
                     }
                 }
             </li>
             <div class="clearfix"></div>
         </ul>
-    </div>
+        <center><ul class="pagination">
+            <li><a href="#" id="PreviousPageLatestVideos"><</a></li>
+            <li><a id="LatestVideosAjaxLoader">-</a></li>
+            <li><a href="#" id="NextPageLatestVideos">></a></li>
+        </ul></center>
+        <script>
+            $(function () {
+                var Page = 0;
+                var PerPage = 10;
+                $("#PreviousPageLatestVideos").on("click", function () {
+                    console.log(Page);
+                    if (Page > 0) {
+                        $("#LatestVideosAjaxLoader").html("<img src=\"/images/ajax-loader.gif\" style=\"width:10px;\" />");
+                        $.ajax({
+                            url: "/api/VideosApi/GetLatestVideos?NumberOfVideosToSkip=" + (--Page * PerPage) + "&NumberOfVideosToTake=" + PerPage,
+                            type: "get",
+                            dataType: "application/json",
+                            success: function (result) {
+                                alert(result);
+                            },
+                            complete: function (result) {
+                                if (result.readyState == 4) {
+                                    var Videos = JSON.parse(result.responseText);
+                                    PutVideosInSidebar(Videos);
+                                }
+                            }
+                        });
+                    }
+
+                    return false;
+                });
+                
+                $("#NextPageLatestVideos").on("click", function () {
+                    console.log(Page);
+                    $("#LatestVideosAjaxLoader").html("<img src=\"/images/ajax-loader.gif\" style=\"width:10px;\" />");
+                    $.ajax({
+                        url: "/api/VideosApi/GetLatestVideos?NumberOfVideosToSkip=" + (++Page * PerPage) + "&NumberOfVideosToTake=" + PerPage,
+                        type: "get",
+                        dataType: "application/json",
+                        success: function (result) {
+                            alert(result);
+                        },
+                        complete: function (result) {
+                            if (result.readyState == 4) {
+                                var Videos = JSON.parse(result.responseText);
+                                PutVideosInSidebar(Videos);
+                            }
+                        }
+                    });
+                    return false;
+                });
+
+                function PutVideosInSidebar(Videos) {
+                    $("#LatestVideosContainer").html("");
+                    for (var i = 0; i < Videos.length; i++) {
+                        var html = "<div class=\"men\">" +
+                            "<div class=\"grid-men\">" +
+                                    "<a href=\"/Videos/Details/" + Videos[i].VideoId + "\"><img src=\"" + Videos[i].ThumbnailURL + "\" class=\"img-responsive\" alt=\"" + Videos[i].Title + "\"> </a>" +
+                            "</div>" +
+                                "<style>" +
+                                    ".well-sm {" +
+                                        "padding: 1px;" +
+                                        "border-radius: 2px;" +
+                                        "width: 100px;" +
+                                        "font-size: 13px;" +
+                                    "}" +
+                                "</style>" +
+                                "<div class=\"men-grid\">" +
+                                "<h5><a href=\"/Videos/Details/" + Videos[i].VideoId + "\">" + Videos[i].Title + "</a></h5>" +
+                                "<div class=\"well well-sm\">Comments: </div>" +
+                            "</div>" +
+                            "<div class=\"clearfix\"></div>" +
+                        "</div>";
+                        $("#LatestVideosContainer").append(html);
+                    }
+                    $("#LatestVideosAjaxLoader").html("-");
+                }
+            });
+        </script>
+</div>
     <!-- -->
     <div class="grid-top">
         <h4>Recent Comments</h4>

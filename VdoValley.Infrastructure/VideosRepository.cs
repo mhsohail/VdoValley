@@ -9,7 +9,7 @@ using VdoValley.Core.Models;
 
 namespace VdoValley.Infrastructure
 {
-    public class VideoRepository : IVideoRepository
+    public class VideosRepository : IVideoRepository
     {
         VdoValleyContext db = new VdoValleyContext();
 
@@ -41,6 +41,11 @@ namespace VdoValley.Infrastructure
         {
             var Video = (from v in db.Videos where v.VideoId == VideoID select v).FirstOrDefault();
             return Video;
+        }
+
+        public IEnumerable<Video> GetLatestVideos(int NumberOfVideosToSkip, int NumberOfVideosToTake)
+        {
+            return db.Videos.OrderByDescending(v => v.DateTime).Skip(NumberOfVideosToSkip).Take(NumberOfVideosToTake);
         }
     }
 }

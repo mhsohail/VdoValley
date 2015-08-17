@@ -8,14 +8,14 @@ namespace VdoValley.Test
     [TestClass]
     public class VideoRepositoryTest
     {
-        VideoRepository repo;
+        VideosRepository repo;
 
         [TestInitialize]
         public void TestSetup()
         {
             //DbInitializer db = new DbInitializer();
             //Database.SetInitializer(db);
-            repo = new VideoRepository();
+            repo = new VideosRepository();
         }
 
         [TestMethod]

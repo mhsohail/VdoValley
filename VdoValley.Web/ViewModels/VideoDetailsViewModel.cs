@@ -12,6 +12,7 @@ namespace VdoValley.Web.ViewModels
         public double AverageRating { get; set; }
         public Rating VideoScorer { get; set; }
         public int CurrentUsersScore { get; set; }
+        public IEnumerable<Video> LatestVideos { get; set; }
         public IEnumerable<Video> RelatedVideos { get; set; }
     }
 }

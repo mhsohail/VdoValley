@@ -1,4 +1,5 @@
-﻿@model IEnumerable<VdoValley.Core.Models.AutoImportedVideo>
+﻿@using VdoValley.Core.Models
+@model IEnumerable<AutoImportedVideo>
 
 @{
     ViewBag.Title = "Index";
@@ -15,13 +16,10 @@
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EmbedId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.URL)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.ThumbnailURL)
+        </th>
+        <th>
+            @Html.DisplayName("Category")
         </th>
         <th></th>
     </tr>
@@ -32,20 +30,22 @@
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EmbedId)
+            <a href="http://vdovalley.com/Videos/Details/@item.VideoId" target="_blank"><img src="@item.ThumbnailURL" style="width: 150px;"></a>
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.URL)
+        <td class="SelectedCategoryContainer">
+            <select class="SelectedCategory" name="SelectedCategory">
+                <option value="">-Select Category-</option>
+                <option value="1">General Category</option>
+                <option value="12">Funny Videos</option>
+                <option value="13">Politics</option>
+                <option value="14">Sports</option>
+                <option value="15">Fashion &amp; Designing</option>
+                <option value="16">Talk Show</option>
+                <option value="17">News</option>
+                <option value="18">TV Program</option>
+            </select>
         </td>
-        <td>
-            <a href="http://dai.ly/@item.EmbedId" target="_blank"><img src="@item.ThumbnailURL" style="width: 150px;"></a>
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AutoImportedVideoId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AutoImportedVideoId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AutoImportedVideoId })
-        </td>
-        <td>
+        <td id="ShareFormContainer">
             @using (Html.BeginForm("", "", FormMethod.Post, new { @class = "ShareForm" }))
             {
                 @Html.HiddenFor(model => item.AutoImportedVideoId)
@@ -56,7 +56,8 @@
                 @Html.HiddenFor(model => item.Description)
                 @Html.HiddenFor(model => item.ThumbnailURL)
                 @Html.HiddenFor(model => item.IsShared)
-                <input type="submit" value="Share" />
+                <input type="submit" value="Share" disabled />
+                <img class="AjaxLoader" src="" style="width:20px;" />
             }
         </td>
     </tr>
@@ -65,8 +66,16 @@
 </table>
 <script>
     $(function() {
+        $(".SelectedCategory").on("change", function () {
+            console.log("selectedcategory changed");
+            $(this).parents("td").siblings("#ShareFormContainer").find("input[type=submit]").attr("disabled", false);
+        });
+
         $(".ShareForm").submit(function () {
             var Form = $(this);
+            Form.find(".AjaxLoader").attr("src", "/images/ajax-loader.gif");
+            Form.find(".AjaxLoader").hide();
+            var SelectedCategoryId = Form.parents("td").siblings(".SelectedCategoryContainer").find(".SelectedCategory").val();
             var VideoDTO = {
                 Id: $(this).find("#item_VideoId").val(),
                 Title: $(this).find("#item_Title").val(),
@@ -75,7 +84,7 @@
             };
 
             if (typeof window.fbAsyncInit != 'undefined') {
-                //window.fbAsyncInit(VideoDTO.Id, VideoDTO.Title, VideoDTO.Description, VideoDTO.ThumbnailURL, Form);
+                window.fbAsyncInit(VideoDTO.Id, VideoDTO.Title, VideoDTO.Description, VideoDTO.ThumbnailURL, Form);
             }
 
             ShareToSocialMedia(VideoDTO, Form);
@@ -90,14 +99,19 @@
                 ThumbnailURL: $("#item_ThumbnailURL").val(),
                 IsShared: true
             };
-            console.log(JSON.stringify(AIVideo));
+
             $.ajax({
                 method: "post",
                 contentType: "application/json",
-                data: JSON.stringify(AIVideo),
+                data: '{"AutoImportedVideo":' + JSON.stringify(AIVideo) + ',"CategoryId":' + SelectedCategoryId + '}',
                 url: "/AutoImportedVideos/Edit/" + AIVideo.AutoImportedVideoId,
                 success: function () {
-
+                    Form.parents("tr").remove();
+                    Form.find(".AjaxLoader").hide();
+                },
+                complete: function () {
+                    Form.parents("tr").remove();
+                    Form.find(".AjaxLoader").hide();
                 }
             });
             return false;

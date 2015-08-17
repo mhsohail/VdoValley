@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="2" virtualPath="/Views/Roles/Delete.cshtml" hash="ffffffff885e8f6d" filehash="38c9c98ca350" flags="110000" assembly="App_Web_umnm33kn" type="ASP._Page_Views_Roles_Delete_cshtml">
+<preserve resultType="2" virtualPath="/Views/Roles/Delete.cshtml" hash="ffffffff885e8f6d" filehash="38c9c98ca350" flags="110000" assembly="App_Web_r5nfyxna" type="ASP._Page_Views_Roles_Delete_cshtml">
     <filedeps>
         <filedep name="/Views/Roles/Delete.cshtml" />
     </filedeps>

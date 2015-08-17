@@ -92,15 +92,24 @@ namespace VdoValley.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AutoImportedVideoId,URL,IsShared,Title,EmbedId,VideoId,Description,ThumbnailURL")] AutoImportedVideo autoImportedVideo)
+        public ActionResult Edit(AutoImportedVideo AutoImportedVideo, int CategoryId)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(autoImportedVideo).State = EntityState.Modified;
-                //db.SaveChanges();
+                db.Entry(AutoImportedVideo).State = EntityState.Modified;
+                db.SaveChanges();
+
+                if (CategoryId != null)
+                {
+                    var Video = db.Videos.SingleOrDefault(v => v.VideoId == AutoImportedVideo.VideoId);
+                    Video.CategoryId = CategoryId;
+                    db.Entry(Video).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+
                 return RedirectToAction("Index");
             }
-            return View(autoImportedVideo);
+            return View(AutoImportedVideo);
         }
 
         // GET: AutoImportedVideos/Delete/5

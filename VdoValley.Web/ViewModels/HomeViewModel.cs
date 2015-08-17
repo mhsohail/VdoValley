@@ -9,6 +9,7 @@ namespace VdoValley.Web.ViewModels
     public class HomeViewModel
     {
         public IEnumerable<Video> AllVideos { get; set; }
+        public IEnumerable<Video> LatestVideos { get; set; }
         public IEnumerable<Video> TopRatedVideos { get; set; }
         public Video FeaturedVideo { get; set; }
         public IEnumerable<Video> PoliticsVideos { get; set; }

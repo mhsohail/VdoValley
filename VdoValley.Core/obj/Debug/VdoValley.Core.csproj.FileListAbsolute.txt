@@ -31,6 +31,6 @@ C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Core\bin\Debug\Microsoft.Owin.S
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Core\bin\Debug\Microsoft.Owin.Security.Twitter.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Core\bin\Debug\Newtonsoft.Json.xml
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Core\bin\Debug\nunit.framework.xml
+C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Core\obj\Debug\VdoValley.Core.csprojResolveAssemblyReference.cache
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Core\obj\Debug\VdoValley.Core.dll
 C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Core\obj\Debug\VdoValley.Core.pdb
-C:\Users\pc\Documents\GitHub\VdoValley\VdoValley.Core\obj\Debug\VdoValley.Core.csprojResolveAssemblyReference.cache

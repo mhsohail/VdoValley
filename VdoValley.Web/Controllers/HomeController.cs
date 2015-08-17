@@ -27,7 +27,7 @@ namespace VdoValley.Controllers
     public class HomeController : Controller
     {
         VdoValleyContext db = new VdoValleyContext();
-        VideoRepository VideoRepo = new VideoRepository();
+        VideosRepository VideosRepo = new VideosRepository();
         CategoryRepository CategoryRepo = new CategoryRepository();
 
         public ActionResult Index(int? page)
@@ -38,13 +38,14 @@ namespace VdoValley.Controllers
             {
                 //videos = db.Videos.ToList().ToPagedList(page ?? 1, 24);
                 
-                hvm.AllVideos = VideoRepo.GetVideos();
+                hvm.AllVideos = VideosRepo.GetVideos();
                 hvm.FashionVideos = CategoryRepo.GetCategories().FirstOrDefault(c => c.CategoryId == 15).Videos.OrderByDescending(v => v.DateTime).Take(8);
                 hvm.FunnyVideos = CategoryRepo.GetCategories().FirstOrDefault(c => c.CategoryId == 12).Videos.OrderByDescending(v => v.DateTime).Take(8);
                 hvm.PoliticsVideos = CategoryRepo.GetCategories().FirstOrDefault(c => c.CategoryId == 13).Videos.OrderByDescending(v => v.DateTime).Take(8);
                 hvm.SportsVideos = CategoryRepo.GetCategories().FirstOrDefault(c => c.CategoryId == 14).Videos.OrderByDescending(v => v.DateTime).Take(8);
                 hvm.TalkShowVideos = CategoryRepo.GetCategories().FirstOrDefault(c => c.CategoryId == 16).Videos.OrderByDescending(v => v.DateTime).Take(8);
                 hvm.NewsVideos = CategoryRepo.GetCategories().FirstOrDefault(c => c.CategoryId == 17).Videos.OrderByDescending(v => v.DateTime).Take(8);
+                hvm.LatestVideos = VideosRepo.GetLatestVideos(0, 10);
             }
             catch(Exception e)
             {
@@ -131,6 +132,7 @@ namespace VdoValley.Controllers
                                     vvm.SelectedCategory = 1;
                                     vvm.Featured = false;
                                     vvm.IsJsonRequest = true;
+                                    vvm.IsAutoImported = true;
 
                                     var vvv = new VideosController().Create(vvm);
                                     int a = 9;
@@ -290,44 +292,6 @@ namespace VdoValley.Controllers
             
             return View();
         }
-
-        public ActionResult DPM()
-        {
-            String ApiLogin = "2Vnc7H75By";
-            String TxnKey = "9KnE8M58n694B2qR";
-
-            String DPMFormOpen = DPMFormGenerator.OpenForm(ApiLogin, TxnKey, 10.25M, "http://vdovalley.com/Home/DPMResponse", true);
-            String DPMFormEnd = DPMFormGenerator.EndForm();
-            ViewBag.DPMFormOpen = DPMFormOpen;
-            ViewBag.DPMFormEnd = DPMFormEnd;
-
-            return View();
-        }
-
-        public ActionResult DPMReceipt()
-        {
-            return Content("<html><h1>Thank You!</h1></html>");
-        }
-
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult DPMResponse(FormCollection post)
-        {
-            var response = new SIMResponse(post);
-            var hash = "202cb962ac59075b964b07152d234b70";
-
-            // First order of business - validate that it was Authorize.Net 
-            // that posted this using the MD5 hash that was passed back to us
-            var isValid = response.Validate(hash, "2Vnc7H75By");
-
-            // If it's not valid - just send them to the home page. 
-            if (!isValid)
-                return Redirect("/");
-            // The URL to redirect to MUST be absolute
-            //var returnUrl = "http://vdovalley.com/Home/DPMReceipt?m=" + response.Message;
-            var returnUrl = "http://vdovalley.com/Home/DPMReceipt";
-
-            return Content(string.Format("<html><head><script type='text/javascript' charset='utf-8'>window.location='{0}';</script><noscript><meta http-equiv='refresh' content='1;url={0}'></noscript></head><body></body></html>", returnUrl));
-        }
-
+        
     }
 }
