@@ -1,0 +1,299 @@
+﻿
+@{
+    ViewBag.Title = "ImportDailymotionVideos";
+}
+
+<h2>ImportDailymotionVideos</h2>
+
+@using (Ajax.BeginForm("GetDailymotionVideos", "Home", new { EmbedId = 1 },
+    new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "GET",
+        OnFailure = "ajaxFailed",
+        LoadingElementId = "ajax-loader",
+        UpdateTargetId = "searchresults",
+        OnComplete = "ajaxComplete",
+        OnSuccess = "ajaxSuccess"
+    }, new { id = "SelectFacebookPageForm" })
+)
+{
+    @Html.DropDownList("SelectDailymotionSource", new SelectList(
+        new List<Object> {
+            new { value = "zemtv", text = "Zem TV"  },
+            new { value = "muhammad-sohail21", text = "VdoValley"  },
+            new { value = "Aman_Asif", text = "Aman Asif" },
+            new { value = "glowtvpk", text = "GlowTvPK" },
+            new { value = "fashioncentralpk", text = "FashionCentralPK" },
+            new { value = "PkdanceCreations", text = "PkDanceCreations" },
+            new { value = "eddythunderstorms", text = "EddyThunderStorms Funny Videos" },
+            new { value = "funnyworld20", text = "FunnyWorld20" },
+            new { value = "PTVSports", text = "PTVSports" },
+            new { value = "ak472522", text = "AK472522" },
+            new { value = "mubashir-luqman", text = "Mubashir-Luqman" },
+            new { value = "imrankhan012", text = "ImranKhan012" },
+            new { value = "lodhionline", text = "Babar Lodhi" }
+        },
+        "value",
+        "text", 0))
+    <input type="number" value="1" id="page_number" min="1" step="1" />
+    <img id="ajax-loader" src="@Url.Content("~/Images/ajax-loader.gif")" style="display:none;width:20px;" />
+}
+
+<div id="searchresults"></div>
+
+<script src="http://api.dmcdn.net/all.js"></script>    
+<script>
+    DM.init({
+        apiKey: 'c3aae1f9b8cf64a567a8',
+        status: true, // check login status
+        cookie: true // enable cookies to allow the server to access the session
+    });
+
+    function getDailymotionVideos(source, page_number) {
+        $(".table tbody").html("");
+        DM.getLoginStatus();
+        DM.api("/user/" + source + "/videos", { limit: 50, page: page_number }, function (response) {
+            //zalert('Got ' + response.list.length + ' videos' + (response.has_more ? ' and has more' : ''));
+            if(response.list.length > 0) {
+                $(response.list).each(function (k, v) {
+                    DM.api("/video/" + v.id + "?fields=thumbnail_small_url", function (response) {
+
+                        $.ajax({
+                            url: "/Videos/VideoExists?EmbedId=" + encodeURIComponent(v.id) + "&Title=" + encodeURIComponent(v.title),
+                            success: function (result) {
+                                var Video = JSON.parse(result);
+                                var thumbUrl = null;
+                                thumbUrl = response.thumbnail_small_url;
+                                if (!Video.Exists) {
+                                    $(".table tbody").append("<tr>" +
+                                        "<td>" + Video.Id + " - " + Video.Exists + "</td>" +
+                                        "<td class='video-title'>" + Video.Title + "</td>" +
+                                        "<td><a href='http://dai.ly/" + Video.Id + "' target='_blank'><img src='" + thumbUrl + "' /></a></td>" +
+                                        "<td class='suggested-tags'></td>" +
+                                        "<td>" + getForm(Video.Id, Video.Title) + "</td>" +
+                                    "</tr>");
+                                }
+                            }
+                        });
+                    });
+                });
+                $("#page_number").attr("disabled", false);
+                $("#SelectDailymotionSource").attr("disabled", false);
+            } else {
+                $(".table tbody").append("<tr><td>No video available.</td></tr>");
+            }
+        });
+    }
+    
+    $("#SelectDailymotionSource").change(function () {
+        $(this).attr("disabled", true);
+        $("#page_number").attr("disabled", true);
+        getDailymotionVideos($(this).val(), $("#page_number").val())
+    });
+
+    $("#page_number").change(function () {
+        if ($(this).val() == "" || $(this).val() == null) { $(this).val(1); }
+        $(this).attr("disabled", true);
+        $("#SelectDailymotionSource").attr("disabled", true);
+        getDailymotionVideos($("#SelectDailymotionSource").val(), $(this).val())
+    });
+
+    function getForm(EmbedId, Title)
+    {
+        return "<form class='addToVdoValleyForm'" +
+            "method='post'" +
+            "action='/Home/ImportFacebookVideo'>" +
+            "<input type='hidden' value='" + EmbedId + "' name='EmbedId'>" +
+            "<input type='hidden' value='" + Title.replace(/'/g, "%27") + "' name='Title'>" +
+            "<input type='hidden' value='' name='Description'>" +
+            "<input type='hidden' value='' name='EmbedCode'>" +
+            "<input type='hidden' value='' name='PageName'>" +
+            "<input type='hidden' value='" + $("#VideoTypeId").val() + "' name='VideoTypeId'>" +
+            "<input type='text' value=\"\" name='InputTags' id='InputTags'>" +
+            "<select id='SelectedCategory' name='SelectedCategory'>" +
+                "<option value=''>-Select Category-</option>" +
+                "<option value='1'>General Category</option>" +
+                "<option value='12'>Funny Videos</option>" +
+                "<option value='13'>Politics</option>" +
+                "<option value='14'>Sports</option>" +
+                "<option value='15'>Fashion &amp; Designing</option>" +
+                "<option value='16'>Talk Show</option>" +
+                "<option value='17'>News</option>" +
+                "<option value='18'>TV Program</option>" +
+            "</select>" +
+            "<input id='Tags' name='Tags' type='hidden' value=\"\">" +
+            "<input id='IsJsonRequest' name='IsJsonRequest' type='hidden' value=\"true\">" +
+            "<input type='submit' value='Add'>" +
+            "<img class=\"ajax-loader\" src=\"/Images/ajax-loader.gif\" style=\"display:none;width:20px;\" />" +
+            "<br /><span class='social-media'></span></form>";
+    }
+
+    $(function () {
+        $(document).on("submit", ".addToVdoValleyForm", function (e) {
+            var Form = $(this);
+            Form.find(".ajax-loader").show();
+
+            var data = {
+                vvm: {
+                    EmbedId: $(this).find("input[name='EmbedId']").val(),
+                    Title: $(this).find("input[name='Title']").val(),
+                    Description: $(this).find("input[name='Description']").val(),
+                    EmbedCode: null,
+                    PageName: null,
+                    VideoTypeId: $(this).find("input[name='VideoTypeId']").val(),
+                    SelectedCategory: $(this).find("select[name='SelectedCategory']").val(),
+                    Tags: $(this).find("input[name='Tags']").val(),
+                    IsJsonRequest: $(this).find("input[name='IsJsonRequest']").val()
+                }
+            };
+            
+            $.ajax({
+                url: "/Home/ImportFacebookVideo",
+                type:"POST",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(data),
+                complete: function (xhr, status) {
+                    //alert(JSON.stringify(xhr));
+                    Form.find(".ajax-loader").hide();
+                    Form.parents("tr").remove();
+
+                    //$(".main-top h2").html(JSON.stringify(xhr.responseText));
+                    /*
+                    {
+                        "readyState":4,
+                        "responseText":"{\"Permanent\":false,\"RouteName\":\"\",\"RouteValues\":{\"action\":\"Details/2544\"}}","responseJSON":{"Permanent":false,"RouteName":"","RouteValues":{"action":"Details/2544"}},"status":200,"statusText":"OK"}
+                    */
+                    var response = JSON.parse(xhr.responseText);
+                    //var routeValues = JSON.parse(response.RouteValues);
+                    //alert(response.RouteValues.action);
+                    var VideoDTO = JSON.parse(response.RouteValues.action);
+                    console.log(typeof window.fbAsyncInit == 'undefined');
+                    console.log("1");
+                    if (typeof window.fbAsyncInit != 'undefined') {
+                        console.log("defined...");
+                        window.fbAsyncInit(VideoDTO.Id, VideoDTO.Title, VideoDTO.Description, VideoDTO.ThumbnailURL, Form);
+                    }
+                    ShareToSocialMedia(VideoDTO, Form);
+                }
+            });
+
+            e.preventDefault();
+        });
+
+        $("#page_number").keypress(function (e) {
+            var ZERO = 48;
+            var NINE = 57
+            var BACKSPACE = 08;
+            var DEL = 127
+            var ARROWS = 0;
+
+            if ((e.which >= ZERO && e.which <= NINE) || e.which == BACKSPACE || e.which == DEL || e.which == ARROWS) {
+                
+            } else {
+                e.preventDefault();
+            }
+        });
+    });
+
+</script>
+<script src="~/Scripts/SocialSharingScript.js"></script>
+<div id="videos"></div>
+
+<style>
+    .nav-pills li a {
+        background-color: lightgray;
+    }
+
+    #suggested-tags {
+        margin-left: 18%;
+    }
+</style>
+
+<table class="table">
+    <tr id="theader">
+        <th>Id</th>
+        <th>Title</th>
+        <th>Preview</th>
+        <th>Tags</th>
+        <th>Import</th>
+        <th></th>
+    </tr>
+    <tbody>
+
+    </tbody>
+</table>
+
+<input type="hidden" value="@ViewBag.VideoTypeId" id="VideoTypeId">
+
+<script src="~/Scripts/AutoTagsSuggestion.js"></script>
+
+<div id="fb-root"></div>
+<script>
+    //window.fbAsyncInit = function () {
+    //    FB.init({
+    //        appId: '1576894379240839',
+    //        xfbml: true,
+    //        version: 'v2.3'
+    //    });
+
+    //    // other code goes here
+    //    // share current page - simple share
+    //    /*FB.ui({
+    //         method: 'share',
+    //         href: 'https://developers.facebook.com/docs/'
+    //    }, function (response) { });
+    //    */
+
+    //    // share current page - complex share
+    //    /*FB.ui({
+    //        method: 'share_open_graph',
+    //        action_type: 'og.likes',
+    //        action_properties: JSON.stringify({
+    //            object: 'https://developers.facebook.com/docs/',
+    //        })
+    //    }, function (response) {
+    //        // Debug response (optional)
+    //        console.log(response);
+    //    });
+    //    */
+
+    //    FB.getLoginStatus(function (response) {
+    //        if (response.status === 'connected') {
+    //            // the user is logged in and has authenticated your
+    //            // app, and response.authResponse supplies
+    //            // the user's ID, a valid access token, a signed
+    //            // request, and the time the access token 
+    //            // and signed request each expire
+    //            var uid = response.authResponse.userID;
+    //            var userAccessToken = response.authResponse.accessToken;
+                
+    //        } else if (response.status === 'not_authorized') {
+    //            // the user is logged in to Facebook, 
+    //            // but has not authenticated your app
+    //            alert("Not authorized");
+    //        } else {
+    //            // the user isn't logged in to Facebook.
+    //            alert("Not logged in");
+    //            FB.login(function (response) {
+    //                // handle the response
+    //            }, {
+    //                scope: 'publish_actions',
+    //                return_scopes: true
+    //            });
+    //        }
+    //    });
+
+        
+    //};
+
+    //(function (d, s, id) {
+    //    var js, fjs = d.getElementsByTagName(s)[0];
+    //    if (d.getElementById(id)) { return; }
+    //    js = d.createElement(s); js.id = id;
+    //    js.src = "//connect.facebook.net/en_US/sdk.js";
+    //    fjs.parentNode.insertBefore(js, fjs);
+    //}(document, 'script', 'facebook-jssdk'));
+
+</script>

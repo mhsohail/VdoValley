@@ -35,11 +35,19 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.thumbnail_large_url)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.thumbnail_large_url)
+        </dd>
+
     </dl>
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
-
+        <label>Enter Password:</label> <input type="text" name="DeletePassword" id="DeletePassword" />
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
             @Html.ActionLink("Back to List", "Index")

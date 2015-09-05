@@ -1,0 +1,18 @@
+﻿@model IEnumerable<VdoValley.Core.Models.Video>
+@using GridMvc.Html
+@{
+    ViewBag.Title = "Search";
+}
+
+<script src="@Url.Content("~/Scripts/jquery.min.js")" type="text/javascript"> </script>
+<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Scripts/gridmvc.min.js")" type="text/javascript"> </script>
+<h2>Search</h2>
+
+@Html.Grid(Model).Columns(columns =>
+    {
+        columns.Add(v => v.Title).Titled("Title").SetWidth(300).Sortable(true).Encoded(false).Sanitized(false).RenderValueAs(v => Html.ActionLink(v.Title.PadRight(30).Substring(0, 30)+"...", "Details", "Videos", new { id = v.VideoId }, null));
+        columns.Add(v => v.thumbnail_large_url).Titled("Preview").SetWidth(300).Encoded(false).Sanitized(false).RenderValueAs(v => @<image src="@v.getDailyMotionThumb(v.getDailyMotionVideoCode(v.Url), VdoValley.Models.DailymotionThumbnailSize.thumbnail_large_url)" width="120" height="100" />);
+        columns.Add(v => v.Category.Name).Titled("Category").SetWidth(300).Sortable(true);
+        columns.Add(v => v.DateTime.Date).Titled("Date Uploaded").SetWidth(300).Sortable(true).Filterable(true);
+    }).WithPaging(10)

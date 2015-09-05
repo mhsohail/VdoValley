@@ -1,0 +1,117 @@
+﻿@model IEnumerable<VdoValley.Models.FbVideo>
+
+@{
+    ViewBag.Title = "FacebookImport";
+}
+
+<h2>FacebookImport</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayName("Import")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmbedHtml)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <div id="fb-root"></div>
+                <div class="fb-video"
+                     data-href="https://www.facebook.com/video.php?v=@item.Id"
+                     data-width="500"
+                     data-allowfullscreen="true">
+                </div>
+            </td>
+            <td>
+                @using (Ajax.BeginForm("ImportFacebookVideo", "Home", new { id = item.Id },
+                new AjaxOptions
+                {
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "GET",
+                    OnFailure = "ajaxFailed",
+                    LoadingElementId = "ajax-loader-" + item.Id,
+                    UpdateTargetId = "searchresults-" + item.Id,
+                    OnComplete = "ajaxComplete",
+                    OnSuccess = "ajaxSuccess"
+                }))
+                {
+                    @Html.HiddenFor(mode => item.Id, new { Name = "EmbedId", id = "EmbedId" })
+                    @Html.HiddenFor(mode => item.Description, new { Name = "Title", id = "Title" })
+                    @Html.HiddenFor(mode => item.Description, new { Name = "Description", id = "Description" })
+                    @Html.Hidden("EmbedCode", item.EmbedHtml, new { Name = "EmbedCode", id = "EmbedCode" })
+                    if (item.IsAddedToVdoValley)
+                    {
+                        <input type="submit" value="" disabled style="background:url('/images/green-tick.png') no-repeat;background-size: 25px;background-position: center;width: 42px;background-color: #EAEAEA;border: 1px solid #C9C9C9;" />
+                    }
+                    else
+                    {
+                        <input type="submit" value="Add" />
+                    }
+                    <img id="ajax-loader-@item.Id" src="@Url.Content("~/Images/ajax-loader.gif")" style="display:none;width:20px;" />
+                }
+                <div id="searchresults-@item.Id"></div>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmbedHtml)
+            </td>
+            <td>
+                @if (System.Web.HttpContext.Current.User.IsInRole("Administrator"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                }
+                @Html.ActionLink("Details", "Details", new { id = item.Id })
+                @if (System.Web.HttpContext.Current.User.IsInRole("Administrator"))
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+
+<script>
+(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+function ajaxComplete(xhr, status, entityName)
+{
+    //alert("completed...");
+}
+
+function ajaxFailed()
+{
+    alert("failed...");
+}
+
+function ajaxSuccess(xhr, status, entityName)
+{
+    //alert(xhr);
+}
+</script>

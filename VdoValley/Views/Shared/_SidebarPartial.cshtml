@@ -1,0 +1,162 @@
+﻿<div class="col-md-4 content-bottom">
+    <div class="grid-top-in">
+        <h4>Like us on Facebook</h4>
+        <p>
+            <div id="fb-root"></div>
+            <!-- plugin block -->
+            <div class="fb-page" data-href="https://www.facebook.com/vdovalley" data-width="350" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/vdovalley"><a href="https://www.facebook.com/vdovalley">VdoValley</a></blockquote></div></div>
+            
+            <!-- facebook sdk for above plugin block -->
+            <script>
+                (function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s); js.id = id;
+                    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=156107144592203";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));
+            </script>
+        </p>
+    </div>
+    <!-- -->
+    <div class="story"><h4 class="stories"><span>Latest Videos</span></h4></div>
+    <!-- -->
+    <div class="cd-tabs">
+        <ul class="cd-tabs-content">
+            <li data-content="cinema" class="selected">
+                <style>
+                    .grid-men a img {
+                        width: 95%;
+                        max-width: 95%;
+                        min-width: 90%;
+                        height: 80px;
+                        max-height: 80%;
+                        min-height: 75%;
+                    }
+                </style>
+                @{
+                    int counter = 0;
+                    VdoValley.Models.VdoValleyContext db = new VdoValley.Models.VdoValleyContext();
+                    List<VdoValley.Models.Video> AllVideos = db.Videos.OrderByDescending(v => v.DateTime).Take(10).ToList();
+                    foreach (VdoValley.Models.Video video in AllVideos)
+                    {
+                        <div class="men">
+                            <div class="grid-men">
+                                @if (video.Url == null)
+                                {
+                                    <a href="/Videos/Details/@video.VideoId"><img src="@VdoValley.Helpers.VideoHelper.getDailyMotionThumb(video, VdoValley.Helpers.VideoHelper.getDailyMotionVideoCode(video, video.Url), VdoValley.Models.DailymotionThumbnailSize.thumbnail_large_url)" class="img-responsive" alt="@video.Title"> </a>
+                                }
+                                else
+                                {
+                                    <a href="/Videos/Details/@video.VideoId"><img src="@VdoValley.Helpers.VideoHelper.getDailyMotionThumb(video, VdoValley.Helpers.VideoHelper.getDailyMotionVideoCode(video, video.Url), VdoValley.Models.DailymotionThumbnailSize.thumbnail_large_url)" class="img-responsive" alt="@video.Title"> </a>
+                                }
+                                
+                            </div>
+                            <style>
+                                .well-sm {
+                                    padding: 1px;
+                                    border-radius: 2px;
+                                    width: 100px;
+                                    font-size: 13px;
+                                }
+                            </style>
+                            <div class="men-grid">
+                                <h5><a href="/Videos/Details/@video.VideoId">@video.Title</a></h5>
+                                <div class="well well-sm">Comments: @*@VdoValley.Helpers.VideoHelper.GetCommentsCount(video.VideoId)*@</div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        counter++;
+                        if (counter.Equals(10)) { break; }
+                    }
+                }
+            </li>
+            <div class="clearfix"></div>
+        </ul>
+    </div>
+    <!-- -->
+    <div class="grid-top">
+        <h4>Recent Comments</h4>
+        <ul>
+            @{
+                using (WebClient client = new WebClient())
+                {
+                    string s = client.DownloadString("https://disqus.com/api/3.0/forums/listPosts.json?order=desc&forum=vdovalley&api_key=M02296gbyd8Z6NCaSx7V0oRUAJyj0eiczZLkV4FTKJORcQi1aKlRxNiGMf1R6NPg&related=thread");
+                    var comments = new
+                    {
+                        response = new[]
+                                        {
+                                            new
+                                            {
+                                                forum = string.Empty,
+                                                raw_message = string.Empty,
+                                                url = string.Empty
+                                            }
+                                        }
+                    };
+
+                    comments = Newtonsoft.Json.JsonConvert.DeserializeAnonymousType(s, comments);
+                    for (int i = 0; i < comments.response.Length; i++)
+                    {
+                        int maxCommentLength = 100;
+                        string comment = string.Empty;
+                        if (comments.response[i].raw_message.Length > maxCommentLength) { comment = comments.response[i].raw_message.Substring(0, maxCommentLength - 1) + "..."; } else { comment = comments.response[i].raw_message; }
+                        <li><p><a href="@comments.response[i].url">@comment</a></p></li>
+                    }
+                }
+
+
+
+            }
+        </ul>
+    </div>
+    <!-- -->
+    <div class="grid-top">
+        <script type="text/javascript" src="http://feedjit.com/serve/?vv=1515&amp;tft=3&amp;dd=0&amp;wid=&amp;pid=0&amp;proid=0&amp;bc=FFFFFF&amp;tc=000000&amp;brd1=012B6B&amp;lnk=135D9E&amp;hc=FFFFFF&amp;hfc=2853A8&amp;btn=C99700&amp;ww=300&amp;wne=6&amp;srefs=0"></script><noscript><a href="http://feedjit.com/">Live Traffic Stats</a></noscript>
+    </div>
+    <!-- -->
+    <!--<div class="grid-top-in">
+        <h4>Tag cloud</h4>
+        <p>
+            <a href="#" class="jol">Angelina Jolie</a>
+            <a href="#" class="lop"> Cssauthor</a>
+            <a href="#" class="bun">Aristokrasi Beyonce Blake</a>
+            <a href="#" class="live">Lively Brad Pitt Cameron</a>
+            <a href="#" class="dan">Diaz Daniel</a>
+            <a href="#" class="jol"> Radcliffe David</a>
+            <a href="#" class="live">Beckham Demi Moore Emma </a>
+            <a href="#" class="eva">Watson Eva</a>
+            <a href="#" class="live">Longoria Gisele </a>
+            <a href="#" class="bun">Bundchen Gwyneth Paltrow</a>
+            <a href="#" class="live">Halle Berry </a>
+            <a href="#" class="jol">Harry Potter</a>
+            <a href="#" class="live">Heidi Klum </a>
+            <a href="#" class="bun">James Franco</a>
+            <a href="#" class="live">Jennifer </a>
+            <a href="#" class="lop"> Lopez Jessica</a>
+            <a href="#" class="live">Alba Johnny Depp </a>
+            <a href="#" class="bun">Jon Hamm Jude</a>
+            <a href="#" class="eva">Law Kate Moss Kate</a>
+            <a href="#" class="live">Winslet Katie </a>
+            <a href="#" class="bun">Holmes Katy Perry</a>
+            <a href="#" class="live">Kim Kardashian </a>
+            <a href="#" class="dan">Kristen</a>
+            <a href="#" class="eva">Stewart</a>
+            <a href="#" class="live">Lady Gaga Madonna </a>
+            <a href="#" class="bun">Megan Fox Michelle</a>
+            <a href="#" class="live">Williams Natalie </a>
+            <a href="#" class="bun">Portman</a>
+            <a href="#" class="live">Nicole </a>
+            <a href="#" class="eva">Kidman Penelope</a>
+            
+            <a href="#" class="live">Cruz Reese Witherspoon Reklam</a>
+            <a href="#" class="lop"> Rihanna</a>
+            <a href="#" class="live">Robert Pattin </a>
+            <a href="#" class="bun">Son Sarah</a>
+            <a href="#" class="live">Jessica </a>
+            <a href="#" class="jol">Parker Scar </a>
+        </p>
+        </div>
+    -->
+</div>
+<div class="clearfix"></div>

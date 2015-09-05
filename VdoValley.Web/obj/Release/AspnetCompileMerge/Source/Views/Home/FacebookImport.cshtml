@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "FacebookImport";
+}
+
+<script>
+    $(function () {
+        $("#SelectFacebookPage").change(function (e) {
+            $("#SelectFacebookPageForm").attr("action", "/Home/GetFacebookPageVideos?EmbedId=" + $(this).val());
+            $("#SelectFacebookPageForm").submit();
+        });
+    });
+</script>
+
+@using (Ajax.BeginForm("GetFacebookPageVideos", "Home", new { EmbedId = 1 },
+    new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "GET",
+        OnFailure = "ajaxFailed",
+        LoadingElementId = "ajax-loader",
+        UpdateTargetId = "searchresults",
+        OnComplete = "ajaxComplete",
+        OnSuccess = "ajaxSuccess"
+    }, new { id = "SelectFacebookPageForm" })
+)
+{
+    @Html.DropDownList("SelectFacebookPage", new SelectList(
+        new List<Object> {
+            new { value = 1436965513229610, text = "Ajeeb Aur Hairan Kun"  },
+            new { value = 164128310282263, text = "PakArmyChannel" },
+            new { value = 1560743307541807 , text = "Fun Zone"},
+            new { value = 427908477262586 , text = "Malomaat.com"},
+			new { value = 1384810708476090 , text = "Pagal Khana"}
+        },
+        "value",
+        "text", 0))
+    <img id="ajax-loader" src="@Url.Content("~/Images/ajax-loader.gif")" style="display:none;width:20px;" />
+}
+
+<div id="searchresults"></div>

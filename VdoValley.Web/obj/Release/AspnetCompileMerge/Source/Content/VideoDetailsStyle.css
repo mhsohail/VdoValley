@@ -1,0 +1,28 @@
+﻿/*ratings stars style*/
+.rating-star-block .star.outline {
+    background: url("/images/rating/star-empty-lg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+.rating-star-block .star.filled {
+    background: url("/images/rating/star-fill-lg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+.rating-star-block .star {
+    color: rgba(0,0,0,0);
+    display: inline-block;
+    height: 24px;
+    overflow: hidden;
+    text-indent: -999em;
+    width: 24px;
+}
+
+a {
+    color: #005782;
+    text-decoration: none;
+}
+
+/*fb embeded video style*/
+.fb-video {
+    max-width: 700px !important;
+    max-height: 400px !important;
+}

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<preserve resultType="2" virtualPath="/Views/Roles/ManageUserRoles.cshtml" hash="ffffffff885e8f6d" filehash="ffffc0448303341f" flags="110000" assembly="App_Web_r5nfyxna" type="ASP._Page_Views_Roles_ManageUserRoles_cshtml">
+    <filedeps>
+        <filedep name="/Views/Roles/ManageUserRoles.cshtml" />
+    </filedeps>
+</preserve>

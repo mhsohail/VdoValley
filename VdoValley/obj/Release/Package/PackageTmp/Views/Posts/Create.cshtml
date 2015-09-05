@@ -1,0 +1,155 @@
+﻿@model VdoValley.Models.Post
+
+@{
+    ViewBag.Title = "Create";
+}
+@*
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Post</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@
+
+@*@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div>
+         This will contain your HtmlContent and use the TinyMCE editor
+        @Html.TextAreaFor(model => model.Content)
+         <input type="submit" value="Create" />
+    </div>
+}*@
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Post</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Language, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.DropDownList("Language", new SelectList(new List<SelectListItem> { new SelectListItem { Text = "English", Value = "en", Selected = true}, new SelectListItem { Text = "Urdu", Value = "ur", Selected = false} }, "Value", "Text"), "-Select Language-", htmlAttributes: new { @class = "control-label col-md-2" })*@
+                @Html.EnumDropDownListFor(model => model.Language, new { @class = "form-control" } )
+                @Html.ValidationMessageFor(model => model.Language, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ThumbnailUrl, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ThumbnailUrl, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ThumbnailUrl, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.TextAreaFor(model => model.Content)
+                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("select[name='Language']").change(function () {
+            if ($(this).val() == 0) {
+                EnableEnglishEditor();
+            } else {
+                EnableUrduEditor();
+            }
+        });
+        
+        if ($("select[name='Language']").val() == 0) {
+            EnableEnglishEditor();
+        } else {
+            EnableUrduEditor();
+        }
+    });
+
+    function EnableEnglishEditor() {
+        $("#Title").attr("dir", "ltr");
+        $("#cke_Content").remove();
+        var hEd = CKEDITOR.instances['Content'];
+        if (hEd) {
+            CKEDITOR.remove(hEd);
+        }
+        hEd = CKEDITOR.replace('Content');
+        CKEDITOR.config.contentsLangDirection = 'ltr';
+        for (instance in CKEDITOR.instances) {
+            CKEDITOR.instances[instance].updateElement();
+        }
+    }
+
+    function EnableUrduEditor() {
+        $("#Title").attr("dir", "rtl");
+        $("#cke_Content").remove();
+        var hEd = CKEDITOR.instances['Content'];
+        if (hEd) {
+            CKEDITOR.remove(hEd);
+        }
+        hEd = CKEDITOR.replace('Content');
+        CKEDITOR.config.contentsLangDirection = 'rtl';
+        for (instance in CKEDITOR.instances) {
+            CKEDITOR.instances[instance].updateElement();
+        }
+    }
+</script>

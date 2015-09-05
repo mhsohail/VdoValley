@@ -1,0 +1,490 @@
+﻿@*In case of PagedList package, we will use IPagedList instead of IEnumerable*@
+@using PagedList.Mvc;
+@using PagedList;
+@using VdoValley.Core.Models;
+@using VdoValley.Infrastructure;
+@using VdoValley.Web.Helpers;
+@using VdoValley.Web.ViewModels;
+
+@*@model IPagedList<VdoValley.Models.Video>*@
+@model HomeViewModel
+@{
+    ViewBag.Title = "Home";
+    string url = "http://www.yahoo.com/";
+    string str = ViewBag.Video;
+    List<Video> TopRatedVideos = new List<Video>();
+    VdoValleyContext db = new VdoValleyContext();
+    List<Video> vdos = db.Videos.ToList();
+    var ratings = db.Ratings.GroupBy(r => r.VideoId).Select(obj => new
+    {
+        VideoId = obj.Key,
+        AvgScore = obj.Average(i => i.Score)
+    }).OrderByDescending(obj => obj.AvgScore);
+
+    foreach (var rating in ratings)
+    {
+        Video vdo = db.Videos.Where(v => v.VideoId.Equals(rating.VideoId)).FirstOrDefault();
+        TopRatedVideos.Add(vdo);
+    }
+}
+@section Slider {
+<!---->
+<div class="gallery">
+    <h1>Top Rated Videos</h1>
+    <!-- requried-jsfiles-for owl -->
+    <link href="~/Content/magblog-web/owl.carousel.css" rel="stylesheet">
+    <script src="~/Scripts/magblog-webb/owl.carousel.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo").owlCarousel({
+                items: 3,
+                lazyLoad: true,
+                autoPlay: true,
+                pagination: false,
+                navigation: true,
+                navigationText: true,
+            });
+        });
+    </script>
+    <!-- //requried-jsfiles-for owl -->
+    <!-- start content_slider -->
+    <div id="owl-demo" class="owl-carousel ">
+        @foreach (var video in TopRatedVideos)
+        {
+            <div class="item g1">
+                @if (video.Url == null)
+                {
+                    <a href="/Videos/Details/@video.VideoId"><img class="lazyOwl " data-src="@VideoHelper.getFacebookVideoThumbnail(video, VideoHelper.getFacebookVideoCode(video, video.EmbedCode), FacebookThumbnailSize.MEDIUM)" alt="@video.Title" style="min-height:50px; height:211px;" /></a>
+                }
+                else
+                {
+                    <a href="/Videos/Details/@video.VideoId"><img class="lazyOwl " data-src="@VideoHelper.getDailyMotionThumb(video, VideoHelper.getDailyMotionVideoCode(video, video.Url), DailymotionThumbnailSize.thumbnail_large_url)" alt="@video.Title" style="min-height:50px; height:211px;" /></a>
+                }
+                <div class="caption">
+                    <h3 class="cinema">
+                        <a href="/Videos/Details/@video.VideoId">@Html.Raw(video.Title.PadRight(25).Substring(0, 25))</a>
+                    </h3>
+                </div>
+            </div>
+        }
+    </div>
+    <!--//sreen-gallery-cursual---->
+</div>
+}
+<!---->
+@{
+    List<Video> AllVideos = db.Videos.ToList();
+}
+    @section ContentArea {
+    <div class="col-md-8 content-top">
+        <div class="number">
+            <div class="span_8" style="margin-bottom:5px;">
+                <div class="row_8">
+                    <div class="sap_tabs">
+                        <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+                            <!-- Portfolio Item Row -->
+                            @{
+                                Video FeaturedVideo = db.Videos.Where(v => v.Featured.Equals(true)).FirstOrDefault();
+                            }
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <a href="/Videos/Details/@FeaturedVideo.VideoId"><img class="img-responsive" src="@VideoHelper.getDailyMotionThumb(FeaturedVideo, VideoHelper.getDailyMotionVideoCode(FeaturedVideo, FeaturedVideo.Url), DailymotionThumbnailSize.thumbnail_large_url)" alt="@FeaturedVideo.Title"></a>
+                                </div>    
+                                <div class="col-md-4">
+                                    <h4><a href="/Videos/Details/@FeaturedVideo.VideoId">@FeaturedVideo.Title</a></h4>
+                                    <p>@FeaturedVideo.Description</p>
+                                    <div class="well well-sm">Comments: @VideoHelper.GetCommentsCount(FeaturedVideo.VideoId)</div>
+                                </div>
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="span_8" style="margin-bottom:5px;">
+                <div class="row_8">
+                    <div class="sap_tabs">
+                        <h4>News <a href="/Categories/Details/17">&#8594;</a></h4>
+                        <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+                            <div class="resp-tabs-container">
+                                <h2 class="resp-accordion " role="tab" aria-controls="tab_item-0"><span class="resp-arrow"></span></h2>
+                                <div class="tab-1 resp-tab-content " aria-labelledby="tab_item-0">
+                                    <div class="facts">
+                                        <img src="images/pc.jpg" class="img-responsive" alt="">
+                                    </div>
+                                </div>
+                                <h2 class="resp-accordion resp-tab-active" role="tab" aria-controls="tab_item-1"><span class="resp-arrow"></span></h2>
+                                <div class="tab-1 resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-1">
+                                    <div class="facts">
+                                        <img src="images/pc1.jpg" class="img-responsive" alt="">
+                                    </div>
+                                </div>
+                                <h2 class="resp-accordion" role="tab" aria-controls="tab_item-2"><span class="resp-arrow"></span></h2>
+                                <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
+                                    <div class="facts">
+                                        <img src="images/pc2.jpg" class="img-responsive" alt="">
+                                    </div>
+                                </div>
+                                <h2 class="resp-accordion" role="tab" aria-controls="tab_item-3"><span class="resp-arrow"></span></h2>
+                                <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-3">
+                                    <div class="facts">
+                                        <img src="images/pc3.jpg" class="img-responsive" alt="">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <ul class="row">
+                                <!--<ul class="resp-tabs-list">-->
+                                @{
+                                    foreach (var video in Model.NewsVideos)
+                                    {
+                                        <!--<li class="resp-tab-item active" aria-controls="tab_item- col-lg-12" role="tab"><span><a href="/Videos/Details/video.VideoId"><img src="video.thumbnail_large_url" class="img-responsive" alt="video.Title" style="min-height:50px; height:115px; width:171px;min-width:100px;" /></a></span></li>
+                                <li class="col-xs-12 col-sm-6 col-md-12 col-lg-3" style="overflow:hidden;"><a href="/Videos/Details/video.VideoId"><img src="video.thumbnail_large_url" class="img-responsive" alt="video.Title" style="width:100%;height:100%;margin-bottom:5px;margin-top:5px;" /></a></li>-->
+                                        //min-width:150px;width:200px;max-width:200px;min-height:100px;height:100px;
+                                        <div class="thumbnail-container col-lg-3 col-md-4 col-xs-6 thumb">
+                                            <a class="thumbnail" href="/Videos/Details/@video.VideoId">
+                                                <img class="img-responsive" src="@VideoHelper.getDailyMotionThumb(video, VideoHelper.getDailyMotionVideoCode(video, video.Url), DailymotionThumbnailSize.thumbnail_large_url)" alt="">
+                                                <div class="details">
+                                                    <div class="panel-heading">
+                                                        <h3 class="panel-title col-lg-offset-1">@video.Title.PadRight(40).Substring(0, 40)</h3>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    }
+                                }
+                                <div class="clearfix"> </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                @*<div class="col-lg-12 col-md-12">@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true })</div>*@
+            </div>
+            
+            <div class="span_8" style="margin-bottom:5px;">
+                <div class="row_8">
+                    <div class="sap_tabs">
+                        <h4>Fashion & Designing <a href="/Categories/Details/15">&#8594;</a></h4>
+                        <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+                            <div class="resp-tabs-container">
+                                <h2 class="resp-accordion " role="tab" aria-controls="tab_item-0"><span class="resp-arrow"></span></h2>
+                                <div class="tab-1 resp-tab-content " aria-labelledby="tab_item-0">
+                                    <div class="facts">
+                                        <img src="images/pc.jpg" class="img-responsive" alt="">
+                                    </div>
+                                </div>
+                                <h2 class="resp-accordion resp-tab-active" role="tab" aria-controls="tab_item-1"><span class="resp-arrow"></span></h2>
+                                <div class="tab-1 resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-1">
+                                    <div class="facts">
+                                        <img src="images/pc1.jpg" class="img-responsive" alt="">
+                                    </div>
+                                </div>
+                                <h2 class="resp-accordion" role="tab" aria-controls="tab_item-2"><span class="resp-arrow"></span></h2>
+                                <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
+                                    <div class="facts">
+                                        <img src="images/pc2.jpg" class="img-responsive" alt="">
+                                    </div>
+                                </div>
+                                <h2 class="resp-accordion" role="tab" aria-controls="tab_item-3"><span class="resp-arrow"></span></h2>
+                                <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-3">
+                                    <div class="facts">
+                                        <img src="images/pc3.jpg" class="img-responsive" alt="">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <ul class="row">
+                                <!--<ul class="resp-tabs-list">-->
+                                @{
+                                    foreach (var video in Model.FashionVideos)
+                                    {
+                                        <!--<li class="resp-tab-item active" aria-controls="tab_item- col-lg-12" role="tab"><span><a href="/Videos/Details/video.VideoId"><img src="video.thumbnail_large_url" class="img-responsive" alt="video.Title" style="min-height:50px; height:115px; width:171px;min-width:100px;" /></a></span></li>
+                                <li class="col-xs-12 col-sm-6 col-md-12 col-lg-3" style="overflow:hidden;"><a href="/Videos/Details/video.VideoId"><img src="video.thumbnail_large_url" class="img-responsive" alt="video.Title" style="width:100%;height:100%;margin-bottom:5px;margin-top:5px;" /></a></li>-->
+                                        //min-width:150px;width:200px;max-width:200px;min-height:100px;height:100px;
+                                        <div class="thumbnail-container col-lg-3 col-md-4 col-xs-6 thumb">
+                                            <a class="thumbnail" href="/Videos/Details/@video.VideoId">
+                                                <img class="img-responsive" src="@VideoHelper.getDailyMotionThumb(video, VideoHelper.getDailyMotionVideoCode(video, video.Url), DailymotionThumbnailSize.thumbnail_large_url)" alt="">
+                                                <div class="details">
+                                                    <div class="panel-heading">
+                                                        <h3 class="panel-title col-lg-offset-1">@video.Title.PadRight(40).Substring(0, 40)</h3>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    }
+                                }
+                                <div class="clearfix"> </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                @*<div class="col-lg-12 col-md-12">@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true })</div>*@
+            </div>
+            
+            <div class="span_8" style="margin-bottom:5px;">
+                <div class="row_8">
+                    <div class="sap_tabs">
+                        <h4>Funny Videos <a href="/Categories/Details/12">&#8594;</a></h4>
+                        <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+                            <div class="resp-tabs-container">
+                                <h2 class="resp-accordion " role="tab" aria-controls="tab_item-0"><span class="resp-arrow"></span></h2>
+                                <div class="tab-1 resp-tab-content " aria-labelledby="tab_item-0">
+                                    <div class="facts">
+                                        <img src="images/pc.jpg" class="img-responsive" alt="">
+                                    </div>
+                                </div>
+                                <h2 class="resp-accordion resp-tab-active" role="tab" aria-controls="tab_item-1"><span class="resp-arrow"></span></h2>
+                                <div class="tab-1 resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-1">
+                                    <div class="facts">
+                                        <img src="images/pc1.jpg" class="img-responsive" alt="">
+                                    </div>
+                                </div>
+                                <h2 class="resp-accordion" role="tab" aria-controls="tab_item-2"><span class="resp-arrow"></span></h2>
+                                <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
+                                    <div class="facts">
+                                        <img src="images/pc2.jpg" class="img-responsive" alt="">
+                                    </div>
+                                </div>
+                                <h2 class="resp-accordion" role="tab" aria-controls="tab_item-3"><span class="resp-arrow"></span></h2>
+                                <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-3">
+                                    <div class="facts">
+                                        <img src="images/pc3.jpg" class="img-responsive" alt="">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <ul class="row">
+                                <!--<ul class="resp-tabs-list">-->
+                                @{
+                                    foreach (var video in Model.FunnyVideos)
+                                    {
+                                        <!--<li class="resp-tab-item active" aria-controls="tab_item- col-lg-12" role="tab"><span><a href="/Videos/Details/video.VideoId"><img src="video.thumbnail_large_url" class="img-responsive" alt="video.Title" style="min-height:50px; height:115px; width:171px;min-width:100px;" /></a></span></li>
+                                <li class="col-xs-12 col-sm-6 col-md-12 col-lg-3" style="overflow:hidden;"><a href="/Videos/Details/video.VideoId"><img src="video.thumbnail_large_url" class="img-responsive" alt="video.Title" style="width:100%;height:100%;margin-bottom:5px;margin-top:5px;" /></a></li>-->
+                                        //min-width:150px;width:200px;max-width:200px;min-height:100px;height:100px;
+                                        <div class="thumbnail-container col-lg-3 col-md-4 col-xs-6 thumb">
+                                            <a class="thumbnail" href="/Videos/Details/@video.VideoId">
+                                                <img class="img-responsive" src="@VideoHelper.getDailyMotionThumb(video, VideoHelper.getDailyMotionVideoCode(video, video.Url), DailymotionThumbnailSize.thumbnail_large_url)" alt="">
+                                                <div class="details">
+                                                    <div class="panel-heading">
+                                                        <h3 class="panel-title col-lg-offset-1">@video.Title.PadRight(40).Substring(0, 40)</h3>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    }
+                                }
+                                <div class="clearfix"> </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="span_8" style="margin-bottom:5px;">
+                <div class="row_8">
+                    <div class="sap_tabs">
+                        <h4>Politics <a href="/Categories/Details/13">&#8594;</a></h4>
+                        <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+                            <div class="resp-tabs-container">
+                                <h2 class="resp-accordion " role="tab" aria-controls="tab_item-0"><span class="resp-arrow"></span></h2>
+                                <div class="tab-1 resp-tab-content " aria-labelledby="tab_item-0">
+                                    <div class="facts">
+                                        <img src="images/pc.jpg" class="img-responsive" alt="">
+                                    </div>
+                                </div>
+                                <h2 class="resp-accordion resp-tab-active" role="tab" aria-controls="tab_item-1"><span class="resp-arrow"></span></h2>
+                                <div class="tab-1 resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-1">
+                                    <div class="facts">
+                                        <img src="images/pc1.jpg" class="img-responsive" alt="">
+                                    </div>
+                                </div>
+                                <h2 class="resp-accordion" role="tab" aria-controls="tab_item-2"><span class="resp-arrow"></span></h2>
+                                <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
+                                    <div class="facts">
+                                        <img src="images/pc2.jpg" class="img-responsive" alt="">
+                                    </div>
+                                </div>
+                                <h2 class="resp-accordion" role="tab" aria-controls="tab_item-3"><span class="resp-arrow"></span></h2>
+                                <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-3">
+                                    <div class="facts">
+                                        <img src="images/pc3.jpg" class="img-responsive" alt="">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <ul class="row">
+                                <!--<ul class="resp-tabs-list">-->
+                                @{
+                                    foreach (var video in Model.PoliticsVideos)
+                                    {
+                                        <!--<li class="resp-tab-item active" aria-controls="tab_item- col-lg-12" role="tab"><span><a href="/Videos/Details/video.VideoId"><img src="video.thumbnail_large_url" class="img-responsive" alt="video.Title" style="min-height:50px; height:115px; width:171px;min-width:100px;" /></a></span></li>
+                                <li class="col-xs-12 col-sm-6 col-md-12 col-lg-3" style="overflow:hidden;"><a href="/Videos/Details/video.VideoId"><img src="video.thumbnail_large_url" class="img-responsive" alt="video.Title" style="width:100%;height:100%;margin-bottom:5px;margin-top:5px;" /></a></li>-->
+                                        //min-width:150px;width:200px;max-width:200px;min-height:100px;height:100px;
+                                        <div class="thumbnail-container col-lg-3 col-md-4 col-xs-6 thumb">
+                                            <a class="thumbnail" href="/Videos/Details/@video.VideoId">
+                                                <img class="img-responsive" src="@VideoHelper.getDailyMotionThumb(video, VideoHelper.getDailyMotionVideoCode(video, video.Url), DailymotionThumbnailSize.thumbnail_large_url)" alt="">
+                                                <div class="details">
+                                                    <div class="panel-heading">
+                                                        <h3 class="panel-title col-lg-offset-1">@video.Title.PadRight(40).Substring(0, 40)</h3>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    }
+                                }
+                                <div class="clearfix"> </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="span_8" style="margin-bottom:5px;">
+                <div class="row_8">
+                    <div class="sap_tabs">
+                        <h4>Sports <a href="/Categories/Details/14">&#8594;</a></h4>
+                        <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+                            <div class="resp-tabs-container">
+                                <h2 class="resp-accordion " role="tab" aria-controls="tab_item-0"><span class="resp-arrow"></span></h2>
+                                <div class="tab-1 resp-tab-content " aria-labelledby="tab_item-0">
+                                    <div class="facts">
+                                        <img src="images/pc.jpg" class="img-responsive" alt="">
+                                    </div>
+                                </div>
+                                <h2 class="resp-accordion resp-tab-active" role="tab" aria-controls="tab_item-1"><span class="resp-arrow"></span></h2>
+                                <div class="tab-1 resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-1">
+                                    <div class="facts">
+                                        <img src="images/pc1.jpg" class="img-responsive" alt="">
+                                    </div>
+                                </div>
+                                <h2 class="resp-accordion" role="tab" aria-controls="tab_item-2"><span class="resp-arrow"></span></h2>
+                                <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
+                                    <div class="facts">
+                                        <img src="images/pc2.jpg" class="img-responsive" alt="">
+                                    </div>
+                                </div>
+                                <h2 class="resp-accordion" role="tab" aria-controls="tab_item-3"><span class="resp-arrow"></span></h2>
+                                <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-3">
+                                    <div class="facts">
+                                        <img src="images/pc3.jpg" class="img-responsive" alt="">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <ul class="row">
+                                <!--<ul class="resp-tabs-list">-->
+                                @{
+                                    foreach (var video in Model.SportsVideos)
+                                    {
+                                        <!--<li class="resp-tab-item active" aria-controls="tab_item- col-lg-12" role="tab"><span><a href="/Videos/Details/video.VideoId"><img src="video.thumbnail_large_url" class="img-responsive" alt="video.Title" style="min-height:50px; height:115px; width:171px;min-width:100px;" /></a></span></li>
+                                <li class="col-xs-12 col-sm-6 col-md-12 col-lg-3" style="overflow:hidden;"><a href="/Videos/Details/video.VideoId"><img src="video.thumbnail_large_url" class="img-responsive" alt="video.Title" style="width:100%;height:100%;margin-bottom:5px;margin-top:5px;" /></a></li>-->
+                                        //min-width:150px;width:200px;max-width:200px;min-height:100px;height:100px;
+                                        <div class="thumbnail-container col-lg-3 col-md-4 col-xs-6 thumb">
+                                            <a class="thumbnail" href="/Videos/Details/@video.VideoId">
+                                                <img class="img-responsive" src="@VideoHelper.getDailyMotionThumb(video, VideoHelper.getDailyMotionVideoCode(video, video.Url), DailymotionThumbnailSize.thumbnail_large_url)" alt="">
+                                                <div class="details">
+                                                    <div class="panel-heading">
+                                                        <h3 class="panel-title col-lg-offset-1">@video.Title.PadRight(40).Substring(0, 40)</h3>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    }
+                                }
+                                <div class="clearfix"> </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="span_8" style="margin-bottom:5px;">
+                <div class="row_8">
+                    <div class="sap_tabs">
+                        <h4>Talk Shows <a href="/Categories/Details/16">&#8594;</a></h4>
+                        <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+                            <div class="resp-tabs-container">
+                                <h2 class="resp-accordion " role="tab" aria-controls="tab_item-0"><span class="resp-arrow"></span></h2>
+                                <div class="tab-1 resp-tab-content " aria-labelledby="tab_item-0">
+                                    <div class="facts">
+                                        <img src="images/pc.jpg" class="img-responsive" alt="">
+                                    </div>
+                                </div>
+                                <h2 class="resp-accordion resp-tab-active" role="tab" aria-controls="tab_item-1"><span class="resp-arrow"></span></h2>
+                                <div class="tab-1 resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-1">
+                                    <div class="facts">
+                                        <img src="images/pc1.jpg" class="img-responsive" alt="">
+                                    </div>
+                                </div>
+                                <h2 class="resp-accordion" role="tab" aria-controls="tab_item-2"><span class="resp-arrow"></span></h2>
+                                <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
+                                    <div class="facts">
+                                        <img src="images/pc2.jpg" class="img-responsive" alt="">
+                                    </div>
+                                </div>
+                                <h2 class="resp-accordion" role="tab" aria-controls="tab_item-3"><span class="resp-arrow"></span></h2>
+                                <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-3">
+                                    <div class="facts">
+                                        <img src="images/pc3.jpg" class="img-responsive" alt="">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <ul class="row">
+                                <!--<ul class="resp-tabs-list">-->
+                                @{
+                                    foreach (var video in Model.TalkShowVideos)
+                                    {
+                                        <!--<li class="resp-tab-item active" aria-controls="tab_item- col-lg-12" role="tab"><span><a href="/Videos/Details/video.VideoId"><img src="video.thumbnail_large_url" class="img-responsive" alt="video.Title" style="min-height:50px; height:115px; width:171px;min-width:100px;" /></a></span></li>
+                                <li class="col-xs-12 col-sm-6 col-md-12 col-lg-3" style="overflow:hidden;"><a href="/Videos/Details/video.VideoId"><img src="video.thumbnail_large_url" class="img-responsive" alt="video.Title" style="width:100%;height:100%;margin-bottom:5px;margin-top:5px;" /></a></li>-->
+                                        //min-width:150px;width:200px;max-width:200px;min-height:100px;height:100px;
+                                        <div class="thumbnail-container col-lg-3 col-md-4 col-xs-6 thumb">
+                                            <a class="thumbnail" href="/Videos/Details/@video.VideoId">
+                                                <img class="img-responsive" src="@VideoHelper.getDailyMotionThumb(video, VideoHelper.getDailyMotionVideoCode(video, video.Url), DailymotionThumbnailSize.thumbnail_large_url)" alt="">
+                                                <div class="details">
+                                                    <div class="panel-heading">
+                                                        <h3 class="panel-title col-lg-offset-1">@video.Title.PadRight(40).Substring(0, 40)</h3>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    }
+                                }
+                                <div class="clearfix"> </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!---->
+        </div>
+        <!---->
+    </div>
+    }
+    @Html.Partial("_SidebarPartial", Model.LatestVideos)
+    <!---->    
+    </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear'
+        };
+        */
+
+        $().UItoTop({ easingType: 'easeOutQuart' });
+
+    });
+</script>
+<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
