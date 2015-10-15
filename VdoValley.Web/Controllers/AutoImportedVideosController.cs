@@ -19,7 +19,7 @@ namespace VdoValley.Web.Controllers
         // GET: AutoImportedVideos
         public ActionResult Index()
         {
-            var AIVideos = db.AutoImportedVideos.Where(aiv => !aiv.IsShared).ToList();
+            var AIVideos = db.AutoImportedVideos.Where(aiv => !aiv.IsShared).OrderBy(aiv => aiv.AutoImportedVideoId).Take(50).ToList();
             foreach (var AIVideo in AIVideos)
             {
                 try
@@ -34,6 +34,7 @@ namespace VdoValley.Web.Controllers
             return View(AIVideos);
         }
 
+        [Authorize]
         // GET: AutoImportedVideos/Details/5
         public ActionResult Details(int? id)
         {
@@ -49,12 +50,14 @@ namespace VdoValley.Web.Controllers
             return View(autoImportedVideo);
         }
 
+        [Authorize]
         // GET: AutoImportedVideos/Create
         public ActionResult Create()
         {
             return View();
         }
-
+        
+        [Authorize]
         // POST: AutoImportedVideos/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -72,6 +75,7 @@ namespace VdoValley.Web.Controllers
             return View(autoImportedVideo);
         }
 
+        [Authorize]
         // GET: AutoImportedVideos/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -87,6 +91,7 @@ namespace VdoValley.Web.Controllers
             return View(autoImportedVideo);
         }
 
+        [Authorize]
         // POST: AutoImportedVideos/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -98,20 +103,12 @@ namespace VdoValley.Web.Controllers
             {
                 db.Entry(AutoImportedVideo).State = EntityState.Modified;
                 db.SaveChanges();
-
-                if (CategoryId != null)
-                {
-                    var Video = db.Videos.SingleOrDefault(v => v.VideoId == AutoImportedVideo.VideoId);
-                    Video.CategoryId = CategoryId;
-                    db.Entry(Video).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
-
                 return RedirectToAction("Index");
             }
             return View(AutoImportedVideo);
         }
 
+        [Authorize]
         // GET: AutoImportedVideos/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -127,6 +124,7 @@ namespace VdoValley.Web.Controllers
             return View(autoImportedVideo);
         }
 
+        [Authorize]
         // POST: AutoImportedVideos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

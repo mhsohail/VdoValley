@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\Language.cs" />
+    <Compile Include="Interfaces\ITagsRepository.cs" />
     <Compile Include="Interfaces\ICategoryRepository.cs" />
     <Compile Include="Interfaces\IAutoImportedVideosRepository.cs" />
     <Compile Include="Interfaces\IVideoRepository.cs" />

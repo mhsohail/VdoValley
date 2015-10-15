@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using VdoValley.Core.Models;
 using VdoValley.Infrastructure;
+using VdoValley.Infrastructure.Repositories;
 
 namespace VdoValley.Controllers
 {

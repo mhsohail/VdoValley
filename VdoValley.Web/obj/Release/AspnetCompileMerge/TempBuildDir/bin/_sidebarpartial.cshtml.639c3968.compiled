@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="2" virtualPath="/Views/Shared/_SidebarPartial.cshtml" hash="ffffffff885e8f6d" filehash="ffffdb08b72cff77" flags="110000" assembly="App_Web_lpsxkrqq" type="ASP._Page_Views_Shared__SidebarPartial_cshtml">
+<preserve resultType="2" virtualPath="/Views/Shared/_SidebarPartial.cshtml" hash="ffffffff885e8f6d" filehash="ffffe284737864fb" flags="110000" assembly="App_Web_nqqdfwgm" type="ASP._Page_Views_Shared__SidebarPartial_cshtml">
     <filedeps>
         <filedep name="/Views/Shared/_SidebarPartial.cshtml" />
     </filedeps>

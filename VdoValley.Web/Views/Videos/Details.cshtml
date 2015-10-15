@@ -11,12 +11,19 @@
         function ImportZemTvVideos(pp) {
             $.ajax({
                 type: "post",
-                contentType: "application/json; charset=UTF-8",
-                data: '{"page":' + pp + '}',
-                url: "@Url.Action("ImportZemTvVideos", "Home")",
+                contentType: "application/json",
+                //data:'{"page":1}',
+                url: "/api/AutoImportedVideos/ImportZemTvVideos?page=" + pp,
+                //url: "/Home/ImportZemTvVideos",
                 success: function (result) {
                     if (p > 0) {
                         ImportZemTvVideos(p--);
+                    }
+                },
+                error: function(xhr,status,error) {
+                    console.log(status);
+                    if (p > 0) {
+                        ImportZemTvVideos(p+1);
                     }
                 }
             });

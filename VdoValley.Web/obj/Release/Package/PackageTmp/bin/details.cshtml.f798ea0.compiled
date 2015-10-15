@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="2" virtualPath="/Views/VideoTypes/Details.cshtml" hash="ffffffff885e8f6d" filehash="fffff7f1af5592f4" flags="110000" assembly="App_Web_fw5yx0i4" type="ASP._Page_Views_VideoTypes_Details_cshtml">
+<preserve resultType="2" virtualPath="/Views/VideoTypes/Details.cshtml" hash="ffffffff885e8f6d" filehash="2c7105f34cc8" flags="110000" assembly="App_Web_sdxr2jcz" type="ASP._Page_Views_VideoTypes_Details_cshtml">
     <filedeps>
         <filedep name="/Views/VideoTypes/Details.cshtml" />
     </filedeps>

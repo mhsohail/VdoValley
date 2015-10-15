@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="2" virtualPath="/Views/Categories/Create.cshtml" hash="ffffffff885e8f6d" filehash="156814e20b2c" flags="110000" assembly="App_Web_hccjebcy" type="ASP._Page_Views_Categories_Create_cshtml">
+<preserve resultType="2" virtualPath="/Views/Categories/Create.cshtml" hash="ffffffff885e8f6d" filehash="3cbf7bbb1b8e" flags="110000" assembly="App_Web_naoalyzl" type="ASP._Page_Views_Categories_Create_cshtml">
     <filedeps>
         <filedep name="/Views/Categories/Create.cshtml" />
     </filedeps>

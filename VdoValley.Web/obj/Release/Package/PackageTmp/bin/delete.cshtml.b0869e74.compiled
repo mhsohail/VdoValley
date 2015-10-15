@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="2" virtualPath="/Views/Categories/Delete.cshtml" hash="ffffffff885e8f6d" filehash="1d5403bc9d2a" flags="110000" assembly="App_Web_hccjebcy" type="ASP._Page_Views_Categories_Delete_cshtml">
+<preserve resultType="2" virtualPath="/Views/Categories/Delete.cshtml" hash="ffffffff885e8f6d" filehash="211aa3aa5465" flags="110000" assembly="App_Web_naoalyzl" type="ASP._Page_Views_Categories_Delete_cshtml">
     <filedeps>
         <filedep name="/Views/Categories/Delete.cshtml" />
     </filedeps>

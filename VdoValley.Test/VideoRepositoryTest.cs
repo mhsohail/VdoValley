@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VdoValley.Infrastructure;
 using System.Data.Entity;
+using VdoValley.Infrastructure.Repositories;
 
 namespace VdoValley.Test
 {

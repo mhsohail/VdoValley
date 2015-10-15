@@ -24,5 +24,28 @@ namespace VdoValley.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        //protected void Application_Error(Object sender, EventArgs e)
+        //{
+        //    var exception = Server.GetLastError();
+        //    if (exception is HttpUnhandledException)
+        //    {
+        //        Server.Transfer("~/Error");
+        //    }
+        //    if (exception != null)
+        //    {
+        //        Server.Transfer("~/Error");
+        //    }
+        //    try
+        //    {
+        //        // This is to stop a problem where we were seeing "gibberish" in the
+        //        // chrome and firefox browsers
+        //        HttpApplication app = sender as HttpApplication;
+        //        app.Response.Filter = null;
+        //    }
+        //    catch
+        //    {
+        //    }
+        //}
     }
 }

@@ -11,6 +11,7 @@ namespace VdoValley.Interfaces
     {
         void Add(Video Video);
         void Edit(Video Video);
+        int Save(Video Video);
         void Remove(int VideoID);
         List<Video> GetVideos();
         Video FindById(int VideoID);

@@ -214,11 +214,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\API\APIAreaRegistration.cs" />
+    <Compile Include="Areas\API\Controllers\AutoImportedVideosController.cs" />
     <Compile Include="Areas\API\Controllers\VideosController.cs" />
     <Compile Include="Attributes\AjaxRequestOnlyAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AutoImportedVideosController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
@@ -260,11 +262,13 @@
       <SubType>
       </SubType>
     </Compile>
+    <Compile Include="ViewModels\AIVViewModel.cs" />
     <Compile Include="ViewModels\FacebookImportViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\PostViewModel.cs" />
     <Compile Include="ViewModels\SidebarPartialViewModel.cs" />
     <Compile Include="ViewModels\VideoDetailsViewModel.cs" />
+    <Compile Include="ViewModels\VideosSearchFilter.cs" />
     <Compile Include="ViewModels\VideoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1059,6 +1063,7 @@
     <Content Include="Views\AutoImportedVideos\Details.cshtml" />
     <Content Include="Views\AutoImportedVideos\Edit.cshtml" />
     <Content Include="Views\AutoImportedVideos\Index.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -14,7 +14,6 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using VdoValley.Web.Helpers;
 using Newtonsoft.Json;
 using VdoValley.Infrastructure;
-using VdoValley.Web.ViewModels;
 using System.Text.RegularExpressions;
 using System.Text;
 using System.IO;

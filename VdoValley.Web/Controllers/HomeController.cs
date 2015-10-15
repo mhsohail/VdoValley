@@ -31,15 +31,15 @@ namespace VdoValley.Controllers
         CategoryRepository CategoryRepo = new CategoryRepository();
 
         public ActionResult Index(int? page)
-        {
+        
+{
             HomeViewModel hvm = new HomeViewModel();
             IPagedList<Video> videos = null;
             try
             {
                 //videos = db.Videos.ToList().ToPagedList(page ?? 1, 24);
                 
-                hvm.AllVideos = VideosRepo.GetVideos();
-                hvm.FashionVideos = CategoryRepo.GetCategories().FirstOrDefault(c => c.CategoryId == 15).Videos.OrderByDescending(v => v.DateTime).Take(8);
+                hvm.ShowbizVideos = CategoryRepo.GetCategories().FirstOrDefault(c => c.CategoryId == 15).Videos.OrderByDescending(v => v.DateTime).Take(8);
                 hvm.FunnyVideos = CategoryRepo.GetCategories().FirstOrDefault(c => c.CategoryId == 12).Videos.OrderByDescending(v => v.DateTime).Take(8);
                 hvm.PoliticsVideos = CategoryRepo.GetCategories().FirstOrDefault(c => c.CategoryId == 13).Videos.OrderByDescending(v => v.DateTime).Take(8);
                 hvm.SportsVideos = CategoryRepo.GetCategories().FirstOrDefault(c => c.CategoryId == 14).Videos.OrderByDescending(v => v.DateTime).Take(8);
@@ -113,7 +113,7 @@ namespace VdoValley.Controllers
                                     };
 
                                     DMVideo = Newtonsoft.Json.JsonConvert.DeserializeAnonymousType(responstText, DMVideo);
-                                    var SuggestedTags = TagRepository.GetSuggestedTagsForTitle(DMVideo.Title, string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~")));
+                                    var SuggestedTags = new TagsRepository().GetSuggestedTagsForTitle(DMVideo.Title, string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~")));
                                     VdoValley.Web.ViewModels.VideoViewModel vvm = new VdoValley.Web.ViewModels.VideoViewModel();
 
                                     var SuggestedTagsStr = string.Empty;

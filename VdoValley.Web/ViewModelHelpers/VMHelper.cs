@@ -28,5 +28,19 @@ namespace VdoValley.Web.ViewModelHelpers
             
             return video;
         }
+
+        public static AutoImportedVideo ToDomainAIVideoModel(AIVViewModel AIVViewModel)
+        {
+            var AIVideo = new AutoImportedVideo();
+            AIVideo.AutoImportedVideoId = AIVViewModel.AutoImportedVideoId;
+            AIVideo.URL = AIVViewModel.URL;
+            AIVideo.VideoId = AIVViewModel.VideoId;
+            AIVideo.Title = AIVViewModel.Title;
+            AIVideo.EmbedId = AIVViewModel.EmbedId;
+            AIVideo.Description = AIVViewModel.Description;
+            AIVideo.ThumbnailURL = AIVViewModel.ThumbnailURL;
+            AIVideo.IsShared = AIVViewModel.IsShared;
+            return AIVideo;
+        }
     }
 }
