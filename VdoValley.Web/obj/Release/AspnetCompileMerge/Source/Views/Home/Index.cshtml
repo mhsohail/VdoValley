@@ -72,9 +72,6 @@
 </div>
 }
 <!---->
-@{
-    List<Video> AllVideos = db.Videos.ToList();
-}
     @section ContentArea {
     <div class="col-md-8 content-top">
         <div class="number">
@@ -166,7 +163,7 @@
             <div class="span_8" style="margin-bottom:5px;">
                 <div class="row_8">
                     <div class="sap_tabs">
-                        <h4>Fashion & Designing <a href="/Categories/Details/15">&#8594;</a></h4>
+                        <h4>Showbiz <a href="/Categories/Details/15">&#8594;</a></h4>
                         <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
                             <div class="resp-tabs-container">
                                 <h2 class="resp-accordion " role="tab" aria-controls="tab_item-0"><span class="resp-arrow"></span></h2>
@@ -199,7 +196,7 @@
                             <ul class="row">
                                 <!--<ul class="resp-tabs-list">-->
                                 @{
-                                    foreach (var video in Model.FashionVideos)
+                                    foreach (var video in Model.ShowbizVideos)
                                     {
                                         <!--<li class="resp-tab-item active" aria-controls="tab_item- col-lg-12" role="tab"><span><a href="/Videos/Details/video.VideoId"><img src="video.thumbnail_large_url" class="img-responsive" alt="video.Title" style="min-height:50px; height:115px; width:171px;min-width:100px;" /></a></span></li>
                                 <li class="col-xs-12 col-sm-6 col-md-12 col-lg-3" style="overflow:hidden;"><a href="/Videos/Details/video.VideoId"><img src="video.thumbnail_large_url" class="img-responsive" alt="video.Title" style="width:100%;height:100%;margin-bottom:5px;margin-top:5px;" /></a></li>-->
@@ -469,7 +466,7 @@
     </div>
     }
     @Html.Partial("_SidebarPartial", Model.LatestVideos)
-    <!---->    
+    <!---->
     </div>
 
 <script type="text/javascript">

@@ -1,0 +1,359 @@
+[33mcommit 6d87d979dfa1230f9fd354ef498a9f5b09e5b42d[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Thu Oct 15 10:41:07 2015 +0500
+
+    many many changes
+
+[33mcommit 1af5d0780151dcaf1b91b9e4f79fbf0c56be4b36[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Mon Aug 17 20:34:49 2015 +0500
+
+    IsAutoImported Field Added
+
+[33mcommit 1096c98648cf13e5fac6a055b19cf68cbdfc2100[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Tue Aug 11 06:20:46 2015 +0500
+
+    aiv
+
+[33mcommit dfb56f827bdc659ab7bb03382ba57492f537e799[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Sat Jul 25 04:36:02 2015 +0500
+
+    untracked
+
+[33mcommit 1b2cf85dc574fd770f32e8bd01e569115a279752[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Sat Jul 25 04:32:33 2015 +0500
+
+    category repo home page
+
+[33mcommit 3a761e8a4e89cccb635e91ecca44cc568e212231[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Fri Jul 24 17:56:27 2015 +0500
+
+    untracked
+
+[33mcommit 4f21ed8e0c52fb5e3c017fb2830c7cbafd177780[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Fri Jul 24 17:53:04 2015 +0500
+
+    onion architecture works now
+
+[33mcommit c312ef113f7e27a6d8f88959850c935e731cec25[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Wed Jul 15 02:01:03 2015 +0500
+
+    New Video Added removes from DOM
+
+[33mcommit 1b38f551214d4a2e13fb2a36f479d44fa58fb471[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Mon Jul 13 18:32:02 2015 +0500
+
+    VideoHelpers remove from model
+
+[33mcommit 91ac93359e2263bcecabdd453105b5cf4fac2ebe[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Mon Jul 13 17:13:35 2015 +0500
+
+    Onion Architecture Test created
+
+[33mcommit 27cfacb4839cfc7d29175cc16b11d89e094fbacf[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Sat Jun 20 00:42:12 2015 +0500
+
+    facebook like plugin added
+
+[33mcommit 5c0cdc7453837727fdc213d1290caa482dd6f1db[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Fri Jun 19 17:04:46 2015 +0500
+
+    automatic facebook sharing enabled
+
+[33mcommit 7a1ad68a8413d174e56238f82937fcbe8f84b4c7[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Tue Jun 16 23:53:41 2015 +0500
+
+    video exists check enabled
+
+[33mcommit 5590fbba3a493b76b8b4121319a024680987bb1d[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Sat Jun 13 22:57:40 2015 +0500
+
+    posts model added
+
+[33mcommit ff25ae86c26c961be35f4c1c3f75398c4c9990bd[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Sat Jun 13 12:26:54 2015 +0500
+
+    authorize.net payment gateway enabled
+
+[33mcommit 71636e7e44d9ccd8c790e5cc9500b13b24ed981a[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Thu Jun 11 19:18:08 2015 +0500
+
+    special characters at start and end of tag removed
+
+[33mcommit dd18d3fdafb47ca675d81b1344fa7fe3cf671513[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Tue Jun 9 01:23:18 2015 +0500
+
+    auto edit
+
+[33mcommit ae080a41ca8e6e678b61251b2a5458fa63057a11[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Tue Jun 9 01:13:58 2015 +0500
+
+    news category added
+
+[33mcommit ed8dba987d01ac0d2b2bc7aeb7dee2289e2531b3[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Mon Jun 8 20:32:12 2015 +0500
+
+    auto edit
+
+[33mcommit d3088bdc9d97f80d5cb9d22455c0160e3c0d84f7[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Mon Jun 8 20:13:12 2015 +0500
+
+    auto edit
+
+[33mcommit f1444fff850194b0ba80494f1ae4042330752262[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Mon Jun 8 20:00:30 2015 +0500
+
+    alert disabled
+
+[33mcommit c9f08c281c95b76a230feef4cc6ac5374e242691[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Mon Jun 8 12:16:42 2015 +0500
+
+    title single quote issue solved
+
+[33mcommit 7a88fd9ffbb9bd092ec978453f9fdc94156fa5a5[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Mon Jun 8 11:49:25 2015 +0500
+
+    auto edit
+
+[33mcommit 91147b9087d0f233f193468aceef2e5e2c99ec28[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Mon Jun 8 11:39:31 2015 +0500
+
+    single quotes in tags handled
+
+[33mcommit 68a0400353959db9f65960ed0f0198d0c7ac399a[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Thu Jun 4 16:47:33 2015 +0500
+
+    multiple changes
+
+[33mcommit f3bd94d27f7c87c16711eeac074af7e131e8f512[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Sun May 24 01:07:10 2015 +0500
+
+    twitter, yahoo and microsoft oauth enabled
+
+[33mcommit f5424b1d7ca84c957b42803018c5a6e587cd7329[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Sat May 23 15:28:58 2015 +0500
+
+    OAuth null email address issue fixed
+
+[33mcommit bfb253849ba003f2b0387417532293bc767ef81a[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Sat May 23 12:12:33 2015 +0500
+
+    google+ and facebook login enabled
+
+[33mcommit 280d9e97e6331dc8cad780d9f91a51cb90ec5e31[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Sat May 23 01:31:05 2015 +0500
+
+    Microsoft.Owin packages updated
+
+[33mcommit b7ae0ab7a788af0e9e4742c132cc1a725e0e0648[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Fri May 22 20:09:27 2015 +0500
+
+    VideoType field added
+
+[33mcommit 99c48c13fa004b5520a339851e5c325363b439eb[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Thu May 21 01:23:47 2015 +0500
+
+    getting thumbnail issue fixed partially
+
+[33mcommit a756f8e80cf20b5dbb9abebd4b4b4daeb2289a60[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Wed May 20 18:21:00 2015 +0500
+
+    menu links updated, DeletePassword added
+
+[33mcommit 1eb2746d27e699571b59dfbaa1bf67c61bed61c2[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Mon May 18 11:16:17 2015 +0500
+
+    tags-videos many to many relationship fixed
+
+[33mcommit ebe956787b61ebf0220b5c7237a6df878c45002f[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Tue May 12 23:44:50 2015 +0500
+
+    TotalRating and RatingCount fields added
+
+[33mcommit 1e690a8d1a838b858427d39356986f030deb10ab[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Mon May 11 13:15:05 2015 +0500
+
+    facebook embed width set
+
+[33mcommit 61da02d673e149dbfeab0ebb83b573bb54668312[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Sat May 9 22:02:47 2015 +0500
+
+    chat message sound added
+
+[33mcommit 43a20d4c529e6680ebc5965f566a13fc0daae52e[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Sat May 9 20:43:31 2015 +0500
+
+    chat room added
+
+[33mcommit ffbf5d8be8ee5eb6511220088a09bb1aaeadc0c8[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Mon May 4 05:35:50 2015 +0500
+
+    AjaxRequestOnly attribute added
+
+[33mcommit 0a55f3a40f22a53835065e5fdcdf57eb7b0d67e5[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Mon May 4 00:38:28 2015 +0500
+
+    search results in GridMvc are showing
+
+[33mcommit 1502aea18be494d622328245a4c8d717b182f7f6[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Sat May 2 18:44:43 2015 +0500
+
+    Revert "chat feature with errors"
+    
+    This reverts commit 531b66a77028530ed0e893ae9cb7c73afeaf1f5a.
+
+[33mcommit 531b66a77028530ed0e893ae9cb7c73afeaf1f5a[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Sat May 2 18:44:29 2015 +0500
+
+    chat feature with errors
+
+[33mcommit f64d6aa1f14a4d8113205c043b610901d50c3a99[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Sat May 2 17:56:14 2015 +0500
+
+    categories for video activated
+
+[33mcommit 080efb03f742d7288fa14bc5c8903822ce541acf[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Fri May 1 13:02:18 2015 +0500
+
+    rating with user id being saved
+
+[33mcommit d8113f6f82dd2083effad59bfcb6a9927f2b50d0[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Thu Apr 30 16:38:16 2015 +0500
+
+    video tags working
+
+[33mcommit ee57142d637e3c1d2a62e575f66004d4b505f1fc[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Wed Apr 29 22:53:48 2015 +0500
+
+    details under thumbnails added
+
+[33mcommit 2dbe792d05af2ddbb424512ad7dc9eae3f73be1f[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Tue Apr 28 18:59:52 2015 +0500
+
+    thumbnails gallery at home page fixed
+
+[33mcommit 2219af916ca23fb5718558d7220c6d556e00018a[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Tue Apr 28 18:16:53 2015 +0500
+
+    user registration enabled
+
+[33mcommit 033dfbb6578074bc5e07b8dd5c137cd5786b12cf[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Mon Apr 27 19:26:00 2015 +0500
+
+    json request works
+
+[33mcommit c224c406c8e6a0c6c8de9d7eef450f4124eec010[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Mon Apr 27 16:26:54 2015 +0500
+
+    single video page and disqus enabled
+
+[33mcommit 4fecc14d8248eb315913e553d21b4761349ba1d3[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Mon Apr 27 02:18:17 2015 +0500
+
+    going to top rated videos details page
+
+[33mcommit d30a12b5ca19729cac5875f6e7dbd7e8f3c690c8[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Mon Apr 27 01:35:06 2015 +0500
+
+    regex to get video code working
+
+[33mcommit 53ba3d9026183ab9db8e4d2ef83c663486ae9c8a[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Sun Apr 26 18:34:19 2015 +0500
+
+    thumbnail field hidden now actually
+
+[33mcommit 67e55ebeceee0ec6bc1aa4c8079200cdc0f3bcfb[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Sun Apr 26 18:33:50 2015 +0500
+
+    thumbnail field hidden
+
+[33mcommit 5343e80c092c45e0e69e812870ccedbc0910064b[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Sun Apr 26 17:58:12 2015 +0500
+
+    slider works and disqus comments added
+
+[33mcommit b115c6adc9f3a2d5b61dfe01fa1721a67e1b1f43[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Sun Apr 26 17:55:50 2015 +0500
+
+    Revert "Revert "slider works and disqus comments added""
+    
+    This reverts commit 555163c4a55c9d94a1778e1ff627b23840179200.
+
+[33mcommit 555163c4a55c9d94a1778e1ff627b23840179200[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Sun Apr 26 17:54:08 2015 +0500
+
+    Revert "slider works and disqus comments added"
+    
+    This reverts commit f75093938b7d02838dab554bb8b9256f5814f02a.
+
+[33mcommit f75093938b7d02838dab554bb8b9256f5814f02a[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Sun Apr 26 17:53:53 2015 +0500
+
+    slider works and disqus comments added
+
+[33mcommit 803e99b03fb2159d652f9dccd8fb05d7bfc6aafe[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Sun Apr 26 14:53:21 2015 +0500
+
+    master commit
+
+[33mcommit eae5b625c34dc1e977955a73ae994e90ce7542da[m
+Author: mhsohail <sohailx2x@yahoo.com>
+Date:   Sun Apr 26 14:42:53 2015 +0500
+
+    :space_invader: Added .gitattributes & .gitignore files
