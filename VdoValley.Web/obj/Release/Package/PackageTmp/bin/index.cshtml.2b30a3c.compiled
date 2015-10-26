@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="2" virtualPath="/Views/Ratings/Index.cshtml" hash="ffffffff885e8f6d" filehash="ffffe883037f46ce" flags="110000" assembly="App_Web_h3uldu03" type="ASP._Page_Views_Ratings_Index_cshtml">
+<preserve resultType="2" virtualPath="/Views/Ratings/Index.cshtml" hash="ffffffff885e8f6d" filehash="ffffe883037f46ce" flags="110000" assembly="App_Web_eosbpf3f" type="ASP._Page_Views_Ratings_Index_cshtml">
     <filedeps>
         <filedep name="/Views/Ratings/Index.cshtml" />
     </filedeps>

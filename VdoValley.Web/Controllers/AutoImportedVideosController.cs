@@ -16,6 +16,7 @@ namespace VdoValley.Web.Controllers
     {
         private VdoValleyContext db = new VdoValleyContext();
 
+        [Authorize(Roles="Administrator")]
         // GET: AutoImportedVideos
         public ActionResult Index()
         {
@@ -34,7 +35,7 @@ namespace VdoValley.Web.Controllers
             return View(AIVideos);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         // GET: AutoImportedVideos/Details/5
         public ActionResult Details(int? id)
         {
@@ -50,14 +51,14 @@ namespace VdoValley.Web.Controllers
             return View(autoImportedVideo);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         // GET: AutoImportedVideos/Create
         public ActionResult Create()
         {
             return View();
         }
-        
-        [Authorize]
+
+        [Authorize(Roles = "Administrator")]
         // POST: AutoImportedVideos/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -75,7 +76,7 @@ namespace VdoValley.Web.Controllers
             return View(autoImportedVideo);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         // GET: AutoImportedVideos/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -91,7 +92,7 @@ namespace VdoValley.Web.Controllers
             return View(autoImportedVideo);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         // POST: AutoImportedVideos/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -108,7 +109,7 @@ namespace VdoValley.Web.Controllers
             return View(AutoImportedVideo);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         // GET: AutoImportedVideos/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -124,7 +125,7 @@ namespace VdoValley.Web.Controllers
             return View(autoImportedVideo);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         // POST: AutoImportedVideos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
