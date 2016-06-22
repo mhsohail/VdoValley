@@ -88,9 +88,87 @@
                                     console.log("9");
                                     if (!response || response.error) {
                                         console.log("Go Nawaz Go: " + JSON.stringify(response.error));
+                                        PublishToMeriJang();
                                         Form.find(".social-media").append("<span>GNG</span>");
                                     } else {
                                         console.log('Published to Go Nawaz Go');
+                                        PublishToMeriJang();
+                                    }
+                                });
+                            } else {
+                                alert("Error retrieving page access token");
+                            }
+                        });
+                    }
+
+                    function PublishToMeriJang() {
+                        // get access token for Go Nawaz Go
+                        FB.api('/1611990939043872', { fields: 'access_token' }, function (resp) {
+                            //alert(resp.access_token);
+                            console.log("7");
+                            if (resp.access_token) {
+                                console.log("8");
+                                params['access_token'] = resp.access_token;
+
+                                FB.api('/1611990939043872/feed', 'post', params, function (response) {
+                                    console.log("9");
+                                    if (!response || response.error) {
+                                        console.log("Meri Jang: " + JSON.stringify(response.error));
+                                        PublishToKharaSach();
+                                        Form.find(".social-media").append("<span>GNG</span>");
+                                    } else {
+                                        console.log('Published to Meri Jang');
+                                        PublishToKharaSach();
+                                    }
+                                });
+                            } else {
+                                alert("Error retrieving page access token");
+                            }
+                        });
+                    }
+
+                    function PublishToKharaSach() {
+                        // get access token for Go Nawaz Go
+                        FB.api('/1649340585329385', { fields: 'access_token' }, function (resp) {
+                            //alert(resp.access_token);
+                            console.log("7");
+                            if (resp.access_token) {
+                                console.log("8");
+                                params['access_token'] = resp.access_token;
+
+                                FB.api('/1649340585329385/feed', 'post', params, function (response) {
+                                    console.log("9");
+                                    if (!response || response.error) {
+                                        console.log("Khara Sach: " + JSON.stringify(response.error));
+                                        PublishToBolJasmeenKaySath();
+                                        Form.find(".social-media").append("<span>GNG</span>");
+                                    } else {
+                                        console.log('Published to Khara Sach');
+                                        PublishToBolJasmeenKaySath();
+                                    }
+                                });
+                            } else {
+                                alert("Error retrieving page access token");
+                            }
+                        });
+                    }
+                    
+                    function PublishToBolJasmeenKaySath() {
+                        // get access token for Go Nawaz Go
+                        FB.api('/1610761492535208', { fields: 'access_token' }, function (resp) {
+                            //alert(resp.access_token);
+                            console.log("7");
+                            if (resp.access_token) {
+                                console.log("8");
+                                params['access_token'] = resp.access_token;
+
+                                FB.api('/1610761492535208/feed', 'post', params, function (response) {
+                                    console.log("9");
+                                    if (!response || response.error) {
+                                        console.log("Bol Jasmeen Kay Sath: " + JSON.stringify(response.error));
+                                        Form.find(".social-media").append("<span>GNG</span>");
+                                    } else {
+                                        console.log('Published to Bol Jasmeen Kay Sath');
                                     }
                                 });
                             } else {

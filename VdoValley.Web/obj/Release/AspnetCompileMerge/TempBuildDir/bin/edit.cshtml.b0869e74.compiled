@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="2" virtualPath="/Views/Categories/Edit.cshtml" hash="ffffffff885e8f6d" filehash="fffff40922b32b10" flags="110000" assembly="App_Web_lh03v1y5" type="ASP._Page_Views_Categories_Edit_cshtml">
+<preserve resultType="2" virtualPath="/Views/Categories/Edit.cshtml" hash="ffffffff885e8f6d" filehash="fffff40922b32b10" flags="110000" assembly="App_Web_zzdds3jy" type="ASP._Page_Views_Categories_Edit_cshtml">
     <filedeps>
         <filedep name="/Views/Categories/Edit.cshtml" />
     </filedeps>

@@ -6,19 +6,14 @@
         if (typeof ThumbnailURL === "undefined") { ThumbnailURL = VideoDTO.ThumbnailURL; }
         if (typeof _Form === "undefined") { _Form = Form; }
 
-        console.log("2");
         FB.init({
             appId: '1576894379240839',
             xfbml: true,
             version: 'v2.3'
         });
-        console.log("3");
         FB.login(function (response) {
-            console.log("4");
             FB.getLoginStatus(function (response) {
-                console.log("5");
                 if (response.status === 'connected') {
-                    console.log("6");
                     // the user is logged in and has authenticated your
                     // app, and response.authResponse supplies
                     // the user's ID, a valid access token, a signed
@@ -41,7 +36,6 @@
                     // share on Saba Ibrahim feed
                     FB.api('/me/feed', 'post', params, function (response) {
                         if (!response || response.error) {
-                            console.log("SabaIbrahim: " + JSON.stringify(response.error));
                             PublishToVdoValley();
                         } else {
                             console.log('Published to SabaIbrahim');
@@ -49,21 +43,16 @@
                         }
                     });
                     */
+
                     function PublishToVdoValley() {
                         // get access token for VdoValley
                         FB.api('/1379536292353915', { fields: 'access_token' }, function (resp) {
-                            //alert(resp.access_token);
-                            console.log("7");
                             if (resp.access_token) {
-                                console.log("8");
                                 params['access_token'] = resp.access_token;
-
                                 FB.api('/1379536292353915/feed', 'post', params, function (response) {
-                                    console.log("9");
                                     if (!response || response.error) {
-                                        console.log("VdoValley: " + JSON.stringify(response.error));
+                                        Form.find(".social-media").append("<span>VdoValley</span>");
                                         PublishToGoNawazGo();
-                                        Form.find(".social-media").append("<span>VV</span>");
                                     } else {
                                         console.log('Published to VdoValley');
                                         PublishToGoNawazGo();
@@ -74,22 +63,16 @@
                             }
                         });
                     }
-                                    
+                    
                     function PublishToGoNawazGo() {
                         // get access token for Go Nawaz Go
                         FB.api('/295834287269305', { fields: 'access_token' }, function (resp) {
-                            //alert(resp.access_token);
-                            console.log("7");
                             if (resp.access_token) {
-                                console.log("8");
                                 params['access_token'] = resp.access_token;
-                                            
                                 FB.api('/295834287269305/feed', 'post', params, function (response) {
-                                    console.log("9");
                                     if (!response || response.error) {
-                                        console.log("Go Nawaz Go: " + JSON.stringify(response.error));
+                                        Form.find(".social-media").append("<span>GoNawazGo</span>");
                                         PublishToMeriJang();
-                                        Form.find(".social-media").append("<span>GNG</span>");
                                     } else {
                                         console.log('Published to Go Nawaz Go');
                                         PublishToMeriJang();
@@ -104,18 +87,12 @@
                     function PublishToMeriJang() {
                         // get access token for Go Nawaz Go
                         FB.api('/1611990939043872', { fields: 'access_token' }, function (resp) {
-                            //alert(resp.access_token);
-                            console.log("7");
                             if (resp.access_token) {
-                                console.log("8");
                                 params['access_token'] = resp.access_token;
-
                                 FB.api('/1611990939043872/feed', 'post', params, function (response) {
-                                    console.log("9");
                                     if (!response || response.error) {
-                                        console.log("Meri Jang: " + JSON.stringify(response.error));
+                                        Form.find(".social-media").append("<span>MeriJang</span>");
                                         PublishToKharaSach();
-                                        Form.find(".social-media").append("<span>GNG</span>");
                                     } else {
                                         console.log('Published to Meri Jang');
                                         PublishToKharaSach();
@@ -128,20 +105,14 @@
                     }
 
                     function PublishToKharaSach() {
-                        // get access token for Go Nawaz Go
+                        // get access token for KharaSach
                         FB.api('/1649340585329385', { fields: 'access_token' }, function (resp) {
-                            //alert(resp.access_token);
-                            console.log("7");
                             if (resp.access_token) {
-                                console.log("8");
                                 params['access_token'] = resp.access_token;
-
                                 FB.api('/1649340585329385/feed', 'post', params, function (response) {
-                                    console.log("9");
                                     if (!response || response.error) {
-                                        console.log("Khara Sach: " + JSON.stringify(response.error));
+                                        Form.find(".social-media").append("<span>KharaSach</span>");
                                         PublishToBolJasmeenKaySath();
-                                        Form.find(".social-media").append("<span>GNG</span>");
                                     } else {
                                         console.log('Published to Khara Sach');
                                         PublishToBolJasmeenKaySath();
@@ -154,19 +125,13 @@
                     }
                     
                     function PublishToBolJasmeenKaySath() {
-                        // get access token for Go Nawaz Go
+                        // get access token for BolJasmeenKaySath
                         FB.api('/1610761492535208', { fields: 'access_token' }, function (resp) {
-                            //alert(resp.access_token);
-                            console.log("7");
                             if (resp.access_token) {
-                                console.log("8");
                                 params['access_token'] = resp.access_token;
-
                                 FB.api('/1610761492535208/feed', 'post', params, function (response) {
-                                    console.log("9");
                                     if (!response || response.error) {
-                                        console.log("Bol Jasmeen Kay Sath: " + JSON.stringify(response.error));
-                                        Form.find(".social-media").append("<span>GNG</span>");
+                                        Form.find(".social-media").append("<span>BolJasmeenKaySath</span>");
                                     } else {
                                         console.log('Published to Bol Jasmeen Kay Sath');
                                     }

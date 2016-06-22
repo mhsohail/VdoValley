@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="2" virtualPath="/Views/Manage/ManageLogins.cshtml" hash="ffffffff885e8f6d" filehash="fffff3be8a31b097" flags="110000" assembly="App_Web_djnbmkrr" type="ASP._Page_Views_Manage_ManageLogins_cshtml">
+<preserve resultType="2" virtualPath="/Views/Manage/ManageLogins.cshtml" hash="ffffffff885e8f6d" filehash="fffff3be8a31b097" flags="110000" assembly="App_Web_vdtxlqse" type="ASP._Page_Views_Manage_ManageLogins_cshtml">
     <filedeps>
         <filedep name="/Views/Manage/ManageLogins.cshtml" />
     </filedeps>
